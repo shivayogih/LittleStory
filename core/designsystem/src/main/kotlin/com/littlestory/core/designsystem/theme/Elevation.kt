@@ -1,6 +1,9 @@
 package com.littlestory.core.designsystem.theme
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -24,4 +27,16 @@ data class LittleStoryElevation(
     val hero: ShadowToken = ShadowToken(16.dp, 30.dp, Palette.Indigo.copy(alpha = PRIMARY_ALPHA)),
     val appShell: ShadowToken = ShadowToken(0.dp, 50.dp, Palette.Night.copy(alpha = SHELL_ALPHA)),
     val createNav: ShadowToken = ShadowToken(5.dp, 15.dp, Palette.Indigo.copy(alpha = CREATE_NAV_ALPHA)),
+)
+
+// Compose shadows take an elevation, not a CSS blur radius; half the blur is the closest visual match
+// (docs/design/design-system.md §5 says to verify visually).
+private const val BLUR_TO_ELEVATION = 0.5f
+
+/** Draws a design shadow token behind a [shape]. */
+fun Modifier.tokenShadow(token: ShadowToken, shape: Shape): Modifier = shadow(
+    elevation = token.blur * BLUR_TO_ELEVATION,
+    shape = shape,
+    ambientColor = token.color,
+    spotColor = token.color,
 )
