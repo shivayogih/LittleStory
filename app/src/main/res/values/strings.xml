@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LittleStory</string>
+    <!-- The brand is not translated. -->
+    <string name="app_name" translatable="false">LittleStory</string>
+
+    <!-- Walking skeleton (LS-040): proves tokens, fonts and the language switch end to end. -->
+    <string name="skeleton_tagline">Little Stories. Big Imagination.</string>
+    <string name="skeleton_language_label">Language</string>
+    <string name="skeleton_language_selected">Selected</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shared strings owned by :core:ui (prefixes: action_, nav_, cd_, meta_, error_, state_, label_). -->
+    <string name="action_try_again">Try again</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+</resources>

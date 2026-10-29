@@ -16,6 +16,9 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
             add("implementation", libs.library("androidx-compose-ui-tooling-preview"))
             add("debugImplementation", libs.library("androidx-compose-ui-tooling"))
             add("testImplementation", bom)
+            add("testImplementation", libs.library("androidx-compose-ui-test-junit4"))
+            add("testImplementation", libs.library("roborazzi-compose"))
+            add("debugImplementation", libs.library("androidx-compose-ui-test-manifest"))
             add("androidTestImplementation", bom)
         }
     }

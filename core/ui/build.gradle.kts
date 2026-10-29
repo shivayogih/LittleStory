@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     api(projects.core.designsystem)
-    implementation(projects.core.common)
+    api(projects.core.common)
     implementation(projects.domain)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
 }

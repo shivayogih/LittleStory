@@ -21,11 +21,8 @@ internal fun Project.addAndroidUnitTestDependencies() {
     dependencies {
         add("testImplementation", libs.library("robolectric"))
         add("testImplementation", libs.library("androidx-test-ext-junit"))
-        add("testImplementation", libs.library("androidx-compose-ui-test-junit4"))
         add("testImplementation", libs.library("roborazzi"))
-        add("testImplementation", libs.library("roborazzi-compose"))
         add("testImplementation", libs.library("roborazzi-junit-rule"))
-        add("debugImplementation", libs.library("androidx-compose-ui-test-manifest"))
     }
 }
 
