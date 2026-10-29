@@ -63,6 +63,10 @@ data class LittleStoryDimens(
     val createTileRing: Dp = 5.dp,
     /** Bottom bar is drawn as white at 96 % (`#FFFFFFF5`) over the content. */
     val bottomNavAlpha: Float = 0.96f,
+    val pagerDotSize: Dp = 7.dp,
+    val pagerDotActiveWidth: Dp = 24.dp,
+    /** Height of the night illustration in the component catalogue (debug only). */
+    val catalogSceneHeight: Dp = 260.dp,
     /** Disabled controls are drawn at 45 % opacity. */
     val disabledAlpha: Float = 0.45f,
 )

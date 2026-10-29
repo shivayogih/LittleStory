@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-01 Onboarding -->
+    <string name="onboarding_eyebrow">Little Stories. Big Imagination.</string>
+    <string name="onboarding_title_1">Every Day Has a Story</string>
+    <string name="onboarding_body_1">Turn school days, family moments and tiny acts of kindness into magical adventures.</string>
+    <string name="onboarding_title_2">Your Child, the Hero</string>
+    <string name="onboarding_body_2">Stories shaped around their name, age and favourite things—with parents always in control.</string>
+    <string name="onboarding_title_3">Listen, Dream, Repeat</string>
+    <string name="onboarding_body_3">Gentle narration, offline stories and a sleep timer make bedtime feel wonderfully calm.</string>
+    <string name="onboarding_cta_get_started">Get Started</string>
+    <!-- TalkBack description of the pager dots: slide %1$d of %2$d -->
+    <string name="onboarding_pager_description">Slide %1$d of %2$d</string>
+
+    <!-- SCR-02 Setup -->
+    <string name="setup_badge">Private &amp; parent-managed</string>
+    <string name="setup_title">Let’s make stories feel like home.</string>
+    <string name="setup_subtitle">A few details help us choose safe, age-appropriate adventures.</string>
+    <string name="setup_label_name">Child’s name</string>
+    <string name="setup_placeholder_name">First name</string>
+    <string name="setup_label_avatar">Choose an avatar</string>
+    <string name="setup_label_age">Age</string>
+    <string name="setup_label_language">Language</string>
+    <string name="setup_label_interests">Favourite interests (optional)</string>
+    <string name="setup_label_duration">Story duration</string>
+    <string name="setup_cta_create">Create profile</string>
+    <string name="setup_cta_create_named">Create %1$s’s profile</string>
+    <string name="setup_cta_save">Save changes</string>
+    <string name="setup_skip">Skip for now</string>
+    <string name="setup_error_name_empty">Please enter your child’s name.</string>
+    <string name="setup_error_name_too_long">Names can be up to %1$d characters.</string>
+    <plurals name="setup_age_years">
+        <item quantity="one">%1$d year</item>
+        <item quantity="other">%1$d years</item>
+    </plurals>
+</resources>

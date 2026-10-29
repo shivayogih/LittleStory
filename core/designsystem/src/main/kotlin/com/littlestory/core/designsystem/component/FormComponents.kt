@@ -111,6 +111,8 @@ fun LittleStoryTextField(
     error: String? = null,
     singleLine: Boolean = true,
     imeAction: ImeAction = ImeAction.Default,
+    /** Applied to the editable text node itself (for tests and accessibility actions). */
+    inputModifier: Modifier = Modifier,
 ) {
     val colors = LittleStoryTheme.colors
     val interactionSource = remember { MutableInteractionSource() }
@@ -125,7 +127,7 @@ fun LittleStoryTextField(
                 textStyle = LittleStoryTheme.typography.bodyLarge.copy(color = colors.textPrimary),
                 cursorBrush = SolidColor(colors.primary),
                 keyboardOptions = KeyboardOptions(imeAction = imeAction),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = inputModifier.fillMaxWidth(),
                 decorationBox = { inner ->
                     if (value.isEmpty() && placeholder != null) {
                         Text(placeholder, style = LittleStoryTheme.typography.bodyLarge, color = colors.textSecondary)

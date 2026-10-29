@@ -14,16 +14,16 @@ import androidx.core.view.WindowCompat
  * previous style is restored when the screen leaves composition.
  */
 @Composable
-fun SystemBarIcons(darkIcons: Boolean) {
+fun SystemBarIcons(darkIcons: Boolean, darkNavigationIcons: Boolean = darkIcons) {
     val view = LocalView.current
     if (view.isInEditMode) return
-    DisposableEffect(view, darkIcons) {
+    DisposableEffect(view, darkIcons, darkNavigationIcons) {
         val window = view.context.findActivity()?.window
         val controller = window?.let { WindowCompat.getInsetsController(it, view) }
         val previousStatus = controller?.isAppearanceLightStatusBars
         val previousNavigation = controller?.isAppearanceLightNavigationBars
         controller?.isAppearanceLightStatusBars = darkIcons
-        controller?.isAppearanceLightNavigationBars = darkIcons
+        controller?.isAppearanceLightNavigationBars = darkNavigationIcons
         onDispose {
             if (previousStatus != null) controller.isAppearanceLightStatusBars = previousStatus
             if (previousNavigation != null) controller.isAppearanceLightNavigationBars = previousNavigation
