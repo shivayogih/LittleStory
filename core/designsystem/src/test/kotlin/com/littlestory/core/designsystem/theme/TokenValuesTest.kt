@@ -47,8 +47,14 @@ class TokenValuesTest {
         assertFalse(kn.uppercaseEyebrows)
         assertTrue(LatinTypography.uppercaseEyebrows)
         listOf(kn.displayOnboarding, kn.heroTitle, kn.topBarTitle).forEach {
-            assertTrue(it.letterSpacing.value.isNaN() || it.letterSpacing.value >= 0f, "no negative tracking in Kannada")
-            assertTrue(it.lineHeight.value / it.fontSize.value >= 1.4f - 0.001f, "Kannada titles need line height >= 1.4")
+            assertTrue(
+                it.letterSpacing.value.isNaN() || it.letterSpacing.value >= 0f,
+                "no negative tracking in Kannada",
+            )
+            assertTrue(
+                it.lineHeight.value / it.fontSize.value >= 1.4f - 0.001f,
+                "Kannada titles need line height >= 1.4",
+            )
         }
         assertTrue(kn.eyebrow.fontSize.value >= 11f)
     }

@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.littlestory.app.skeleton.SkeletonScreen
 import com.littlestory.core.common.language.SupportedLanguages
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-            var selected by mutableStateOf(AppLanguage.current())
+            var selected by remember { mutableStateOf(AppLanguage.current()) }
             LittleStoryTheme {
                 SkeletonScreen(
                     languages = SupportedLanguages.enabled,

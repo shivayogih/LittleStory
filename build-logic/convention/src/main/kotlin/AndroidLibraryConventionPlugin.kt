@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.configure
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("com.android.library")
+        pluginManager.apply("littlestory.quality")
         extensions.configure<LibraryExtension> { configureAndroidLibrary(this) }
         pluginManager.apply("io.github.takahirom.roborazzi")
         enforceDependencyRules()

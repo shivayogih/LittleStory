@@ -16,7 +16,6 @@ private const val PRIMARY_ALPHA = 0x33 / 255f
 private const val SHELL_ALPHA = 0x24 / 255f
 private const val CREATE_NAV_ALPHA = 0x40 / 255f
 
-
 @Immutable
 data class LittleStoryElevation(
     val card: ShadowToken = ShadowToken(12.dp, 30.dp, Palette.ShadowInk.copy(alpha = CARD_ALPHA)),

@@ -19,6 +19,7 @@ object AppConfig {
     object Setup {
         val ageRange = 3..12
         const val DEFAULT_AGE = 6
+
         // Differs from Create's options in the prototype (open question C1).
         val durationOptionsMinutes = listOf(5, 10, 15)
         const val DEFAULT_DURATION_MINUTES = 10
@@ -42,6 +43,7 @@ object AppConfig {
         const val SIMULATED_TICK_MS = 500L
         const val TICK_PERCENT = 0.25f
         const val DEFAULT_VOLUME_PERCENT = 75
+
         /** Sleep-timer choices in minutes; "end of story" is a separate option in the UI. */
         val sleepTimerMinutes = listOf(10, 15, 30)
     }
@@ -65,10 +67,21 @@ object AppConfig {
     }
 
     object Discover {
-        val filterIds = listOf(
-            "all", "animals", "adventure", "friendship", "kindness", "nature", "space",
-            "science", "panchatantra", "indian_folk_tales", "festivals", "learning",
-        )
+        val filterIds =
+            listOf(
+                "all",
+                "animals",
+                "adventure",
+                "friendship",
+                "kindness",
+                "nature",
+                "space",
+                "science",
+                "panchatantra",
+                "indian_folk_tales",
+                "festivals",
+                "learning",
+            )
         val sortOptionIds = listOf("recommended", "shortest", "newest")
     }
 

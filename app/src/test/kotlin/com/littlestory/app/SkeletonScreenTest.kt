@@ -2,6 +2,7 @@ package com.littlestory.app
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -27,12 +28,15 @@ class SkeletonScreenTest {
 
     private fun show(initial: com.littlestory.core.common.language.SupportedLanguage, onSelect: (String) -> Unit = {}) {
         composeRule.setContent {
-            var selected by mutableStateOf(initial)
+            var selected by remember { mutableStateOf(initial) }
             LittleStoryTheme {
                 SkeletonScreen(
                     languages = SupportedLanguages.enabled,
                     selected = selected,
-                    onLanguageSelected = { selected = it; onSelect(it.tag) },
+                    onLanguageSelected = {
+                        selected = it
+                        onSelect(it.tag)
+                    },
                 )
             }
         }

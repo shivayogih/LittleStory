@@ -1,8 +1,8 @@
 package com.littlestory.app
 
 import com.littlestory.core.common.language.SupportedLanguages
-import java.io.File
 import org.junit.Test
+import java.io.File
 import kotlin.test.assertEquals
 
 /** The registry is the only list of languages: locales_config.xml must mirror it (LS-040). */

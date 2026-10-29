@@ -11,16 +11,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.platform.testTag
-import androidx.compose.foundation.selection.selectable
 import com.littlestory.app.R
 import com.littlestory.core.common.language.SupportedLanguage
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
@@ -43,11 +43,12 @@ fun SkeletonScreen(
     val spacing = LittleStoryTheme.spacing
     val typography = LittleStoryTheme.typography
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(colors.night)
-            .safeDrawingPadding()
-            .padding(horizontal = spacing.screenHorizontal, vertical = spacing.xxl),
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(colors.night)
+                .safeDrawingPadding()
+                .padding(horizontal = spacing.screenHorizontal, vertical = spacing.xxl),
         verticalArrangement = Arrangement.spacedBy(spacing.lg),
     ) {
         Text(
@@ -86,18 +87,18 @@ private fun LanguageOption(
     val dimens = LittleStoryTheme.dimens
     val selectedLabel = stringResource(R.string.skeleton_language_selected)
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = dimens.buttonMinHeight)
-            .background(if (isSelected) colors.secondaryContainer else colors.nightSurface, shape)
-            .border(
-                BorderStroke(dimens.selectedBorderWidth, if (isSelected) colors.accent else colors.nightSurface),
-                shape,
-            )
-            .selectable(selected = isSelected, role = Role.RadioButton, onClick = onClick)
-            .padding(horizontal = LittleStoryTheme.spacing.lg)
-            .semantics { if (isSelected) contentDescription = selectedLabel }
-            .testTag(languageOptionTag(language)),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .heightIn(min = dimens.buttonMinHeight)
+                .background(if (isSelected) colors.secondaryContainer else colors.nightSurface, shape)
+                .border(
+                    BorderStroke(dimens.selectedBorderWidth, if (isSelected) colors.accent else colors.nightSurface),
+                    shape,
+                ).selectable(selected = isSelected, role = Role.RadioButton, onClick = onClick)
+                .padding(horizontal = LittleStoryTheme.spacing.lg)
+                .semantics { if (isSelected) contentDescription = selectedLabel }
+                .testTag(languageOptionTag(language)),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(

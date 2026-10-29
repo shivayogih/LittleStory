@@ -93,34 +93,36 @@ private fun systemAnimationsDisabled(): Boolean {
     }
 }
 
-private fun LittleStoryColors.toMaterialColorScheme(): ColorScheme = lightColorScheme(
-    primary = primary,
-    onPrimary = onPrimary,
-    secondaryContainer = secondaryContainer,
-    onSecondaryContainer = onSecondaryContainer,
-    tertiary = accent,
-    background = background,
-    onBackground = textPrimary,
-    surface = surface,
-    onSurface = textPrimary,
-    surfaceVariant = surfaceMuted,
-    onSurfaceVariant = textSecondary,
-    outline = outline,
-    outlineVariant = outline,
-    error = error,
-    onError = onPrimary,
-)
+private fun LittleStoryColors.toMaterialColorScheme(): ColorScheme =
+    lightColorScheme(
+        primary = primary,
+        onPrimary = onPrimary,
+        secondaryContainer = secondaryContainer,
+        onSecondaryContainer = onSecondaryContainer,
+        tertiary = accent,
+        background = background,
+        onBackground = textPrimary,
+        surface = surface,
+        onSurface = textPrimary,
+        surfaceVariant = surfaceMuted,
+        onSurfaceVariant = textSecondary,
+        outline = outline,
+        outlineVariant = outline,
+        error = error,
+        onError = onPrimary,
+    )
 
-private fun LittleStoryTypography.toMaterialTypography(): Typography = Typography(
-    displayLarge = displayOnboarding,
-    displayMedium = displaySetup,
-    headlineLarge = heroTitle,
-    headlineMedium = homeTitle,
-    titleLarge = brandName,
-    titleMedium = topBarTitle,
-    bodyLarge = bodyLarge,
-    bodyMedium = body,
-    labelLarge = button,
-    labelMedium = chip,
-    labelSmall = navLabel,
-)
+private fun LittleStoryTypography.toMaterialTypography(): Typography =
+    Typography(
+        displayLarge = displayOnboarding,
+        displayMedium = displaySetup,
+        headlineLarge = heroTitle,
+        headlineMedium = homeTitle,
+        titleLarge = brandName,
+        titleMedium = topBarTitle,
+        bodyLarge = bodyLarge,
+        bodyMedium = body,
+        labelLarge = button,
+        labelMedium = chip,
+        labelSmall = navLabel,
+    )

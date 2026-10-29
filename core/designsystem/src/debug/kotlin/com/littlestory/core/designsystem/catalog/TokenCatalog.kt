@@ -34,9 +34,10 @@ fun TokenCatalog(modifier: Modifier = Modifier) {
     val colors = LittleStoryTheme.colors
     val spacing = LittleStoryTheme.spacing
     Column(
-        modifier = modifier
-            .background(colors.background)
-            .padding(spacing.screenHorizontal),
+        modifier =
+            modifier
+                .background(colors.background)
+                .padding(spacing.screenHorizontal),
         verticalArrangement = Arrangement.spacedBy(spacing.md),
     ) {
         FlowRow(
@@ -79,33 +80,76 @@ private fun Swatch(name: String, brush: Brush) {
 // Debug catalog layout only: wide enough for the longest token name at 10 sp.
 private val SWATCH_LABEL_WIDTH_DP = 96.dp
 
-internal fun LittleStoryColors.namedSwatches(): List<Pair<String, Color>> = listOf(
-    "primary" to primary, "onPrimary" to onPrimary, "primaryVariantLabel" to primaryVariantLabel,
-    "accent" to accent, "secondaryContainer" to secondaryContainer, "onSecondaryContainer" to onSecondaryContainer,
-    "background" to background, "pageBackdrop" to pageBackdrop, "surface" to surface, "surfaceMuted" to surfaceMuted,
-    "outline" to outline, "night" to night, "nightSurface" to nightSurface, "onNight" to onNight,
-    "highlight" to highlight, "warmAccent" to warmAccent, "moon" to moon, "textPrimary" to textPrimary,
-    "textSecondary" to textSecondary, "textReader" to textReader, "navInactive" to navInactive,
-    "success" to success, "successContainer" to successContainer, "error" to error, "favourite" to favourite,
-    "favouriteContainer" to favouriteContainer, "cultureBanner" to cultureBanner, "lessonPanel" to lessonPanel,
-    "readerBackground" to readerBackground, "successRibbon" to successRibbon,
-    "skin" to illustration.skin, "skinLight" to illustration.skinLight, "hair" to illustration.hair,
-    "childTop" to illustration.childTop, "elephant" to illustration.elephant,
-    "elephantLight" to illustration.elephantLight, "elephantLeg" to illustration.elephantLeg,
-    "cricketBat" to illustration.cricketBat, "shirtGold" to illustration.shirtGold,
-)
+internal fun LittleStoryColors.namedSwatches(): List<Pair<String, Color>> =
+    listOf(
+        "primary" to primary,
+        "onPrimary" to onPrimary,
+        "primaryVariantLabel" to primaryVariantLabel,
+        "accent" to accent,
+        "secondaryContainer" to secondaryContainer,
+        "onSecondaryContainer" to onSecondaryContainer,
+        "background" to background,
+        "pageBackdrop" to pageBackdrop,
+        "surface" to surface,
+        "surfaceMuted" to surfaceMuted,
+        "outline" to outline,
+        "night" to night,
+        "nightSurface" to nightSurface,
+        "onNight" to onNight,
+        "highlight" to highlight,
+        "warmAccent" to warmAccent,
+        "moon" to moon,
+        "textPrimary" to textPrimary,
+        "textSecondary" to textSecondary,
+        "textReader" to textReader,
+        "navInactive" to navInactive,
+        "success" to success,
+        "successContainer" to successContainer,
+        "error" to error,
+        "favourite" to favourite,
+        "favouriteContainer" to favouriteContainer,
+        "cultureBanner" to cultureBanner,
+        "lessonPanel" to lessonPanel,
+        "readerBackground" to readerBackground,
+        "successRibbon" to successRibbon,
+        "skin" to illustration.skin,
+        "skinLight" to illustration.skinLight,
+        "hair" to illustration.hair,
+        "childTop" to illustration.childTop,
+        "elephant" to illustration.elephant,
+        "elephantLight" to illustration.elephantLight,
+        "elephantLeg" to illustration.elephantLeg,
+        "cricketBat" to illustration.cricketBat,
+        "shirtGold" to illustration.shirtGold,
+    )
 
-internal fun LittleStoryColors.namedGradients(): List<Pair<String, List<Color>>> = listOf(
-    "friendship" to storyArt.friendship, "adventure" to storyArt.adventure, "bedtime" to storyArt.bedtime,
-    "indianTales" to storyArt.indianTales, "space" to storyArt.space, "festivals" to storyArt.festivals,
-).map { (name, pair) -> name to listOf(pair.start, pair.end) }
+internal fun LittleStoryColors.namedGradients(): List<Pair<String, List<Color>>> =
+    listOf(
+        "friendship" to storyArt.friendship,
+        "adventure" to storyArt.adventure,
+        "bedtime" to storyArt.bedtime,
+        "indianTales" to storyArt.indianTales,
+        "space" to storyArt.space,
+        "festivals" to storyArt.festivals,
+    ).map { (name, pair) -> name to listOf(pair.start, pair.end) }
 
-internal fun LittleStoryTypography.namedStyles(): List<Pair<String, TextStyle>> = listOf(
-    "displayOnboarding" to displayOnboarding, "displaySetup" to displaySetup, "heroTitle" to heroTitle,
-    "homeTitle" to homeTitle, "topBarTitle" to topBarTitle, "brandName" to brandName,
-    "bodyLarge" to bodyLarge, "body" to body, "readerBody" to readerBody, "button" to button, "chip" to chip,
-    "eyebrow" to eyebrow, "heroKicker" to heroKicker, "navLabel" to navLabel,
-)
+internal fun LittleStoryTypography.namedStyles(): List<Pair<String, TextStyle>> =
+    listOf(
+        "displayOnboarding" to displayOnboarding,
+        "displaySetup" to displaySetup,
+        "heroTitle" to heroTitle,
+        "homeTitle" to homeTitle,
+        "topBarTitle" to topBarTitle,
+        "brandName" to brandName,
+        "bodyLarge" to bodyLarge,
+        "body" to body,
+        "readerBody" to readerBody,
+        "button" to button,
+        "chip" to chip,
+        "eyebrow" to eyebrow,
+        "heroKicker" to heroKicker,
+        "navLabel" to navLabel,
+    )
 
 @Preview(widthDp = 430, heightDp = 2000)
 @Composable

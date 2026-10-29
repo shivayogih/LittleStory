@@ -17,6 +17,11 @@ dependencies {
     compileOnly(libs.ksp.gradle.plugin)
     compileOnly(libs.hilt.gradle.plugin)
     compileOnly(libs.roborazzi.gradle.plugin)
+    compileOnly(libs.detekt.gradle.plugin)
+    compileOnly(libs.ktlint.gradle.plugin)
+
+    testImplementation(libs.junit4)
+    testImplementation(libs.kotlin.test)
 }
 
 gradlePlugin {
@@ -41,9 +46,19 @@ gradlePlugin {
             id = "littlestory.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
         }
+        register("root") {
+            id = "littlestory.root"
+            implementationClass = "RootConventionPlugin"
+        }
+        register("quality") {
+            id = "littlestory.quality"
+            implementationClass = "QualityConventionPlugin"
+        }
         register("jvmLibrary") {
             id = "littlestory.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
     }
 }
+
+tasks.withType<Test>().configureEach { useJUnit() }

@@ -29,6 +29,8 @@ internal fun Project.addAndroidUnitTestDependencies() {
 internal fun Project.configureTestTasks() {
     tasks.withType<Test>().configureEach {
         useJUnit()
+        // Feature modules have no tests until their screens land (P3+).
+        failOnNoDiscoveredTests.set(false)
         // Kannada strings in test sources must be read as UTF-8 on every OS.
         systemProperty("file.encoding", "UTF-8")
         // Robolectric reflects into java.io and jdk.internal.access on JDK 17+.

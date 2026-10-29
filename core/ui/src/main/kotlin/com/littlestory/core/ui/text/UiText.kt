@@ -14,23 +14,32 @@ import androidx.compose.ui.res.stringResource
  */
 @Immutable
 sealed interface UiText {
-    data class Res(@StringRes val id: Int, val args: List<Any> = emptyList()) : UiText
+    data class Res(
+        @StringRes val id: Int,
+        val args: List<Any> = emptyList(),
+    ) : UiText
 
-    data class Plural(@PluralsRes val id: Int, val count: Int, val args: List<Any> = emptyList()) : UiText
+    data class Plural(
+        @PluralsRes val id: Int,
+        val count: Int,
+        val args: List<Any> = emptyList(),
+    ) : UiText
 
     /** User-entered or content text only (child name, story title); never UI copy. */
     data class Dynamic(val value: String) : UiText
 }
 
 @Composable
-fun UiText.asString(): String = when (this) {
-    is UiText.Res -> stringResource(id, *args.toTypedArray())
-    is UiText.Plural -> pluralStringResource(id, count, *(listOf<Any>(count) + args).toTypedArray())
-    is UiText.Dynamic -> value
-}
+fun UiText.asString(): String =
+    when (this) {
+        is UiText.Res -> stringResource(id, *args.toTypedArray())
+        is UiText.Plural -> pluralStringResource(id, count, *(listOf<Any>(count) + args).toTypedArray())
+        is UiText.Dynamic -> value
+    }
 
-fun UiText.asString(context: Context): String = when (this) {
-    is UiText.Res -> context.getString(id, *args.toTypedArray())
-    is UiText.Plural -> context.resources.getQuantityString(id, count, *(listOf<Any>(count) + args).toTypedArray())
-    is UiText.Dynamic -> value
-}
+fun UiText.asString(context: Context): String =
+    when (this) {
+        is UiText.Res -> context.getString(id, *args.toTypedArray())
+        is UiText.Plural -> context.resources.getQuantityString(id, count, *(listOf<Any>(count) + args).toTypedArray())
+        is UiText.Dynamic -> value
+    }

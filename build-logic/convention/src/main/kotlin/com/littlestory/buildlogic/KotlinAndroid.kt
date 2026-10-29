@@ -21,6 +21,11 @@ internal fun Project.configureAndroidApplication(extension: ApplicationExtension
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
         testOptions.unitTests.isIncludeAndroidResources = true
+        lint {
+            abortOnError = true
+            warningsAsErrors = false
+            lintConfig = rootProject.file("config/lint/lint.xml")
+        }
     }
     configureKotlinAndroid()
 }
@@ -40,6 +45,11 @@ internal fun Project.configureAndroidLibrary(extension: LibraryExtension) {
         testOptions.unitTests.isIncludeAndroidResources = true
         // Robolectric runs unit tests against targetSdk; it does not support compileSdk 37 yet.
         testOptions.targetSdk = libs.intVersion("targetSdk")
+        lint {
+            abortOnError = true
+            warningsAsErrors = false
+            lintConfig = rootProject.file("config/lint/lint.xml")
+        }
     }
     configureKotlinAndroid()
 }
