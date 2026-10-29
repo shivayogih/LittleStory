@@ -5,13 +5,13 @@
 **Source:** Figma Make file "Mobile App UI Prototype" (`2DYtUW39GtnsDpUd5jSu6x`), version 1
 **Frame:** 430 px wide phone shell, 18 screens, 22 captured states (screenshots in `screens/`)
 **How extracted:** Figma Make files are code-based, so values below come from the prototype's source code and compiled stylesheet, and screenshots from the running build, not from Figma layers. Tokens are also in `design-tokens.json`.
-**Companion document:** `LittleStory_App_Overview.md` (product, flows, data, issues)
+**Companion documents:** `docs/product/` (product, flows, requirements) and `docs/design/screen-inventory.md`; the earlier `LittleStory_App_Overview.md` is not in the repository
 
 ---
 
 ## 1. Design system
 
-Machine-readable tokens are in `design-tokens/design-tokens.json`. The values below were read directly from the prototype's compiled stylesheet.
+Machine-readable tokens are in `design-tokens.json` (same folder). The values below were read directly from the prototype's compiled stylesheet.
 
 ### 1.1 Colour
 
