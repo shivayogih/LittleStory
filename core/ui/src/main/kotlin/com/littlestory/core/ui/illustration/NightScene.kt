@@ -34,7 +34,6 @@ private const val GLOW_RADIUS_FACTOR = 2.2f
 private const val GLOW_ALPHA = 0.28f
 private const val CLOUD_ALPHA = 0.14f
 private const val STAR_RADIUS = 0.028f
-private const val STAR_SPACING_FRACTION = 0.45f
 private const val CHILD_X = 0.5f
 private const val CHILD_BASE = 0.96f
 private const val CHILD_UNIT = 0.5f
