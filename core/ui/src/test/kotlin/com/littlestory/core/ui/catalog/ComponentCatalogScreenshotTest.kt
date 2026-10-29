@@ -28,7 +28,9 @@ class ComponentCatalogScreenshotTest {
     // Robolectric's ldrtl qualifier does not flip Compose, so RTL is forced through LocalLayoutDirection.
     private fun render(name: String, direction: LayoutDirection = LayoutDirection.Ltr) {
         rule.setContent {
-            CompositionLocalProvider(LocalLayoutDirection provides direction) { LittleStoryTheme { ComponentCatalog() } }
+            CompositionLocalProvider(
+                LocalLayoutDirection provides direction,
+            ) { LittleStoryTheme { ComponentCatalog() } }
         }
         rule.onRoot().captureRoboImage("build/outputs/roborazzi/component_catalog_$name.png")
     }

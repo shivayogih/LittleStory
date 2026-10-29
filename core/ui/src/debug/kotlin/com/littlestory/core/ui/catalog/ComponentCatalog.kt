@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -18,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.littlestory.core.designsystem.brand.BrandMark
 import com.littlestory.core.designsystem.brand.BrandMarkVariant
 import com.littlestory.core.designsystem.component.ButtonVariant
@@ -42,6 +45,7 @@ import com.littlestory.core.ui.chrome.BottomNav
 import com.littlestory.core.ui.chrome.NavTab
 import com.littlestory.core.ui.chrome.StickyActionBar
 import com.littlestory.core.ui.chrome.TopBar
+import com.littlestory.core.ui.illustration.NightScene
 import com.littlestory.core.ui.story.Avatar
 import com.littlestory.core.ui.story.ContinueCard
 import com.littlestory.core.ui.story.ListStoryRow
@@ -51,6 +55,8 @@ import com.littlestory.core.ui.story.StoryArtCategory
 import com.littlestory.core.ui.story.StoryArtMotif
 import com.littlestory.core.ui.story.StoryCard
 import com.littlestory.core.ui.story.gradientFor
+
+private val SCENE_HEIGHT = 260.dp
 
 /** Debug-only catalogue of every design-system and shared component (LS-020); not in release builds. */
 @OptIn(ExperimentalLayoutApi::class)
@@ -77,6 +83,7 @@ fun ComponentCatalog(modifier: Modifier = Modifier) {
         TopBar(backContentDescription = stringResource(R.string.catalog_back), onBack = {
         }, title = stringResource(R.string.catalog_section))
         Row(Modifier.background(colors.night).padding(spacing.md)) { BrandMark(variant = BrandMarkVariant.Light) }
+        Box(Modifier.fillMaxWidth().height(SCENE_HEIGHT)) { NightScene() }
         LittleStoryButton(stringResource(R.string.catalog_primary), {})
         LittleStoryButton(stringResource(R.string.catalog_secondary), {
         }, variant = ButtonVariant.Secondary, leadingIcon = LittleStoryIcons.Plus)

@@ -27,8 +27,9 @@ data class ChildProfileDraft(
     val defaultDurationMinutes: Int,
 )
 
-enum class ProfileError { NameEmpty, NameTooLong, AgeOutOfRange, DurationNotAllowed, NoInterests }
+enum class ProfileError { NameEmpty, NameTooLong, AgeOutOfRange, DurationNotAllowed }
 
+/** Interests are optional in the design, so an empty set is valid. */
 object ProfileValidator {
     fun validate(draft: ChildProfileDraft): Set<ProfileError> =
         buildSet {
@@ -41,6 +42,5 @@ object ProfileValidator {
             ) {
                 add(ProfileError.DurationNotAllowed)
             }
-            if (draft.interestIds.isEmpty()) add(ProfileError.NoInterests)
         }
 }

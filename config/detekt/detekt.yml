@@ -18,6 +18,7 @@ style:
       - '**/theme/**'
       # Illustration geometry (brand mark, story art) is drawing data, not behaviour.
       - '**/brand/**'
+      - '**/illustration/**'
       - '**/story/StoryArt.kt'
   MaxLineLength:
     active: false # ktlint owns line length

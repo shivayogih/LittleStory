@@ -3,4 +3,15 @@
     <!-- Shared strings owned by :core:ui (prefixes: action_, nav_, cd_, meta_, error_, state_, label_). -->
     <string name="action_try_again">Try again</string>
     <string name="error_generic">Something went wrong. Please try again.</string>
+
+    <string name="action_continue">Continue</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_back">Back</string>
+    <string name="meta_minutes">%1$d min</string>
+    <string name="interest_animals">Animals</string>
+    <string name="interest_cricket">Cricket</string>
+    <string name="interest_adventure">Adventure</string>
+    <string name="interest_space">Space</string>
+    <string name="interest_nature">Nature</string>
+    <string name="interest_music">Music</string>
 </resources>

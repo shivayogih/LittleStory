@@ -29,18 +29,24 @@ class ValidationTest {
     fun blankNameAgeAndDurationAreRejected() {
         val errors =
             ProfileValidator.validate(
-                valid.copy(firstName = "  ", age = 2, defaultDurationMinutes = 7, interestIds = emptySet()),
+                valid.copy(firstName = "  ", age = 2, defaultDurationMinutes = 7),
             )
         assertEquals(
             setOf(
                 ProfileError.NameEmpty,
                 ProfileError.AgeOutOfRange,
                 ProfileError.DurationNotAllowed,
-                ProfileError.NoInterests,
             ),
             errors,
         )
     }
+
+    @Test
+    fun interestsAreOptional() =
+        assertEquals(
+            emptySet(),
+            ProfileValidator.validate(valid.copy(interestIds = emptySet())),
+        )
 
     @Test
     fun ageBoundsAreInclusive() {
