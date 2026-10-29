@@ -73,7 +73,7 @@ fun ComponentCatalog(modifier: Modifier = Modifier) {
         modifier.background(colors.background).padding(spacing.screenHorizontal),
         verticalArrangement = Arrangement.spacedBy(spacing.lg),
     ) {
-        TopBar(title = stringResource(R.string.catalog_section))
+        TopBar()
         TopBar(backContentDescription = stringResource(R.string.catalog_back), onBack = {
         }, title = stringResource(R.string.catalog_section))
         Row(Modifier.background(colors.night).padding(spacing.md)) { BrandMark(variant = BrandMarkVariant.Light) }

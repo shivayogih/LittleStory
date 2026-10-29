@@ -1,7 +1,10 @@
 package com.littlestory.core.ui.catalog
 
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.unit.LayoutDirection
 import com.github.takahirom.roborazzi.captureRoboImage
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
 import org.junit.Rule
@@ -22,8 +25,11 @@ class ComponentCatalogScreenshotTest {
     @get:Rule
     val rule = createComposeRule()
 
-    private fun render(name: String) {
-        rule.setContent { LittleStoryTheme { ComponentCatalog() } }
+    // Robolectric's ldrtl qualifier does not flip Compose, so RTL is forced through LocalLayoutDirection.
+    private fun render(name: String, direction: LayoutDirection = LayoutDirection.Ltr) {
+        rule.setContent {
+            CompositionLocalProvider(LocalLayoutDirection provides direction) { LittleStoryTheme { ComponentCatalog() } }
+        }
         rule.onRoot().captureRoboImage("build/outputs/roborazzi/component_catalog_$name.png")
     }
 
@@ -41,5 +47,5 @@ class ComponentCatalogScreenshotTest {
 
     @Test
     @Config(qualifiers = "ar-rXB-w430dp-h3600dp-xxhdpi")
-    fun pseudoRtl() = render("ar-XB")
+    fun pseudoRtl() = render("ar-XB", LayoutDirection.Rtl)
 }
