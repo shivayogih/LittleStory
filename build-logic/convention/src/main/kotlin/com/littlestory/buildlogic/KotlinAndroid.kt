@@ -38,6 +38,8 @@ internal fun Project.configureAndroidLibrary(extension: LibraryExtension) {
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
         testOptions.unitTests.isIncludeAndroidResources = true
+        // Robolectric runs unit tests against targetSdk; it does not support compileSdk 37 yet.
+        testOptions.targetSdk = libs.intVersion("targetSdk")
     }
     configureKotlinAndroid()
 }
@@ -46,10 +48,15 @@ private fun Project.configureKotlinAndroid() {
     extensions.configure<KotlinAndroidProjectExtension> {
         jvmToolchain(libs.intVersion("jdk"))
     }
+    addUnitTestDependencies()
+    addAndroidUnitTestDependencies()
+    configureTestTasks()
 }
 
 internal fun Project.configureKotlinJvm() {
     extensions.configure<KotlinJvmProjectExtension> {
         jvmToolchain(libs.intVersion("jdk"))
     }
+    addUnitTestDependencies()
+    configureTestTasks()
 }
