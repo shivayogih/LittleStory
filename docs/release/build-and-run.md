@@ -1,18 +1,18 @@
 # Build and run
 
 Purpose: how to set up, build, test and run LittleStory on Windows, macOS and Linux.
-Status: Draft for owner review — P1, 29 Oct 2026 — **to be completed when LS-030 creates the project**
+Status: P2, 29 Oct 2026 — verified on Linux (cloud workspace); Windows and macOS steps are untested here
 Sources: master orchestrator brief §3.5, §17.7; P0 assessment §1–§2; workbook tickets LS-030, LS-132, TC-056; Risk R-21.
 
-> The Android project does not exist yet. Commands below are the planned standard Gradle tasks; exact module and task names, JDK and tool versions are filled in by LS-030. Nothing here has been run.
+> Verified toolchain (see `gradle/libs.versions.toml`): Gradle 9.8.2 wrapper, AGP 9.5.0 (built-in Kotlin), Kotlin 2.4.21, Compose BOM 2026.09.00, JDK 21, compileSdk 37.2 (the Compose BOM requires it), targetSdk 36, minSdk 26. Commands in §3 were run on Linux: `./gradlew check assembleDebug` passes. The Windows and macOS column is expected to behave the same but has not been run.
 
 ## 1. Prerequisites
 
 | Tool | Requirement | Notes |
 | --- | --- | --- |
-| Android Studio | Current stable release compatible with the AGP chosen in LS-030 | Same version on Windows and macOS |
-| JDK | Pinned through the Gradle toolchain (version set in LS-030) | Do not rely on the machine's default JDK |
-| Android SDK | compileSdk/targetSdk set in LS-030; minSdk 26 proposed (D5) | Path lives only in `local.properties` (not committed) |
+| Android Studio | A stable release that supports AGP 9.5 | Same version on Windows and macOS |
+| JDK | 21, selected by the Gradle toolchain (`jdk` in the version catalog) | Do not rely on the machine's default JDK |
+| Android SDK | Platform `android-37.2` and build-tools `37.0.0` | Path lives only in `local.properties` (not committed) |
 | Git | With line-ending normalisation from `.gitattributes` | Windows: keep `core.autocrlf=false` or `input`; `.gitattributes` decides |
 | Emulator images | API 26, 30, 33, latest (see `docs/testing/test-plan.md`) | Kannada keyboard (e.g. Gboard) for manual checks |
 
@@ -27,11 +27,14 @@ Sources: master orchestrator brief §3.5, §17.7; P0 assessment §1–§2; workb
 | Task | Windows (PowerShell / cmd) | macOS / Linux |
 | --- | --- | --- |
 | List modules | `gradlew.bat projects` | `./gradlew projects` |
+| Everything CI runs | `gradlew.bat check assembleDebug` | `./gradlew check assembleDebug` |
+| Detekt / ktlint | `gradlew.bat detekt ktlintCheck` (`ktlintFormat` fixes style) | `./gradlew detekt ktlintCheck` |
+| Hardcoding check | `gradlew.bat checkNoHardcoding` | `./gradlew checkNoHardcoding` |
+| Screenshot images (not verified until baselines are approved) | `gradlew.bat recordRoborazziDebug` | `./gradlew recordRoborazziDebug` |
 | List tasks | `gradlew.bat tasks` | `./gradlew tasks` |
 | Unit + Robolectric tests | `gradlew.bat test` | `./gradlew test` |
 | Lint | `gradlew.bat lint` | `./gradlew lint` |
-| Translation parity | `gradlew.bat checkTranslations` (planned, LS-041) | `./gradlew checkTranslations` |
-| Screenshot verify | task name set in LS-035 (Roborazzi proposed) | same |
+| Translation parity | `gradlew.bat checkTranslations` | `./gradlew checkTranslations` |
 | Debug APK | `gradlew.bat assembleDebug` | `./gradlew assembleDebug` |
 | Instrumented tests | `gradlew.bat connectedDebugAndroidTest` | `./gradlew connectedDebugAndroidTest` |
 
@@ -48,8 +51,8 @@ If `./gradlew` is not executable on macOS/Linux: `chmod +x gradlew` (the wrapper
 | Environment | Status |
 | --- | --- |
 | Owner machines (Windows, macOS) | Reference environment |
-| GitHub Actions (LS-130) | Planned shared runner for every PR |
-| Claude Code cloud workspace | Cannot build Android today: `dl.google.com` (Google Maven, SDK) is blocked by the environment's network policy (R-21). Allow that host in the cloud environment's network settings, or rely on CI (decision D3). |
+| GitHub Actions (LS-130) | `.github/workflows/ci.yml` runs `./gradlew check assembleDebug` on every PR. Not yet run: it starts when the PR is opened. |
+| Claude Code cloud workspace | Builds once `dl.google.com` is allowed in the environment's network policy and the SDK is installed (`sdkmanager "platforms;android-37.2" "build-tools;37.0.0"`, then `sdk.dir` in `local.properties`). Maven Central may answer 429: retry with `--max-workers=2`. |
 
 ## 6. Troubleshooting (to extend in LS-030)
 

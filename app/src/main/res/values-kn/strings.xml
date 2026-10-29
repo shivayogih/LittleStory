@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Draft — needs native review -->
+    <string name="skeleton_tagline">ಪುಟ್ಟ ಕಥೆಗಳು. ದೊಡ್ಡ ಕಲ್ಪನೆ.</string>
+    <string name="skeleton_language_label">ಭಾಷೆ</string>
+    <string name="skeleton_language_selected">ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ</string>
+</resources>

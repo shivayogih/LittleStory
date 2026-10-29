@@ -11,10 +11,11 @@ The MVP is built with Kotlin and Jetpack Compose, ships in **English and ಕನ�
 | Phase | State |
 |---|---|
 | P0 Discovery | Done (29 Oct 2026) |
-| P1 Requirements, architecture, backlog, prompts | Drafted — awaiting owner review |
-| P2 onwards (Android implementation) | Not started — needs Approval C |
+| P1 Requirements, architecture, backlog, prompts | Merged (PR #2) |
+| P2 Foundation (M2 walking skeleton) | Implemented on a branch, awaiting owner review: Gradle baseline, 14 modules, design tokens, EN/KN localization base, quality checks, CI |
+| P3 onwards | Not started |
 
-There is no Android code in the repository yet.
+The app currently shows one tokenised screen with the English / ಕನ್ನಡ language switch. Build and run: [docs/release/build-and-run.md](docs/release/build-and-run.md).
 
 ## Repository map
 

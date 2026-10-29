@@ -1,0 +1,50 @@
+# Detekt on top of the default rule set (ADR-018). No baseline: the code must be clean.
+build:
+  maxIssues: 0
+
+style:
+  MagicNumber:
+    active: true
+    ignoreNumbers: ['-1', '0', '1', '2']
+    ignoreAnnotation: true
+    ignoreNamedArgument: true
+    ignoreEnums: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignorePropertyDeclaration: true
+    excludes:
+      - '**/test/**'
+      - '**/androidTest/**'
+      - '**/config/AppConfig.kt'
+      - '**/theme/**'
+  MaxLineLength:
+    active: false # ktlint owns line length
+  WildcardImport:
+    active: true
+  UnusedPrivateMember:
+    active: true
+
+complexity:
+  LongParameterList:
+    functionThreshold: 8
+    ignoreDefaultParameters: true
+    ignoreAnnotated: ['Composable']
+  LongMethod:
+    ignoreAnnotated: ['Composable']
+  TooManyFunctions:
+    active: false
+
+performance:
+  SpreadOperator:
+    active: false # string/plural resource APIs take vararg format arguments by design
+
+naming:
+  MatchingDeclarationName:
+    active: false # token files are named for their group (Shape.kt holds LittleStoryShapes)
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9_]*'
+
+empty-blocks:
+  EmptyFunctionBlock:
+    active: true

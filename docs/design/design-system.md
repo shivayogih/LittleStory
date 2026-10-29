@@ -68,7 +68,7 @@ Untokenised colours seen in specs that need a token or verification: culture ban
 | Manrope | 500, 600, 700, 800 | Headings, brand, top-bar titles, reader paragraphs | No glyphs — fallback required |
 | Noto Sans Kannada (Proposed, ADR-008, OFL) | matching weights where available | Kannada fallback in both families | Yes |
 
-Fonts are bundled in `res/font` (no downloadable-fonts dependency at runtime). Licence texts listed in Help & about (LS-115) and docs.
+Fonts are bundled in `core/designsystem/src/main/res/font` as variable fonts from the google/fonts repository (no downloadable-fonts dependency at runtime). All three are SIL OFL 1.1; the licence texts ship in `core/designsystem/src/main/assets/licenses/` and are listed in Help & about (LS-115).
 
 | Style token | Size / line height | Tracking | Weight / family |
 | --- | --- | --- | --- |

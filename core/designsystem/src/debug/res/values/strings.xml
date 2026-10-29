@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Debug-only: sample text for the token catalog preview and screenshot tests. -->
+    <string name="catalog_specimen">Little Stories. Big Imagination.</string>
+</resources>
