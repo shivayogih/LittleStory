@@ -27,6 +27,15 @@ class QualityCheckTest {
     }
 
     @Test
+    fun unformattedStringsWithPercentAreNotTreatedAsFormats() {
+        val dir = res(
+            "<string name=\"a\" formatted=\"false\">42% done</string>",
+            "<string name=\"a\" formatted=\"false\">42% ಪೂರ್ಣ</string>",
+        )
+        assertEquals(emptyList(), TranslationChecker.check(dir, listOf("kn")))
+    }
+
+    @Test
     fun missingKannadaKeyFails() {
         val dir = res("""<string name="a">A</string><string name="b">B</string>""", """<string name="a">ಎ</string>""")
         val problems = TranslationChecker.check(dir, listOf("kn"))

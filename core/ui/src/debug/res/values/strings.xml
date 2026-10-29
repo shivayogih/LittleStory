@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Debug-only sample text for the component catalogue and screenshot tests. -->
+    <string name="catalog_title">The Little Elephant Who Shared</string>
+    <string name="catalog_title_long">Aarav and the Magical Cricket Bat of the Moonlit Garden</string>
+    <string name="catalog_meta">Friendship · 8 min</string>
+    <string name="catalog_eyebrow" formatted="false">8 MIN · 42% COMPLETE</string>
+    <string name="catalog_primary">Continue</string>
+    <string name="catalog_secondary">Not now</string>
+    <string name="catalog_label_name">Child’s name</string>
+    <string name="catalog_placeholder">Type a name</string>
+    <string name="catalog_search">Search stories</string>
+    <string name="catalog_clear">Clear search</string>
+    <string name="catalog_favourite">Add to favourites</string>
+    <string name="catalog_see_all">See all</string>
+    <string name="catalog_section">Continue listening</string>
+    <string name="catalog_toggle">Bedtime reminder</string>
+    <string name="catalog_back">Back</string>
+    <string name="catalog_note">Stories stay on this device.</string>
+    <string name="catalog_empty_title">No stories yet</string>
+    <string name="catalog_empty_text">Create your first story to see it here.</string>
+    <string name="catalog_tab_home">Home</string>
+    <string name="catalog_tab_discover">Discover</string>
+    <string name="catalog_tab_create">Create</string>
+    <string name="catalog_tab_stories">My Stories</string>
+    <string name="catalog_tab_profile">Profile</string>
+    <string name="catalog_option_one">Calm</string>
+    <string name="catalog_option_two">Funny</string>
+    <string name="catalog_option_three">Magical</string>
+</resources>

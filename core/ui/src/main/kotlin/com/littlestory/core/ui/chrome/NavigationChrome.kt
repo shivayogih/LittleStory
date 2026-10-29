@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Text
@@ -62,7 +62,12 @@ fun TopBar(
             }
         }
         if (title != null) {
-            Text(title, style = LittleStoryTheme.typography.topBarTitle, color = colors.textPrimary, textAlign = TextAlign.Center)
+            Text(
+                title,
+                style = LittleStoryTheme.typography.topBarTitle,
+                color = colors.textPrimary,
+                textAlign = TextAlign.Center,
+            )
         }
         Box(Modifier.weight(1f), contentAlignment = Alignment.CenterEnd) { action() }
     }
@@ -91,7 +96,11 @@ fun BottomNav(
     Column(modifier.fillMaxWidth().background(colors.surface.copy(alpha = dimens.bottomNavAlpha))) {
         Box(Modifier.fillMaxWidth().height(dimens.borderWidth).background(colors.outline))
         Row(
-            Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.navigationBars).heightIn(min = dimens.bottomNavHeight),
+            Modifier
+                .fillMaxWidth()
+                .windowInsetsPadding(
+                    WindowInsets.navigationBars,
+                ).heightIn(min = dimens.bottomNavHeight),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -103,7 +112,11 @@ fun BottomNav(
                         .heightIn(min = dimens.minTouchTarget)
                         .selectable(selected = active, role = Role.Tab, onClick = { onSelect(index) }),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs, Alignment.CenterVertically),
+                    verticalArrangement =
+                        Arrangement.spacedBy(
+                            LittleStoryTheme.spacing.xxs,
+                            Alignment.CenterVertically,
+                        ),
                 ) {
                     if (tab.isCreate) {
                         CreateTile(tab, active)
@@ -115,7 +128,11 @@ fun BottomNav(
                                 .background(if (active) colors.secondaryContainer else Color.Transparent),
                             contentAlignment = Alignment.Center,
                         ) {
-                            LittleStoryIcon(tab.icon, contentDescription = null, tint = if (active) colors.primary else colors.navInactive)
+                            LittleStoryIcon(
+                                tab.icon,
+                                contentDescription = null,
+                                tint = if (active) colors.primary else colors.navInactive,
+                            )
                         }
                     }
                     Text(
@@ -139,8 +156,10 @@ private fun CreateTile(tab: NavTab, active: Boolean) {
     Box(
         Modifier
             .border(dimens.createTileRing, ring, LittleStoryTheme.shapes.medium)
-            .size(dimens.createTileWidth + dimens.createTileRing * 2, dimens.createTileHeight + dimens.createTileRing * 2)
-            .padding(dimens.createTileRing)
+            .size(
+                dimens.createTileWidth + dimens.createTileRing * 2,
+                dimens.createTileHeight + dimens.createTileRing * 2,
+            ).padding(dimens.createTileRing)
             .background(colors.primary, LittleStoryTheme.shapes.small),
         contentAlignment = Alignment.Center,
     ) {

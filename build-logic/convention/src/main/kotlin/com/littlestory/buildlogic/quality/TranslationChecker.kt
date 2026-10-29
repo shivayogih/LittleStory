@@ -66,7 +66,11 @@ internal object TranslationChecker {
             if (element.getAttribute("translatable") == "false") continue
             val key = element.getAttribute("name")
             when (element.tagName) {
-                "string" -> result[key] = ResourceEntry(key, mapOf(SINGLE to signature(element.textContent)))
+                // formatted="false" strings are literal text (e.g. "42%"): no format arguments to compare.
+                "string" -> result[key] = ResourceEntry(
+                    key,
+                    mapOf(SINGLE to if (element.getAttribute("formatted") == "false") emptyList() else signature(element.textContent)),
+                )
                 "plurals" -> {
                     val items = element.getElementsByTagName("item")
                     val map = linkedMapOf<String, List<String>>()

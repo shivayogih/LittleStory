@@ -3,8 +3,8 @@ package com.littlestory.core.designsystem.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -34,9 +34,10 @@ data class LittleStoryElevation(
 private const val BLUR_TO_ELEVATION = 0.5f
 
 /** Draws a design shadow token behind a [shape]. */
-fun Modifier.tokenShadow(token: ShadowToken, shape: Shape): Modifier = shadow(
-    elevation = token.blur * BLUR_TO_ELEVATION,
-    shape = shape,
-    ambientColor = token.color,
-    spotColor = token.color,
-)
+fun Modifier.tokenShadow(token: ShadowToken, shape: Shape): Modifier =
+    shadow(
+        elevation = token.blur * BLUR_TO_ELEVATION,
+        shape = shape,
+        ambientColor = token.color,
+        spotColor = token.color,
+    )

@@ -16,6 +16,9 @@ style:
       - '**/androidTest/**'
       - '**/config/AppConfig.kt'
       - '**/theme/**'
+      # Illustration geometry (brand mark, story art) is drawing data, not behaviour.
+      - '**/brand/**'
+      - '**/story/StoryArt.kt'
   MaxLineLength:
     active: false # ktlint owns line length
   WildcardImport:

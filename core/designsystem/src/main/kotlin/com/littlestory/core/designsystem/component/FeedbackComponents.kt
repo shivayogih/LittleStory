@@ -26,8 +26,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.DialogProperties
@@ -129,11 +129,24 @@ fun LittleStoryDialog(
             verticalArrangement = Arrangement.spacedBy(spacing.md),
         ) {
             Box(
-                Modifier.size(dimens.dialogIconSize).background(colors.successContainer, LittleStoryTheme.shapes.iconButton),
+                Modifier
+                    .size(
+                        dimens.dialogIconSize,
+                    ).background(colors.successContainer, LittleStoryTheme.shapes.iconButton),
                 contentAlignment = Alignment.Center,
             ) { LittleStoryIcon(LittleStoryIcons.Check, contentDescription = null, tint = colors.success) }
-            Text(title, style = LittleStoryTheme.typography.topBarTitle, color = colors.textPrimary, textAlign = TextAlign.Center)
-            Text(text, style = LittleStoryTheme.typography.bodyLarge, color = colors.textSecondary, textAlign = TextAlign.Center)
+            Text(
+                title,
+                style = LittleStoryTheme.typography.topBarTitle,
+                color = colors.textPrimary,
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                text,
+                style = LittleStoryTheme.typography.bodyLarge,
+                color = colors.textSecondary,
+                textAlign = TextAlign.Center,
+            )
             LittleStoryButton(text = confirmLabel, onClick = onDismiss)
         }
     }
@@ -183,11 +196,24 @@ fun LittleStoryEmptyState(
         verticalArrangement = Arrangement.spacedBy(spacing.md),
     ) {
         Box(
-            Modifier.size(LittleStoryTheme.dimens.emptyStateIconSize).background(colors.secondaryContainer, LittleStoryTheme.shapes.iconButton),
+            Modifier
+                .size(
+                    LittleStoryTheme.dimens.emptyStateIconSize,
+                ).background(colors.secondaryContainer, LittleStoryTheme.shapes.iconButton),
             contentAlignment = Alignment.Center,
         ) { LittleStoryIcon(icon, contentDescription = null, tint = colors.primary) }
-        Text(title, style = LittleStoryTheme.typography.topBarTitle, color = colors.textPrimary, textAlign = TextAlign.Center)
-        Text(text, style = LittleStoryTheme.typography.bodyLarge, color = colors.textSecondary, textAlign = TextAlign.Center)
+        Text(
+            title,
+            style = LittleStoryTheme.typography.topBarTitle,
+            color = colors.textPrimary,
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            text,
+            style = LittleStoryTheme.typography.bodyLarge,
+            color = colors.textSecondary,
+            textAlign = TextAlign.Center,
+        )
         if (actionLabel != null) {
             LittleStoryButton(actionLabel, onAction, variant = ButtonVariant.Secondary)
         }
@@ -224,10 +250,20 @@ fun LittleStoryReadingProgress(progress: Float, modifier: Modifier = Modifier) {
     val colors = LittleStoryTheme.colors
     val shape = LittleStoryTheme.shapes.chip
     Box(
-        modifier.fillMaxWidth().height(LittleStoryTheme.dimens.readingProgressHeight)
-            .clip(shape).background(colors.outline).progressSemantics(progress),
+        modifier
+            .fillMaxWidth()
+            .height(LittleStoryTheme.dimens.readingProgressHeight)
+            .clip(shape)
+            .background(colors.outline)
+            .progressSemantics(progress),
     ) {
-        Box(Modifier.fillMaxWidth(progress.coerceIn(0f, 1f)).heightIn(min = LittleStoryTheme.dimens.readingProgressHeight).background(colors.accent))
+        Box(
+            Modifier
+                .fillMaxWidth(
+                    progress.coerceIn(0f, 1f),
+                ).heightIn(min = LittleStoryTheme.dimens.readingProgressHeight)
+                .background(colors.accent),
+        )
     }
 }
 
@@ -237,9 +273,19 @@ fun LittleStoryGenerationProgress(progress: Float, modifier: Modifier = Modifier
     val colors = LittleStoryTheme.colors
     val shape = LittleStoryTheme.shapes.chip
     val height = LittleStoryTheme.dimens.progressBarHeight
-    Box(modifier.fillMaxWidth().heightIn(min = height).clip(shape).background(colors.nightSurface).progressSemantics(progress)) {
+    Box(
+        modifier
+            .fillMaxWidth()
+            .heightIn(
+                min = height,
+            ).clip(shape)
+            .background(colors.nightSurface)
+            .progressSemantics(progress),
+    ) {
         Box(
-            Modifier.fillMaxWidth(progress.coerceIn(0f, 1f)).heightIn(min = height)
+            Modifier
+                .fillMaxWidth(progress.coerceIn(0f, 1f))
+                .heightIn(min = height)
                 .background(Brush.horizontalGradient(listOf(colors.accent, colors.highlight))),
         )
     }
@@ -251,7 +297,15 @@ fun LittleStoryStorageBar(fraction: Float, modifier: Modifier = Modifier) {
     val colors = LittleStoryTheme.colors
     val shape = LittleStoryTheme.shapes.chip
     val height = LittleStoryTheme.dimens.progressBarHeight
-    Box(modifier.fillMaxWidth().heightIn(min = height).clip(shape).background(colors.primary).progressSemantics(fraction)) {
+    Box(
+        modifier
+            .fillMaxWidth()
+            .heightIn(
+                min = height,
+            ).clip(shape)
+            .background(colors.primary)
+            .progressSemantics(fraction),
+    ) {
         Box(Modifier.fillMaxWidth(fraction.coerceIn(0f, 1f)).heightIn(min = height).background(colors.highlight))
     }
 }
@@ -269,10 +323,11 @@ fun LittleStoryPlaybackSlider(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier.semantics { this.contentDescription = contentDescription },
-        colors = SliderDefaults.colors(
-            thumbColor = colors.highlight,
-            activeTrackColor = colors.accent,
-            inactiveTrackColor = colors.nightSurface,
-        ),
+        colors =
+            SliderDefaults.colors(
+                thumbColor = colors.highlight,
+                activeTrackColor = colors.accent,
+                inactiveTrackColor = colors.nightSurface,
+            ),
     )
 }

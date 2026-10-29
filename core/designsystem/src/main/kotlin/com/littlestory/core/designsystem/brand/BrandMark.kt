@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.RoundRect
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathOperation
@@ -56,34 +55,51 @@ fun BrandSymbol(variant: BrandMarkVariant = BrandMarkVariant.Default, modifier: 
         drawContext.canvas.save()
         drawContext.canvas.skew(tanDegrees(SKEW_DEGREES), 0f)
         run {
-            val body = Path().apply {
-                addRoundRect(
-                    RoundRect(
-                        left = inset, top = inset, right = w - inset, bottom = h - inset,
-                        topLeftCornerRadius = CornerRadius(CornerTopStart.toPx()),
-                        topRightCornerRadius = CornerRadius(CornerTopEnd.toPx()),
-                        bottomRightCornerRadius = CornerRadius(CornerBottomEnd.toPx()),
-                        bottomLeftCornerRadius = CornerRadius(CornerBottomStart.toPx()),
-                    ),
-                )
-            }
+            val body =
+                Path().apply {
+                    addRoundRect(
+                        RoundRect(
+                            left = inset,
+                            top = inset,
+                            right = w - inset,
+                            bottom = h - inset,
+                            topLeftCornerRadius = CornerRadius(CornerTopStart.toPx()),
+                            topRightCornerRadius = CornerRadius(CornerTopEnd.toPx()),
+                            bottomRightCornerRadius = CornerRadius(CornerBottomEnd.toPx()),
+                            bottomLeftCornerRadius = CornerRadius(CornerBottomStart.toPx()),
+                        ),
+                    )
+                }
             drawPath(body, ink, style = stroke)
             // inner "L": a curve down the spine and along the foot
-            val l = Path().apply {
-                moveTo(w * 0.34f, h * 0.22f)
-                lineTo(w * 0.34f, h * 0.62f)
-                quadraticTo(w * 0.34f, h * 0.76f, w * 0.5f, h * 0.76f)
-                lineTo(w * 0.7f, h * 0.76f)
-            }
+            val l =
+                Path().apply {
+                    moveTo(w * 0.34f, h * 0.22f)
+                    lineTo(w * 0.34f, h * 0.62f)
+                    quadraticTo(w * 0.34f, h * 0.76f, w * 0.5f, h * 0.76f)
+                    lineTo(w * 0.7f, h * 0.76f)
+                }
             drawPath(l, ink, style = stroke)
         }
         drawContext.canvas.restore()
         // crescent moon at the top-right corner: a disc minus an offset disc
         val moonCenter = Offset(w - MoonRadius.toPx() * 0.4f, MoonRadius.toPx() * 0.9f)
-        val disc = Path().apply { addOval(androidx.compose.ui.geometry.Rect(moonCenter, MoonRadius.toPx())) }
-        val bite = Path().apply {
-            addOval(androidx.compose.ui.geometry.Rect(moonCenter + Offset(MoonBiteOffset.toPx(), -MoonBiteOffset.toPx() * 0.4f), MoonRadius.toPx()))
-        }
+        val disc =
+            Path().apply {
+                addOval(
+                    androidx.compose.ui.geometry
+                        .Rect(moonCenter, MoonRadius.toPx()),
+                )
+            }
+        val bite =
+            Path().apply {
+                addOval(
+                    androidx.compose.ui.geometry.Rect(
+                        moonCenter + Offset(MoonBiteOffset.toPx(), -MoonBiteOffset.toPx() * 0.4f),
+                        MoonRadius.toPx(),
+                    ),
+                )
+            }
         drawPath(Path.combine(PathOperation.Difference, disc, bite), ink)
         // yellow four-point star
         val starCenter = Offset(w * 0.78f, h * 0.55f)
@@ -93,15 +109,16 @@ fun BrandSymbol(variant: BrandMarkVariant = BrandMarkVariant.Default, modifier: 
 
 private fun tanDegrees(degrees: Float): Float = kotlin.math.tan(Math.toRadians(degrees.toDouble())).toFloat()
 
-private fun fourPointStar(center: Offset, radius: Float): Path = Path().apply {
-    val inner = radius * 0.3f
-    moveTo(center.x, center.y - radius)
-    quadraticTo(center.x + inner, center.y - inner, center.x + radius, center.y)
-    quadraticTo(center.x + inner, center.y + inner, center.x, center.y + radius)
-    quadraticTo(center.x - inner, center.y + inner, center.x - radius, center.y)
-    quadraticTo(center.x - inner, center.y - inner, center.x, center.y - radius)
-    close()
-}
+private fun fourPointStar(center: Offset, radius: Float): Path =
+    Path().apply {
+        val inner = radius * 0.3f
+        moveTo(center.x, center.y - radius)
+        quadraticTo(center.x + inner, center.y - inner, center.x + radius, center.y)
+        quadraticTo(center.x + inner, center.y + inner, center.x, center.y + radius)
+        quadraticTo(center.x - inner, center.y + inner, center.x - radius, center.y)
+        quadraticTo(center.x - inner, center.y - inner, center.x, center.y - radius)
+        close()
+    }
 
 /** Symbol plus the "LittleStory" wordmark. */
 @Composable
@@ -118,6 +135,8 @@ fun BrandMark(
             text = stringResource(R.string.brand_name),
             style = LittleStoryTheme.typography.brandName,
             color = textColor,
+            maxLines = 1,
+            softWrap = false,
         )
     }
 }

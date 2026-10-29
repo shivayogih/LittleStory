@@ -46,32 +46,41 @@ fun LittleStoryButton(
     val shape = LittleStoryTheme.shapes.button
     val spacing = LittleStoryTheme.spacing
     val interactionSource = remember { MutableInteractionSource() }
-    val container = when (variant) {
-        ButtonVariant.Primary -> colors.primary
-        ButtonVariant.Secondary -> colors.secondaryContainer
-        ButtonVariant.Ghost -> Color.Transparent
-    }
-    val content = when (variant) {
-        ButtonVariant.Primary -> colors.onPrimary
-        ButtonVariant.Secondary -> colors.onSecondaryContainer
-        ButtonVariant.Ghost -> colors.primary
-    }
-    val base = modifier
-        .fillMaxWidth()
-        .pressScale(interactionSource)
-        .alpha(if (enabled) 1f else LittleStoryTheme.dimens.disabledAlpha)
-        .let { if (variant == ButtonVariant.Primary) it.tokenShadow(LittleStoryTheme.elevation.primaryButton, shape) else it }
-        .clip(shape)
-        .background(container)
-        .clickable(
-            interactionSource = interactionSource,
-            indication = null,
-            enabled = enabled,
-            role = Role.Button,
-            onClick = onClick,
-        )
-        .heightIn(min = LittleStoryTheme.dimens.buttonMinHeight)
-        .padding(horizontal = spacing.lg, vertical = spacing.sm)
+    val container =
+        when (variant) {
+            ButtonVariant.Primary -> colors.primary
+            ButtonVariant.Secondary -> colors.secondaryContainer
+            ButtonVariant.Ghost -> Color.Transparent
+        }
+    val content =
+        when (variant) {
+            ButtonVariant.Primary -> colors.onPrimary
+            ButtonVariant.Secondary -> colors.onSecondaryContainer
+            ButtonVariant.Ghost -> colors.primary
+        }
+    val base =
+        modifier
+            .fillMaxWidth()
+            .pressScale(interactionSource)
+            .alpha(if (enabled) 1f else LittleStoryTheme.dimens.disabledAlpha)
+            .let {
+                if (variant ==
+                    ButtonVariant.Primary
+                ) {
+                    it.tokenShadow(LittleStoryTheme.elevation.primaryButton, shape)
+                } else {
+                    it
+                }
+            }.clip(shape)
+            .background(container)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = enabled,
+                role = Role.Button,
+                onClick = onClick,
+            ).heightIn(min = LittleStoryTheme.dimens.buttonMinHeight)
+            .padding(horizontal = spacing.lg, vertical = spacing.sm)
     Row(
         modifier = base,
         horizontalArrangement = Arrangement.Center,
@@ -107,24 +116,34 @@ fun LittleStoryIconButton(
     val dimens = LittleStoryTheme.dimens
     val interactionSource = remember { MutableInteractionSource() }
     Box(
-        modifier = modifier
-            .size(dimens.minTouchTarget)
-            .alpha(if (enabled) 1f else dimens.disabledAlpha)
-            .pressScale(interactionSource)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                enabled = enabled,
-                role = Role.Button,
-                onClick = onClick,
-            ),
+        modifier =
+            modifier
+                .size(dimens.minTouchTarget)
+                .alpha(if (enabled) 1f else dimens.disabledAlpha)
+                .pressScale(interactionSource)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    enabled = enabled,
+                    role = Role.Button,
+                    onClick = onClick,
+                ),
         contentAlignment = Alignment.Center,
     ) {
         Box(
-            modifier = Modifier
-                .size(dimens.iconButtonVisual)
-                .clip(LittleStoryTheme.shapes.iconButton)
-                .background(if (active) colors.favouriteContainer else colors.surface.copy(alpha = ICON_BUTTON_SURFACE_ALPHA)),
+            modifier =
+                Modifier
+                    .size(dimens.iconButtonVisual)
+                    .clip(LittleStoryTheme.shapes.iconButton)
+                    .background(
+                        if (active) {
+                            colors.favouriteContainer
+                        } else {
+                            colors.surface.copy(
+                                alpha = ICON_BUTTON_SURFACE_ALPHA,
+                            )
+                        },
+                    ),
             contentAlignment = Alignment.Center,
         ) {
             LittleStoryIcon(

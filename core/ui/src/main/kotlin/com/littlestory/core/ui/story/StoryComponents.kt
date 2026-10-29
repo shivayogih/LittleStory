@@ -49,7 +49,6 @@ fun StoryCard(
     Column(
         modifier
             .width(width)
-            .clip(LittleStoryTheme.shapes.medium)
             .clickable(role = Role.Button, onClick = onClick),
         verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xs),
     ) {
@@ -66,7 +65,13 @@ fun StoryCard(
             )
         }
         Column(Modifier.semantics(mergeDescendants = true) { }) {
-            Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            Text(
+                title,
+                style = LittleStoryTheme.typography.bodyLarge,
+                color = colors.textPrimary,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
             Text(meta, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
         }
     }
@@ -90,14 +95,18 @@ fun ListStoryRow(
     val dimens = LittleStoryTheme.dimens
     val colors = LittleStoryTheme.colors
     Row(
-        modifier.fillMaxWidth().clip(LittleStoryTheme.shapes.medium).clickable(role = Role.Button, onClick = onClick),
+        modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick),
         horizontalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(Modifier.size(dimens.listArtWidth, dimens.listArtHeight).clip(LittleStoryTheme.shapes.medium)) {
             StoryArt(gradient, motif)
         }
-        Column(Modifier.weight(1f).semantics(mergeDescendants = true) { }, verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs)) {
+        Column(
+            Modifier.weight(1f).semantics(mergeDescendants = true) {
+            },
+            verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs),
+        ) {
             Text(eyebrow, style = LittleStoryTheme.typography.eyebrow, color = colors.primaryVariantLabel)
             Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
             Text(meta, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
@@ -128,7 +137,9 @@ fun ContinueCard(
         verticalArrangement = Arrangement.spacedBy(spacing.sm),
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(spacing.md), verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.size(LittleStoryTheme.dimens.listArtHeight).clip(LittleStoryTheme.shapes.medium)) { StoryArt(gradient, motif) }
+            Box(Modifier.size(LittleStoryTheme.dimens.listArtHeight).clip(LittleStoryTheme.shapes.medium)) {
+                StoryArt(gradient, motif)
+            }
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xxs)) {
                 Text(eyebrow, style = LittleStoryTheme.typography.eyebrow, color = colors.primaryVariantLabel)
                 Text(title, style = LittleStoryTheme.typography.topBarTitle, color = colors.textPrimary)
@@ -149,14 +160,28 @@ fun SectionHeader(
 ) {
     val colors = LittleStoryTheme.colors
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text(title, style = LittleStoryTheme.typography.homeTitle, color = colors.textPrimary, modifier = Modifier.weight(1f))
+        Text(
+            title,
+            style = LittleStoryTheme.typography.homeTitle,
+            color = colors.textPrimary,
+            modifier = Modifier.weight(1f),
+        )
         if (seeAllLabel != null) {
             Row(
-                Modifier.clip(LittleStoryTheme.shapes.chip).clickable(role = Role.Button, onClick = onSeeAll).padding(LittleStoryTheme.spacing.sm),
+                Modifier
+                    .clip(
+                        LittleStoryTheme.shapes.chip,
+                    ).clickable(role = Role.Button, onClick = onSeeAll)
+                    .padding(LittleStoryTheme.spacing.sm),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(seeAllLabel, style = LittleStoryTheme.typography.chip, color = colors.primary)
-                LittleStoryIcon(LittleStoryIcons.Chevron, contentDescription = null, tint = colors.primary, modifier = Modifier.size(LittleStoryTheme.dimens.iconSizeSmall))
+                LittleStoryIcon(
+                    LittleStoryIcons.Chevron,
+                    contentDescription = null,
+                    tint = colors.primary,
+                    modifier = Modifier.size(LittleStoryTheme.dimens.iconSizeSmall),
+                )
             }
         }
     }
@@ -173,7 +198,12 @@ fun Avatar(
     val colors = LittleStoryTheme.colors
     val dimens = LittleStoryTheme.dimens
     val shape = if (large) LittleStoryTheme.shapes.avatarLarge else LittleStoryTheme.shapes.avatar
-    val skin = listOf(colors.illustration.skin, colors.illustration.skinLight, colors.warmAccent)[tone.mod(AVATAR_TONES)]
+    val skin =
+        listOf(
+            colors.illustration.skin,
+            colors.illustration.skinLight,
+            colors.warmAccent,
+        )[tone.mod(AVATAR_TONES)]
     val size = if (large) dimens.avatarLargeSize else dimens.avatarSize
     Box(
         modifier
@@ -183,9 +213,30 @@ fun Avatar(
             .background(skin),
         contentAlignment = Alignment.Center,
     ) {
-        Box(Modifier.align(Alignment.TopCenter).fillMaxWidth().height(size * HAIR_FRACTION).background(colors.illustration.hair))
-        Row(horizontalArrangement = Arrangement.spacedBy(size * EYE_GAP_FRACTION), modifier = Modifier.padding(top = size * EYE_TOP_FRACTION)) {
-            repeat(EYE_COUNT) { Box(Modifier.size(size * EYE_FRACTION).background(colors.illustration.hair, LittleStoryTheme.shapes.iconButton)) }
+        Box(
+            Modifier
+                .align(
+                    Alignment.TopCenter,
+                ).fillMaxWidth()
+                .height(size * HAIR_FRACTION)
+                .background(colors.illustration.hair),
+        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(size * EYE_GAP_FRACTION),
+            modifier =
+                Modifier.padding(
+                    top =
+                        size * EYE_TOP_FRACTION,
+                ),
+        ) {
+            repeat(EYE_COUNT) {
+                Box(
+                    Modifier
+                        .size(
+                            size * EYE_FRACTION,
+                        ).background(colors.illustration.hair, LittleStoryTheme.shapes.iconButton),
+                )
+            }
         }
     }
 }
