@@ -68,7 +68,7 @@ No magic numbers in feature code. A value a platform API forces you to inline go
 3. Stay inside the ticket's allowed files; one owner for shared files (see `docs/project-management/dependency-map.md`).
 4. Add tests with the change; select UI nodes by test tag or resource, never English text.
 5. Verify with `./gradlew` (macOS/Linux) or `gradlew.bat` (Windows): build, `test`, `lint`, translation check, screenshots.
-6. Report only results you actually ran. The cloud agent workspace cannot reach `dl.google.com`, so Android builds there fail until the owner allows it (R-21); evidence must then come from CI or the owner's machine.
+6. Report only results you actually ran. The cloud agent workspace can build Android once its network policy allows `dl.google.com` and the Android SDK is installed (`docs/release/build-and-run.md` §5); if a build cannot run, evidence must come from CI or the owner's machine.
 7. Inspect the diff for hardcoded values, secrets and unrelated changes before asking for review.
 
 ## Cross-platform
