@@ -105,3 +105,11 @@ flowchart TD
 | N3 | Profile "Audio preferences" opens the Player in the prototype | `AudioPreferencesRoute` once designed; hide row until then |
 | N4 | Story ready back target | Home (above) |
 | N5 | Screen transitions are not designed (R-09) | platform default fade until a motion spec exists; durations from motion tokens |
+
+## Implementation notes (P3)
+
+- Routes are `@Serializable` objects/classes in each feature's `navigation` package; `:app` `AppNavHost` is the only place that connects them. Only Onboarding, Setup and Home are registered so far; the other routes exist for later tickets.
+- SCR-19 (splash) is the system SplashScreen API, held until the first-run flag is read (`AppViewModel.startState`), so there is no in-app splash route. Its background is the night colour, defined once in `:app` `colors.xml` because the splash theme cannot read Compose tokens.
+- First run: Onboarding → Setup → Home with Onboarding popped inclusive. Setup opened later returns with `popBackStack()`.
+- Bottom navigation is not wired yet: Home has no tabs until the P4 tickets add Discover, Create and Library.
+- Setup omits the parent name field (decision D14) and the avatar add tile; both are noted in `docs/project-management/implementation-status.md`.
