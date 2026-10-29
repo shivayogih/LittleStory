@@ -48,6 +48,21 @@ data class LittleStoryDimens(
     val emptyStateIconSize: Dp = 72.dp,
     /** Proposed: the prototype dims behind sheets but the alpha is not in the tokens (confirm with design). */
     val scrimAlpha: Float = 0.5f,
+    val storyCardWidth: Dp = 150.dp,
+    val storyCardWideWidth: Dp = 220.dp,
+    val listArtWidth: Dp = 156.dp,
+    val listArtHeight: Dp = 104.dp,
+    val avatarSize: Dp = 56.dp,
+    val avatarLargeSize: Dp = 72.dp,
+    /** Dark translucent hill on story covers (design `#18243047`: alpha 0x47). */
+    val storyHillAlpha: Float = 0.28f,
+    val navPillWidth: Dp = 56.dp,
+    val navPillHeight: Dp = 32.dp,
+    val createTileWidth: Dp = 48.dp,
+    val createTileHeight: Dp = 40.dp,
+    val createTileRing: Dp = 5.dp,
+    /** Bottom bar is drawn as white at 96 % (`#FFFFFFF5`) over the content. */
+    val bottomNavAlpha: Float = 0.96f,
     /** Disabled controls are drawn at 45 % opacity. */
     val disabledAlpha: Float = 0.45f,
 )
