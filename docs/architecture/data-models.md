@@ -148,3 +148,13 @@ classDiagram
 ```
 
 Non-text fields (`categoryId`, ages, duration, art) are authoritative in `stories_en.json`; other language files may carry only the text fields. A test asserts every ID in a language file exists in the English file and that page counts match (brief §17.8). The seed set must include a long Kannada title, a story with no Kannada translation (to exercise fallback), a missing-art placeholder and an empty-library case (brief §10).
+
+## 5. Implementation notes (LS-037)
+
+The models above are implemented in `:domain` (`com.littlestory.domain.model`, `.repository`). Differences from the diagram:
+
+- `ChildProfile` stores `interestIds: Set<String>` and `avatar: AvatarId` (an index into the drawn avatars); there is no `isActive` flag, the active child is `ProfilesRepository.activeProfile`.
+- Validation lives with the models (`ProfileValidator`, `PromptValidator`) and reads its limits from `AppConfig` (`Setup.NAME_MAX_CHARS` is new, proposed 30).
+- `ParentSettings` contains `ReminderSettings`; the reminder is UI only (D13).
+- `PreferencesRepository` also carries `firstRunCompleted` (splash routing, LS-051) and the content-language tag.
+- Repositories return `Flow` for reads and are `suspend` for writes; none exposes Android types.

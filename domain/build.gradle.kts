@@ -4,5 +4,5 @@ plugins {
 
 dependencies {
     api(projects.core.common)
-    implementation(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.core) // repository interfaces expose Flow
 }

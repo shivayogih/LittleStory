@@ -26,6 +26,7 @@ object AppConfig {
         val interestIds = listOf("animals", "cricket", "adventure", "space", "nature", "music")
         val defaultInterestIds = interestIds.take(3)
         const val AVATAR_COUNT = 3
+        const val NAME_MAX_CHARS = 30
     }
 
     object Generation {
