@@ -59,6 +59,9 @@ object AppConfig {
     object Downloads {
         /** Simulated storage quota: 1 GB. */
         const val SIMULATED_QUOTA_BYTES = 1_000_000_000L
+
+        /** Size recorded for a simulated download until stories carry their own sizes. */
+        const val SIMULATED_STORY_BYTES = 12_000_000L
     }
 
     object Reminder {

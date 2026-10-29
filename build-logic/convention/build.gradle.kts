@@ -17,6 +17,7 @@ dependencies {
     compileOnly(libs.ksp.gradle.plugin)
     compileOnly(libs.hilt.gradle.plugin)
     compileOnly(libs.roborazzi.gradle.plugin)
+    compileOnly(libs.room.gradle.plugin)
     compileOnly(libs.detekt.gradle.plugin)
     compileOnly(libs.ktlint.gradle.plugin)
 
@@ -53,6 +54,10 @@ gradlePlugin {
         register("quality") {
             id = "littlestory.quality"
             implementationClass = "QualityConventionPlugin"
+        }
+        register("androidRoom") {
+            id = "littlestory.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
         }
         register("jvmLibrary") {
             id = "littlestory.jvm.library"
