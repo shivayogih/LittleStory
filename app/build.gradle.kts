@@ -17,6 +17,8 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
+            // en-XA (accented, long) and ar-XB (RTL) test locales, debug only (LS-042).
+            isPseudoLocalesEnabled = true
         }
         release {
             isMinifyEnabled = false
@@ -44,4 +46,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+
+    testImplementation(libs.hilt.testing)
+    kspTest(libs.hilt.compiler)
 }
