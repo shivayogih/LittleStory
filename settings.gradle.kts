@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -20,4 +21,20 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "LittleStory"
+
+include(":app")
+include(":core:common")
+include(":core:designsystem")
+include(":core:ui")
+include(":domain")
+include(":data")
+include(":feature:onboarding")
+include(":feature:home")
+include(":feature:discover")
+include(":feature:create")
+include(":feature:reader")
+include(":feature:library")
+include(":feature:settings")

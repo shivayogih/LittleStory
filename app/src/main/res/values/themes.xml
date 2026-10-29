@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AppCompat parent so AppCompatDelegate can apply per-app languages below Android 13.
+         Compose draws every surface; colours come from :core:designsystem tokens. -->
+    <style name="Theme.LittleStory" parent="Theme.AppCompat.Light.NoActionBar" />
+</resources>
