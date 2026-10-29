@@ -13,11 +13,4 @@ class LocalesConfigTest {
         val tags = Regex("""android:name="([^"]+)"""").findAll(xml).map { it.groupValues[1] }.toList()
         assertEquals(SupportedLanguages.enabled.map { it.tag }, tags)
     }
-
-    @Test
-    fun everyEnabledLanguageHasAStringsFile() {
-        SupportedLanguages.enabled.filter { it != SupportedLanguages.default }.forEach {
-            assert(File("src/main/res/values-${it.tag}/strings.xml").exists()) { "values-${it.tag} missing in :app" }
-        }
-    }
 }

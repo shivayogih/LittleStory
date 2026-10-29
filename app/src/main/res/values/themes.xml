@@ -3,4 +3,10 @@
     <!-- AppCompat parent so AppCompatDelegate can apply per-app languages below Android 13.
          Compose draws every surface; colours come from :core:designsystem tokens. -->
     <style name="Theme.LittleStory" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <!-- System splash (SCR-19): night background, no custom animation until a splash design exists. -->
+    <style name="Theme.LittleStory.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.LittleStory</item>
+    </style>
 </resources>

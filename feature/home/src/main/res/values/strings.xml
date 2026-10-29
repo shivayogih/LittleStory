@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-03 Home -->
+    <string name="home_greeting">Good evening</string>
+    <string name="home_title_for_child">Stories for %1$s</string>
+    <string name="home_title_generic">Stories for you</string>
+</resources>

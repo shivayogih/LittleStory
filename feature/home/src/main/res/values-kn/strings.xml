@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Draft — needs native review -->
+    <string name="home_greeting">ಶುಭ ಸಂಜೆ</string>
+    <string name="home_title_for_child">%1$s ಅವರಿಗಾಗಿ ಕಥೆಗಳು</string>
+    <string name="home_title_generic">ನಿಮಗಾಗಿ ಕಥೆಗಳು</string>
+</resources>
