@@ -2,9 +2,9 @@ package com.littlestory.feature.library.navigation
 
 import kotlinx.serialization.Serializable
 
-/** Tabs of My Stories. */
+/** Tabs of My Stories, in display order. */
 @Serializable
-enum class LibraryTab { All, Favourites, CreatedByMe }
+enum class LibraryTab { All, CreatedByMe, Downloaded, Favourites }
 
 /** SCR-12: My Stories. */
 @Serializable

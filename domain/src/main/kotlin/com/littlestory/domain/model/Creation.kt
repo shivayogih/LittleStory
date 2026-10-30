@@ -6,6 +6,9 @@ data class StoryCreationRequest(
     val requestId: String,
     val prompt: String,
     val heroChildId: String,
+    /** First name of the hero; empty when Setup was skipped (the story then uses a neutral hero). */
+    val heroName: String = "",
+    val heroAge: Int = AppConfig.Setup.DEFAULT_AGE,
     val themeId: String,
     val moodId: String,
     val durationMinutes: Int,
@@ -26,6 +29,12 @@ object PromptValidator {
 enum class GenerationStage { Imagining, Writing, PreparingNarration }
 
 enum class GenerationError { Interrupted, Unknown }
+
+/** The stage shown for [percent], using the thresholds in [AppConfig.Generation.stageThresholdsPercent]. */
+fun generationStageFor(percent: Int): GenerationStage {
+    val passed = AppConfig.Generation.stageThresholdsPercent.count { percent >= it }
+    return GenerationStage.entries[passed.coerceAtMost(GenerationStage.entries.lastIndex)]
+}
 
 /** Simulated generation progress; deterministic per request in the MVP. */
 sealed interface GenerationState {

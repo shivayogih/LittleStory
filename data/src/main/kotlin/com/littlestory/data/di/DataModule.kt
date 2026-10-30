@@ -9,18 +9,27 @@ import com.littlestory.core.common.config.AppConfig
 import com.littlestory.data.catalog.CatalogRepositoryImpl
 import com.littlestory.data.catalog.MockContentSource
 import com.littlestory.data.db.LittleStoryDatabase
+import com.littlestory.data.generation.GenerationRepositoryImpl
+import com.littlestory.data.library.LibraryRepositoryImpl
 import com.littlestory.data.prefs.ActiveProfileStore
 import com.littlestory.data.prefs.PreferencesRepositoryImpl
 import com.littlestory.data.repository.DownloadsRepositoryImpl
 import com.littlestory.data.repository.FavouritesRepositoryImpl
 import com.littlestory.data.repository.ProfilesRepositoryImpl
 import com.littlestory.data.repository.ProgressRepositoryImpl
+import com.littlestory.data.settings.NotificationsRepositoryImpl
+import com.littlestory.data.settings.SubscriptionRepositoryImpl
 import com.littlestory.domain.repository.CatalogRepository
 import com.littlestory.domain.repository.DownloadsRepository
 import com.littlestory.domain.repository.FavouritesRepository
+import com.littlestory.domain.repository.GenerationRepository
+import com.littlestory.domain.repository.LibraryRepository
+import com.littlestory.domain.repository.NotificationsRepository
 import com.littlestory.domain.repository.PreferencesRepository
 import com.littlestory.domain.repository.ProfilesRepository
 import com.littlestory.domain.repository.ProgressRepository
+import com.littlestory.domain.repository.StoryStores
+import com.littlestory.domain.repository.SubscriptionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -87,20 +96,48 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun catalog(
+    fun mockContent(
         @ApplicationContext context: Context,
-    ): CatalogRepository =
-        CatalogRepositoryImpl(
-            source =
-                MockContentSource { fileName ->
-                    runCatching {
-                        context.assets
-                            .open(
-                                "$MOCK_ASSET_DIR/$fileName",
-                            ).bufferedReader()
-                            .use { it.readText() }
-                    }.getOrNull()
-                },
-            dispatcher = Dispatchers.IO,
-        )
+    ): MockContentSource =
+        MockContentSource { fileName ->
+            runCatching {
+                context.assets
+                    .open("$MOCK_ASSET_DIR/$fileName")
+                    .bufferedReader()
+                    .use { it.readText() }
+            }.getOrNull()
+        }
+
+    @Provides
+    @Singleton
+    fun catalog(source: MockContentSource): CatalogRepository = CatalogRepositoryImpl(source, Dispatchers.IO)
+
+    @Provides
+    @Singleton
+    fun library(db: LittleStoryDatabase): LibraryRepository =
+        LibraryRepositoryImpl(db.generatedStoryDao(), System::currentTimeMillis)
+
+    @Provides
+    @Singleton
+    fun generation(source: MockContentSource, library: LibraryRepository): GenerationRepository =
+        GenerationRepositoryImpl(source, library)
+
+    @Provides
+    @Singleton
+    fun notifications(source: MockContentSource, db: LittleStoryDatabase): NotificationsRepository =
+        NotificationsRepositoryImpl(source, db.notificationReadDao(), Dispatchers.IO)
+
+    @Provides
+    @Singleton
+    fun subscription(source: MockContentSource): SubscriptionRepository =
+        SubscriptionRepositoryImpl(source, Dispatchers.IO)
+
+    @Provides
+    fun storyStores(
+        catalog: CatalogRepository,
+        library: LibraryRepository,
+        favourites: FavouritesRepository,
+        downloads: DownloadsRepository,
+        progress: ProgressRepository,
+    ) = StoryStores(catalog, library, favourites, downloads, progress)
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-12 My Stories -->
+    <string name="stories_title">My Stories</string>
+    <string name="stories_open_downloads">Offline downloads</string>
+    <string name="stories_search">Search your stories</string>
+    <string name="stories_search_clear">Clear search</string>
+    <string name="stories_tab_all">All</string>
+    <string name="stories_tab_created">Created by Me</string>
+    <string name="stories_tab_downloaded">Downloaded</string>
+    <string name="stories_tab_favourites">Favourites</string>
+    <string name="stories_recently_played">Recently played</string>
+    <string name="stories_collection">Your collection</string>
+    <string name="stories_remaining">%1$s:%2$02d remaining</string>
+    <string name="stories_play">Play %1$s</string>
+    <string name="stories_row_meta">%1$d min · %2$d–%3$d years</string>
+    <string name="stories_offline">Available offline</string>
+    <string name="stories_empty_title">No stories here yet</string>
+    <string name="stories_empty_text">Tap the heart on a story you love to keep it close.</string>
+    <string name="stories_empty_downloaded_title">Ready for offline adventures?</string>
+    <string name="stories_empty_downloaded_text">Download a story and bedtime can travel anywhere.</string>
+    <string name="stories_empty_action">Discover stories</string>
+
+    <!-- SCR-17 Offline downloads -->
+    <string name="downloads_title">Offline Downloads</string>
+    <string name="downloads_used">%1$s MB used</string>
+    <string name="downloads_quota">%1$s GB available for stories</string>
+    <string name="downloads_available">AVAILABLE OFFLINE</string>
+    <string name="downloads_size">%1$s MB · Audio &amp; story</string>
+    <string name="downloads_remove">Remove download of %1$s</string>
+    <string name="downloads_empty_title">No downloads yet</string>
+    <string name="downloads_empty_text">Save a few favourites for journeys, power cuts and cosy nights away.</string>
+    <string name="downloads_empty_action">Find a story</string>
+    <string name="downloads_tip">Offline means worry-free. Downloaded stories work without internet and stay private on this device.</string>
+</resources>

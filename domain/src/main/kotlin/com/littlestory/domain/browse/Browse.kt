@@ -5,6 +5,7 @@ import com.littlestory.domain.model.ChildProfile
 import com.littlestory.domain.model.Story
 import com.littlestory.domain.model.StoryCategory
 import com.littlestory.domain.repository.CatalogRepository
+import com.littlestory.domain.repository.LibraryRepository
 import com.littlestory.domain.repository.PreferencesRepository
 import com.littlestory.domain.repository.ProfilesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -40,3 +41,15 @@ fun CatalogRepository.catalogue(languageTag: String): Flow<Catalogue> =
 /** Re-runs [block] whenever the browsing context changes. */
 @OptIn(ExperimentalCoroutinesApi::class)
 fun <T> Flow<BrowseContext>.flatMapContext(block: (BrowseContext) -> Flow<T>): Flow<T> = flatMapLatest(block)
+
+/** A story from the catalogue or, failing that, one the family created (Reader, Player, Story Ready). */
+fun observeStory(
+    catalog: CatalogRepository,
+    library: LibraryRepository,
+    storyId: String,
+    languageTag: String,
+): Flow<Story?> =
+    combine(catalog.story(storyId, languageTag), library.story(storyId)) { bundled, created ->
+        bundled
+            ?: created
+    }

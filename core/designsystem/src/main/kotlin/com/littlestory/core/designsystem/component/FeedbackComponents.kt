@@ -52,6 +52,7 @@ fun LittleStoryBottomSheet(
     cancelLabel: String,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    subtitle: String? = null,
 ) {
     val colors = LittleStoryTheme.colors
     val dimens = LittleStoryTheme.dimens
@@ -74,6 +75,9 @@ fun LittleStoryBottomSheet(
         Column(Modifier.padding(horizontal = spacing.screenHorizontal).padding(bottom = spacing.xl)) {
             if (title != null) {
                 Text(title, style = LittleStoryTheme.typography.topBarTitle, color = colors.textPrimary)
+            }
+            if (subtitle != null) {
+                Text(subtitle, style = LittleStoryTheme.typography.body, color = colors.textSecondary)
             }
             options.forEach { option ->
                 Row(

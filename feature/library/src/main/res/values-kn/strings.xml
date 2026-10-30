@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Draft — needs native review (agent translation; see docs/project-management/implementation-status.md). -->
+<resources>
+    <string name="stories_title">ನನ್ನ ಕಥೆಗಳು</string>
+    <string name="stories_open_downloads">ಆಫ್‌ಲೈನ್ ಡೌನ್‌ಲೋಡ್‌ಗಳು</string>
+    <string name="stories_search">ನಿಮ್ಮ ಕಥೆಗಳನ್ನು ಹುಡುಕಿ</string>
+    <string name="stories_search_clear">ಹುಡುಕಾಟ ಅಳಿಸಿ</string>
+    <string name="stories_tab_all">ಎಲ್ಲವೂ</string>
+    <string name="stories_tab_created">ನಾನು ರಚಿಸಿದವು</string>
+    <string name="stories_tab_downloaded">ಡೌನ್‌ಲೋಡ್ ಆದವು</string>
+    <string name="stories_tab_favourites">ಮೆಚ್ಚಿನವು</string>
+    <string name="stories_recently_played">ಇತ್ತೀಚೆಗೆ ಕೇಳಿದ್ದು</string>
+    <string name="stories_collection">ನಿಮ್ಮ ಸಂಗ್ರಹ</string>
+    <string name="stories_remaining">%1$s:%2$02d ಉಳಿದಿದೆ</string>
+    <string name="stories_play">%1$s ಕೇಳಿ</string>
+    <string name="stories_row_meta">%1$d ನಿಮಿಷ · %2$d–%3$d ವರ್ಷ</string>
+    <string name="stories_offline">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಲಭ್ಯ</string>
+    <string name="stories_empty_title">ಇಲ್ಲಿ ಇನ್ನೂ ಕಥೆಗಳಿಲ್ಲ</string>
+    <string name="stories_empty_text">ನಿಮಗೆ ಇಷ್ಟವಾದ ಕಥೆಯ ಹೃದಯವನ್ನು ಒತ್ತಿ, ಅದನ್ನು ಹತ್ತಿರ ಇಟ್ಟುಕೊಳ್ಳಿ.</string>
+    <string name="stories_empty_downloaded_title">ಆಫ್‌ಲೈನ್ ಸಾಹಸಗಳಿಗೆ ಸಿದ್ಧವೇ?</string>
+    <string name="stories_empty_downloaded_text">ಒಂದು ಕಥೆಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ, ಮಲಗುವ ಸಮಯ ಎಲ್ಲಿ ಬೇಕಾದರೂ ಜೊತೆಗಿರುತ್ತದೆ.</string>
+    <string name="stories_empty_action">ಕಥೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ</string>
+
+    <string name="downloads_title">ಆಫ್‌ಲೈನ್ ಡೌನ್‌ಲೋಡ್‌ಗಳು</string>
+    <string name="downloads_used">%1$s MB ಬಳಸಲಾಗಿದೆ</string>
+    <string name="downloads_quota">ಕಥೆಗಳಿಗೆ %1$s GB ಲಭ್ಯ</string>
+    <string name="downloads_available">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಲಭ್ಯ</string>
+    <string name="downloads_size">%1$s MB · ಧ್ವನಿ ಮತ್ತು ಕಥೆ</string>
+    <string name="downloads_remove">%1$s ಡೌನ್‌ಲೋಡ್ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="downloads_empty_title">ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ</string>
+    <string name="downloads_empty_text">ಪ್ರಯಾಣ, ವಿದ್ಯುತ್ ಕಡಿತ ಮತ್ತು ಮನೆಯಿಂದ ದೂರದ ಬೆಚ್ಚಗಿನ ರಾತ್ರಿಗಳಿಗಾಗಿ ಕೆಲವು ಮೆಚ್ಚಿನ ಕಥೆಗಳನ್ನು ಉಳಿಸಿ.</string>
+    <string name="downloads_empty_action">ಒಂದು ಕಥೆ ಹುಡುಕಿ</string>
+    <string name="downloads_tip">ಆಫ್‌ಲೈನ್ ಎಂದರೆ ಚಿಂತೆಯಿಲ್ಲ. ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಕಥೆಗಳು ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆ ಕೆಲಸ ಮಾಡುತ್ತವೆ ಮತ್ತು ಈ ಸಾಧನದಲ್ಲೇ ಖಾಸಗಿಯಾಗಿರುತ್ತವೆ.</string>
+</resources>

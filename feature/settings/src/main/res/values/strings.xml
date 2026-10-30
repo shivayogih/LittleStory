@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-13 Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_family">Your family</string>
+    <string name="profile_private_note">Private and parent-managed</string>
+    <string name="profile_edit_child">Edit child profile</string>
+    <string name="profile_add_child">Add a child profile</string>
+    <string name="profile_group_children">CHILDREN</string>
+    <string name="profile_manage_children">Manage children</string>
+    <plurals name="profile_children_count">
+        <item quantity="one">%1$d child profile</item>
+        <item quantity="other">%1$d child profiles</item>
+    </plurals>
+    <string name="profile_language">Language preferences</string>
+    <string name="profile_group_experience">EXPERIENCE</string>
+    <string name="profile_reminder">Bedtime reminders</string>
+    <string name="profile_reminder_every_day">Every day at %1$s</string>
+    <string name="profile_reminder_some_days">Some days at %1$s</string>
+    <string name="profile_reminder_off">Off</string>
+    <string name="profile_notifications">Notifications</string>
+    <string name="profile_notifications_subtitle">Stories and family updates</string>
+    <string name="profile_audio">Audio preferences</string>
+    <string name="profile_audio_subtitle">Simulated narration · %1$s× speed</string>
+    <string name="profile_downloads">Download settings</string>
+    <string name="profile_downloads_wifi">Wi-Fi only</string>
+    <string name="profile_downloads_any">Any network</string>
+    <string name="profile_group_app">LITTLESTORY</string>
+    <string name="profile_subscription">Subscription</string>
+    <string name="profile_subscription_subtitle">Free plan</string>
+    <string name="profile_privacy">Privacy &amp; parent controls</string>
+    <string name="profile_privacy_subtitle">Your family’s data stays on this device</string>
+    <string name="profile_help">Help &amp; about</string>
+    <string name="profile_help_subtitle">Coming soon</string>
+    <string name="profile_footer">Stories created with care. Profiles are private and parent-managed.</string>
+    <string name="profile_cancel">Cancel</string>
+
+    <!-- SCR-14 Child profiles -->
+    <string name="children_title">Child Profiles</string>
+    <string name="children_add">Add child</string>
+    <string name="children_banner">Private family profiles. Only you can see and manage your children’s details.</string>
+    <plurals name="children_age_language">
+        <item quantity="one">%1$d year · %2$s</item>
+        <item quantity="other">%1$d years · %2$s</item>
+    </plurals>
+    <string name="children_interest_separator">" · "</string>
+    <string name="children_active">Active</string>
+    <string name="children_switch">Switch</string>
+    <string name="children_edit">Edit %1$s’s profile</string>
+    <string name="children_add_another">Add another child</string>
+    <string name="children_add_another_body">Personalise stories for every little listener</string>
+
+    <!-- SCR-16 Bedtime reminder -->
+    <string name="reminder_title">Bedtime Reminder</string>
+    <string name="reminder_panel_title">A gentle nudge for storytime</string>
+    <string name="reminder_panel_body">We’ll keep it quiet and calm, just one reminder.</string>
+    <string name="reminder_toggle">Bedtime reminder</string>
+    <string name="reminder_toggle_hint">Pause anytime</string>
+    <string name="reminder_time">Reminder time</string>
+    <string name="reminder_time_done">Done</string>
+    <string name="reminder_repeat">Repeat on</string>
+    <string name="reminder_quiet_title">Quiet bedtime experience</string>
+    <string name="reminder_quiet_body">No sound, no bright alerts</string>
+    <string name="reminder_save">Save reminder</string>
+    <string name="reminder_saved">Reminder saved for %1$s</string>
+
+    <!-- SCR-18 Notifications -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_mark_all">Mark all read</string>
+    <string name="notifications_today">TODAY</string>
+    <string name="notifications_earlier">EARLIER</string>
+    <string name="notifications_unread">Unread</string>
+    <string name="notifications_empty_title">You’re all caught up</string>
+    <string name="notifications_empty_text">New stories and reminders will appear here.</string>
+
+    <!-- SCR-15 Subscription (illustrative) -->
+    <string name="subscription_kicker">LITTLESTORY PREMIUM</string>
+    <string name="subscription_title">Make every bedtime magical.</string>
+    <string name="subscription_body">More wonder, more listening, and stories that grow with your family.</string>
+    <string name="subscription_benefit_personalised">More personalised stories</string>
+    <string name="subscription_benefit_collections">Premium story collections</string>
+    <string name="subscription_benefit_narration">Audio narration</string>
+    <string name="subscription_benefit_offline">Offline downloads</string>
+    <string name="subscription_benefit_profiles">Multiple child profiles</string>
+    <string name="subscription_benefit_weekly">New stories every week</string>
+    <string name="subscription_plan_free">Free</string>
+    <string name="subscription_plan_monthly">Premium Monthly</string>
+    <string name="subscription_plan_yearly">Premium Yearly</string>
+    <string name="subscription_plan_family">Premium Family</string>
+    <string name="subscription_period_free">Try the magic</string>
+    <string name="subscription_period_month">per month</string>
+    <string name="subscription_period_year">per year · best value</string>
+    <plurals name="subscription_period_family">
+        <item quantity="one">per year · %1$d child</item>
+        <item quantity="other">per year · up to %1$d children</item>
+    </plurals>
+    <string name="subscription_best_value">BEST VALUE</string>
+    <string name="subscription_note">Illustrative pricing only. No real payment will be processed.</string>
+    <string name="subscription_choose">Choose %1$s plan</string>
+    <string name="subscription_dialog_title">Plan selected</string>
+    <string name="subscription_dialog_text">This is a prototype, so no payment was made. You selected the %1$s plan.</string>
+    <string name="subscription_dialog_done">Done</string>
+</resources>

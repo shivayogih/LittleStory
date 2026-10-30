@@ -35,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -392,6 +393,7 @@ fun LittleStoryTabs(
     selectedIndex: Int,
     onSelect: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    tabTag: (index: Int) -> String = { "tab_$it" },
 ) {
     val colors = LittleStoryTheme.colors
     val dimens = LittleStoryTheme.dimens
@@ -411,6 +413,7 @@ fun LittleStoryTabs(
                         if (active) colors.primary else colors.outline,
                         LittleStoryTheme.shapes.chip,
                     ).selectable(selected = active, role = Role.Tab, onClick = { onSelect(index) })
+                    .testTag(tabTag(index))
                     .padding(horizontal = LittleStoryTheme.spacing.lg, vertical = LittleStoryTheme.spacing.xs),
                 contentAlignment = Alignment.Center,
             ) {

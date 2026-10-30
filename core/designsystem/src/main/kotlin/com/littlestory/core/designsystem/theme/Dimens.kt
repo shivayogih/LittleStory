@@ -79,6 +79,31 @@ data class LittleStoryDimens(
     val categoryHeroHeight: Dp = 220.dp,
     val categoryHeroArtWidth: Dp = 120.dp,
     val featuredArtWidth: Dp = 110.dp,
+    // Create, Generating, Story Ready (SCR-07..09)
+    val createOrbSize: Dp = 58.dp,
+    val sparkleSize: Dp = 16.dp,
+    val promptMinHeight: Dp = 120.dp,
+    val magicBookWidth: Dp = 200.dp,
+    val magicBookHeight: Dp = 120.dp,
+    val stageDiscSize: Dp = 32.dp,
+    val readyCoverHeight: Dp = 300.dp,
+    val peekRuleWidth: Dp = 3.dp,
+    // Reader and Player (SCR-10, SCR-11)
+    val readerCoverHeight: Dp = 180.dp,
+    val readerPlayButtonSize: Dp = 56.dp,
+    val playerCoverWidth: Dp = 265.dp,
+    val playerCoverHeight: Dp = 290.dp,
+    val playerCoverCompactWidth: Dp = 220.dp,
+    val playerCoverCompactHeight: Dp = 235.dp,
+    val playerPlayButtonSize: Dp = 76.dp,
+    // My Stories, Downloads, Settings (SCR-12..18)
+    val recentArtSize: Dp = 64.dp,
+    val roundPlaySize: Dp = 44.dp,
+    val settingsIconTile: Dp = 40.dp,
+    val dayButtonSize: Dp = 40.dp,
+    val unreadDotSize: Dp = 8.dp,
+    val reminderMoonSize: Dp = 72.dp,
+    val subscriptionMoonSize: Dp = 96.dp,
     /** Disabled controls are drawn at 45 % opacity. */
     val disabledAlpha: Float = 0.45f,
 )

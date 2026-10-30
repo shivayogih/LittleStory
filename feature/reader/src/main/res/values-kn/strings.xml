@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Draft — needs native review (agent translation; see docs/project-management/implementation-status.md). -->
+<resources>
+    <string name="reader_title">ಓದುತ್ತಿದ್ದೇವೆ</string>
+    <string name="reader_page_of">%2$d ರಲ್ಲಿ %1$d</string>
+    <string name="reader_text_smaller_label">ಅ−</string>
+    <string name="reader_text_larger_label">ಅ+</string>
+    <string name="reader_text_smaller">ಚಿಕ್ಕ ಅಕ್ಷರ</string>
+    <string name="reader_text_larger">ದೊಡ್ಡ ಅಕ್ಷರ</string>
+    <string name="reader_previous">ಹಿಂದಿನದು</string>
+    <string name="reader_next">ಮುಂದಿನದು</string>
+    <string name="reader_play">ನಿರೂಪಣೆ ಕೇಳಿ</string>
+    <string name="reader_not_found_title">ಕಥೆ ಸಿಗಲಿಲ್ಲ</string>
+    <string name="reader_not_found_text">ಈ ಕಥೆ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ.</string>
+
+    <string name="player_story_text">ಕಥೆಯ ಪಠ್ಯ</string>
+    <string name="player_now_playing_for">%1$s ಅವರಿಗಾಗಿ ಈಗ ಕೇಳುತ್ತಿರುವುದು</string>
+    <string name="player_now_playing">ಈಗ ಕೇಳುತ್ತಿರುವುದು</string>
+    <string name="player_language_narration">%1$s · ಅನುಕರಿಸಿದ ನಿರೂಪಣೆ</string>
+    <string name="player_seek">ಕಥೆಯ ಸ್ಥಾನ</string>
+    <string name="player_time">%1$s:%2$02d</string>
+    <string name="player_play">ಕೇಳಿ</string>
+    <string name="player_pause">ವಿರಾಮ</string>
+    <string name="player_previous_chapter">ಹಿಂದಿನ ಅಧ್ಯಾಯ</string>
+    <string name="player_next_chapter">ಮುಂದಿನ ಅಧ್ಯಾಯ</string>
+    <plurals name="player_rewind">
+        <item quantity="one">%1$d ಸೆಕೆಂಡ್ ಹಿಂದೆ</item>
+        <item quantity="other">%1$d ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ</item>
+    </plurals>
+    <plurals name="player_forward">
+        <item quantity="one">%1$d ಸೆಕೆಂಡ್ ಮುಂದೆ</item>
+        <item quantity="other">%1$d ಸೆಕೆಂಡುಗಳು ಮುಂದೆ</item>
+    </plurals>
+    <string name="player_sleep_timer">ನಿದ್ರಾ ಟೈಮರ್</string>
+    <string name="player_download">ಡೌನ್‌ಲೋಡ್</string>
+    <string name="player_downloaded">ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ</string>
+    <string name="player_favourite">ಮೆಚ್ಚಿನದು</string>
+    <string name="player_loved">ಇಷ್ಟವಾಯಿತು</string>
+    <string name="player_speed">ವೇಗ</string>
+    <string name="player_speed_value">%1$s×</string>
+    <string name="player_speed_description">ಕೇಳುವ ವೇಗ %1$s ಪಟ್ಟು</string>
+    <string name="player_state_on">ಆನ್</string>
+    <string name="player_state_off">ಆಫ್</string>
+    <string name="player_volume">ಧ್ವನಿ ಮಟ್ಟ</string>
+    <string name="player_sleep_title">ನಿದ್ರಾ ಟೈಮರ್</string>
+    <string name="player_sleep_body">ಟೈಮರ್ ಮುಗಿದಾಗ ಧ್ವನಿ ಮೆಲ್ಲನೆ ನಿಲ್ಲುತ್ತದೆ.</string>
+    <plurals name="player_sleep_minutes">
+        <item quantity="one">%1$d ನಿಮಿಷ</item>
+        <item quantity="other">%1$d ನಿಮಿಷಗಳು</item>
+    </plurals>
+    <string name="player_sleep_end_of_story">ಕಥೆಯ ಕೊನೆಯಲ್ಲಿ</string>
+    <string name="player_sleep_cancel">ರದ್ದುಮಾಡಿ</string>
+</resources>

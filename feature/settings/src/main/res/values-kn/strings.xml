@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Draft — needs native review (agent translation; see docs/project-management/implementation-status.md). -->
+<resources>
+    <string name="profile_title">ಪ್ರೊಫೈಲ್</string>
+    <string name="profile_family">ನಿಮ್ಮ ಕುಟುಂಬ</string>
+    <string name="profile_private_note">ಖಾಸಗಿ ಮತ್ತು ಪೋಷಕರ ನಿರ್ವಹಣೆ</string>
+    <string name="profile_edit_child">ಮಗುವಿನ ಪ್ರೊಫೈಲ್ ಬದಲಿಸಿ</string>
+    <string name="profile_add_child">ಮಗುವಿನ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಿ</string>
+    <string name="profile_group_children">ಮಕ್ಕಳು</string>
+    <string name="profile_manage_children">ಮಕ್ಕಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
+    <plurals name="profile_children_count">
+        <item quantity="one">%1$d ಮಗುವಿನ ಪ್ರೊಫೈಲ್</item>
+        <item quantity="other">%1$d ಮಕ್ಕಳ ಪ್ರೊಫೈಲ್‌ಗಳು</item>
+    </plurals>
+    <string name="profile_language">ಭಾಷೆಯ ಆದ್ಯತೆಗಳು</string>
+    <string name="profile_group_experience">ಅನುಭವ</string>
+    <string name="profile_reminder">ಮಲಗುವ ಸಮಯದ ಜ್ಞಾಪನೆಗಳು</string>
+    <string name="profile_reminder_every_day">ಪ್ರತಿದಿನ %1$s ಕ್ಕೆ</string>
+    <string name="profile_reminder_some_days">ಕೆಲವು ದಿನ %1$s ಕ್ಕೆ</string>
+    <string name="profile_reminder_off">ಆಫ್</string>
+    <string name="profile_notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="profile_notifications_subtitle">ಕಥೆಗಳು ಮತ್ತು ಕುಟುಂಬದ ಸುದ್ದಿಗಳು</string>
+    <string name="profile_audio">ಧ್ವನಿ ಆದ್ಯತೆಗಳು</string>
+    <string name="profile_audio_subtitle">ಅನುಕರಿಸಿದ ನಿರೂಪಣೆ · %1$s× ವೇಗ</string>
+    <string name="profile_downloads">ಡೌನ್‌ಲೋಡ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="profile_downloads_wifi">ವೈ-ಫೈ ಮಾತ್ರ</string>
+    <string name="profile_downloads_any">ಯಾವುದೇ ನೆಟ್‌ವರ್ಕ್</string>
+    <string name="profile_group_app">ಲಿಟಲ್‌ಸ್ಟೋರಿ</string>
+    <string name="profile_subscription">ಚಂದಾದಾರಿಕೆ</string>
+    <string name="profile_subscription_subtitle">ಉಚಿತ ಯೋಜನೆ</string>
+    <string name="profile_privacy">ಗೌಪ್ಯತೆ ಮತ್ತು ಪೋಷಕರ ನಿಯಂತ್ರಣ</string>
+    <string name="profile_privacy_subtitle">ನಿಮ್ಮ ಕುಟುಂಬದ ಮಾಹಿತಿ ಈ ಸಾಧನದಲ್ಲೇ ಇರುತ್ತದೆ</string>
+    <string name="profile_help">ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ</string>
+    <string name="profile_help_subtitle">ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ</string>
+    <string name="profile_footer">ಕಾಳಜಿಯಿಂದ ರಚಿಸಿದ ಕಥೆಗಳು. ಪ್ರೊಫೈಲ್‌ಗಳು ಖಾಸಗಿ ಮತ್ತು ಪೋಷಕರ ನಿರ್ವಹಣೆಯಲ್ಲಿವೆ.</string>
+    <string name="profile_cancel">ರದ್ದುಮಾಡಿ</string>
+
+    <string name="children_title">ಮಕ್ಕಳ ಪ್ರೊಫೈಲ್‌ಗಳು</string>
+    <string name="children_add">ಮಗುವನ್ನು ಸೇರಿಸಿ</string>
+    <string name="children_banner">ಖಾಸಗಿ ಕುಟುಂಬ ಪ್ರೊಫೈಲ್‌ಗಳು. ನಿಮ್ಮ ಮಕ್ಕಳ ವಿವರಗಳನ್ನು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು ಮತ್ತು ನಿರ್ವಹಿಸಬಹುದು.</string>
+    <plurals name="children_age_language">
+        <item quantity="one">%1$d ವರ್ಷ · %2$s</item>
+        <item quantity="other">%1$d ವರ್ಷಗಳು · %2$s</item>
+    </plurals>
+    <string name="children_interest_separator">" · "</string>
+    <string name="children_active">ಸಕ್ರಿಯ</string>
+    <string name="children_switch">ಬದಲಿಸಿ</string>
+    <string name="children_edit">%1$s ಅವರ ಪ್ರೊಫೈಲ್ ಬದಲಿಸಿ</string>
+    <string name="children_add_another">ಇನ್ನೊಂದು ಮಗುವನ್ನು ಸೇರಿಸಿ</string>
+    <string name="children_add_another_body">ಪ್ರತಿ ಪುಟ್ಟ ಕೇಳುಗರಿಗೂ ಕಥೆಗಳನ್ನು ವೈಯಕ್ತೀಕರಿಸಿ</string>
+
+    <string name="reminder_title">ಮಲಗುವ ಸಮಯದ ಜ್ಞಾಪನೆ</string>
+    <string name="reminder_panel_title">ಕಥೆಯ ಸಮಯಕ್ಕೆ ಒಂದು ಮೃದು ನೆನಪು</string>
+    <string name="reminder_panel_body">ಶಾಂತವಾಗಿ, ಸದ್ದಿಲ್ಲದೆ, ಒಂದೇ ಒಂದು ಜ್ಞಾಪನೆ.</string>
+    <string name="reminder_toggle">ಮಲಗುವ ಸಮಯದ ಜ್ಞಾಪನೆ</string>
+    <string name="reminder_toggle_hint">ಯಾವಾಗ ಬೇಕಾದರೂ ನಿಲ್ಲಿಸಿ</string>
+    <string name="reminder_time">ಜ್ಞಾಪನೆಯ ಸಮಯ</string>
+    <string name="reminder_time_done">ಆಯಿತು</string>
+    <string name="reminder_repeat">ಪುನರಾವರ್ತಿಸುವ ದಿನಗಳು</string>
+    <string name="reminder_quiet_title">ಶಾಂತ ಮಲಗುವ ಅನುಭವ</string>
+    <string name="reminder_quiet_body">ಶಬ್ದವಿಲ್ಲ, ಪ್ರಖರ ಎಚ್ಚರಿಕೆಗಳಿಲ್ಲ</string>
+    <string name="reminder_save">ಜ್ಞಾಪನೆ ಉಳಿಸಿ</string>
+    <string name="reminder_saved">%1$s ಕ್ಕೆ ಜ್ಞಾಪನೆ ಉಳಿಸಲಾಗಿದೆ</string>
+
+    <string name="notifications_title">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="notifications_mark_all">ಎಲ್ಲವನ್ನೂ ಓದಿದೆ ಎಂದು ಗುರುತಿಸಿ</string>
+    <string name="notifications_today">ಇಂದು</string>
+    <string name="notifications_earlier">ಹಿಂದಿನವು</string>
+    <string name="notifications_unread">ಓದಿಲ್ಲ</string>
+    <string name="notifications_empty_title">ಎಲ್ಲವನ್ನೂ ನೋಡಿದ್ದೀರಿ</string>
+    <string name="notifications_empty_text">ಹೊಸ ಕಥೆಗಳು ಮತ್ತು ಜ್ಞಾಪನೆಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.</string>
+
+    <string name="subscription_kicker">ಲಿಟಲ್‌ಸ್ಟೋರಿ ಪ್ರೀಮಿಯಂ</string>
+    <string name="subscription_title">ಪ್ರತಿ ಮಲಗುವ ಸಮಯವನ್ನೂ ಮಾಯಾಮಯವಾಗಿಸಿ.</string>
+    <string name="subscription_body">ಇನ್ನಷ್ಟು ಅದ್ಭುತ, ಇನ್ನಷ್ಟು ಕೇಳುವಿಕೆ, ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬದೊಂದಿಗೆ ಬೆಳೆಯುವ ಕಥೆಗಳು.</string>
+    <string name="subscription_benefit_personalised">ಇನ್ನಷ್ಟು ವೈಯಕ್ತಿಕ ಕಥೆಗಳು</string>
+    <string name="subscription_benefit_collections">ಪ್ರೀಮಿಯಂ ಕಥಾ ಸಂಗ್ರಹಗಳು</string>
+    <string name="subscription_benefit_narration">ಧ್ವನಿ ನಿರೂಪಣೆ</string>
+    <string name="subscription_benefit_offline">ಆಫ್‌ಲೈನ್ ಡೌನ್‌ಲೋಡ್‌ಗಳು</string>
+    <string name="subscription_benefit_profiles">ಹಲವು ಮಕ್ಕಳ ಪ್ರೊಫೈಲ್‌ಗಳು</string>
+    <string name="subscription_benefit_weekly">ಪ್ರತಿ ವಾರ ಹೊಸ ಕಥೆಗಳು</string>
+    <string name="subscription_plan_free">ಉಚಿತ</string>
+    <string name="subscription_plan_monthly">ಪ್ರೀಮಿಯಂ ಮಾಸಿಕ</string>
+    <string name="subscription_plan_yearly">ಪ್ರೀಮಿಯಂ ವಾರ್ಷಿಕ</string>
+    <string name="subscription_plan_family">ಪ್ರೀಮಿಯಂ ಕುಟುಂಬ</string>
+    <string name="subscription_period_free">ಮಾಯೆಯನ್ನು ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="subscription_period_month">ತಿಂಗಳಿಗೆ</string>
+    <string name="subscription_period_year">ವರ್ಷಕ್ಕೆ · ಉತ್ತಮ ಮೌಲ್ಯ</string>
+    <plurals name="subscription_period_family">
+        <item quantity="one">ವರ್ಷಕ್ಕೆ · %1$d ಮಗು</item>
+        <item quantity="other">ವರ್ಷಕ್ಕೆ · %1$d ಮಕ್ಕಳವರೆಗೆ</item>
+    </plurals>
+    <string name="subscription_best_value">ಉತ್ತಮ ಮೌಲ್ಯ</string>
+    <string name="subscription_note">ಬೆಲೆಗಳು ಉದಾಹರಣೆಗೆ ಮಾತ್ರ. ಯಾವುದೇ ನಿಜವಾದ ಪಾವತಿ ನಡೆಯುವುದಿಲ್ಲ.</string>
+    <string name="subscription_choose">%1$s ಯೋಜನೆ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="subscription_dialog_title">ಯೋಜನೆ ಆಯ್ಕೆಯಾಗಿದೆ</string>
+    <string name="subscription_dialog_text">ಇದು ಮಾದರಿ ಆವೃತ್ತಿ, ಆದ್ದರಿಂದ ಯಾವುದೇ ಪಾವತಿ ಆಗಿಲ್ಲ. ನೀವು %1$s ಯೋಜನೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿದ್ದೀರಿ.</string>
+    <string name="subscription_dialog_done">ಆಯಿತು</string>
+</resources>

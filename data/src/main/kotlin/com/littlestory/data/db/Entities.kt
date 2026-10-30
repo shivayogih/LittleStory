@@ -1,5 +1,6 @@
 package com.littlestory.data.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -56,6 +57,9 @@ data class GeneratedStoryEntity(
     val pagesJson: String,
     val languageTag: String,
     val createdAtEpochMs: Long,
+    /** Added in schema v2; rows from v1 read 0 and fall back to the full age range. */
+    @ColumnInfo(defaultValue = "0") val ageMin: Int = 0,
+    @ColumnInfo(defaultValue = "0") val ageMax: Int = 0,
 )
 
 @Entity(tableName = "notification_read")

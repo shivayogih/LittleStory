@@ -47,7 +47,27 @@ data class ParentSettings(
     val wifiOnlyDownloads: Boolean,
 )
 
-data class NotificationItem(val id: String, val title: String, val body: String, val read: Boolean)
+enum class NotificationSection { Today, Earlier }
+
+/** What a notification is about; decides its icon tile and where tapping it goes. */
+enum class NotificationKind { StoryReady, Reminder, NewStories }
+
+/** A mock inbox item; [title] and [body] are content already resolved for the language. */
+data class NotificationItem(
+    val id: String,
+    val title: String,
+    val body: String,
+    val read: Boolean,
+    val section: NotificationSection = NotificationSection.Earlier,
+    val kind: NotificationKind = NotificationKind.NewStories,
+)
 
 /** A subscription plan shown as illustrative pricing; prices are minor units with an ISO currency code. */
-data class Plan(val id: String, val priceMinorUnits: Long, val currencyCode: String, val billedYearly: Boolean)
+data class Plan(
+    val id: String,
+    val priceMinorUnits: Long,
+    val currencyCode: String,
+    val billedYearly: Boolean,
+    val bestValue: Boolean = false,
+    val maxChildren: Int = 1,
+)

@@ -1,5 +1,6 @@
 package com.littlestory.data.db
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
@@ -12,8 +13,9 @@ import androidx.room.RoomDatabase
         GeneratedStoryEntity::class,
         NotificationReadEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
+    autoMigrations = [AutoMigration(from = 1, to = 2)],
 )
 abstract class LittleStoryDatabase : RoomDatabase() {
     abstract fun childProfileDao(): ChildProfileDao
