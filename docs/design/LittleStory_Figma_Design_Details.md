@@ -169,7 +169,7 @@ There are **no screen-transition animations** (screens swap instantly), no sheet
 | **BottomNav** | 5 tabs; active tab gets a soft-lavender pill behind the icon; Create is a raised 48×40 indigo tile with a 5 px white ring (lavender when active). |
 | **SectionHeader** | Manrope title + optional "See all ›" link. |
 | **StoryCard** | Cover art + floating heart toggle + title + "Category · N min". Used in a 2-column grid (Discover) and horizontal scroll rows (Home, Discover). |
-| **List story row** | 156-px-wide art tile, category eyebrow, title, meta, trailing heart/play. Used in Category, My Stories, Downloads. |
+| **List story row** | 78 × 90 dp art tile (156 × 180 px in the 2× screenshots), category eyebrow, title, meta, trailing heart/play. Used in Category, My Stories, Downloads. |
 | **Continue card** | Art + "8 MIN · 42 % COMPLETE" + title + progress bar + "Resume story". |
 | **Chips** | Pill buttons; selected = soft-lavender fill, lavender border, check icon (Setup). |
 | **Segmented control** | 3 equal segments on `--surface`; active segment is white with soft shadow. |

@@ -241,7 +241,7 @@ private fun InfoPanel(
             LittleStoryIcon(icon, contentDescription = null, tint = colors.primary)
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xxs)) {
-            Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+            Text(title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
             Text(text, style = LittleStoryTheme.typography.body, color = colors.textSecondary)
         }
         if (trailing != null) {

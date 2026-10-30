@@ -180,7 +180,7 @@ private fun RecentCard(recent: RecentlyPlayed, onPlay: (String) -> Unit) {
     ) {
         Box(Modifier.size(dimens.recentArtSize).clip(LittleStoryTheme.shapes.medium)) { StoryArt(gradient, motif) }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xs)) {
-            Text(recent.item.title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+            Text(recent.item.title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
             Text(remaining, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
             LittleStoryReadingProgress(recent.progress)
         }

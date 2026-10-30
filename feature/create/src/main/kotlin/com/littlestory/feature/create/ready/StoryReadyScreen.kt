@@ -228,7 +228,7 @@ private fun Peek(text: String) {
     Column(verticalArrangement = Arrangement.spacedBy(spacing.sm)) {
         Text(
             stringResource(R.string.ready_peek_title),
-            style = LittleStoryTheme.typography.bodyLarge,
+            style = LittleStoryTheme.typography.itemTitle,
             color = colors.textPrimary,
         )
         Row(Modifier.fillMaxWidth()) {
@@ -267,7 +267,7 @@ private fun SavedRow(onClick: () -> Unit) {
         Column(Modifier.weight(1f)) {
             Text(
                 stringResource(R.string.ready_saved_title),
-                style = LittleStoryTheme.typography.bodyLarge,
+                style = LittleStoryTheme.typography.itemTitle,
                 color = colors.textPrimary,
             )
             Text(

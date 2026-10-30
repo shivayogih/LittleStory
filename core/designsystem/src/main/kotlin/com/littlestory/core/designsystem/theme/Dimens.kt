@@ -50,8 +50,9 @@ data class LittleStoryDimens(
     val scrimAlpha: Float = 0.5f,
     val storyCardWidth: Dp = 150.dp,
     val storyCardWideWidth: Dp = 220.dp,
-    val listArtWidth: Dp = 156.dp,
-    val listArtHeight: Dp = 104.dp,
+    // 156 × 180 px in the 2× design screenshots (LS-124); 156 dp was a px-for-dp slip.
+    val listArtWidth: Dp = 78.dp,
+    val listArtHeight: Dp = 90.dp,
     val avatarSize: Dp = 56.dp,
     val avatarLargeSize: Dp = 72.dp,
     /** Dark translucent hill on story covers (design `#18243047`: alpha 0x47). */

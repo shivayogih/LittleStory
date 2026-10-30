@@ -268,7 +268,7 @@ private fun CategoryTile(category: CategoryTileUi, onClick: () -> Unit) {
     Column(
         Modifier
             .width(dimens.categoryTileItemWidth)
-            .clip(LittleStoryTheme.shapes.medium)
+            // No clip on the whole item: rounded corners cut the ends of a full-width label ("Indian Tales").
             .clickable(role = Role.Button, onClick = onClick)
             .testTag(HomeTags.category(category.id)),
         horizontalAlignment = Alignment.CenterHorizontally,

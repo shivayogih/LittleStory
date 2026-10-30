@@ -25,6 +25,7 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 | [screen-inventory.md](design/screen-inventory.md) | One entry per screen (SCR-01…SCR-23) with design reference, navigation, components, inputs, states, data, accessibility, localization notes, screenshot-test needs, acceptance crite |
 | [screen-state-matrix.md](design/screen-state-matrix.md) | List, for every major screen, which states are meaningful and must be implemented and tested, with state diagrams for the stateful flows. |
 | [visual-regression-strategy.md](design/visual-regression-strategy.md) | Define how screens are compared against the design pack and protected from visual regressions in English, Kannada and pseudo-locales. |
+| [fidelity-review.md](design/fidelity-review.md) | Record the LS-124 side-by-side comparison of every design screen with the app, what was fixed and what still differs. |
 
 ## Architecture
 

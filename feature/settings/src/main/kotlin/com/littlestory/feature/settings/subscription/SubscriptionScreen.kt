@@ -234,7 +234,7 @@ private fun PlanCard(plan: Plan, selected: Boolean, onClick: () -> Unit) {
                 horizontalArrangement = Arrangement.spacedBy(spacing.sm),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(planName(plan.id), style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+                Text(planName(plan.id), style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
                 if (plan.bestValue) {
                     Text(
                         stringResource(R.string.subscription_best_value),

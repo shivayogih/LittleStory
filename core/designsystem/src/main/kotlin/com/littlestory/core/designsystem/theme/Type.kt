@@ -26,6 +26,8 @@ data class LittleStoryTypography(
     val topBarTitle: TextStyle,
     val brandName: TextStyle,
     val bodyLarge: TextStyle,
+    /** Titles of cards, list rows and settings rows: bolder than body text so they lead the row. */
+    val itemTitle: TextStyle,
     val body: TextStyle,
     val readerBody: TextStyle,
     val button: TextStyle,
@@ -95,6 +97,7 @@ internal val LatinTypography =
         topBarTitle = style(Manrope, ExtraBold, 17.sp),
         brandName = style(Manrope, ExtraBold, 18.sp, tracking = (-0.5 / 18).em),
         bodyLarge = style(DmSans, FontWeight.Normal, 15.sp, (15 * 1.55).sp),
+        itemTitle = style(DmSans, FontWeight.SemiBold, 15.sp, (15 * 1.35).sp),
         // body and button sizes are not in design-tokens.json: proposed values, confirm in LS-016.
         body = style(DmSans, FontWeight.Normal, 14.sp, (14 * 1.5).sp),
         readerBody = style(Manrope, FontWeight.Medium, 16.sp, (16 * 1.95).sp),
@@ -116,6 +119,7 @@ internal val KannadaTypography =
         topBarTitle = style(NotoSansKannada, FontWeight.Bold, 17.sp, (17 * 1.4).sp),
         brandName = style(NotoSansKannada, FontWeight.Bold, 18.sp, (18 * 1.4).sp),
         bodyLarge = style(NotoSansKannada, FontWeight.Normal, 15.sp, (15 * 1.7).sp),
+        itemTitle = style(NotoSansKannada, FontWeight.SemiBold, 15.sp, (15 * 1.6).sp),
         body = style(NotoSansKannada, FontWeight.Normal, 14.sp, (14 * 1.7).sp),
         readerBody = style(NotoSansKannada, FontWeight.Medium, 16.sp, (16 * 2.0).sp),
         button = style(NotoSansKannada, FontWeight.Bold, 15.sp, (15 * 1.5).sp),

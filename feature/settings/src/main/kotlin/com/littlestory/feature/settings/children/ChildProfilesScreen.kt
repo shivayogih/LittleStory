@@ -141,7 +141,7 @@ private fun ChildCardView(child: ChildCard, actions: ChildProfilesActions, onSwi
             },
             verticalArrangement = Arrangement.spacedBy(spacing.xxs),
         ) {
-            Text(child.name, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+            Text(child.name, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
             Text(
                 pluralStringResource(R.plurals.children_age_language, child.age, child.age, child.languageName),
                 style = LittleStoryTheme.typography.chip,
@@ -212,7 +212,7 @@ private fun AddRow(onAdd: () -> Unit) {
         Column(Modifier.weight(1f)) {
             Text(
                 stringResource(R.string.children_add_another),
-                style = LittleStoryTheme.typography.bodyLarge,
+                style = LittleStoryTheme.typography.itemTitle,
                 color = colors.textPrimary,
             )
             Text(
