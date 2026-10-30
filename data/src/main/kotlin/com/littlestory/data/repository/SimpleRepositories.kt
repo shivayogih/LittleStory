@@ -14,11 +14,26 @@ import com.littlestory.domain.repository.FavouritesRepository
 import com.littlestory.domain.repository.ProgressRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
+/** One instance app-wide (DI singleton), so its lock orders toggles from every screen. */
 class FavouritesRepositoryImpl(private val dao: SavedStoryDao) : FavouritesRepository {
+    private val writes = Mutex()
+
     override fun favouriteIds(childId: String): Flow<Set<String>> = dao.favouriteIds(childId).map { it.toSet() }
 
-    override suspend fun setFavourite(childId: String, storyId: String, favourite: Boolean) {
+    override suspend fun setFavourite(childId: String, storyId: String, favourite: Boolean) =
+        writes.withLock { write(childId, storyId, favourite) }
+
+    override suspend fun toggle(childId: String, storyId: String): Boolean =
+        writes.withLock {
+            val favourite = dao.get(childId, storyId)?.favourite != true
+            write(childId, storyId, favourite)
+            favourite
+        }
+
+    private suspend fun write(childId: String, storyId: String, favourite: Boolean) {
         val current = dao.get(childId, storyId)
         dao.upsert(SavedStoryEntity(childId, storyId, favourite, current?.downloaded ?: false))
     }

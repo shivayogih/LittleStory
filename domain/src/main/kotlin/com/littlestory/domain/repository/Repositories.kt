@@ -13,6 +13,7 @@ import com.littlestory.domain.model.Story
 import com.littlestory.domain.model.StoryCategory
 import com.littlestory.domain.model.StoryCreationRequest
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 
 /** Read-only catalogue of bundled stories, resolved for a language with English fallback. */
 interface CatalogRepository {
@@ -42,6 +43,16 @@ interface FavouritesRepository {
     fun favouriteIds(childId: String): Flow<Set<String>>
 
     suspend fun setFavourite(childId: String, storyId: String, favourite: Boolean)
+
+    /**
+     * Flips [storyId] for [childId] and returns the new state. Implementations serialise toggles so
+     * rapid taps from any screen settle on a consistent value (LS-075).
+     */
+    suspend fun toggle(childId: String, storyId: String): Boolean {
+        val favourite = storyId !in favouriteIds(childId).first()
+        setFavourite(childId, storyId, favourite)
+        return favourite
+    }
 }
 
 /** Stories the child created, newest first. */
@@ -113,4 +124,10 @@ interface NotificationsRepository {
 interface SubscriptionRepository {
     /** Illustrative plans only; behind the demoSubscription feature flag. */
     val plans: Flow<List<Plan>>
+}
+
+/** Everything the app keeps on this device; Privacy & parent controls can wipe it (LS-114). */
+interface LocalDataRepository {
+    /** Deletes profiles, favourites, progress, downloads, created stories and preferences. */
+    suspend fun deleteAll()
 }

@@ -10,6 +10,7 @@ import com.littlestory.data.db.LittleStoryDatabase
 import com.littlestory.data.prefs.ActiveProfileStore
 import com.littlestory.data.prefs.PreferencesRepositoryImpl
 import com.littlestory.data.repository.FavouritesRepositoryImpl
+import com.littlestory.data.repository.LocalDataRepositoryImpl
 import com.littlestory.data.repository.ProfilesRepositoryImpl
 import com.littlestory.data.repository.ProgressRepositoryImpl
 import com.littlestory.domain.model.AvatarId
@@ -22,6 +23,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.first
@@ -166,5 +169,33 @@ class PersistenceTest {
             assertEquals("kn", reopened.contentLanguageTag.first())
             assertEquals(ReadingPreferences(1.2f, 1.25f), reopened.reading.first())
             assertEquals(settings, reopened.parentSettings.first())
+        }
+
+    @Test
+    fun rapidTogglesFromManyCallersSettleConsistently() =
+        runBlocking {
+            val favourites = FavouritesRepositoryImpl(db.savedStoryDao())
+            // An even number of concurrent toggles must end where it started (LS-075).
+            List(10) { async(Dispatchers.IO) { favourites.toggle("child_1", "s1") } }.awaitAll()
+            assertTrue("s1" !in favourites.favouriteIds("child_1").first())
+            assertTrue(favourites.toggle("child_1", "s1"))
+            assertEquals(setOf("s1"), favourites.favouriteIds("child_1").first())
+        }
+
+    @Test
+    fun deleteAllClearsTablesAndPreferences() =
+        runBlocking {
+            val profiles = profiles()
+            val child = profiles.create(draft())
+            FavouritesRepositoryImpl(db.savedStoryDao()).setFavourite(child.id, "s1", true)
+            ProgressRepositoryImpl(db.readingProgressDao()).update(ReadingProgress(child.id, "s1", 1, 0.5f, 1))
+            val preferences = PreferencesRepositoryImpl(store)
+            preferences.setFirstRunCompleted(true)
+            LocalDataRepositoryImpl(db, store, Dispatchers.IO).deleteAll()
+            assertTrue(profiles.profiles.first().isEmpty())
+            assertNull(profiles.activeProfile.first())
+            assertTrue(FavouritesRepositoryImpl(db.savedStoryDao()).favouriteIds(child.id).first().isEmpty())
+            assertTrue(ProgressRepositoryImpl(db.readingProgressDao()).progress(child.id).first().isEmpty())
+            assertEquals(false, preferences.firstRunCompleted.first())
         }
 }

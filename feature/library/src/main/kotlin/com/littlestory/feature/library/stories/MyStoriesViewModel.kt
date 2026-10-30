@@ -101,8 +101,7 @@ class MyStoriesViewModel
         fun onFavouriteClick(storyId: String) {
             viewModelScope.launch {
                 val childId = browse.first().childId
-                val current = favourites.favouriteIds(childId).first()
-                favourites.setFavourite(childId, storyId, storyId !in current)
+                favourites.toggle(childId, storyId)
             }
         }
 
