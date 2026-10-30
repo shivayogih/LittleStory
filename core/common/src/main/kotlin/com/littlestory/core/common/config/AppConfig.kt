@@ -47,6 +47,20 @@ object AppConfig {
         const val AUTO_ADVANCE_DELAY_MS = 500L
         val stageThresholdsPercent = listOf(38, 76)
         const val RESTART_PERCENT = 8
+
+        /** Age range printed on a generated story, around the hero's age. */
+        const val HERO_AGES_BELOW = 1
+        const val HERO_AGES_ABOVE = 3
+
+        /** Create themes whose catalogue category has a different id. */
+        val themeCategoryIds = mapOf("indian_folklore" to "indian_tales", "fantasy" to "adventure")
+
+        /** Cover art of a generated story until generation picks art per theme. */
+        const val COVER_PALETTE_ID = "adventure"
+        const val COVER_MOTIF_ID = "cricket"
+
+        /** Page of a generated story quoted as "A little peek inside" on Story Ready. */
+        const val PEEK_PAGE_INDEX = 1
     }
 
     object Player {
@@ -59,6 +73,10 @@ object AppConfig {
 
         /** Sleep-timer choices in minutes; "end of story" is a separate option in the UI. */
         val sleepTimerMinutes = listOf(10, 15, 30)
+
+        /** Listening progress is saved every this many ticks while playing, and on pause. */
+        const val PROGRESS_SAVE_EVERY_TICKS = 10
+        const val VOLUME_MAX_PERCENT = 100
     }
 
     object Reader {
@@ -74,6 +92,9 @@ object AppConfig {
 
         /** Size recorded for a simulated download until stories carry their own sizes. */
         const val SIMULATED_STORY_BYTES = 12_000_000L
+
+        /** The storage bar never looks empty once something is downloaded (design: minimum 3 %). */
+        const val STORAGE_BAR_MIN_FRACTION = 0.03f
     }
 
     object Reminder {
@@ -106,6 +127,11 @@ object AppConfig {
         const val FEATURED_STORY_ID = "story_little_elephant"
         const val POPULAR_COUNT = 4
         const val BEDTIME_CATEGORY_ID = "bedtime"
+    }
+
+    object Subscription {
+        const val DEFAULT_PLAN_ID = "yearly"
+        const val FREE_PLAN_ID = "free"
     }
 
     object Ui {

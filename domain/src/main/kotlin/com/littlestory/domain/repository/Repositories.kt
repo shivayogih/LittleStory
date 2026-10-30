@@ -48,12 +48,23 @@ interface FavouritesRepository {
 interface LibraryRepository {
     fun created(childId: String): Flow<List<Story>>
 
+    /** A created story by id, whichever child made it; null when it does not exist. */
+    fun story(id: String): Flow<Story?>
+
     suspend fun save(childId: String, story: Story)
 }
 
-/** Simulated story generation (no AI provider in the MVP). */
+/**
+ * Simulated story generation (no AI provider in the MVP). Create [submit]s the request, the
+ * Generating screen runs [generate] for its id; nothing leaves the device.
+ */
 interface GenerationRepository {
-    fun generate(request: StoryCreationRequest): Flow<GenerationState>
+    fun submit(request: StoryCreationRequest)
+
+    fun request(requestId: String): StoryCreationRequest?
+
+    /** Progress from [startPercent] to 100, then the saved story; Failed when the request is unknown. */
+    fun generate(requestId: String, startPercent: Int = 0): Flow<GenerationState>
 }
 
 interface ProgressRepository {
@@ -92,9 +103,11 @@ interface PreferencesRepository {
 }
 
 interface NotificationsRepository {
-    val notifications: Flow<List<NotificationItem>>
+    fun notifications(languageTag: String): Flow<List<NotificationItem>>
 
     suspend fun markRead(id: String)
+
+    suspend fun markAllRead()
 }
 
 interface SubscriptionRepository {

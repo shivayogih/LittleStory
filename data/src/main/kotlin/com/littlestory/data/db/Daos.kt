@@ -67,6 +67,9 @@ interface GeneratedStoryDao {
     @Query("SELECT * FROM generated_story WHERE childId = :childId ORDER BY createdAtEpochMs DESC")
     fun observe(childId: String): Flow<List<GeneratedStoryEntity>>
 
+    @Query("SELECT * FROM generated_story WHERE id = :id")
+    fun observeById(id: String): Flow<GeneratedStoryEntity?>
+
     @Upsert
     suspend fun upsert(entity: GeneratedStoryEntity)
 
@@ -81,4 +84,7 @@ interface NotificationReadDao {
 
     @Upsert
     suspend fun upsert(entity: NotificationReadEntity)
+
+    @Upsert
+    suspend fun upsertAll(entities: List<NotificationReadEntity>)
 }
