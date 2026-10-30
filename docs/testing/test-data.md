@@ -10,8 +10,8 @@ Sources: master orchestrator brief §10; design details §1.1 (story gradients),
 
 | File | Content |
 | --- | --- |
-| `assets/mock/stories_en.json` | Catalog, details and sections in English (complete) |
-| `assets/mock/stories_kn.json` | Same IDs in Kannada; intentionally missing `story_lanterns_jaipur` |
+| `assets/mock/stories_en.json` | Catalog in English (complete): ids, category, tags, ages, duration, added date, art ids, synopsis, lesson, pages. Defines every structural field |
+| `assets/mock/stories_kn.json` | Text only (title, synopsis, lesson, pages) for the same ids, field by field; intentionally missing `story_lanterns_jaipur` |
 | `assets/mock/categories_{tag}.json` | Category IDs and names |
 | `assets/mock/notifications_{tag}.json` | SCR-18 items |
 | Test-only fixtures | `src/test/resources/` copies plus edge-case files below |
@@ -64,3 +64,9 @@ Names are deliberately the design's sample names; no real children's data is eve
 - Inject `Clock` (fixed `2026-10-29T20:00` local for screenshots) and coroutine dispatchers.
 - The generation simulator uses `AppConfig` timings and no randomness.
 - Test data changes go through the same PR review as code.
+
+## 6. Implemented in P4 (LS-036)
+
+- Loader: `CatalogRepositoryImpl` in `:data`; English is the base, a translation file overrides text per field, a missing or malformed file falls back to English. `Story.resolvedLanguage` records the language actually shown.
+- Not shipped yet: notifications, plans and profiles JSON (they arrive with their screens). The test-only stories `story_long_title` and `story_no_art` are not in `src/main`; add them as test fixtures when a test needs them.
+- No progress, favourites or downloads are seeded on a real first run, so the Home continue card shows only after a child has listened.

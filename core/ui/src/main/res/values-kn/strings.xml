@@ -13,4 +13,9 @@
     <string name="interest_space">ಬಾಹ್ಯಾಕಾಶ</string>
     <string name="interest_nature">ಪ್ರಕೃತಿ</string>
     <string name="interest_music">ಸಂಗೀತ</string>
+    <string name="story_card_meta">%1$s · %2$d ನಿಮಿಷ</string>
+    <string name="story_list_meta">%1$d–%2$d ವರ್ಷದವರಿಗೆ · %3$d ನಿಮಿಷ</string>
+    <string name="story_offline">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಲಭ್ಯ</string>
+    <string name="story_favourite_add">%1$s ಅನ್ನು ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ</string>
+    <string name="story_favourite_remove">%1$s ಅನ್ನು ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಿ</string>
 </resources>

@@ -5,6 +5,18 @@ package com.littlestory.core.common.config
  * (docs/architecture/configuration-and-constants.md). Feature code reads these, never literals.
  */
 object AppConfig {
+    object Profiles {
+        /** Owner of favourites and progress when Setup was skipped and no child profile exists. */
+        const val GUEST_ID = "guest"
+    }
+
+    object Home {
+        /** Categories shown as tiles in "Explore stories", in order. */
+        val exploreCategoryIds = listOf("bedtime", "animals", "adventure", "friendship", "indian_tales")
+        const val MADE_FOR_COUNT = 4
+        const val CULTURE_CATEGORY_ID = "indian_tales"
+    }
+
     object Create {
         const val PROMPT_MAX_CHARS = 500
         val durationOptionsMinutes = listOf(5, 8, 10, 15)
@@ -87,6 +99,13 @@ object AppConfig {
                 "learning",
             )
         val sortOptionIds = listOf("recommended", "shortest", "newest")
+
+        /** Filter id meaning "no category filter"; also the Category route id for the whole catalogue. */
+        const val ALL_ID = "all"
+        const val DEFAULT_SORT_ID = "recommended"
+        const val FEATURED_STORY_ID = "story_little_elephant"
+        const val POPULAR_COUNT = 4
+        const val BEDTIME_CATEGORY_ID = "bedtime"
     }
 
     object Ui {

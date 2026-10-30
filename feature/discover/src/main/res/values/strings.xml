@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-04a/04b Discover -->
+    <string name="discover_title">Discover</string>
+    <string name="discover_notifications">Notifications</string>
+    <string name="discover_search_placeholder">Search stories, themes, or characters</string>
+    <string name="discover_search_clear">Clear search</string>
+    <string name="discover_featured_kicker">FEATURED THIS WEEK</string>
+    <string name="discover_featured_cta">Listen now</string>
+    <string name="discover_filter_all">All</string>
+    <string name="discover_popular">Popular right now</string>
+    <string name="discover_results">Results for “%1$s”</string>
+    <string name="discover_view_all">View all</string>
+    <string name="discover_bedtime">Bedtime favourites</string>
+    <string name="discover_empty_title">No stories found</string>
+    <string name="discover_empty_text">Try a different title or explore one of our story collections.</string>
+    <string name="discover_empty_action">Clear search</string>
+
+    <!-- SCR-05 Category -->
+    <plurals name="category_story_count">
+        <item quantity="one">%1$d STORY</item>
+        <item quantity="other">%1$d STORIES</item>
+    </plurals>
+    <string name="category_all_name">All stories</string>
+    <string name="category_all_description">Every story in the library, ready for tonight.</string>
+    <string name="category_heading">Stories for curious minds</string>
+    <string name="category_sort_label">Sort stories</string>
+    <string name="category_sort_recommended">Recommended</string>
+    <string name="category_sort_shortest">Shortest first</string>
+    <string name="category_sort_newest">Newest</string>
+    <string name="category_empty_title">No stories here yet</string>
+    <string name="category_empty_text">New stories are on their way.</string>
+
+    <!-- SCR-06 Story detail -->
+    <string name="detail_meta">Ages %1$d–%2$d · %3$d min · %4$s</string>
+    <string name="detail_lesson_title">A little lesson</string>
+    <string name="detail_narration_title">Narrated story</string>
+    <string name="detail_narration_text">Warm, expressive voice · %1$s</string>
+    <string name="detail_narration_available">Available</string>
+    <string name="detail_listen">Listen to Story</string>
+    <string name="detail_read">Read Story</string>
+    <string name="detail_download_add">Download %1$s</string>
+    <string name="detail_download_remove">Remove download of %1$s</string>
+    <string name="detail_not_found_title">Story not found</string>
+    <string name="detail_not_found_text">This story is no longer available.</string>
+</resources>

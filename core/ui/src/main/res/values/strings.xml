@@ -14,4 +14,9 @@
     <string name="interest_space">Space</string>
     <string name="interest_nature">Nature</string>
     <string name="interest_music">Music</string>
+    <string name="story_card_meta">%1$s · %2$d min</string>
+    <string name="story_list_meta">Ages %1$d–%2$d · %3$d min</string>
+    <string name="story_offline">Available offline</string>
+    <string name="story_favourite_add">Add %1$s to favourites</string>
+    <string name="story_favourite_remove">Remove %1$s from favourites</string>
 </resources>
