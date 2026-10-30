@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
@@ -120,6 +121,11 @@ fun ListStoryRow(
     }
 }
 
+/** Test tags inside shared story components. */
+object StoryTags {
+    const val RESUME = "story_resume"
+}
+
 /** Resume card: art, "8 MIN · 42 % COMPLETE", title, progress bar and a resume button. */
 @Composable
 fun ContinueCard(
@@ -151,7 +157,7 @@ fun ContinueCard(
             }
         }
         LittleStoryReadingProgress(progress)
-        LittleStoryButton(text = resumeLabel, onClick = onResume)
+        LittleStoryButton(text = resumeLabel, onClick = onResume, modifier = Modifier.testTag(StoryTags.RESUME))
     }
 }
 

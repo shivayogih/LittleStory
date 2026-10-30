@@ -41,6 +41,7 @@ Maintained alongside the code until the owner syncs it into `LittleStory_Jira_Ba
 | LS-115 | Implemented (P6) | Help & about (SCR-22): four questions, version from `:app` BuildConfig via `AppInfo`, font licences. Content owner to approve |
 | LS-043 | Draft (P6) | Glossary extended with P5/P6 terms; every Kannada value is a draft |
 | LS-120 | Implemented (P7) | Kover aggregates every module; `check` fails when view models and `:domain` drop below 80 % line coverage (95 % when introduced). Report: `build/reports/kover/html` |
+| LS-121 | Implemented (P7) | Journeys A–G in English and Kannada as Robolectric tests on the real app graph (`app/src/test/.../journeys`); 14 tests; manual gaps listed in `docs/testing/integration-test-plan.md` §2 |
 | LS-125 | Implemented (P7) | Hardcoded-values audit in `docs/architecture/hardcoding-audit.md`; four layout counts named; scanner gained text-argument, language-tag, URL and layout-count rules |
 | Bottom nav | Wired (P5) | All five tabs navigate; Home bell, avatar, Create and Resume are connected |
 

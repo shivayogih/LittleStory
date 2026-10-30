@@ -20,7 +20,9 @@ Sources: master orchestrator brief §6.1 (journeys A–G), §17.3, §17.4; workb
 
 ## 2. End-to-end journeys (LS-121)
 
-Each journey runs in `en` and `kn` on an emulator (CI job or local).
+Each journey runs in `en` and `kn` against the real app graph (Hilt, Room, DataStore, mock JSON) under Robolectric, so it runs in CI on every pull request with no emulator.
+
+Implemented (P7, 30 Oct 2026): `app/src/test/kotlin/com/littlestory/app/journeys/`. `Journeys` holds the steps, `EnglishJourneysTest` and `KannadaJourneysTest` run them with the device locale set to `en` or `kn` on a 411 × 891 dp screen. Steps find nodes by test tag only; repository state is checked between steps. Run them alone with `./gradlew :app:testDebugUnitTest --tests '*JourneysTest'`. A timeout fails with the screen's semantics tree, so a CI log shows where the journey stopped.
 
 ```mermaid
 flowchart LR
@@ -48,6 +50,18 @@ flowchart LR
 | E | Profile → settings rows → Privacy (once designed, SCR-21) | Toggles independent of rows (TC-041) |
 | F | Detail → Listen → play/pause, ±15 s, speed, sleep timer → back | Simulation disclosed (TC-036); timer label updates (TC-037) |
 | G | Profile → Language → ಕನ್ನಡ → UI and stories switch → kill and relaunch | Selection persists; no lost state (TC-048) |
+
+What the automated journeys cover today, and what stays manual:
+
+| Journey | Automated steps | Still manual |
+| --- | --- | --- |
+| A | Skip onboarding → Setup with a name → Home; first-run flag and profile saved | Three-slide swipe; splash timing on device |
+| B | Discover → Detail → favourite (saved) → Read → next page (progress saved) → My Stories ▸ Favourites shows the story | Search in Kannada script with the IME |
+| C | Create → empty submit shows the error → suggestion → generate → Story Ready (saved) → Read → Saved row opens Created by me | Pause and Try again on Generating |
+| D | Listen → skip → pause (progress saved) → Home continue card resumes the Player → My Stories ▸ Recently played resumes it | Process death (IT-08) |
+| E | Profile → Reminder → Help → Privacy → delete all → back to Onboarding with no profile and first run reset | Child switching |
+| F | Detail → Listen (simulation label shown) → play/pause, +15 s → Story text → Reader → Play → Player | Speed, sleep timer and volume (covered by Player VM tests) |
+| G | Profile → Language → other story language (saved) → Detail shows the story in that language → app language applied through AppCompat | Kill and relaunch on a device |
 
 ## 3. Rules
 

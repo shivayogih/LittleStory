@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import com.littlestory.core.designsystem.brand.BrandMark
@@ -73,6 +74,14 @@ fun TopBar(
     }
 }
 
+/** Test tags for the shared chrome, so journey tests can drive it without matching text. */
+object ChromeTags {
+    const val ACTION_PRIMARY = "action_primary"
+    const val ACTION_SECONDARY = "action_secondary"
+
+    fun navTab(index: Int) = "nav_tab_$index"
+}
+
 /** One bottom-navigation tab. The Create tab is drawn as the raised tile. */
 data class NavTab(
     val label: String,
@@ -110,7 +119,8 @@ fun BottomNav(
                     Modifier
                         .weight(1f)
                         .heightIn(min = dimens.minTouchTarget)
-                        .selectable(selected = active, role = Role.Tab, onClick = { onSelect(index) }),
+                        .selectable(selected = active, role = Role.Tab, onClick = { onSelect(index) })
+                        .testTag(ChromeTags.navTab(index)),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement =
                         Arrangement.spacedBy(
@@ -186,9 +196,19 @@ fun StickyActionBar(
             .padding(horizontal = LittleStoryTheme.spacing.screenHorizontal, vertical = LittleStoryTheme.spacing.md),
         verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.sm),
     ) {
-        LittleStoryButton(primaryLabel, onPrimary, enabled = primaryEnabled)
+        LittleStoryButton(
+            primaryLabel,
+            onPrimary,
+            Modifier.testTag(ChromeTags.ACTION_PRIMARY),
+            enabled = primaryEnabled,
+        )
         if (secondaryLabel != null) {
-            LittleStoryButton(secondaryLabel, onSecondary, variant = ButtonVariant.Ghost)
+            LittleStoryButton(
+                secondaryLabel,
+                onSecondary,
+                Modifier.testTag(ChromeTags.ACTION_SECONDARY),
+                variant = ButtonVariant.Ghost,
+            )
         }
     }
 }
