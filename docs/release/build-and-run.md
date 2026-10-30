@@ -54,7 +54,7 @@ If `./gradlew` is not executable on macOS/Linux: `chmod +x gradlew` (the wrapper
 | Environment | Status |
 | --- | --- |
 | Owner machines (Windows, macOS) | Reference environment |
-| GitHub Actions (LS-130) | `.github/workflows/ci.yml` runs `./gradlew check assembleDebug` on every PR and on pushes to `main`. |
+| GitHub Actions (LS-130) | `.github/workflows/ci.yml` runs `./gradlew check assembleDebug` on every PR and on pushes to `main`, `staging` and `development`. |
 | Claude Code cloud workspace | Builds once `dl.google.com` is allowed in the environment's network policy and the SDK is installed (`sdkmanager "platforms;android-37.2" "build-tools;37.0.0"`, then `sdk.dir` in `local.properties`). Maven Central may answer 429: retry with `--max-workers=2`. |
 
 ## 6. Troubleshooting (to extend in LS-030)

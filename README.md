@@ -38,7 +38,7 @@ Command line (macOS/Linux `./gradlew`, Windows `gradlew.bat`): set `ANDROID_HOME
 
 ## Ways of working
 
-- Every change is a ticket (`LS-###`) on its own branch `feature/LS-###-slug`, with a PR to `main`.
+- Every change is a ticket (`LS-###`) on its own branch `feature/LS-###-slug`, with a PR to `development` (default branch). `development` → `staging` → `main` are promoted by the owner; see [branching strategy](docs/project-management/branching-strategy.md).
 - The project owner reviews and merges every PR and authorizes every release.
 - No hardcoded text, colours, dimensions or configuration: see [CLAUDE.md](CLAUDE.md) and [docs/architecture/how-to-change.md](docs/architecture/how-to-change.md).
 - Build and run: see Quick start above and [docs/release/build-and-run.md](docs/release/build-and-run.md).

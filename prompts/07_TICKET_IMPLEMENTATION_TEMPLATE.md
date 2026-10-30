@@ -7,7 +7,7 @@
 ## Project facts (verified in P0 discovery, 2026-10-29)
 
 - Governing prompt: `prompts/00_MASTER_ORCHESTRATOR_PROMPT.md`. If this prompt and the master differ, the master and the owner's explicit instructions win.
-- Repository: `shivayogih/LittleStory`. Branch model: `main` (release) ← `development` (integration) ← `feature/LS-###-slug` / `fix/LS-###-slug`. Verify branches exist before use.
+- Repository: `shivayogih/LittleStory`. Branch model: `main` (stable) ← `staging` (release candidate) ← `development` (integration, default, all PRs target it) ← `feature/LS-###-slug` / `fix/LS-###-slug` / `milestone/mN-slug`; `hotfix/slug` from `main`. See `docs/project-management/branching-strategy.md`. Verify branches exist before use.
 - Design reference: `docs/design/LittleStory_Figma_Design_Details.md`, `docs/design/design-tokens.json`, `docs/design/screens/*.jpg` (18 screens, 22 states, extracted from the Figma Make prototype `2DYtUW39GtnsDpUd5jSu6x`). Agents cannot read the live Make file (risk R-23); never invent design details that are not in the design pack.
 - Backlog: `docs/project-management/LittleStory_Jira_Backlog.xlsx` (sheets Backlog, Screens, Requirements, Test Cases, Dependencies, ADRs, Risks & Questions, Git-PR-CI, Translations, Dashboard).
 - Languages: English (`en`, default and fallback, `res/values/`) and Kannada (`kn`, `res/values-kn/`). Future languages via resources + one `SupportedLanguage` registry entry + `locales_config.xml` only.
