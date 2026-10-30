@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-04a/04b Discover (Draft — needs native review) -->
+    <string name="discover_title">ಅನ್ವೇಷಿಸಿ</string>
+    <string name="discover_notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="discover_search_placeholder">ಕಥೆಗಳು, ವಿಷಯಗಳು ಅಥವಾ ಪಾತ್ರಗಳನ್ನು ಹುಡುಕಿ</string>
+    <string name="discover_search_clear">ಹುಡುಕಾಟ ಅಳಿಸಿ</string>
+    <string name="discover_featured_kicker">ಈ ವಾರದ ವಿಶೇಷ</string>
+    <string name="discover_featured_cta">ಈಗ ಕೇಳಿ</string>
+    <string name="discover_filter_all">ಎಲ್ಲವೂ</string>
+    <string name="discover_popular">ಈಗ ಜನಪ್ರಿಯ</string>
+    <string name="discover_results">“%1$s” ಗಾಗಿ ಫಲಿತಾಂಶಗಳು</string>
+    <string name="discover_view_all">ಎಲ್ಲವನ್ನೂ ನೋಡಿ</string>
+    <string name="discover_bedtime">ಮಲಗುವ ಸಮಯದ ಮೆಚ್ಚಿನವು</string>
+    <string name="discover_empty_title">ಯಾವುದೇ ಕಥೆ ಸಿಗಲಿಲ್ಲ</string>
+    <string name="discover_empty_text">ಬೇರೆ ಶೀರ್ಷಿಕೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ನಮ್ಮ ಕಥಾ ಸಂಗ್ರಹಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.</string>
+    <string name="discover_empty_action">ಹುಡುಕಾಟ ಅಳಿಸಿ</string>
+
+    <!-- SCR-05 Category -->
+    <plurals name="category_story_count">
+        <item quantity="one">%1$d ಕಥೆ</item>
+        <item quantity="other">%1$d ಕಥೆಗಳು</item>
+    </plurals>
+    <string name="category_all_name">ಎಲ್ಲಾ ಕಥೆಗಳು</string>
+    <string name="category_all_description">ಇಂದು ರಾತ್ರಿಗೆ ಸಿದ್ಧವಾಗಿರುವ ಗ್ರಂಥಾಲಯದ ಎಲ್ಲಾ ಕಥೆಗಳು.</string>
+    <string name="category_heading">ಕುತೂಹಲದ ಮನಸ್ಸುಗಳಿಗೆ ಕಥೆಗಳು</string>
+    <string name="category_sort_label">ಕಥೆಗಳನ್ನು ವಿಂಗಡಿಸಿ</string>
+    <string name="category_sort_recommended">ಶಿಫಾರಸು ಮಾಡಿದ್ದು</string>
+    <string name="category_sort_shortest">ಚಿಕ್ಕದು ಮೊದಲು</string>
+    <string name="category_sort_newest">ಹೊಸದು ಮೊದಲು</string>
+    <string name="category_empty_title">ಇಲ್ಲಿ ಇನ್ನೂ ಕಥೆಗಳಿಲ್ಲ</string>
+    <string name="category_empty_text">ಹೊಸ ಕಥೆಗಳು ಬರುತ್ತಿವೆ.</string>
+
+    <!-- SCR-06 Story detail -->
+    <string name="detail_meta">%1$d–%2$d ವರ್ಷ · %3$d ನಿಮಿಷ · %4$s</string>
+    <string name="detail_lesson_title">ಒಂದು ಪುಟ್ಟ ಪಾಠ</string>
+    <string name="detail_narration_title">ನಿರೂಪಿತ ಕಥೆ</string>
+    <string name="detail_narration_text">ಬೆಚ್ಚಗಿನ, ಭಾವಪೂರ್ಣ ಧ್ವನಿ · %1$s</string>
+    <string name="detail_narration_available">ಲಭ್ಯ</string>
+    <string name="detail_listen">ಕಥೆ ಕೇಳಿ</string>
+    <string name="detail_read">ಕಥೆ ಓದಿ</string>
+    <string name="detail_download_add">%1$s ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="detail_download_remove">%1$s ಡೌನ್‌ಲೋಡ್ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="detail_not_found_title">ಕಥೆ ಸಿಗಲಿಲ್ಲ</string>
+    <string name="detail_not_found_text">ಈ ಕಥೆ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ.</string>
+</resources>

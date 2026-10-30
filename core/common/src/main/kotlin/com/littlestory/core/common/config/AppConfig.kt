@@ -99,6 +99,9 @@ object AppConfig {
                 "learning",
             )
         val sortOptionIds = listOf("recommended", "shortest", "newest")
+        /** Filter id meaning "no category filter"; also the Category route id for the whole catalogue. */
+        const val ALL_ID = "all"
+        const val DEFAULT_SORT_ID = "recommended"
         const val FEATURED_STORY_ID = "story_little_elephant"
         const val POPULAR_COUNT = 4
         const val BEDTIME_CATEGORY_ID = "bedtime"

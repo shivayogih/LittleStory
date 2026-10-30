@@ -74,6 +74,11 @@ data class LittleStoryDimens(
     val cultureArtWidth: Dp = 96.dp,
     val cultureArtHeight: Dp = 84.dp,
     val homeAvatarSize: Dp = 42.dp,
+    val detailCoverHeight: Dp = 355.dp,
+    val detailSheetOverlap: Dp = 32.dp,
+    val categoryHeroHeight: Dp = 220.dp,
+    val categoryHeroArtWidth: Dp = 120.dp,
+    val featuredArtWidth: Dp = 110.dp,
     /** Disabled controls are drawn at 45 % opacity. */
     val disabledAlpha: Float = 0.45f,
 )

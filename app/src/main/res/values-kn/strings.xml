@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Draft — needs native review -->
+    <string name="nav_home">ಮುಖಪುಟ</string>
+    <string name="nav_discover">ಅನ್ವೇಷಿಸಿ</string>
+    <string name="nav_create">ರಚಿಸಿ</string>
+    <string name="nav_stories">ನನ್ನ ಕಥೆಗಳು</string>
+    <string name="nav_profile">ಪ್ರೊಫೈಲ್</string>
+</resources>
