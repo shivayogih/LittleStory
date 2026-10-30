@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, staging, development]
 
 # Read-only token; no secrets are used by this workflow.
 permissions:
