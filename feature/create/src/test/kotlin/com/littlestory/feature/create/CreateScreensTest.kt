@@ -65,6 +65,12 @@ class CreateScreensTest {
     }
 
     @Test
+    fun generationIsLabelledAsSimulated() {
+        rule.setContent { LittleStoryTheme { GeneratingScreen(generatingHalfway, {}, {}, {}) } }
+        rule.onNodeWithTag(GeneratingTags.SIMULATED).performScrollTo().assertIsDisplayed()
+    }
+
+    @Test
     fun pausedGenerationOffersTryAgainAndBackToIdea() {
         rule.setContent {
             LittleStoryTheme {

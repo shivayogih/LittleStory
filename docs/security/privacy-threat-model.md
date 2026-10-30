@@ -48,7 +48,11 @@ MVP: everything stays on the device; no network calls, analytics or third-party 
 | T-09 | Information disclosure | Debug-only features (pseudo-locales, test menus) shipped in release | Medium | Pseudo-locales enabled only in debug; release checklist item | – |
 | T-10 | Denial of service | Excessive generation requests | Low (local) | Simulator only | Quotas and rate limits (see `docs/api/ai-generation-flow.md`) |
 
-## 4. Open questions
+## 4. Review result
+
+The P7 review (LS-126, 30 Oct 2026) checked every threat above against the code. T-02 was fixed with explicit data-extraction rules. T-08 (parental gate) is open for the owner. Details: [security-review.md](security-review.md).
+
+## 5. Open questions
 
 1. D14: which parent fields, if any, are collected in the MVP.
 2. Should the parent area (settings, subscription) sit behind a parental gate?

@@ -50,6 +50,7 @@ object GeneratingTags {
     const val PAUSED = "generating_paused"
     const val TRY_AGAIN = "generating_try_again"
     const val BACK_TO_IDEA = "generating_back_to_idea"
+    const val SIMULATED = "generating_simulated"
 }
 
 private const val PERCENT_MAX = 100f
@@ -181,6 +182,14 @@ private fun Progress(state: GeneratingUiState) {
         style = LittleStoryTheme.typography.chip,
         color = colors.secondaryContainer,
         textAlign = TextAlign.Center,
+    )
+    // NFR-12: generation is a local simulation until a real provider is approved; say so.
+    Text(
+        stringResource(R.string.generating_simulated),
+        style = LittleStoryTheme.typography.chip,
+        color = colors.secondaryContainer,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.testTag(GeneratingTags.SIMULATED),
     )
 }
 

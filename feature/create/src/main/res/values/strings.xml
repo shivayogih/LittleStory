@@ -66,6 +66,7 @@
     <string name="generating_stage_active">In progress</string>
     <string name="generating_stage_pending">Not started</string>
     <string name="generating_footnote">This usually takes less than a minute.</string>
+    <string name="generating_simulated">Simulated: your story is put together on this device from sample stories. No AI is used yet.</string>
     <string name="generating_paused_title">Story creation paused</string>
     <string name="generating_paused_body">Your idea is still here. Continue whenever you’re ready.</string>
     <string name="generating_try_again">Try again</string>

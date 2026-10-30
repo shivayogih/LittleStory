@@ -65,6 +65,7 @@
     <string name="generating_stage_active">ನಡೆಯುತ್ತಿದೆ</string>
     <string name="generating_stage_pending">ಇನ್ನೂ ಆರಂಭವಾಗಿಲ್ಲ</string>
     <string name="generating_footnote">ಇದಕ್ಕೆ ಸಾಮಾನ್ಯವಾಗಿ ಒಂದು ನಿಮಿಷಕ್ಕಿಂತ ಕಡಿಮೆ ಸಮಯ ಬೇಕು.</string>
+    <string name="generating_simulated">ಅನುಕರಿಸಿದ ಕಥೆ: ಈ ಸಾಧನದಲ್ಲೇ ಮಾದರಿ ಕಥೆಗಳಿಂದ ನಿಮ್ಮ ಕಥೆಯನ್ನು ಜೋಡಿಸಲಾಗುತ್ತದೆ. ಇನ್ನೂ ಯಾವುದೇ AI ಬಳಸುತ್ತಿಲ್ಲ.</string>
     <string name="generating_paused_title">ಕಥೆ ರಚನೆ ನಿಲ್ಲಿಸಲಾಗಿದೆ</string>
     <string name="generating_paused_body">ನಿಮ್ಮ ಆಲೋಚನೆ ಇಲ್ಲೇ ಇದೆ. ಸಿದ್ಧವಾದಾಗ ಮುಂದುವರಿಸಿ.</string>
     <string name="generating_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>

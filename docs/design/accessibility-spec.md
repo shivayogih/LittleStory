@@ -83,8 +83,23 @@ Notes:
 
 | Check | Tool | When |
 | --- | --- | --- |
-| Semantics, labels, touch-target size | Compose UI tests with semantics matchers | Every screen ticket |
+| Semantics, labels, touch-target size | Compose UI tests with semantics matchers; `AccessibilityChecksTest` walks the main screens in EN and KN | Every screen ticket, every CI run |
 | Contrast and targets on device | Accessibility Scanner | LS-123 |
 | TalkBack traversal EN and KN | Manual, recorded in the PR | Screen tickets, LS-123 |
 | Font scale 200 % | Screenshot tests at fontScale 2.0, EN and KN | LS-122 |
 | Reduced motion | UI test with animations disabled | LS-012, TC-055 |
+
+## 6. LS-123 results (P7)
+
+`app/src/test/kotlin/com/littlestory/app/journeys/AccessibilityChecksTest.kt` opens Home, Discover, Story detail, Reader, Player, Create, My Stories, Profile, Language, Reminder, Privacy and Help in English and Kannada and fails when a tappable node has no accessible name or is smaller than 48 × 48 dp. It runs under Robolectric with native graphics, so text is measured as on a device.
+
+The Google Accessibility Test Framework was tried first. Under Robolectric its checks always pass, even on a deliberately broken button, so it gives false confidence and was not adopted. Contrast, focus order and TalkBack speech therefore stay manual checks on a device.
+
+| Finding | Screens | Fix |
+| --- | --- | --- |
+| Search field's editable area was 20 dp tall | Discover, My Stories | The field itself fills the 48 dp box (`LittleStorySearchField`, `LittleStoryTextField`) |
+| "See all" / "View all" link was 34 dp tall | Home, Discover | 48 dp minimum height (`SectionHeader`) |
+| Story cards and rows had no name: an inner merge boundary kept their text from the clickable node | Discover, My Stories | Removed the boundary (`StoryCard`, `ListStoryRow`) |
+| Short tab ("All") was 46 dp wide | My Stories | 48 dp minimum width (`LittleStoryTabs`) |
+
+All 12 screens pass in both languages after these fixes. Still to do on a device: Accessibility Scanner for contrast, TalkBack traversal in English and Kannada (needs a Kannada TTS voice), and the reduced-motion check.

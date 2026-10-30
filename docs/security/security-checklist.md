@@ -25,15 +25,15 @@ Passing Lint does not make the app secure (brief §18). Items are checked by a h
 - [ ] Branch protection on `main`, `staging` and `development` (owner to confirm; not verifiable in P0)
 - [ ] Actions pinned to major versions or SHAs; `permissions:` set to least privilege
 
-## 3. App configuration (verify at P7)
+## 3. App configuration (verified at P7, 30 Oct 2026; see [security-review.md](security-review.md))
 
-- [ ] `android:allowBackup` / `dataExtractionRules` set deliberately (see threat T-02)
-- [ ] `usesCleartextTraffic="false"`; network security config if networking is added
-- [ ] Only the launcher activity exported
+- [x] `android:allowBackup` / `dataExtractionRules` set deliberately (see threat T-02)
+- [x] `usesCleartextTraffic="false"`; network security config if networking is added
+- [x] Only the launcher activity exported
 - [ ] Release build: minify/obfuscation decision recorded; no debug logging; pseudo-locales disabled
-- [ ] No WebView with JavaScript in MVP
-- [ ] Room database contains only data listed in the privacy inventory
-- [ ] App works fully offline with no network permission (MVP)
+- [x] No WebView with JavaScript in MVP
+- [x] Room database contains only data listed in the privacy inventory
+- [x] App works fully offline with no network permission (MVP)
 
 ## 4. Future backend milestone (before any real integration)
 
