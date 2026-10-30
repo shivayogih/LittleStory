@@ -47,15 +47,15 @@ class FirstRunFlowTest {
     @Test
     fun onboardingThenSetupLeadsToHomeAndPersistsTheProfile() {
         hilt.inject()
-        compose.waitUntilExactlyOneExists(hasTestTag(OnboardingTags.TITLE))
+        compose.waitUntilExactlyOneExists(hasTestTag(OnboardingTags.TITLE), WAIT_TIMEOUT_MS)
         repeat(PAGES_BEFORE_SETUP) { compose.onNodeWithTag(OnboardingTags.CONTINUE).performClick() }
 
-        compose.waitUntilExactlyOneExists(hasTestTag(SetupTags.NAME))
+        compose.waitUntilExactlyOneExists(hasTestTag(SetupTags.NAME), WAIT_TIMEOUT_MS)
         compose.onNodeWithTag(SetupTags.NAME).performTextClearance()
         compose.onNodeWithTag(SetupTags.NAME).performTextInput(CHILD_NAME)
         compose.onNodeWithTag(SetupTags.SUBMIT).performClick()
 
-        compose.waitUntilExactlyOneExists(hasTestTag(HomeTags.TITLE))
+        compose.waitUntilExactlyOneExists(hasTestTag(HomeTags.TITLE), WAIT_TIMEOUT_MS)
         compose.onNodeWithTag(HomeTags.TITLE).assertIsDisplayed()
         runBlocking {
             assertEquals(true, preferences.firstRunCompleted.first())
@@ -67,5 +67,8 @@ class FirstRunFlowTest {
         // Three onboarding slides: two Continue taps move to the last slide, a third opens Setup.
         const val PAGES_BEFORE_SETUP = 3
         const val CHILD_NAME = "Meera"
+
+        // Saving the profile runs on real IO threads (Room, DataStore); the 1 s default is too tight on a slow CI runner.
+        const val WAIT_TIMEOUT_MS = 30_000L
     }
 }
