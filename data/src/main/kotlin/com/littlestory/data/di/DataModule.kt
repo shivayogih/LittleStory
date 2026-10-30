@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
 import com.littlestory.core.common.config.AppConfig
+import com.littlestory.data.catalog.CatalogRepositoryImpl
+import com.littlestory.data.catalog.MockContentSource
 import com.littlestory.data.db.LittleStoryDatabase
 import com.littlestory.data.prefs.ActiveProfileStore
 import com.littlestory.data.prefs.PreferencesRepositoryImpl
@@ -13,6 +15,7 @@ import com.littlestory.data.repository.DownloadsRepositoryImpl
 import com.littlestory.data.repository.FavouritesRepositoryImpl
 import com.littlestory.data.repository.ProfilesRepositoryImpl
 import com.littlestory.data.repository.ProgressRepositoryImpl
+import com.littlestory.domain.repository.CatalogRepository
 import com.littlestory.domain.repository.DownloadsRepository
 import com.littlestory.domain.repository.FavouritesRepository
 import com.littlestory.domain.repository.PreferencesRepository
@@ -25,9 +28,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import java.io.File
 import java.util.UUID
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 private const val DATASTORE_FILE = "littlestory_prefs.preferences_pb"
+private const val MOCK_ASSET_DIR = "mock"
 
 /** Wires the local persistence layer (ADR-004). Only `:app` sees this module. */
 @Module
@@ -79,4 +84,18 @@ object DataModule {
     @Singleton
     fun downloads(db: LittleStoryDatabase): DownloadsRepository =
         DownloadsRepositoryImpl(db.downloadDao()) { AppConfig.Downloads.SIMULATED_STORY_BYTES }
+
+    @Provides
+    @Singleton
+    fun catalog(
+        @ApplicationContext context: Context,
+    ): CatalogRepository =
+        CatalogRepositoryImpl(
+            source =
+                MockContentSource { fileName ->
+                    runCatching { context.assets.open("$MOCK_ASSET_DIR/$fileName").bufferedReader().use { it.readText() } }
+                        .getOrNull()
+                },
+            dispatcher = Dispatchers.IO,
+        )
 }
