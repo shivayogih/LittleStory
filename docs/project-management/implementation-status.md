@@ -48,6 +48,10 @@ Maintained alongside the code until the owner syncs it into `LittleStory_Jira_Ba
 | LS-123 | Implemented (P7), device pass open | Automated checks on 12 main screens in EN and KN (`AccessibilityChecksTest`): every tappable node has a name and a 48 dp target. Fixed: search and text fields, "See all" links, story cards and rows, short tabs. Contrast and TalkBack stay manual (`docs/design/accessibility-spec.md` §6) |
 | LS-126 | Reviewed (P7) | `docs/security/security-review.md`: backup and device transfer now exclude all app data; no permissions, only `MainActivity` exported; release logging (T-08) still open |
 | NFR-12 | Implemented (P7) | Generating screen says the story is simulated on this device, as the Player already did for narration |
+| LS-048 | Documented (P8) | `docs/localization/adding-a-new-language.md` rewritten with the real files and a Hindi dry run; the add-language prompt's build note refreshed |
+| LS-132 | Documented (P8) | `build-and-run.md` lists the journey, accessibility and coverage commands; `known-limitations.md` brought up to date at the end of P7 |
+| LS-140 | Documented (P8) | `docs/api/future-api-contracts.md` §7 maps each repository interface to its future endpoint |
+| LS-141 | Documented (P8) | `docs/api/ai-generation-flow.md` §7 records what the simulator already enforces and what a real provider adds |
 | Bottom nav | Wired (P5) | All five tabs navigate; Home bell, avatar, Create and Resume are connected |
 
 Known limitations in P5/P6: Language, Privacy and Help have no design and reuse settings components; narration, downloads and generation are simulated; the reminder is not scheduled (D13); the Profile child card follows D14 (no parent name); bottom-sheet content is not captured by the root screenshot.

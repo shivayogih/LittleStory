@@ -1,7 +1,7 @@
 # AI story generation flow
 
 Purpose: describe the future job-based generation flow and the safety, cost and privacy controls required before any real AI provider is used.
-Status: Draft for owner review — P1, 29 Oct 2026
+Status: Draft for owner review — P1, 29 Oct 2026; §7 added 30 Oct 2026 (LS-141) to record what the simulator already enforces.
 Sources: master orchestrator brief §11.2, §18; design details §3.7–3.9 (SCR-07, SCR-08, SCR-09); workbook tickets LS-082, LS-141; ADR-014.
 
 > **PROPOSED — NOT IMPLEMENTED.** The MVP uses a deterministic simulator (LS-082) that is labelled as a simulation (NFR-12). No AI provider is called from the app, now or later: provider credentials live only on the backend.
@@ -90,3 +90,16 @@ sequenceDiagram
 | Provider credentials | Backend secret store only; never in the app, repository or logs |
 
 See `docs/security/child-safety-requirements.md` for consent and deletion requirements.
+
+## 7. What the MVP simulator already does (30 Oct 2026)
+
+| Control | In the app today | What a real provider adds |
+| --- | --- | --- |
+| Input validation | `PromptValidator` rejects an empty or over-long prompt; the field stops at `AppConfig.Create.PROMPT_MAX_CHARS` (500) | Server-side length, language and moderation checks in every supported language (§4) |
+| Labelling | The Generating screen says the story is simulated (NFR-12); Story Ready and the saved story do not repeat it | Keep the label until generation is real and reviewed |
+| States | `GenerationState` Idle → InProgress (three stages) → Completed, with Paused and Failed; the screen resumes from the paused percentage | Map `queued`/`running`/`succeeded`/`failed`/`cancelled`/`rejected` onto the same states |
+| Data handling | The prompt stays in memory for the request and is never written to Room, DataStore or logs (see `docs/security/security-review.md`) | Retention limits and deletion on the backend (§6) |
+| Child name | Only the hero's first name and age go into the request | Same minimisation for the provider; no other profile data |
+| Credentials | None in the app | Provider keys on the backend only, never in the APK |
+| Cost and abuse | Local simulation, no cost | Quotas and rate limits per parent account (§5) |
+
