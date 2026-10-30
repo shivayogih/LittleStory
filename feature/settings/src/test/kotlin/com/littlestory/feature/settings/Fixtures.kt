@@ -1,11 +1,13 @@
 package com.littlestory.feature.settings
 
+import com.littlestory.core.common.config.AppInfo
 import com.littlestory.domain.model.NotificationItem
 import com.littlestory.domain.model.NotificationKind
 import com.littlestory.domain.model.NotificationSection
 import com.littlestory.domain.model.Plan
 import com.littlestory.feature.settings.children.ChildCard
 import com.littlestory.feature.settings.children.ChildProfilesUiState
+import com.littlestory.feature.settings.language.LanguageUiState
 import com.littlestory.feature.settings.notifications.NotificationsUiState
 import com.littlestory.feature.settings.profile.ProfileUiState
 import com.littlestory.feature.settings.reminder.ReminderUiState
@@ -75,3 +77,7 @@ val subscriptionState =
                 Plan("family", 249_900, "INR", true, maxChildren = 5),
             ),
     )
+
+val languageState = LanguageUiState(appLanguageTag = "en", storyLanguageTag = "kn")
+
+val testAppInfo = AppInfo(versionName = "0.1.0", versionCode = 1)

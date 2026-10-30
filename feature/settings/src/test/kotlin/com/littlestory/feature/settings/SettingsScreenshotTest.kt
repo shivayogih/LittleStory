@@ -7,9 +7,15 @@ import com.github.takahirom.roborazzi.captureRoboImage
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
 import com.littlestory.feature.settings.children.ChildProfilesActions
 import com.littlestory.feature.settings.children.ChildProfilesScreen
+import com.littlestory.feature.settings.help.HelpScreen
+import com.littlestory.feature.settings.language.LanguageCallbacks
+import com.littlestory.feature.settings.language.LanguageScreen
 import com.littlestory.feature.settings.notifications.NotificationsActions
 import com.littlestory.feature.settings.notifications.NotificationsScreen
 import com.littlestory.feature.settings.notifications.NotificationsUiState
+import com.littlestory.feature.settings.privacy.PrivacyCallbacks
+import com.littlestory.feature.settings.privacy.PrivacyScreen
+import com.littlestory.feature.settings.privacy.PrivacyUiState
 import com.littlestory.feature.settings.profile.ProfileActions
 import com.littlestory.feature.settings.profile.ProfileCallbacks
 import com.littlestory.feature.settings.profile.ProfileScreen
@@ -88,4 +94,32 @@ class SettingsScreenshotTest {
     @Test
     @Config(qualifiers = "kn-w430dp-h1900dp-xxhdpi")
     fun subscriptionKannada() = capture("subscription_kn", subscription)
+
+    private val language: @Composable () -> Unit = { LanguageScreen(languageState, LanguageCallbacks()) }
+    private val privacy: @Composable () -> Unit = { PrivacyScreen(PrivacyUiState(), PrivacyCallbacks()) }
+    private val help: @Composable () -> Unit = { HelpScreen(testAppInfo, {}) }
+
+    @Test
+    @Config(qualifiers = "en-w430dp-h932dp-xxhdpi")
+    fun languageEnglish() = capture("language_en", language)
+
+    @Test
+    @Config(qualifiers = "kn-w430dp-h932dp-xxhdpi")
+    fun languageKannada() = capture("language_kn", language)
+
+    @Test
+    @Config(qualifiers = "en-w430dp-h1400dp-xxhdpi")
+    fun privacyEnglish() = capture("privacy_en", privacy)
+
+    @Test
+    @Config(qualifiers = "kn-w430dp-h1600dp-xxhdpi")
+    fun privacyKannada() = capture("privacy_kn", privacy)
+
+    @Test
+    @Config(qualifiers = "en-w430dp-h1600dp-xxhdpi")
+    fun helpEnglish() = capture("help_en", help)
+
+    @Test
+    @Config(qualifiers = "kn-w430dp-h2000dp-xxhdpi")
+    fun helpKannada() = capture("help_kn", help)
 }

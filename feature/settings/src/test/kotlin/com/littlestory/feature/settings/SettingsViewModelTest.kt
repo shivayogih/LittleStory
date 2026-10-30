@@ -2,14 +2,19 @@ package com.littlestory.feature.settings
 
 import com.littlestory.core.common.config.AppConfig
 import com.littlestory.core.common.config.FeatureFlags
+import com.littlestory.core.common.language.SupportedLanguages
 import com.littlestory.domain.model.NotificationItem
 import com.littlestory.domain.model.Plan
 import com.littlestory.feature.settings.children.ChildProfilesViewModel
+import com.littlestory.feature.settings.language.LanguageViewModel
 import com.littlestory.feature.settings.notifications.NotificationsViewModel
+import com.littlestory.feature.settings.privacy.PrivacyEffect
+import com.littlestory.feature.settings.privacy.PrivacyViewModel
 import com.littlestory.feature.settings.profile.ProfileViewModel
 import com.littlestory.feature.settings.reminder.ReminderViewModel
 import com.littlestory.feature.settings.subscription.SubscriptionViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -47,12 +52,9 @@ class SettingsViewModelTest {
             advanceUntilIdle()
             vm.onWifiOnlyToggled(false)
             advanceUntilIdle()
-            vm.onLanguageSelected("kn")
-            advanceUntilIdle()
             assertTrue(preferences.settingsState.value.reminder.enabled)
             assertFalse(preferences.settingsState.value.wifiOnlyDownloads)
             assertTrue(vm.state.value.reminderEnabled)
-            assertEquals("kn", vm.state.value.contentLanguageTag)
         }
 
     @Test
@@ -145,5 +147,37 @@ class SettingsViewModelTest {
             vm.onDialogDismiss()
             advanceUntilIdle()
             assertNull(vm.state.value.confirmedId)
+        }
+
+    @Test
+    fun languageScreenStoresTheStoryLanguage() =
+        runTest {
+            val vm = LanguageViewModel(preferences)
+            backgroundScope.launch { vm.state.collect {} }
+            advanceUntilIdle()
+            assertEquals("en", vm.state.value.storyLanguageTag)
+            assertEquals(SupportedLanguages.enabled, vm.state.value.languages)
+            vm.onStoryLanguageSelected(SupportedLanguages.Kannada)
+            advanceUntilIdle()
+            assertEquals("kn", preferences.language.value)
+            assertEquals("kn", vm.state.value.storyLanguageTag)
+        }
+
+    @Test
+    fun privacyDeletesOnlyAfterConfirmation() =
+        runTest {
+            val localData = FakeLocalData()
+            val vm = PrivacyViewModel(localData)
+            vm.onDeleteClick()
+            assertTrue(vm.state.value.confirmOpen)
+            vm.onConfirmDismiss()
+            advanceUntilIdle()
+            assertEquals(0, localData.deletions)
+            vm.onDeleteClick()
+            vm.onConfirmDelete()
+            vm.onConfirmDelete()
+            advanceUntilIdle()
+            assertEquals(1, localData.deletions)
+            assertEquals(PrivacyEffect.Deleted, vm.effects.first())
         }
 }

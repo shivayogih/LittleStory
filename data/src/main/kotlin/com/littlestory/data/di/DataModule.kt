@@ -15,6 +15,7 @@ import com.littlestory.data.prefs.ActiveProfileStore
 import com.littlestory.data.prefs.PreferencesRepositoryImpl
 import com.littlestory.data.repository.DownloadsRepositoryImpl
 import com.littlestory.data.repository.FavouritesRepositoryImpl
+import com.littlestory.data.repository.LocalDataRepositoryImpl
 import com.littlestory.data.repository.ProfilesRepositoryImpl
 import com.littlestory.data.repository.ProgressRepositoryImpl
 import com.littlestory.data.settings.NotificationsRepositoryImpl
@@ -24,6 +25,7 @@ import com.littlestory.domain.repository.DownloadsRepository
 import com.littlestory.domain.repository.FavouritesRepository
 import com.littlestory.domain.repository.GenerationRepository
 import com.littlestory.domain.repository.LibraryRepository
+import com.littlestory.domain.repository.LocalDataRepository
 import com.littlestory.domain.repository.NotificationsRepository
 import com.littlestory.domain.repository.PreferencesRepository
 import com.littlestory.domain.repository.ProfilesRepository
@@ -140,4 +142,9 @@ object DataModule {
         downloads: DownloadsRepository,
         progress: ProgressRepository,
     ) = StoryStores(catalog, library, favourites, downloads, progress)
+
+    @Provides
+    @Singleton
+    fun localData(db: LittleStoryDatabase, store: DataStore<Preferences>): LocalDataRepository =
+        LocalDataRepositoryImpl(db, store, Dispatchers.IO)
 }

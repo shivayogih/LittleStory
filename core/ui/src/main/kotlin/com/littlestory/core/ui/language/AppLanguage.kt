@@ -14,6 +14,11 @@ object AppLanguage {
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language.tag))
     }
 
+    /** Back to following the system language, e.g. after a parent deletes all local data. */
+    fun reset() {
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.getEmptyLocaleList())
+    }
+
     /** The language chosen in the app, or the default when the system locale is in use. */
     fun current(): SupportedLanguage {
         val locales = AppCompatDelegate.getApplicationLocales()

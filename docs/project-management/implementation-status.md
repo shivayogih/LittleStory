@@ -35,10 +35,14 @@ Maintained alongside the code until the owner syncs it into `LittleStory_Jira_Ba
 | LS-111 | Implemented (P5) | Bedtime reminder: toggle, time picker, days (locale first day of week); saved on the device only, nothing is scheduled and no permission is requested |
 | LS-112 | Implemented (P5) | Notifications inbox from mock JSON: Today/Earlier, unread dots, mark one or all read; taps open My Stories, Reminder or Discover |
 | LS-113 | Implemented (P5) | Subscription: illustrative plans with locale-formatted prices, confirmation dialog; no billing |
-| LS-114, LS-115 | Blocked | Privacy and Help rows are shown as information only until their screens are designed |
+| LS-075 | Implemented (P6) | One `toggle` on `FavouritesRepository`, serialised in the singleton implementation; every story surface uses it, so rapid taps from any screen settle consistently |
+| LS-046 | Implemented (P6) | Language preferences (SCR-20): app language (AppCompat) and story language listed from the registry; Profile subtitle shows both when they differ. Built from settings components (D10), owner to approve |
+| LS-114 | Implemented (P6) | Privacy & parent controls (SCR-21): what is kept and what leaves the device, delete all local data with confirmation, then onboarding. Content owner to approve |
+| LS-115 | Implemented (P6) | Help & about (SCR-22): four questions, version from `:app` BuildConfig via `AppInfo`, font licences. Content owner to approve |
+| LS-043 | Draft (P6) | Glossary extended with P5/P6 terms; every Kannada value is a draft |
 | Bottom nav | Wired (P5) | All five tabs navigate; Home bell, avatar, Create and Resume are connected |
 
-Known limitations in P5: narration, downloads and generation are simulated; the reminder is not scheduled (D13); the Profile child card follows D14 (no parent name); bottom-sheet content is not captured by the root screenshot.
+Known limitations in P5/P6: Language, Privacy and Help have no design and reuse settings components; narration, downloads and generation are simulated; the reminder is not scheduled (D13); the Profile child card follows D14 (no parent name); bottom-sheet content is not captured by the root screenshot.
 
 All of the above await owner review; none is Approved or merged.
 
@@ -421,3 +425,45 @@ Generated from the module XML files; story text in `generated_kn.json` and `noti
 | `subscription_plan_monthly` | feature:settings | Premium Monthly | ಪ್ರೀಮಿಯಂ ಮಾಸಿಕ | Draft — needs native review |
 | `subscription_plan_yearly` | feature:settings | Premium Yearly | ಪ್ರೀಮಿಯಂ ವಾರ್ಷಿಕ | Draft — needs native review |
 | `subscription_title` | feature:settings | Make every bedtime magical. | ಪ್ರತಿ ಮಲಗುವ ಸಮಯವನ್ನೂ ಮಾಯಾಮಯವಾಗಿಸಿ. | Draft — needs native review |
+
+### P6 strings (Language, Privacy, Help)
+
+| Key | Module | English | Kannada (draft) | Status |
+|---|---|---|---|---|
+| `help_a_children` | feature:settings | Profile → Manage children → Add a child profile. | ಪ್ರೊಫೈಲ್ → ಮಕ್ಕಳನ್ನು ನಿರ್ವಹಿಸಿ → ಮಗುವಿನ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಿ. | Draft — needs native review |
+| `help_a_language` | feature:settings | Profile → Language preferences. The app and stories can use different languages. | ಪ್ರೊಫೈಲ್ → ಭಾಷೆಯ ಆದ್ಯತೆಗಳು. ಆ್ಯಪ್ ಮತ್ತು ಕಥೆಗಳು ಬೇರೆ ಬೇರೆ ಭಾಷೆಗಳನ್ನು ಬಳಸಬಹುದು. | Draft — needs native review |
+| `help_a_offline` | feature:settings | Yes. All stories are on the device; downloading only adds a story to the Downloaded tab. | ಹೌದು. ಎಲ್ಲಾ ಕಥೆಗಳು ಸಾಧನದಲ್ಲೇ ಇವೆ; ಡೌನ್‌ಲೋಡ್‌ಗಳು ಕೇವಲ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದವು ಟ್ಯಾಬ್‌ಗಾಗಿ ಗುರುತಿಸುತ್ತವೆ. | Draft — needs native review |
+| `help_a_stories` | feature:settings | Tell us about your child’s day on Create. This version builds the story on the device from a template; narration is simulated. | ರಚಿಸಿ ಪುಟದಲ್ಲಿ ನಿಮ್ಮ ಮಗುವಿನ ದಿನದ ಬಗ್ಗೆ ತಿಳಿಸಿ. ಈ ಆವೃತ್ತಿ ಸಾಧನದಲ್ಲೇ ಮಾದರಿಯಿಂದ ಕಥೆ ರಚಿಸುತ್ತದೆ; ನಿರೂಪಣೆ ಅನುಕರಿಸಿದ್ದು. | Draft — needs native review |
+| `help_group_about` | feature:settings | ABOUT | ಆ್ಯಪ್ ಬಗ್ಗೆ | Draft — needs native review |
+| `help_group_questions` | feature:settings | QUESTIONS | ಪ್ರಶ್ನೆಗಳು | Draft — needs native review |
+| `help_licences_body` | feature:settings | Fonts: %1$s, under the SIL Open Font License 1.1. Built with Android Jetpack libraries under the Apache License 2.0. | ಅಕ್ಷರಶೈಲಿಗಳು: %1$s, SIL ಓಪನ್ ಫಾಂಟ್ ಲೈಸೆನ್ಸ್ 1.1 ಅಡಿಯಲ್ಲಿ. Apache ಲೈಸೆನ್ಸ್ 2.0 ಅಡಿಯ Android Jetpack ಲೈಬ್ರರಿಗಳಿಂದ ನಿರ್ಮಿಸಲಾಗಿದೆ. | Draft — needs native review |
+| `help_licences_title` | feature:settings | Open-source licences | ಮುಕ್ತ ಮೂಲ ಪರವಾನಗಿಗಳು | Draft — needs native review |
+| `help_q_children` | feature:settings | How do I add another child? | ಇನ್ನೊಂದು ಮಗುವನ್ನು ಹೇಗೆ ಸೇರಿಸುವುದು? | Draft — needs native review |
+| `help_q_language` | feature:settings | How do I change the language? | ಭಾಷೆಯನ್ನು ಹೇಗೆ ಬದಲಾಯಿಸುವುದು? | Draft — needs native review |
+| `help_q_offline` | feature:settings | Can we listen offline? | ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಕೇಳಬಹುದೇ? | Draft — needs native review |
+| `help_q_stories` | feature:settings | How are stories made? | ಕಥೆಗಳನ್ನು ಹೇಗೆ ರಚಿಸಲಾಗುತ್ತದೆ? | Draft — needs native review |
+| `help_title` | feature:settings | Help & about | ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ | Draft — needs native review |
+| `help_version_body` | feature:settings | %1$s (build %2$d) | %1$s (ಬಿಲ್ಡ್ %2$d) | Draft — needs native review |
+| `help_version_title` | feature:settings | Version | ಆವೃತ್ತಿ | Draft — needs native review |
+| `language_app_group` | feature:settings | APP LANGUAGE | ಆ್ಯಪ್ ಭಾಷೆ | Draft — needs native review |
+| `language_fallback_note` | feature:settings | If a story is not yet available in the chosen language, it is shown in English. | ಆಯ್ಕೆ ಮಾಡಿದ ಭಾಷೆಯಲ್ಲಿ ಕಥೆ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲದಿದ್ದರೆ, ಅದು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ. | Draft — needs native review |
+| `language_story_group` | feature:settings | STORY LANGUAGE | ಕಥೆಯ ಭಾಷೆ | Draft — needs native review |
+| `language_title` | feature:settings | Language preferences | ಭಾಷೆಯ ಆದ್ಯತೆಗಳು | Draft — needs native review |
+| `privacy_banner` | feature:settings | Everything stays on this device. LittleStory has no account, no ads and no tracking. | ಎಲ್ಲವೂ ಈ ಸಾಧನದಲ್ಲೇ ಇರುತ್ತದೆ. ಲಿಟಲ್‌ಸ್ಟೋರಿಯಲ್ಲಿ ಖಾತೆ, ಜಾಹೀರಾತು ಅಥವಾ ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. | Draft — needs native review |
+| `privacy_confirm_action` | feature:settings | Delete | ಅಳಿಸಿ | Draft — needs native review |
+| `privacy_confirm_body` | feature:settings | This cannot be undone. Profiles, favourites, progress, downloads and created stories will be gone. | ಇದನ್ನು ಹಿಂಪಡೆಯಲಾಗುವುದಿಲ್ಲ. ಪ್ರೊಫೈಲ್‌ಗಳು, ಮೆಚ್ಚಿನವುಗಳು, ಪ್ರಗತಿ, ಡೌನ್‌ಲೋಡ್‌ಗಳು ಮತ್ತು ರಚಿಸಿದ ಕಥೆಗಳು ಇಲ್ಲವಾಗುತ್ತವೆ. | Draft — needs native review |
+| `privacy_confirm_title` | feature:settings | Delete everything? | ಎಲ್ಲವನ್ನೂ ಅಳಿಸಬೇಕೆ? | Draft — needs native review |
+| `privacy_creation_body` | feature:settings | Stories are made on this device from a built-in template; what you type is never sent anywhere. | ಕಥೆಗಳನ್ನು ಈ ಸಾಧನದಲ್ಲೇ ಒಳಗೊಂಡಿರುವ ಮಾದರಿಯಿಂದ ರಚಿಸಲಾಗುತ್ತದೆ; ನೀವು ಬರೆದದ್ದು ಎಲ್ಲಿಗೂ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ. | Draft — needs native review |
+| `privacy_creation_title` | feature:settings | Story creation | ಕಥೆ ರಚನೆ | Draft — needs native review |
+| `privacy_delete_action` | feature:settings | Delete all data | ಎಲ್ಲಾ ಮಾಹಿತಿ ಅಳಿಸಿ | Draft — needs native review |
+| `privacy_delete_body` | feature:settings | Removes every child profile, favourite, progress, download, created story and setting. The app starts fresh. | ಎಲ್ಲಾ ಮಕ್ಕಳ ಪ್ರೊಫೈಲ್‌ಗಳು, ಮೆಚ್ಚಿನವುಗಳು, ಪ್ರಗತಿ, ಡೌನ್‌ಲೋಡ್‌ಗಳು, ರಚಿಸಿದ ಕಥೆಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಆ್ಯಪ್ ಹೊಸದಾಗಿ ಆರಂಭವಾಗುತ್ತದೆ. | Draft — needs native review |
+| `privacy_delete_title` | feature:settings | Delete all data on this device | ಈ ಸಾಧನದ ಎಲ್ಲಾ ಮಾಹಿತಿಯನ್ನು ಅಳಿಸಿ | Draft — needs native review |
+| `privacy_group_controls` | feature:settings | PARENT CONTROLS | ಪೋಷಕರ ನಿಯಂತ್ರಣ | Draft — needs native review |
+| `privacy_group_data` | feature:settings | YOUR DATA | ನಿಮ್ಮ ಮಾಹಿತಿ | Draft — needs native review |
+| `privacy_shared_body` | feature:settings | Nothing. This version does not connect to the internet. | ಏನೂ ಇಲ್ಲ. ಈ ಆವೃತ್ತಿ ಇಂಟರ್ನೆಟ್‌ಗೆ ಸಂಪರ್ಕಿಸುವುದಿಲ್ಲ. | Draft — needs native review |
+| `privacy_shared_title` | feature:settings | What leaves the device | ಸಾಧನದಿಂದ ಹೊರಗೆ ಹೋಗುವುದು | Draft — needs native review |
+| `privacy_stored_body` | feature:settings | Each child’s first name, age, avatar and interests, plus favourites, reading progress, downloads and the stories you create. | ಪ್ರತಿ ಮಗುವಿನ ಮೊದಲ ಹೆಸರು, ವಯಸ್ಸು, ಅವತಾರ ಮತ್ತು ಆಸಕ್ತಿಗಳು, ಜೊತೆಗೆ ಮೆಚ್ಚಿನವುಗಳು, ಓದುವ ಪ್ರಗತಿ, ಡೌನ್‌ಲೋಡ್‌ಗಳು ಮತ್ತು ನೀವು ರಚಿಸಿದ ಕಥೆಗಳು. | Draft — needs native review |
+| `privacy_stored_title` | feature:settings | What we keep | ನಾವು ಉಳಿಸಿಕೊಳ್ಳುವುದು | Draft — needs native review |
+| `privacy_title` | feature:settings | Privacy & parent controls | ಗೌಪ್ಯತೆ ಮತ್ತು ಪೋಷಕರ ನಿಯಂತ್ರಣ | Draft — needs native review |
+| `profile_help_subtitle` | feature:settings | Questions, version and licences | ಪ್ರಶ್ನೆಗಳು, ಆವೃತ್ತಿ ಮತ್ತು ಪರವಾನಗಿಗಳು | Draft — needs native review |
+| `profile_language_split` | feature:settings | %1$s · Stories: %2$s | %1$s · ಕಥೆಗಳು: %2$s | Draft — needs native review |

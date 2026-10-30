@@ -25,6 +25,7 @@ import com.littlestory.domain.repository.DownloadsRepository
 import com.littlestory.domain.repository.FavouritesRepository
 import com.littlestory.domain.repository.GenerationRepository
 import com.littlestory.domain.repository.LibraryRepository
+import com.littlestory.domain.repository.LocalDataRepository
 import com.littlestory.domain.repository.NotificationsRepository
 import com.littlestory.domain.repository.PreferencesRepository
 import com.littlestory.domain.repository.ProfilesRepository
@@ -235,6 +236,14 @@ class FakeNotifications(items: List<NotificationItem>) : NotificationsRepository
 
     override suspend fun markAllRead() {
         all.value = all.value.map { it.copy(read = true) }
+    }
+}
+
+class FakeLocalData : LocalDataRepository {
+    var deletions = 0
+
+    override suspend fun deleteAll() {
+        deletions++
     }
 }
 

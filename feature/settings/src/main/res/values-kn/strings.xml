@@ -31,7 +31,7 @@
     <string name="profile_privacy">ಗೌಪ್ಯತೆ ಮತ್ತು ಪೋಷಕರ ನಿಯಂತ್ರಣ</string>
     <string name="profile_privacy_subtitle">ನಿಮ್ಮ ಕುಟುಂಬದ ಮಾಹಿತಿ ಈ ಸಾಧನದಲ್ಲೇ ಇರುತ್ತದೆ</string>
     <string name="profile_help">ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ</string>
-    <string name="profile_help_subtitle">ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ</string>
+    <string name="profile_help_subtitle">ಪ್ರಶ್ನೆಗಳು, ಆವೃತ್ತಿ ಮತ್ತು ಪರವಾನಗಿಗಳು</string>
     <string name="profile_footer">ಕಾಳಜಿಯಿಂದ ರಚಿಸಿದ ಕಥೆಗಳು. ಪ್ರೊಫೈಲ್‌ಗಳು ಖಾಸಗಿ ಮತ್ತು ಪೋಷಕರ ನಿರ್ವಹಣೆಯಲ್ಲಿವೆ.</string>
     <string name="profile_cancel">ರದ್ದುಮಾಡಿ</string>
 
@@ -96,4 +96,42 @@
     <string name="subscription_dialog_title">ಯೋಜನೆ ಆಯ್ಕೆಯಾಗಿದೆ</string>
     <string name="subscription_dialog_text">ಇದು ಮಾದರಿ ಆವೃತ್ತಿ, ಆದ್ದರಿಂದ ಯಾವುದೇ ಪಾವತಿ ಆಗಿಲ್ಲ. ನೀವು %1$s ಯೋಜನೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿದ್ದೀರಿ.</string>
     <string name="subscription_dialog_done">ಆಯಿತು</string>
+
+    <!-- SCR-20 Language, SCR-21 Privacy, SCR-22 Help (LS-046, LS-114, LS-115) -->
+    <string name="profile_language_split">%1$s · ಕಥೆಗಳು: %2$s</string>
+    <string name="language_title">ಭಾಷೆಯ ಆದ್ಯತೆಗಳು</string>
+    <string name="language_app_group">ಆ್ಯಪ್ ಭಾಷೆ</string>
+    <string name="language_story_group">ಕಥೆಯ ಭಾಷೆ</string>
+    <string name="language_fallback_note">ಆಯ್ಕೆ ಮಾಡಿದ ಭಾಷೆಯಲ್ಲಿ ಕಥೆ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲದಿದ್ದರೆ, ಅದು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="privacy_title">ಗೌಪ್ಯತೆ ಮತ್ತು ಪೋಷಕರ ನಿಯಂತ್ರಣ</string>
+    <string name="privacy_banner">ಎಲ್ಲವೂ ಈ ಸಾಧನದಲ್ಲೇ ಇರುತ್ತದೆ. ಲಿಟಲ್‌ಸ್ಟೋರಿಯಲ್ಲಿ ಖಾತೆ, ಜಾಹೀರಾತು ಅಥವಾ ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ.</string>
+    <string name="privacy_group_data">ನಿಮ್ಮ ಮಾಹಿತಿ</string>
+    <string name="privacy_stored_title">ನಾವು ಉಳಿಸಿಕೊಳ್ಳುವುದು</string>
+    <string name="privacy_stored_body">ಪ್ರತಿ ಮಗುವಿನ ಮೊದಲ ಹೆಸರು, ವಯಸ್ಸು, ಅವತಾರ ಮತ್ತು ಆಸಕ್ತಿಗಳು, ಜೊತೆಗೆ ಮೆಚ್ಚಿನವುಗಳು, ಓದುವ ಪ್ರಗತಿ, ಡೌನ್‌ಲೋಡ್‌ಗಳು ಮತ್ತು ನೀವು ರಚಿಸಿದ ಕಥೆಗಳು.</string>
+    <string name="privacy_shared_title">ಸಾಧನದಿಂದ ಹೊರಗೆ ಹೋಗುವುದು</string>
+    <string name="privacy_shared_body">ಏನೂ ಇಲ್ಲ. ಈ ಆವೃತ್ತಿ ಇಂಟರ್ನೆಟ್‌ಗೆ ಸಂಪರ್ಕಿಸುವುದಿಲ್ಲ.</string>
+    <string name="privacy_creation_title">ಕಥೆ ರಚನೆ</string>
+    <string name="privacy_creation_body">ಕಥೆಗಳನ್ನು ಈ ಸಾಧನದಲ್ಲೇ ಒಳಗೊಂಡಿರುವ ಮಾದರಿಯಿಂದ ರಚಿಸಲಾಗುತ್ತದೆ; ನೀವು ಬರೆದದ್ದು ಎಲ್ಲಿಗೂ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <string name="privacy_group_controls">ಪೋಷಕರ ನಿಯಂತ್ರಣ</string>
+    <string name="privacy_delete_title">ಈ ಸಾಧನದ ಎಲ್ಲಾ ಮಾಹಿತಿಯನ್ನು ಅಳಿಸಿ</string>
+    <string name="privacy_delete_body">ಎಲ್ಲಾ ಮಕ್ಕಳ ಪ್ರೊಫೈಲ್‌ಗಳು, ಮೆಚ್ಚಿನವುಗಳು, ಪ್ರಗತಿ, ಡೌನ್‌ಲೋಡ್‌ಗಳು, ರಚಿಸಿದ ಕಥೆಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಆ್ಯಪ್ ಹೊಸದಾಗಿ ಆರಂಭವಾಗುತ್ತದೆ.</string>
+    <string name="privacy_delete_action">ಎಲ್ಲಾ ಮಾಹಿತಿ ಅಳಿಸಿ</string>
+    <string name="privacy_confirm_title">ಎಲ್ಲವನ್ನೂ ಅಳಿಸಬೇಕೆ?</string>
+    <string name="privacy_confirm_body">ಇದನ್ನು ಹಿಂಪಡೆಯಲಾಗುವುದಿಲ್ಲ. ಪ್ರೊಫೈಲ್‌ಗಳು, ಮೆಚ್ಚಿನವುಗಳು, ಪ್ರಗತಿ, ಡೌನ್‌ಲೋಡ್‌ಗಳು ಮತ್ತು ರಚಿಸಿದ ಕಥೆಗಳು ಇಲ್ಲವಾಗುತ್ತವೆ.</string>
+    <string name="privacy_confirm_action">ಅಳಿಸಿ</string>
+    <string name="help_title">ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ</string>
+    <string name="help_group_questions">ಪ್ರಶ್ನೆಗಳು</string>
+    <string name="help_q_stories">ಕಥೆಗಳನ್ನು ಹೇಗೆ ರಚಿಸಲಾಗುತ್ತದೆ?</string>
+    <string name="help_a_stories">ರಚಿಸಿ ಪುಟದಲ್ಲಿ ನಿಮ್ಮ ಮಗುವಿನ ದಿನದ ಬಗ್ಗೆ ತಿಳಿಸಿ. ಈ ಆವೃತ್ತಿ ಸಾಧನದಲ್ಲೇ ಮಾದರಿಯಿಂದ ಕಥೆ ರಚಿಸುತ್ತದೆ; ನಿರೂಪಣೆ ಅನುಕರಿಸಿದ್ದು.</string>
+    <string name="help_q_offline">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಕೇಳಬಹುದೇ?</string>
+    <string name="help_a_offline">ಹೌದು. ಎಲ್ಲಾ ಕಥೆಗಳು ಸಾಧನದಲ್ಲೇ ಇವೆ; ಡೌನ್‌ಲೋಡ್‌ಗಳು ಕೇವಲ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದವು ಟ್ಯಾಬ್‌ಗಾಗಿ ಗುರುತಿಸುತ್ತವೆ.</string>
+    <string name="help_q_language">ಭಾಷೆಯನ್ನು ಹೇಗೆ ಬದಲಾಯಿಸುವುದು?</string>
+    <string name="help_a_language">ಪ್ರೊಫೈಲ್ → ಭಾಷೆಯ ಆದ್ಯತೆಗಳು. ಆ್ಯಪ್ ಮತ್ತು ಕಥೆಗಳು ಬೇರೆ ಬೇರೆ ಭಾಷೆಗಳನ್ನು ಬಳಸಬಹುದು.</string>
+    <string name="help_q_children">ಇನ್ನೊಂದು ಮಗುವನ್ನು ಹೇಗೆ ಸೇರಿಸುವುದು?</string>
+    <string name="help_a_children">ಪ್ರೊಫೈಲ್ → ಮಕ್ಕಳನ್ನು ನಿರ್ವಹಿಸಿ → ಮಗುವಿನ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಿ.</string>
+    <string name="help_group_about">ಆ್ಯಪ್ ಬಗ್ಗೆ</string>
+    <string name="help_version_title">ಆವೃತ್ತಿ</string>
+    <string name="help_version_body">%1$s (ಬಿಲ್ಡ್ %2$d)</string>
+    <string name="help_licences_title">ಮುಕ್ತ ಮೂಲ ಪರವಾನಗಿಗಳು</string>
+    <string name="help_licences_body">ಅಕ್ಷರಶೈಲಿಗಳು: %1$s, SIL ಓಪನ್ ಫಾಂಟ್ ಲೈಸೆನ್ಸ್ 1.1 ಅಡಿಯಲ್ಲಿ. Apache ಲೈಸೆನ್ಸ್ 2.0 ಅಡಿಯ Android Jetpack ಲೈಬ್ರರಿಗಳಿಂದ ನಿರ್ಮಿಸಲಾಗಿದೆ.</string>
 </resources>

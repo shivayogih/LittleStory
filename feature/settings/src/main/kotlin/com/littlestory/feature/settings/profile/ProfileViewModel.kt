@@ -85,11 +85,6 @@ class ProfileViewModel
 
         fun onWifiOnlyToggled(enabled: Boolean) = updateSettings { it.copy(wifiOnlyDownloads = enabled) }
 
-        /** Story content language; the UI language itself is switched by the screen through AppCompat. */
-        fun onLanguageSelected(tag: String) {
-            viewModelScope.launch { preferences.setContentLanguageTag(tag) }
-        }
-
         private fun updateSettings(change: (ParentSettings) -> ParentSettings) {
             viewModelScope.launch { preferences.setParentSettings(change(preferences.parentSettings.first())) }
         }

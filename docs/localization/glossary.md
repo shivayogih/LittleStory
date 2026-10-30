@@ -58,6 +58,17 @@ Sources: design doc §3 (screen copy) · workbook Translations sheet · brief §
 | 35 | Reminder | ಜ್ಞಾಪನೆ | SCR-16 | |
 | 36 | Continue | ಮುಂದುವರಿಸಿ | buttons | |
 | 37 | Try again | ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ | errors | |
+| 38 | Download | ಡೌನ್‌ಲೋಡ್ | SCR-11a, SCR-17 | loanword; simulated in MVP |
+| 39 | Speed | ವೇಗ | SCR-11a | |
+| 40 | Chapter | ಅಧ್ಯಾಯ | SCR-11a | |
+| 41 | Simulated narration | ಅನುಕರಿಸಿದ ನಿರೂಪಣೆ | SCR-11a | must stay visible while narration is simulated |
+| 42 | Notifications | ಅಧಿಸೂಚನೆಗಳು | SCR-18 | |
+| 43 | Subscription | ಚಂದಾದಾರಿಕೆ | SCR-13, SCR-15 | illustrative only |
+| 44 | Mark all read | ಎಲ್ಲವನ್ನೂ ಓದಿದೆ ಎಂದು ಗುರುತಿಸಿ | SCR-18 | |
+| 45 | App language / Story language | ಆ್ಯಪ್ ಭಾಷೆ / ಕಥೆಯ ಭಾಷೆ | SCR-20 | |
+| 46 | Delete all data | ಎಲ್ಲಾ ಮಾಹಿತಿ ಅಳಿಸಿ | SCR-21 | destructive; confirm wording with reviewer |
+| 47 | Help & about | ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ | SCR-13, SCR-22 | |
+| 48 | Version | ಆವೃತ್ತಿ | SCR-22 | |
 
 ## Open questions for the reviewer
 

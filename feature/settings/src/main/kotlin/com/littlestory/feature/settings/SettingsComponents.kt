@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -111,5 +112,42 @@ internal fun SettingsRow(
                 modifier = Modifier.testTag("${tag}_toggle"),
             )
         }
+    }
+}
+
+/** A single-choice row: the whole row is the radio target, a check marks the selection (SCR-20). */
+@Composable
+internal fun SettingsChoiceRow(label: String, selected: Boolean, tag: String, onClick: () -> Unit) {
+    val colors = LittleStoryTheme.colors
+    val spacing = LittleStoryTheme.spacing
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .heightIn(min = LittleStoryTheme.dimens.minTouchTarget)
+            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
+            .padding(spacing.lg)
+            .testTag(tag),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            label,
+            style = LittleStoryTheme.typography.bodyLarge,
+            color = colors.textPrimary,
+            modifier = Modifier.weight(1f),
+        )
+        if (selected) LittleStoryIcon(LittleStoryIcons.Check, contentDescription = null, tint = colors.primary)
+    }
+}
+
+/** Plain explanatory text inside a settings card. */
+@Composable
+internal fun SettingsParagraph(title: String, body: String, modifier: Modifier = Modifier) {
+    val colors = LittleStoryTheme.colors
+    Column(
+        modifier.fillMaxWidth().padding(LittleStoryTheme.spacing.lg),
+        verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs),
+    ) {
+        Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+        Text(body, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
     }
 }

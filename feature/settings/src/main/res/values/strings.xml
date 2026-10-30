@@ -31,7 +31,7 @@
     <string name="profile_privacy">Privacy &amp; parent controls</string>
     <string name="profile_privacy_subtitle">Your family’s data stays on this device</string>
     <string name="profile_help">Help &amp; about</string>
-    <string name="profile_help_subtitle">Coming soon</string>
+    <string name="profile_help_subtitle">Questions, version and licences</string>
     <string name="profile_footer">Stories created with care. Profiles are private and parent-managed.</string>
     <string name="profile_cancel">Cancel</string>
 
@@ -100,4 +100,42 @@
     <string name="subscription_dialog_title">Plan selected</string>
     <string name="subscription_dialog_text">This is a prototype, so no payment was made. You selected the %1$s plan.</string>
     <string name="subscription_dialog_done">Done</string>
+
+    <!-- SCR-20 Language, SCR-21 Privacy, SCR-22 Help (LS-046, LS-114, LS-115) -->
+    <string name="profile_language_split">%1$s · Stories: %2$s</string>
+    <string name="language_title">Language preferences</string>
+    <string name="language_app_group">APP LANGUAGE</string>
+    <string name="language_story_group">STORY LANGUAGE</string>
+    <string name="language_fallback_note">If a story is not yet available in the chosen language, it is shown in English.</string>
+    <string name="privacy_title">Privacy &amp; parent controls</string>
+    <string name="privacy_banner">Everything stays on this device. LittleStory has no account, no ads and no tracking.</string>
+    <string name="privacy_group_data">YOUR DATA</string>
+    <string name="privacy_stored_title">What we keep</string>
+    <string name="privacy_stored_body">Each child’s first name, age, avatar and interests, plus favourites, reading progress, downloads and the stories you create.</string>
+    <string name="privacy_shared_title">What leaves the device</string>
+    <string name="privacy_shared_body">Nothing. This version does not connect to the internet.</string>
+    <string name="privacy_creation_title">Story creation</string>
+    <string name="privacy_creation_body">Stories are made on this device from a built-in template; what you type is never sent anywhere.</string>
+    <string name="privacy_group_controls">PARENT CONTROLS</string>
+    <string name="privacy_delete_title">Delete all data on this device</string>
+    <string name="privacy_delete_body">Removes every child profile, favourite, progress, download, created story and setting. The app starts fresh.</string>
+    <string name="privacy_delete_action">Delete all data</string>
+    <string name="privacy_confirm_title">Delete everything?</string>
+    <string name="privacy_confirm_body">This cannot be undone. Profiles, favourites, progress, downloads and created stories will be gone.</string>
+    <string name="privacy_confirm_action">Delete</string>
+    <string name="help_title">Help &amp; about</string>
+    <string name="help_group_questions">QUESTIONS</string>
+    <string name="help_q_stories">How are stories made?</string>
+    <string name="help_a_stories">Tell us about your child’s day on Create. This version builds the story on the device from a template; narration is simulated.</string>
+    <string name="help_q_offline">Can we listen offline?</string>
+    <string name="help_a_offline">Yes. All stories are on the device; downloading only adds a story to the Downloaded tab.</string>
+    <string name="help_q_language">How do I change the language?</string>
+    <string name="help_a_language">Profile → Language preferences. The app and stories can use different languages.</string>
+    <string name="help_q_children">How do I add another child?</string>
+    <string name="help_a_children">Profile → Manage children → Add a child profile.</string>
+    <string name="help_group_about">ABOUT</string>
+    <string name="help_version_title">Version</string>
+    <string name="help_version_body">%1$s (build %2$d)</string>
+    <string name="help_licences_title">Open-source licences</string>
+    <string name="help_licences_body">Fonts: %1$s, under the SIL Open Font License 1.1. Built with Android Jetpack libraries under the Apache License 2.0.</string>
 </resources>
