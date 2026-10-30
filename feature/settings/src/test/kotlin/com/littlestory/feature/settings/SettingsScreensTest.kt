@@ -1,6 +1,7 @@
 package com.littlestory.feature.settings
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -9,9 +10,18 @@ import com.littlestory.core.designsystem.theme.LittleStoryTheme
 import com.littlestory.feature.settings.children.ChildProfilesActions
 import com.littlestory.feature.settings.children.ChildProfilesScreen
 import com.littlestory.feature.settings.children.ChildProfilesTags
+import com.littlestory.feature.settings.help.HelpScreen
+import com.littlestory.feature.settings.help.HelpTags
+import com.littlestory.feature.settings.language.LanguageCallbacks
+import com.littlestory.feature.settings.language.LanguageScreen
+import com.littlestory.feature.settings.language.LanguageTags
 import com.littlestory.feature.settings.notifications.NotificationsActions
 import com.littlestory.feature.settings.notifications.NotificationsScreen
 import com.littlestory.feature.settings.notifications.NotificationsTags
+import com.littlestory.feature.settings.privacy.PrivacyCallbacks
+import com.littlestory.feature.settings.privacy.PrivacyScreen
+import com.littlestory.feature.settings.privacy.PrivacyTags
+import com.littlestory.feature.settings.privacy.PrivacyUiState
 import com.littlestory.feature.settings.profile.ProfileActions
 import com.littlestory.feature.settings.profile.ProfileCallbacks
 import com.littlestory.feature.settings.profile.ProfileScreen
@@ -50,6 +60,9 @@ class SettingsScreensTest {
                         onNotifications = { calls += "notifications" },
                         onDownloads = { calls += "downloads" },
                         onSubscription = { calls += "subscription" },
+                        onLanguage = { calls += "language" },
+                        onPrivacy = { calls += "privacy" },
+                        onHelp = { calls += "help" },
                     ),
                     ProfileCallbacks(onNotificationsToggled = { calls += "notify:$it" }),
                 )
@@ -61,7 +74,23 @@ class SettingsScreensTest {
         rule.onNodeWithTag("${ProfileTags.NOTIFICATIONS}_toggle").performScrollTo().performClick()
         rule.onNodeWithTag(ProfileTags.DOWNLOADS).performScrollTo().performClick()
         rule.onNodeWithTag(ProfileTags.SUBSCRIPTION).performScrollTo().performClick()
-        assertEquals(listOf("edit:child_1", "children", "reminder", "notify:false", "downloads", "subscription"), calls)
+        rule.onNodeWithTag(ProfileTags.LANGUAGE).performScrollTo().performClick()
+        rule.onNodeWithTag(ProfileTags.PRIVACY).performScrollTo().performClick()
+        rule.onNodeWithTag(ProfileTags.HELP).performScrollTo().performClick()
+        assertEquals(
+            listOf(
+                "edit:child_1",
+                "children",
+                "reminder",
+                "notify:false",
+                "downloads",
+                "subscription",
+                "language",
+                "privacy",
+                "help",
+            ),
+            calls,
+        )
     }
 
     @Test
@@ -134,5 +163,46 @@ class SettingsScreensTest {
         rule.onNodeWithTag(SubscriptionTags.CHOOSE).performClick()
         rule.onNodeWithTag(SubscriptionTags.NOTE).assertExists()
         assertEquals(listOf("select:family", "choose"), calls)
+    }
+
+    @Test
+    fun languageRowsReportTheChosenLanguage() {
+        rule.setContent {
+            LittleStoryTheme {
+                LanguageScreen(
+                    languageState,
+                    LanguageCallbacks(onAppLanguage = { calls += "app:${it.tag}" }, onStoryLanguage = {
+                        calls +=
+                            "story:${it.tag}"
+                    }),
+                )
+            }
+        }
+        rule.onNodeWithTag(LanguageTags.app("en")).assertIsSelected()
+        rule.onNodeWithTag(LanguageTags.story("kn")).assertIsSelected()
+        rule.onNodeWithTag(LanguageTags.app("kn")).performClick()
+        rule.onNodeWithTag(LanguageTags.story("en")).performClick()
+        assertEquals(listOf("app:kn", "story:en"), calls)
+    }
+
+    @Test
+    fun privacyAsksBeforeDeleting() {
+        rule.setContent {
+            LittleStoryTheme {
+                PrivacyScreen(
+                    PrivacyUiState(confirmOpen = false),
+                    PrivacyCallbacks(onDeleteClick = { calls += "delete" }),
+                )
+            }
+        }
+        rule.onNodeWithTag(PrivacyTags.DELETE).performScrollTo().performClick()
+        assertEquals(listOf("delete"), calls)
+    }
+
+    @Test
+    fun helpShowsVersionAndLicences() {
+        rule.setContent { LittleStoryTheme { HelpScreen(testAppInfo, onBack = {}) } }
+        rule.onNodeWithTag(HelpTags.VERSION).performScrollTo().assertIsDisplayed()
+        rule.onNodeWithTag(HelpTags.LICENCES).performScrollTo().assertIsDisplayed()
     }
 }

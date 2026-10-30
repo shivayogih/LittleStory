@@ -13,8 +13,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,10 +25,9 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.littlestory.core.common.language.SupportedLanguage
 import com.littlestory.core.common.language.SupportedLanguages
 import com.littlestory.core.designsystem.brand.BrandMark
-import com.littlestory.core.designsystem.component.LittleStoryBottomSheet
-import com.littlestory.core.designsystem.component.SheetOption
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
 import com.littlestory.core.ui.chrome.TopBar
@@ -66,13 +63,15 @@ data class ProfileActions(
     val onNotifications: () -> Unit = {},
     val onDownloads: () -> Unit = {},
     val onSubscription: () -> Unit = {},
+    val onLanguage: () -> Unit = {},
+    val onPrivacy: () -> Unit = {},
+    val onHelp: () -> Unit = {},
 )
 
 data class ProfileCallbacks(
     val onReminderToggled: (Boolean) -> Unit = {},
     val onNotificationsToggled: (Boolean) -> Unit = {},
     val onWifiOnlyToggled: (Boolean) -> Unit = {},
-    val onLanguageSelected: (String) -> Unit = {},
 )
 
 @Composable
@@ -85,11 +84,8 @@ fun ProfileRoute(actions: ProfileActions, viewModel: ProfileViewModel = hiltView
             onReminderToggled = viewModel::onReminderToggled,
             onNotificationsToggled = viewModel::onNotificationsToggled,
             onWifiOnlyToggled = viewModel::onWifiOnlyToggled,
-            onLanguageSelected = { tag ->
-                viewModel.onLanguageSelected(tag)
-                AppLanguage.apply(SupportedLanguages.fromTag(tag))
-            },
         ),
+        appLanguage = AppLanguage.current(),
     )
 }
 
@@ -99,10 +95,10 @@ fun ProfileScreen(
     actions: ProfileActions,
     callbacks: ProfileCallbacks,
     modifier: Modifier = Modifier,
+    appLanguage: SupportedLanguage = SupportedLanguages.default,
 ) {
     val colors = LittleStoryTheme.colors
     val spacing = LittleStoryTheme.spacing
-    var languageSheet by rememberSaveable { mutableStateOf(false) }
     SystemBarIcons(darkIcons = true)
     Column(modifier.fillMaxSize().background(colors.background)) {
         TopBar(title = stringResource(R.string.profile_title))
@@ -126,9 +122,9 @@ fun ProfileScreen(
                 SettingsRow(
                     LittleStoryIcons.Book,
                     stringResource(R.string.profile_language),
-                    SupportedLanguages.fromTag(state.contentLanguageTag).nativeName,
+                    languageSubtitle(appLanguage, SupportedLanguages.fromTag(state.contentLanguageTag)),
                     ProfileTags.LANGUAGE,
-                    onClick = { languageSheet = true },
+                    onClick = actions.onLanguage,
                 )
             }
             SettingsGroup(stringResource(R.string.profile_group_experience)) {
@@ -189,12 +185,12 @@ fun ProfileScreen(
                     )
                     SettingsDivider()
                 }
-                // Privacy (LS-114) and Help (LS-115) are blocked on missing designs; the rows inform only.
                 SettingsRow(
                     LittleStoryIcons.Settings,
                     stringResource(R.string.profile_privacy),
                     stringResource(R.string.profile_privacy_subtitle),
                     ProfileTags.PRIVACY,
+                    onClick = actions.onPrivacy,
                 )
                 SettingsDivider()
                 SettingsRow(
@@ -202,6 +198,7 @@ fun ProfileScreen(
                     stringResource(R.string.profile_help),
                     stringResource(R.string.profile_help_subtitle),
                     ProfileTags.HELP,
+                    onClick = actions.onHelp,
                 )
             }
             Column(
@@ -219,21 +216,18 @@ fun ProfileScreen(
             }
         }
     }
-    if (languageSheet) {
-        LittleStoryBottomSheet(
-            title = stringResource(R.string.profile_language),
-            options =
-                SupportedLanguages.enabled.map { language ->
-                    SheetOption(language.nativeName, selected = language.tag == state.contentLanguageTag) {
-                        languageSheet = false
-                        callbacks.onLanguageSelected(language.tag)
-                    }
-                },
-            cancelLabel = stringResource(R.string.profile_cancel),
-            onDismiss = { languageSheet = false },
-        )
-    }
 }
+
+/** One name when the app and stories share a language, otherwise both (LS-046). */
+@Composable
+private fun languageSubtitle(app: SupportedLanguage, story: SupportedLanguage): String =
+    if (app ==
+        story
+    ) {
+        app.nativeName
+    } else {
+        stringResource(R.string.profile_language_split, app.nativeName, story.nativeName)
+    }
 
 @Composable
 private fun reminderSubtitle(state: ProfileUiState): String {

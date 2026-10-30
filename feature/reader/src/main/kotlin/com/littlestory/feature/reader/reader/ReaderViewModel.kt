@@ -122,8 +122,7 @@ class ReaderViewModel
         fun onFavouriteClick() {
             viewModelScope.launch {
                 val childId = browse.first().childId
-                val current = favourites.favouriteIds(childId).first()
-                favourites.setFavourite(childId, route.storyId, route.storyId !in current)
+                favourites.toggle(childId, route.storyId)
             }
         }
 

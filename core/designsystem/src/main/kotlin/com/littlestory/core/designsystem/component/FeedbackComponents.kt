@@ -156,6 +156,44 @@ fun LittleStoryDialog(
     }
 }
 
+/**
+ * Two-choice confirmation for an action that cannot be undone, such as deleting local data.
+ * Cancel is the safe default: back and a scrim tap both dismiss.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LittleStoryConfirmDialog(
+    title: String,
+    text: String,
+    confirmLabel: String,
+    dismissLabel: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val colors = LittleStoryTheme.colors
+    val spacing = LittleStoryTheme.spacing
+    BasicAlertDialog(onDismissRequest = onDismiss, modifier = modifier, properties = DialogProperties()) {
+        Column(
+            Modifier
+                .tokenShadow(LittleStoryTheme.elevation.card, LittleStoryTheme.shapes.large)
+                .background(colors.surface, LittleStoryTheme.shapes.large)
+                .padding(spacing.xxl),
+            verticalArrangement = Arrangement.spacedBy(spacing.md),
+        ) {
+            Text(title, style = LittleStoryTheme.typography.topBarTitle, color = colors.textPrimary)
+            Text(text, style = LittleStoryTheme.typography.bodyLarge, color = colors.textSecondary)
+            LittleStoryButton(text = confirmLabel, onClick = onConfirm, modifier = Modifier.fillMaxWidth())
+            LittleStoryButton(
+                text = dismissLabel,
+                onClick = onDismiss,
+                variant = ButtonVariant.Ghost,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
+}
+
 /** Pill with a check, e.g. "Reminder saved for 8:30 PM". Calls [onTimeout] after [durationMillis]. */
 @Composable
 fun LittleStoryToast(

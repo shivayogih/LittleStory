@@ -1,6 +1,7 @@
 package com.littlestory.app.di
 
 import com.littlestory.app.BuildConfig
+import com.littlestory.core.common.config.AppInfo
 import com.littlestory.core.common.config.FeatureFlags
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,7 @@ object AppModule {
     @Provides
     @Singleton
     fun featureFlags(): FeatureFlags = FeatureFlags(pseudoLocales = BuildConfig.DEBUG)
+
+    @Provides
+    fun appInfo(): AppInfo = AppInfo(BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
 }

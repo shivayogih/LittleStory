@@ -50,12 +50,18 @@ import com.littlestory.feature.reader.navigation.playerScreen
 import com.littlestory.feature.reader.navigation.readerScreen
 import com.littlestory.feature.settings.children.ChildProfilesActions
 import com.littlestory.feature.settings.navigation.ChildProfilesRoute
+import com.littlestory.feature.settings.navigation.HelpRoute
+import com.littlestory.feature.settings.navigation.LanguageRoute
 import com.littlestory.feature.settings.navigation.NotificationsRoute
+import com.littlestory.feature.settings.navigation.PrivacyRoute
 import com.littlestory.feature.settings.navigation.ProfileRoute
 import com.littlestory.feature.settings.navigation.ReminderRoute
 import com.littlestory.feature.settings.navigation.SubscriptionRoute
 import com.littlestory.feature.settings.navigation.childProfilesScreen
+import com.littlestory.feature.settings.navigation.helpScreen
+import com.littlestory.feature.settings.navigation.languageScreen
 import com.littlestory.feature.settings.navigation.notificationsScreen
+import com.littlestory.feature.settings.navigation.privacyScreen
 import com.littlestory.feature.settings.navigation.profileScreen
 import com.littlestory.feature.settings.navigation.reminderScreen
 import com.littlestory.feature.settings.navigation.subscriptionScreen
@@ -208,6 +214,9 @@ private fun NavGraphBuilder.settingsGraph(nav: NavHostController) {
             onNotifications = { nav.navigate(NotificationsRoute) },
             onDownloads = { nav.navigate(DownloadsRoute) },
             onSubscription = { nav.navigate(SubscriptionRoute) },
+            onLanguage = { nav.navigate(LanguageRoute) },
+            onPrivacy = { nav.navigate(PrivacyRoute) },
+            onHelp = { nav.navigate(HelpRoute) },
         ),
     )
     childProfilesScreen(
@@ -227,6 +236,12 @@ private fun NavGraphBuilder.settingsGraph(nav: NavHostController) {
         ),
     )
     subscriptionScreen(onBack = { nav.popBackStack() }, onDone = { nav.navigateToTab(HomeRoute) })
+    languageScreen(onBack = { nav.popBackStack() })
+    privacyScreen(
+        onBack = { nav.popBackStack() },
+        onDeleted = { nav.navigate(OnboardingRoute) { popUpTo(nav.graph.id) { inclusive = true } } },
+    )
+    helpScreen(onBack = { nav.popBackStack() })
 }
 
 @Composable
