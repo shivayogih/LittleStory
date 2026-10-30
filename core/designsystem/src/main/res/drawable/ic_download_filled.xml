@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Filled variant for a downloaded story: disc with the arrow cut out (even-odd). Colour is applied by tinting. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM11 7h2v5.2l1.8-1.8l1.4 1.4L12 16l-4.2-4.2l1.4-1.4L11 12.2z"
+        android:fillType="evenOdd"
+        android:fillColor="#FF000000" />
+</vector>

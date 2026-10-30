@@ -1,0 +1,29 @@
+# Gradle and build outputs
+.gradle/
+.kotlin/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Machine-specific configuration (never commit: contains local SDK paths)
+local.properties
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.fleet/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Signing material (the repository is public)
+*.jks
+*.keystore
+keystore.properties
+
+# Logs and captures
+*.log
+captures/
+.externalNativeBuild/
+.cxx/

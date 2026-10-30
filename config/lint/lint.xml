@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android lint policy (LS-034). These issues fail the build; there is no baseline. -->
+<lint>
+    <issue id="HardcodedText" severity="error" />
+    <issue id="MissingTranslation" severity="error" />
+    <issue id="ExtraTranslation" severity="error" />
+    <issue id="SetTextI18n" severity="error" />
+    <issue id="RtlHardcoded" severity="error" />
+    <issue id="RtlEnabled" severity="warning" />
+    <issue id="StringFormatInvalid" severity="error" />
+    <issue id="StringFormatMatches" severity="error" />
+    <issue id="ContentDescription" severity="error" />
+    <issue id="TypographyEllipsis" severity="error" />
+</lint>

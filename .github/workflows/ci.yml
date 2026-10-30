@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, staging, development]
+
+# Read-only token; no secrets are used by this workflow.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      # JDK 21 for Gradle; the build also asks for it as its toolchain. `cache: gradle` caches
+      # the Gradle wrapper and dependencies, keyed on the build files.
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Install Android SDK platform and build tools
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.2" "build-tools;37.0.0"
+
+      # check = unit + Robolectric tests, Android lint, Detekt, ktlint, checkNoHardcoding, checkTranslations.
+      - name: Verify
+        run: ./gradlew check assembleDebug --stacktrace
+
+      - name: Upload screenshots and reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: reports
+          if-no-files-found: ignore
+          path: |
+            **/build/reports/**
+            **/build/outputs/roborazzi/**
+            **/build/test-results/**

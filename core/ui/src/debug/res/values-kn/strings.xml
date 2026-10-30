@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Draft — needs native review -->
+    <string name="catalog_title">ಹಂಚಿಕೊಂಡ ಪುಟ್ಟ ಆನೆ</string>
+    <string name="catalog_title_long">ಆರವ್ ಮತ್ತು ಚಂದ್ರನ ಬೆಳಕಿನ ತೋಟದ ಮಾಯಾ ಕ್ರಿಕೆಟ್ ಬ್ಯಾಟ್</string>
+    <string name="catalog_meta">ಸ್ನೇಹ · 8 ನಿಮಿಷ</string>
+    <string name="catalog_eyebrow" formatted="false">8 ನಿಮಿಷ · 42% ಪೂರ್ಣ</string>
+    <string name="catalog_primary">ಮುಂದುವರಿಸಿ</string>
+    <string name="catalog_secondary">ಈಗ ಬೇಡ</string>
+    <string name="catalog_label_name">ಮಗುವಿನ ಹೆಸರು</string>
+    <string name="catalog_placeholder">ಹೆಸರು ಟೈಪ್ ಮಾಡಿ</string>
+    <string name="catalog_search">ಕಥೆಗಳನ್ನು ಹುಡುಕಿ</string>
+    <string name="catalog_clear">ಹುಡುಕಾಟ ಅಳಿಸಿ</string>
+    <string name="catalog_favourite">ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ</string>
+    <string name="catalog_see_all">ಎಲ್ಲವನ್ನೂ ನೋಡಿ</string>
+    <string name="catalog_section">ಕೇಳುವುದನ್ನು ಮುಂದುವರಿಸಿ</string>
+    <string name="catalog_toggle">ಮಲಗುವ ಸಮಯದ ಜ್ಞಾಪನೆ</string>
+    <string name="catalog_back">ಹಿಂದೆ</string>
+    <string name="catalog_note">ಕಥೆಗಳು ಈ ಸಾಧನದಲ್ಲೇ ಇರುತ್ತವೆ.</string>
+    <string name="catalog_empty_title">ಇನ್ನೂ ಕಥೆಗಳಿಲ್ಲ</string>
+    <string name="catalog_empty_text">ನಿಮ್ಮ ಮೊದಲ ಕಥೆಯನ್ನು ರಚಿಸಿದರೆ ಇಲ್ಲಿ ಕಾಣುತ್ತದೆ.</string>
+    <string name="catalog_tab_home">ಮುಖಪುಟ</string>
+    <string name="catalog_tab_discover">ಅನ್ವೇಷಿಸಿ</string>
+    <string name="catalog_tab_create">ರಚಿಸಿ</string>
+    <string name="catalog_tab_stories">ನನ್ನ ಕಥೆಗಳು</string>
+    <string name="catalog_tab_profile">ಪ್ರೊಫೈಲ್</string>
+    <string name="catalog_option_one">ಶಾಂತ</string>
+    <string name="catalog_option_two">ಹಾಸ್ಯ</string>
+    <string name="catalog_option_three">ಮಾಯಾಜಾಲ</string>
+</resources>

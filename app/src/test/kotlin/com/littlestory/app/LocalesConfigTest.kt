@@ -1,0 +1,16 @@
+package com.littlestory.app
+
+import com.littlestory.core.common.language.SupportedLanguages
+import org.junit.Test
+import java.io.File
+import kotlin.test.assertEquals
+
+/** The registry is the only list of languages: locales_config.xml must mirror it (LS-040). */
+class LocalesConfigTest {
+    @Test
+    fun localesConfigMatchesRegistry() {
+        val xml = File("src/main/res/xml/locales_config.xml").readText()
+        val tags = Regex("""android:name="([^"]+)"""").findAll(xml).map { it.groupValues[1] }.toList()
+        assertEquals(SupportedLanguages.enabled.map { it.tag }, tags)
+    }
+}

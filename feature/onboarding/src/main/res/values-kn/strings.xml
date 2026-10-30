@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Draft — needs native review -->
+    <string name="onboarding_eyebrow">ಪುಟ್ಟ ಕಥೆಗಳು. ದೊಡ್ಡ ಕಲ್ಪನೆ.</string>
+    <string name="onboarding_title_1">ಪ್ರತಿ ದಿನವೂ ಒಂದು ಕಥೆ</string>
+    <string name="onboarding_body_1">ಶಾಲೆಯ ದಿನಗಳು, ಕುಟುಂಬದ ಕ್ಷಣಗಳು ಮತ್ತು ಸಣ್ಣ ದಯೆಯ ಕೆಲಸಗಳನ್ನು ಮಾಯಾ ಸಾಹಸಗಳನ್ನಾಗಿ ಮಾಡಿ.</string>
+    <string name="onboarding_title_2">ನಿಮ್ಮ ಮಗು, ನಾಯಕ</string>
+    <string name="onboarding_body_2">ಮಗುವಿನ ಹೆಸರು, ವಯಸ್ಸು ಮತ್ತು ಇಷ್ಟಗಳ ಸುತ್ತ ರೂಪುಗೊಂಡ ಕಥೆಗಳು—ಪೋಷಕರ ನಿಯಂತ್ರಣದಲ್ಲಿ.</string>
+    <string name="onboarding_title_3">ಕೇಳಿ, ಕನಸು ಕಾಣಿ, ಮತ್ತೆ ಕೇಳಿ</string>
+    <string name="onboarding_body_3">ಮೃದುವಾದ ನಿರೂಪಣೆ, ಆಫ್‌ಲೈನ್ ಕಥೆಗಳು ಮತ್ತು ನಿದ್ರಾ ಟೈಮರ್ ಮಲಗುವ ಸಮಯವನ್ನು ಶಾಂತವಾಗಿಸುತ್ತವೆ.</string>
+    <string name="onboarding_cta_get_started">ಪ್ರಾರಂಭಿಸಿ</string>
+    <string name="onboarding_pager_description">ಸ್ಲೈಡ್ %1$d / %2$d</string>
+    <string name="setup_badge">ಖಾಸಗಿ ಮತ್ತು ಪೋಷಕರ ನಿರ್ವಹಣೆ</string>
+    <string name="setup_title">ಕಥೆಗಳು ಮನೆಯಂತೆ ಅನಿಸಲಿ.</string>
+    <string name="setup_subtitle">ಕೆಲವು ವಿವರಗಳು ಸುರಕ್ಷಿತ, ವಯಸ್ಸಿಗೆ ಸೂಕ್ತವಾದ ಸಾಹಸಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ.</string>
+    <string name="setup_label_name">ಮಗುವಿನ ಹೆಸರು</string>
+    <string name="setup_placeholder_name">ಮೊದಲ ಹೆಸರು</string>
+    <string name="setup_label_avatar">ಅವತಾರ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="setup_label_age">ವಯಸ್ಸು</string>
+    <string name="setup_label_language">ಭಾಷೆ</string>
+    <string name="setup_label_interests">ಇಷ್ಟದ ವಿಷಯಗಳು (ಐಚ್ಛಿಕ)</string>
+    <string name="setup_label_duration">ಕಥೆಯ ಅವಧಿ</string>
+    <string name="setup_cta_create">ಪ್ರೊಫೈಲ್ ರಚಿಸಿ</string>
+    <string name="setup_cta_create_named">%1$s ಅವರ ಪ್ರೊಫೈಲ್ ರಚಿಸಿ</string>
+    <string name="setup_cta_save">ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ</string>
+    <string name="setup_skip">ಈಗ ಬಿಟ್ಟುಬಿಡಿ</string>
+    <string name="setup_error_name_empty">ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮಗುವಿನ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.</string>
+    <string name="setup_error_name_too_long">ಹೆಸರು ಗರಿಷ್ಠ %1$d ಅಕ್ಷರಗಳಷ್ಟಿರಬಹುದು.</string>
+    <plurals name="setup_age_years">
+        <item quantity="one">%1$d ವರ್ಷ</item>
+        <item quantity="other">%1$d ವರ್ಷಗಳು</item>
+    </plurals>
+</resources>

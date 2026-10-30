@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The system splash screen is themed in XML, which cannot read Compose tokens. This is the
+         `night` token (#17152F) from :core:designsystem; keep the two in sync. -->
+    <color name="splash_background">#17152F</color>
+</resources>

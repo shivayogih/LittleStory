@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The brand is not translated. -->
+    <string name="app_name" translatable="false">LittleStory</string>
+
+</resources>
