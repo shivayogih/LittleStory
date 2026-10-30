@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 
 /** LS-010: every colour in docs/design/design-tokens.json is a token, and only token files hold hex literals. */
 class TokenCompletenessTest {
-    private val moduleDir = File(System.getProperty("user.dir"))
+    private val moduleDir = File(checkNotNull(System.getProperty("user.dir")))
     private val repoRoot =
         generateSequence(moduleDir) { it.parentFile }
             .first { File(it, "docs/design/design-tokens.json").exists() }
