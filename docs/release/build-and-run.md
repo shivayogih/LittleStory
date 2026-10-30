@@ -1,7 +1,7 @@
 # Build and run
 
 Purpose: how to set up, build, test and run LittleStory on Windows, macOS and Linux.
-Status: 30 Oct 2026 — `./gradlew check assembleDebug` verified on Linux (cloud workspace, JDK 21 present, fresh clone). Not verified here: the automatic JDK 21 download (the sandbox blocks `api.foojay.io`), and Windows and macOS.
+Status: 30 Oct 2026, end of P7 — `./gradlew check assembleDebug` passes on Linux (cloud workspace and GitHub Actions). Not verified here: the automatic JDK 21 download (the sandbox blocks `api.foojay.io`), Windows and macOS, and instrumented tests on a device.
 Sources: master orchestrator brief §3.5, §17.7; P0 assessment §1–§2; workbook tickets LS-030, LS-132, TC-056; Risk R-21.
 
 > Verified toolchain (see `gradle/libs.versions.toml`): Gradle 9.8.2 wrapper, AGP 9.5.0 (built-in Kotlin), Kotlin 2.4.21, Compose BOM 2026.09.00, JDK 21, compileSdk 37.2 (the Compose BOM requires it), targetSdk 36, minSdk 26. Commands in §3 were run on Linux: `./gradlew check assembleDebug` passes. The Windows and macOS column is expected to behave the same but has not been run.
@@ -37,6 +37,9 @@ Command line instead of Studio: put your SDK path in the `ANDROID_HOME` environm
 | Preview screenshot images (experimental, EN/KN) | `gradlew.bat :app:updateDebugScreenshotTestDefaultTestSuite` | `./gradlew :app:updateDebugScreenshotTestDefaultTestSuite` |
 | List tasks | `gradlew.bat tasks` | `./gradlew tasks` |
 | Unit + Robolectric tests | `gradlew.bat test` | `./gradlew test` |
+| Journeys A–G in EN and KN (LS-121) | `gradlew.bat :app:testDebugUnitTest --tests "*JourneysTest"` | `./gradlew :app:testDebugUnitTest --tests '*JourneysTest'` |
+| Accessibility walk in EN and KN (LS-123) | `gradlew.bat :app:testDebugUnitTest --tests "*AccessibilityChecksTest"` | `./gradlew :app:testDebugUnitTest --tests '*AccessibilityChecksTest'` |
+| Coverage gate and report (LS-120) | `gradlew.bat koverVerify koverHtmlReport` | `./gradlew koverVerify koverHtmlReport` (report in `build/reports/kover/html`) |
 | Lint | `gradlew.bat lint` | `./gradlew lint` |
 | Translation parity | `gradlew.bat checkTranslations` | `./gradlew checkTranslations` |
 | Debug APK | `gradlew.bat assembleDebug` | `./gradlew assembleDebug` |

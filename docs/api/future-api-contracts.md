@@ -3,7 +3,7 @@
 > **PROPOSED — NOT IMPLEMENTED OR VERIFIED.** No backend exists. These endpoints are a discussion draft so the Android repository interfaces can be shaped for a later swap from mock data to a real service. Nothing in the MVP calls the network.
 
 Purpose: describe a candidate HTTP contract for catalog, generation, library and progress, including language negotiation.
-Status: Draft for owner review — P1, 29 Oct 2026
+Status: Draft for owner review — P1, 29 Oct 2026; §7 added 30 Oct 2026 (LS-140) to map each contract to the repository interface it would back.
 Sources: master orchestrator brief §11, §11.1, §4.4 rule 13; `docs/design/LittleStory_Figma_Design_Details.md` (screens SCR-03…SCR-12); workbook tickets LS-140, LS-141; ADR-007 (localized mock content), ADR-014 (simulations).
 
 ## 1. Conventions
@@ -167,3 +167,20 @@ All errors use one envelope (RFC 9457 problem-details shape):
 | Q5 | Subscription entitlements source (Play Billing vs server) | SCR-15 beyond demo |
 | Q6 | Conflict policy for progress across devices | FR-24 multi-device |
 | Q7 | Push vs polling for generation completion | Notifications (SCR-18) |
+
+## 7. Where each contract plugs into the app (30 Oct 2026)
+
+The MVP's repository interfaces in `:domain` (`domain/src/main/kotlin/com/littlestory/domain/repository/Repositories.kt`) are the seam. A backend replaces an implementation in `:data`, and the binding in `DataModule` points at it. No ViewModel or screen changes.
+
+| Interface (`:domain`) | MVP implementation (`:data`) | Future contract | Notes |
+| --- | --- | --- | --- |
+| `CatalogRepository.stories(languageTag)`, `story(id, languageTag)`, `categories(languageTag)` | `CatalogRepositoryImpl` reads `assets/mock/{stories,categories}_{tag}.json` with field-by-field English fallback | §3.1, §3.2 with `Accept-Language` (§2) | Keep the fallback on the client for cached content |
+| `GenerationRepository.submit(request)`, `generate(requestId, startPercent)` | `GenerationRepositoryImpl` runs `simulatedGenerationProgress` (three stages, `AppConfig.Generation.STEP_PERCENT` = 4 % every 120 ms) and builds the story from `generated_{tag}.json` | §3.3 submit, §3.4 poll or stream, `DELETE` to cancel | `GenerationState` (`InProgress`, `Paused`, `Completed`, `Failed`) already matches the job states; `rejected` maps to `Failed` with a moderation error |
+| `LibraryRepository.created(childId)`, `save(childId, story)` | `LibraryRepositoryImpl` on Room | `GET/PUT /v1/me/saved-stories` with `source: "created"` | Room stays as the offline cache |
+| `FavouritesRepository.toggle(childId, storyId)` | `FavouritesRepositoryImpl` on Room, serialised with a mutex | `PUT` / `DELETE /v1/me/saved-stories/{id}` | Idempotent calls match the client's serialised toggle |
+| `ProgressRepository.update(progress)` | `ProgressRepositoryImpl` on Room | `PUT /v1/me/reading-progress/{id}` | `updatedAtEpochMs` already carries last-writer-wins data |
+| `DownloadsRepository` | Simulated, Room | None: downloads stay on the device | Real downloads need storage and Wi-Fi rules, not an API |
+| `ProfilesRepository` | Room | Account-scoped child profiles (§6, unresolved) | Needs consent design first |
+| `NotificationsRepository`, `SubscriptionRepository` | Mock JSON | Push and Play Billing, not this API | Separate approvals (no push or payments in the MVP) |
+| `PreferencesRepository`, `LocalDataRepository` | DataStore; local wipe | None | Server-side deletion joins `LocalDataRepository.deleteAll` when accounts exist |
+
