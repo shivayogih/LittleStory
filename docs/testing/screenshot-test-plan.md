@@ -8,6 +8,30 @@ Sources: master orchestrator brief §16, §16.1, §25; design details §3 and `d
 
 Roborazzi on Robolectric is recommended (runs on the JVM in CI, no emulator). Compose Preview Screenshot Testing is the alternative. The choice is confirmed in ADR-011 after LS-030 checks AGP/Kotlin compatibility.
 
+### 1.1 Compose Preview Screenshot Testing trial (30 Oct 2026)
+
+The owner asked whether [Compose Preview Screenshot Testing](https://developer.android.com/studio/preview/compose-screenshot-testing) fits. Result: yes, alongside Roborazzi.
+
+| Question | Finding |
+|---|---|
+| Compatible? | The standalone `com.android.compose.screenshot` plugin is deprecated. Its replacement is an AGP test suite, which needs AGP 9.5 (we use 9.5.0) and engine `0.0.1-alpha16`. Both flags in `gradle.properties` are experimental. |
+| Where it runs | `:app/src/screenshotTest`. In a library module the renderer failed (`ClassNotFoundException … R$id`) because only the application packages every library's R classes. The previews in `:app` can show screens from any feature. |
+| AGP quirk | The engine packages resources through the release unit-test component, which AGP 9 turns off by default. `app/build.gradle.kts` turns it on and keeps the `testReleaseUnitTest` task disabled. |
+| CI | Renders on the JVM with no emulator: about 20 s for 15 images locally. CI runs `:app:updateDebugScreenshotTestDefaultTestSuite` after `check` and uploads the images. |
+| Gate | Not yet. References in `app/src/screenshotTestDefaultDebug/reference` are git-ignored until the owner approves them. After approval, remove the ignore line, commit the images, and switch CI to `testDebugScreenshotTestDefaultTestSuite`. |
+| Coverage | Home, Reader, Player, Profile and Language, each in English, Kannada, and Kannada at 200 % font scale on the 430 × 932 dp design frame (`LocalePreviews`). |
+
+How the two tools split the work:
+
+- **Roborazzi** stays for interaction states that need a test rule: sheets, dialogs, pseudo-locales, and every module's own screens.
+- **Preview tests** give a fast, IDE-visible gallery of key screens per locale, the same `@Preview` the designer sees in Studio.
+
+| Task | Command |
+|---|---|
+| Render or refresh preview images | `./gradlew :app:updateDebugScreenshotTestDefaultTestSuite` |
+| Compare against approved references (after approval) | `./gradlew :app:testDebugScreenshotTestDefaultTestSuite` |
+| Report | `app/build/reports/tests/<task>/index.html` |
+
 ## 2. Fixed configuration
 
 | Setting | Value |

@@ -1,5 +1,6 @@
 package com.littlestory.app.journeys
 
+import android.os.Looper
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.ComposeTimeoutException
@@ -27,10 +28,15 @@ import com.littlestory.domain.repository.ProfilesRepository
 import com.littlestory.domain.repository.ProgressRepository
 import com.littlestory.feature.home.home.HomeTags
 import dagger.hilt.android.testing.HiltAndroidRule
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.rules.RuleChain
+import org.robolectric.Shadows.shadowOf
 import javax.inject.Inject
 
 /**
@@ -64,7 +70,7 @@ abstract class JourneyTest(
     protected fun signedIn(): String {
         hilt.inject()
         val childId =
-            runBlocking {
+            read {
                 val child =
                     profiles.create(
                         ChildProfileDraft(
@@ -140,7 +146,23 @@ abstract class JourneyTest(
     protected fun awaitPrefix(prefix: String) =
         compose.waitUntil(TIMEOUT_MS) { tagsStartingWith(prefix).isNotEmpty() }
 
-    protected fun <T> read(block: suspend () -> T): T = runBlocking { block() }
+    /**
+     * Runs repository work on a background thread while the main looper keeps turning. A plain
+     * runBlocking on the test (main) thread can deadlock when Room or DataStore hands work back
+     * to the main thread.
+     */
+    protected fun <T> read(block: suspend () -> T): T {
+        val work = background.async { block() }
+        val deadline = System.currentTimeMillis() + TIMEOUT_MS
+        while (!work.isCompleted) {
+            if (System.currentTimeMillis() > deadline) throw AssertionError("Repository call timed out")
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(POLL_MS)
+        }
+        return runBlocking { work.await() }
+    }
+
+    private val background = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     /**
      * Polls a repository until [check] holds. Between polls the main looper idles, so view-model
