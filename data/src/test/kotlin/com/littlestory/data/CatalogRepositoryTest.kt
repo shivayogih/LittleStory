@@ -93,7 +93,14 @@ class CatalogRepositoryTest {
             assertEquals(1, categories.getValue("bedtime").storyCount)
             // Primary category plus tags: elephant (primary), banyan and moonlit garden (tag).
             assertEquals(3, categories.getValue("nature").storyCount)
-            assertEquals("ಬಾಹ್ಯಾಕಾಶ", repository().categories("kn").first().first { it.id == "space" }.name)
+            assertEquals(
+                "ಬಾಹ್ಯಾಕಾಶ",
+                repository()
+                    .categories("kn")
+                    .first()
+                    .first { it.id == "space" }
+                    .name,
+            )
         }
 
     @Test

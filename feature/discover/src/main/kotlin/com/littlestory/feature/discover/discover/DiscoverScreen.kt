@@ -219,7 +219,10 @@ private fun FeaturedCard(featured: FeaturedUi, onClick: () -> Unit, modifier: Mo
                 color = colors.onNight,
                 maxLines = FEATURED_SYNOPSIS_LINES,
             )
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing.xs)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spacing.xs),
+            ) {
                 Text(
                     stringResource(R.string.discover_featured_cta),
                     style = LittleStoryTheme.typography.button,
@@ -228,7 +231,13 @@ private fun FeaturedCard(featured: FeaturedUi, onClick: () -> Unit, modifier: Mo
                 LittleStoryIcon(LittleStoryIcons.Play, contentDescription = null, tint = colors.highlight)
             }
         }
-        Box(Modifier.width(LittleStoryTheme.dimens.featuredArtWidth).aspectRatio(FEATURED_ART_RATIO).clip(LittleStoryTheme.shapes.medium)) {
+        Box(
+            Modifier
+                .width(
+                    LittleStoryTheme.dimens.featuredArtWidth,
+                ).aspectRatio(FEATURED_ART_RATIO)
+                .clip(LittleStoryTheme.shapes.medium),
+        ) {
             StoryArt(gradient, motif)
         }
     }

@@ -113,14 +113,6 @@ class DiscoverViewModel
         ): DiscoverUiState {
             val names = catalogue.categoryNames
             val query = rawQuery.trim()
-            val filters =
-                AppConfig.Discover.filterIds.mapNotNull { id ->
-                    if (id == AppConfig.Discover.ALL_ID) {
-                        FilterChipUi(id, UiText.Res(R.string.discover_filter_all))
-                    } else {
-                        names[id]?.let { FilterChipUi(id, UiText.Dynamic(it)) }
-                    }
-                }
             val matches =
                 catalogue.stories.filter { story ->
                     (selected == AppConfig.Discover.ALL_ID || story.belongsTo(selected)) &&
@@ -128,21 +120,12 @@ class DiscoverViewModel
                 }
             val unfiltered = selected == AppConfig.Discover.ALL_ID && query.isEmpty()
             val results = if (unfiltered) matches.take(AppConfig.Discover.POPULAR_COUNT) else matches
-            val featuredStory =
-                catalogue.stories.firstOrNull { it.id == AppConfig.Discover.FEATURED_STORY_ID }
-                    ?: catalogue.stories.firstOrNull()
             return DiscoverUiState(
                 query = rawQuery,
                 selectedFilter = selected,
-                filters = filters,
-                featured =
-                    featuredStory?.takeIf { query.isEmpty() }?.let { FeaturedUi(it.toItem(names, favouriteIds), it.synopsis) },
-                sectionTitle =
-                    when {
-                        query.isNotEmpty() -> UiText.Res(R.string.discover_results, listOf(query))
-                        !unfiltered -> UiText.Dynamic(names[selected].orEmpty())
-                        else -> UiText.Res(R.string.discover_popular)
-                    },
+                filters = filterChips(names),
+                featured = if (query.isEmpty()) featured(catalogue, favouriteIds) else null,
+                sectionTitle = sectionTitle(query, unfiltered, names[selected].orEmpty()),
                 results = results.map { it.toItem(names, favouriteIds) },
                 showViewAll = query.isEmpty() && results.isNotEmpty(),
                 bedtime =
@@ -155,6 +138,29 @@ class DiscoverViewModel
                     },
             )
         }
+
+        private fun filterChips(names: Map<String, String>): List<FilterChipUi> =
+            AppConfig.Discover.filterIds.mapNotNull { id ->
+                if (id == AppConfig.Discover.ALL_ID) {
+                    FilterChipUi(id, UiText.Res(R.string.discover_filter_all))
+                } else {
+                    names[id]?.let { FilterChipUi(id, UiText.Dynamic(it)) }
+                }
+            }
+
+        private fun featured(catalogue: Catalogue, favouriteIds: Set<String>): FeaturedUi? {
+            val story =
+                catalogue.stories.firstOrNull { it.id == AppConfig.Discover.FEATURED_STORY_ID }
+                    ?: catalogue.stories.firstOrNull()
+            return story?.let { FeaturedUi(it.toItem(catalogue.categoryNames, favouriteIds), it.synopsis) }
+        }
+
+        private fun sectionTitle(query: String, unfiltered: Boolean, categoryName: String): UiText =
+            when {
+                query.isNotEmpty() -> UiText.Res(R.string.discover_results, listOf(query))
+                !unfiltered -> UiText.Dynamic(categoryName)
+                else -> UiText.Res(R.string.discover_popular)
+            }
     }
 
 /** Free text, trimmed and case-insensitive for the content locale, over title, synopsis and category name. */

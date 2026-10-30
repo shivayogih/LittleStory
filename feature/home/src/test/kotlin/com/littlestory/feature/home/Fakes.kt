@@ -66,7 +66,13 @@ class FakeCatalog(
 
     override fun stories(languageTag: String): Flow<List<Story>> = MutableStateFlow(stories)
 
-    override fun story(id: String, languageTag: String): Flow<Story?> = MutableStateFlow(stories.firstOrNull { it.id == id })
+    override fun story(id: String, languageTag: String): Flow<Story?> =
+        MutableStateFlow(
+            stories.firstOrNull {
+                it.id ==
+                    id
+            },
+        )
 }
 
 class FakeFavourites : FavouritesRepository {

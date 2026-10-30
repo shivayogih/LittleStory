@@ -111,5 +111,11 @@ flowchart TD
 - Routes are `@Serializable` objects/classes in each feature's `navigation` package; `:app` `AppNavHost` is the only place that connects them. Only Onboarding, Setup and Home are registered so far; the other routes exist for later tickets.
 - SCR-19 (splash) is the system SplashScreen API, held until the first-run flag is read (`AppViewModel.startState`), so there is no in-app splash route. Its background is the night colour, defined once in `:app` `colors.xml` because the splash theme cannot read Compose tokens.
 - First run: Onboarding → Setup → Home with Onboarding popped inclusive. Setup opened later returns with `popBackStack()`.
-- Bottom navigation is not wired yet: Home has no tabs until the P4 tickets add Discover, Create and Library.
 - Setup omits the parent name field (decision D14) and the avatar add tile; both are noted in `docs/project-management/implementation-status.md`.
+
+## Implementation notes (P4)
+
+- Registered now: Home, Discover, Category (`categoryId`, or `all` for the whole catalogue) and Story Detail (`storyId`). Screens read their route arguments from `SavedStateHandle` by name.
+- Bottom navigation is drawn by `AppNavHost` only while Home or Discover is on top; Category and Story Detail cover it. Tab switches use `popUpTo<HomeRoute>` with `saveState`/`restoreState` and `launchSingleTop`.
+- Create, My Stories and Profile tabs are visible but do nothing until their milestones register those routes. Home's bell, avatar, Create and Resume actions, and Story Detail's Listen and Read, are likewise unconnected for now.
+- Search text, the active chip and the sort order live in `SavedStateHandle`, so they survive rotation and process death.

@@ -29,7 +29,10 @@ class CatalogRepositoryImpl(
 ) : CatalogRepository {
     private val cache = ConcurrentHashMap<String, Catalogue>()
 
-    override fun categories(languageTag: String): Flow<List<StoryCategory>> = catalogue(languageTag).map { it.categories }
+    override fun categories(languageTag: String): Flow<List<StoryCategory>> =
+        catalogue(
+            languageTag,
+        ).map { it.categories }
 
     override fun stories(languageTag: String): Flow<List<Story>> = catalogue(languageTag).map { it.stories }
 
@@ -41,7 +44,7 @@ class CatalogRepositoryImpl(
             .flowOn(dispatcher)
 
     private fun load(language: String): Catalogue {
-        val base = parse<StoriesFile>("stories_${FALLBACK}.json")?.stories.orEmpty()
+        val base = parse<StoriesFile>("stories_$FALLBACK.json")?.stories.orEmpty()
         val translated =
             if (language == FALLBACK) {
                 emptyMap()
@@ -51,7 +54,7 @@ class CatalogRepositoryImpl(
         val stories = base.map { resolveStory(it, translated[it.id], language) }
 
         val baseCategories =
-            parse<CategoriesFile>("categories_${FALLBACK}.json")?.categories.orEmpty()
+            parse<CategoriesFile>("categories_$FALLBACK.json")?.categories.orEmpty()
         val translatedCategories =
             if (language == FALLBACK) {
                 emptyMap()

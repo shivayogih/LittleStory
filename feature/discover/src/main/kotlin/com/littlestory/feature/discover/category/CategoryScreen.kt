@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -77,7 +77,10 @@ fun CategoryScreen(
                     )
                     val labels = state.sortOptions.map { it.label.asString() }
                     LittleStorySelect(
-                        selected = labels.getOrElse(state.sortOptions.indexOfFirst { it.id == state.selectedSort }) { "" },
+                        selected =
+                            labels.getOrElse(
+                                state.sortOptions.indexOfFirst { it.id == state.selectedSort },
+                            ) { "" },
                         options = labels,
                         onSelect = { onSortSelected(state.sortOptions[it].id) },
                         label = stringResource(R.string.category_sort_label),
@@ -103,7 +106,11 @@ fun CategoryScreen(
                     modifier = gutter.testTag(CategoryTags.story(item.id)),
                 )
             }
-            item { Box(Modifier.windowInsetsPadding(WindowInsets.navigationBars).padding(bottom = spacing.screenBottom)) }
+            item {
+                Box(
+                    Modifier.windowInsetsPadding(WindowInsets.navigationBars).padding(bottom = spacing.screenBottom),
+                )
+            }
         }
     }
 }

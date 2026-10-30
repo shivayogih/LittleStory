@@ -100,7 +100,12 @@ class HomeViewModel
                 progressRows
                     .filter { it.listenFraction > 0f && it.listenFraction < 1f }
                     .sortedByDescending { it.updatedAtEpochMs }
-                    .firstNotNullOfOrNull { row -> catalogue.stories.firstOrNull { it.id == row.storyId }?.let { it to row } }
+                    .firstNotNullOfOrNull { row ->
+                        catalogue.stories.firstOrNull { it.id == row.storyId }?.let {
+                            it to
+                                row
+                        }
+                    }
             val interests = child?.interestIds.orEmpty()
             val ranked =
                 catalogue.stories.sortedBy { story -> if (interests.any(story::belongsTo)) 0 else 1 }

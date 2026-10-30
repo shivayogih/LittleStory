@@ -90,7 +90,10 @@ class ScreensTest {
     fun categoryRowsOpenTheStoryAndSortIsLabelled() {
         rule.setContent {
             LittleStoryTheme {
-                CategoryScreen(categoryState, { calls += "back" }, { calls += "story:$it" }, { calls += "sort:$it" }, { calls += "fav:$it" })
+                CategoryScreen(categoryState, { calls += "back" }, { calls += "story:$it" }, { calls += "sort:$it" }, {
+                    calls +=
+                        "fav:$it"
+                })
             }
         }
         rule.onNodeWithTag(CategoryTags.HERO).assertIsDisplayed()

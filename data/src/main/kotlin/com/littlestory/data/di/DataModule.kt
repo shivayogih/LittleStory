@@ -26,9 +26,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import java.io.File
 import java.util.UUID
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 private const val DATASTORE_FILE = "littlestory_prefs.preferences_pb"
@@ -93,8 +93,13 @@ object DataModule {
         CatalogRepositoryImpl(
             source =
                 MockContentSource { fileName ->
-                    runCatching { context.assets.open("$MOCK_ASSET_DIR/$fileName").bufferedReader().use { it.readText() } }
-                        .getOrNull()
+                    runCatching {
+                        context.assets
+                            .open(
+                                "$MOCK_ASSET_DIR/$fileName",
+                            ).bufferedReader()
+                            .use { it.readText() }
+                    }.getOrNull()
                 },
             dispatcher = Dispatchers.IO,
         )

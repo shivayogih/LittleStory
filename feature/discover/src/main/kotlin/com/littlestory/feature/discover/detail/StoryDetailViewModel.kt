@@ -96,7 +96,11 @@ class StoryDetailViewModel
                             )
                         }
                     }
-                }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(SUBSCRIPTION_TIMEOUT_MS), StoryDetailUiState.Loading)
+                }.stateIn(
+                    viewModelScope,
+                    SharingStarted.WhileSubscribed(SUBSCRIPTION_TIMEOUT_MS),
+                    StoryDetailUiState.Loading,
+                )
 
         fun onFavouriteClick() {
             viewModelScope.launch {

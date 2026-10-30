@@ -9,7 +9,6 @@ import com.littlestory.feature.discover.detail.StoryDetailUiState
 import com.littlestory.feature.discover.detail.StoryDetailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
@@ -62,7 +61,6 @@ class CategoryAndDetailViewModelTest {
             downloads,
         )
 
-
     @Test
     fun categoryListsPrimaryAndTaggedStoriesInRecommendedOrder() =
         runTest {
@@ -83,10 +81,18 @@ class CategoryAndDetailViewModelTest {
             advanceUntilIdle()
             vm.onSortSelected("shortest")
             advanceUntilIdle()
-            assertEquals(listOf("short", "other", "new", "long"), vm.state.value.stories.map { it.id })
+            assertEquals(
+                listOf("short", "other", "new", "long"),
+                vm.state.value.stories
+                    .map { it.id },
+            )
             vm.onSortSelected("newest")
             advanceUntilIdle()
-            assertEquals(listOf("new", "long", "other", "short"), vm.state.value.stories.map { it.id })
+            assertEquals(
+                listOf("new", "long", "other", "short"),
+                vm.state.value.stories
+                    .map { it.id },
+            )
         }
 
     @Test
@@ -106,8 +112,16 @@ class CategoryAndDetailViewModelTest {
             val vm = category("space")
             backgroundScope.launch { vm.state.collect {} }
             advanceUntilIdle()
-            assertTrue(vm.state.value.stories.first { it.id == "short" }.downloaded)
-            assertFalse(vm.state.value.stories.first { it.id == "long" }.downloaded)
+            assertTrue(
+                vm.state.value.stories
+                    .first { it.id == "short" }
+                    .downloaded,
+            )
+            assertFalse(
+                vm.state.value.stories
+                    .first { it.id == "long" }
+                    .downloaded,
+            )
         }
 
     @Test

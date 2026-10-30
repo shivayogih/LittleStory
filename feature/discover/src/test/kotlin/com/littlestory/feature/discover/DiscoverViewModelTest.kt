@@ -31,7 +31,13 @@ class DiscoverViewModelTest {
 
     private val stories =
         listOf(
-            story("s_elephant", "friendship", tags = listOf("animals"), title = "The Little Elephant", synopsis = "Mangoes"),
+            story(
+                "s_elephant",
+                "friendship",
+                tags = listOf("animals"),
+                title = "The Little Elephant",
+                synopsis = "Mangoes",
+            ),
             story("s_cricket", "adventure", title = "Magical Cricket Bat", synopsis = "A glowing bat"),
             story("s_moon", "bedtime", title = "Moonlit Garden", synopsis = "Sleepy flowers"),
             story("s_kn", "space", title = "ಅನನ್ಯಾಳ ಪ್ರಯಾಣ", synopsis = "ರಾಕೆಟ್"),
@@ -39,11 +45,19 @@ class DiscoverViewModelTest {
             story("s_b", "space"),
         )
     private val categories =
-        listOf("friendship", "adventure", "bedtime", "space", "animals").map { StoryCategory(it, it.replaceFirstChar(Char::uppercase), "d", 1) }
+        listOf("friendship", "adventure", "bedtime", "space", "animals").map {
+            StoryCategory(it, it.replaceFirstChar(Char::uppercase), "d", 1)
+        }
     private val favourites = FakeFavourites()
 
     private fun viewModel(language: String = "en", child: com.littlestory.domain.model.ChildProfile? = sampleChild) =
-        DiscoverViewModel(SavedStateHandle(), FakeProfiles(child), FakePreferences(language), FakeCatalog(stories, categories), favourites)
+        DiscoverViewModel(
+            SavedStateHandle(),
+            FakeProfiles(child),
+            FakePreferences(language),
+            FakeCatalog(stories, categories),
+            favourites,
+        )
 
     private fun TestScope.collected(vm: DiscoverViewModel): () -> DiscoverUiState {
         backgroundScope.launch { vm.state.collect {} }

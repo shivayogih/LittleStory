@@ -153,7 +153,11 @@ private fun Header(state: HomeUiState, actions: HomeActions) {
                 .testTag(HomeTags.AVATAR),
             contentAlignment = Alignment.Center,
         ) {
-            Avatar(tone = state.avatarTone ?: 0, selected = false, modifier = Modifier.size(LittleStoryTheme.dimens.homeAvatarSize))
+            Avatar(
+                tone = state.avatarTone ?: 0,
+                selected = false,
+                modifier = Modifier.size(LittleStoryTheme.dimens.homeAvatarSize),
+            )
         }
     }
 }
@@ -289,6 +293,7 @@ private fun CategoryTile(category: CategoryTileUi, onClick: () -> Unit) {
 @Composable
 private fun tileStyleFor(categoryId: String): Pair<Int, Color> {
     val tiles = LittleStoryTheme.colors.categoryTiles
+
     @DrawableRes val book = LittleStoryIcons.Book
     return when (categoryId) {
         "bedtime" -> LittleStoryIcons.Moon to tiles.lavender
@@ -375,4 +380,3 @@ private fun CultureBanner(onClick: () -> Unit) {
 }
 
 private const val CULTURE_TEXT_FRACTION = 0.72f
-

@@ -23,6 +23,7 @@ private const val STAR_BIG = 0.06f
 private const val STAR_SMALL = 0.03f
 private const val CHILD_CENTER_X = 0.55f
 private const val CHILD_BASE = 1f
+
 // The child is sized from the canvas width so it keeps its proportions when the card grows taller.
 private const val SHIRT_WIDTH = 0.72f
 private const val SHIRT_HEIGHT = 0.5f
@@ -54,7 +55,11 @@ fun HomeHeroScene(modifier: Modifier = Modifier) {
             center = moonCenter - Offset(w * CUT_OFFSET, w * CUT_OFFSET),
         )
         drawStar(colors.highlight, Offset(w * MOON_CENTER_X - w * MOON_RADIUS, h * MOON_CENTER_Y), w * STAR_BIG)
-        drawStar(colors.moon, Offset(w * (MOON_CENTER_X + MOON_RADIUS), h * MOON_CENTER_Y + w * MOON_RADIUS), w * STAR_SMALL)
+        drawStar(
+            colors.moon,
+            Offset(w * (MOON_CENTER_X + MOON_RADIUS), h * MOON_CENTER_Y + w * MOON_RADIUS),
+            w * STAR_SMALL,
+        )
 
         val cx = w * CHILD_CENTER_X
         val shirtTop = h * CHILD_BASE - w * SHIRT_HEIGHT
