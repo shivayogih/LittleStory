@@ -15,7 +15,7 @@ Out of scope for MVP: real backend, AI, auth, payments, TTS, push notifications,
 | Level | Entry | Exit |
 | --- | --- | --- |
 | Ticket | Ticket meets Definition of Ready; acceptance criteria approved | Its required tests pass in CI; EN + KN screenshots reviewed; no new Lint errors |
-| Phase (P3–P6) | Previous phase merged to `development` | Journey(s) for the phase pass in EN and KN; no open Blocker/High defects |
+| Phase (P3–P6) | Previous phase merged to `main` | Journey(s) for the phase pass in EN and KN; no open Blocker/High defects |
 | P7 hardening | P3–P6 merged | All Must test cases pass; accessibility audit (LS-123) and security review (LS-126) complete; native Kannada review (LS-047) signed off or explicitly deferred by owner |
 | Release | P7 exit | Release checklist complete; owner's Approval F |
 

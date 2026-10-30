@@ -48,5 +48,5 @@ flowchart LR
 
 ## Blocking prerequisites
 
-- **D2 repository hygiene:** merge PR #1, set the default branch back to `main`, create `development` from `main` (R-22).
+- **D2 repository hygiene:** `main` is the single trunk. Merge the milestone PR into `main`, set `main` as the default branch and delete the old `claude/*` branches (R-22).
 - **D3 build environment:** allow `dl.google.com` in the cloud environment and/or add GitHub Actions CI before any P2 PR can show a passing build (R-21, ADR-017).

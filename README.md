@@ -6,16 +6,25 @@ LittleStory is a native Android storytelling app for children aged 3–12 and th
 
 The MVP is built with Kotlin and Jetpack Compose, ships in **English and ಕನ್ನಡ (Kannada)**, and uses deterministic local mock data. AI story generation, narration, downloads and subscriptions are simulations in the MVP and are labelled as such.
 
+## Quick start
+
+You need **Git**, **Android Studio** (current stable) and an internet connection. Nothing else is installed by hand.
+
+1. `git clone https://github.com/shivayogih/LittleStory.git`
+2. Open the folder in Android Studio and wait for the Gradle sync. Studio writes `local.properties` (your SDK path) itself and offers to install any missing SDK package; accept.
+3. Pick an emulator or a phone and press **Run**.
+
+Command line (macOS/Linux `./gradlew`, Windows `gradlew.bat`): set `ANDROID_HOME` to your Android SDK folder, then `./gradlew assembleDebug` builds the debug APK and `./gradlew check` runs every test and quality check. Needs any JDK 17 or newer on the PATH; the build downloads JDK 21 for itself. Details and troubleshooting: [docs/release/build-and-run.md](docs/release/build-and-run.md).
+
 ## Status
 
 | Phase | State |
 |---|---|
 | P0 Discovery | Done (29 Oct 2026) |
-| P1 Requirements, architecture, backlog, prompts | Merged (PR #2) |
-| P2 Foundation (M2 walking skeleton) | Implemented on a branch, awaiting owner review: Gradle baseline, 14 modules, design tokens, EN/KN localization base, quality checks, CI |
-| P3 onwards | Not started |
-
-The app currently shows one tokenised screen with the English / ಕನ್ನಡ language switch. Build and run: [docs/release/build-and-run.md](docs/release/build-and-run.md).
+| P1 Requirements, architecture, backlog, prompts | Merged |
+| P2 Foundation (Gradle baseline, 14 modules, design system, EN/KN base, persistence, quality checks, CI) | Merged / in review |
+| P3 Navigation, onboarding, child setup | In review (first run: onboarding, setup, Home placeholder) |
+| P4 onwards | Not started |
 
 ## Repository map
 
@@ -29,7 +38,7 @@ The app currently shows one tokenised screen with the English / ಕನ್ನಡ 
 
 ## Ways of working
 
-- Every change is a ticket (`LS-###`) on its own branch `feature/LS-###-slug`, with a PR to `development`.
+- Every change is a ticket (`LS-###`) on its own branch `feature/LS-###-slug`, with a PR to `main`.
 - The project owner reviews and merges every PR and authorizes every release.
 - No hardcoded text, colours, dimensions or configuration: see [CLAUDE.md](CLAUDE.md) and [docs/architecture/how-to-change.md](docs/architecture/how-to-change.md).
-- Build and run instructions for Windows and macOS will live in [docs/release/build-and-run.md](docs/release/build-and-run.md) once the project skeleton exists (LS-030).
+- Build and run: see Quick start above and [docs/release/build-and-run.md](docs/release/build-and-run.md).

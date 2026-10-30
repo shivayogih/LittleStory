@@ -20,7 +20,7 @@ A decision moves to **Approved** only when the project owner says so in the proj
 | # | Decision | Recommendation | Related | Status |
 |---|---|---|---|---|
 | D1 | Approval B for P1 documentation | Approve | LS-003–008 | Approved 29 Oct 2026 |
-| D2 | Merge PR #1, set default branch to `main`, create `development` | Approve; owner performs the merge and settings change | R-22 | Open |
+| D2 | Single trunk: the default branch is `main` and all PRs target it; no `development` branch (owner chose this on 2026-10-30). Owner merges the PR that brings the project into `main`, sets `main` as default and deletes the old `claude/*` branches | Decided; owner performs the merge and settings change | R-22 | Decided (branch rule); settings change pending |
 | D3 | Where Android builds and tests run | Allow `dl.google.com` in the cloud environment and run GitHub Actions on every PR | ADR-017, R-21 | Open |
 | D4 | Module structure | 7 feature modules | ADR-002 | Open |
 | D5 | minSdk | 26 | ADR-016 | Open |

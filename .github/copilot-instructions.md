@@ -64,7 +64,7 @@ No magic numbers in feature code. A value a platform API forces you to inline go
 ## Working on a ticket
 
 1. Read `prompts/tickets/LS-###.md` and confirm dependencies are merged and Approval C covers it.
-2. Branch `feature/LS-###-slug` (or `fix/…`) from `development`; PRs target `development`.
+2. Branch from `main`; PRs target `main` (single trunk, no `development` branch). Names: `feature/LS-###-slug`, `fix/LS-###-slug`, `docs/slug`, `chore/slug`, and `milestone/mN-slug` when one PR bundles several tickets. Never use tool-generated names such as `claude/…`.
 3. Stay inside the ticket's allowed files; one owner for shared files (see `docs/project-management/dependency-map.md`).
 4. Add tests with the change; select UI nodes by test tag or resource, never English text.
 5. Verify with `./gradlew` (macOS/Linux) or `gradlew.bat` (Windows): build, `test`, `lint`, translation check, screenshots.

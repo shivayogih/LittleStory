@@ -22,7 +22,7 @@ Passing Lint does not make the app secure (brief §18). Items are checked by a h
 - [ ] Secret scanning enabled (GitHub secret scanning / push protection on the public repo)
 - [ ] Dependency vulnerability alerts (Dependabot) enabled
 - [ ] CI uses no long-lived credentials; signing keys never stored in the repository
-- [ ] Branch protection on `main` and `development` (owner to confirm; not verifiable in P0)
+- [ ] Branch protection on `main` (owner to confirm; not verifiable in P0)
 - [ ] Actions pinned to major versions or SHAs; `permissions:` set to least privilege
 
 ## 3. App configuration (verify at P7)
