@@ -4,4 +4,21 @@
     <string name="home_greeting">ಶುಭ ಸಂಜೆ</string>
     <string name="home_title_for_child">%1$s ಅವರಿಗಾಗಿ ಕಥೆಗಳು</string>
     <string name="home_title_generic">ನಿಮಗಾಗಿ ಕಥೆಗಳು</string>
+    <string name="home_notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="home_profiles">ಮಕ್ಕಳ ಪ್ರೊಫೈಲ್‌ಗಳು</string>
+    <string name="home_hero_kicker">ಇಂದು ರಾತ್ರಿಯ ಸಾಹಸ</string>
+    <string name="home_hero_title">ಇಂದು ರಾತ್ರಿ ಏನು ಬೇಕಾದರೂ ಸಾಧ್ಯ.</string>
+    <string name="home_hero_body">ಇಂದಿನ ಪುಟ್ಟ ಕ್ಷಣಗಳನ್ನು ಮಾಯಾ ಸಾಹಸಗಳನ್ನಾಗಿ ಮಾಡಿ.</string>
+    <string name="home_hero_cta">ಕಥೆ ರಚಿಸಿ</string>
+    <string name="home_continue_title">ಕೇಳುವುದನ್ನು ಮುಂದುವರಿಸಿ</string>
+    <string name="home_continue_eyebrow">%1$d ನಿಮಿಷ · %2$d%% ಪೂರ್ಣ</string>
+    <string name="home_continue_resume">ಕಥೆ ಮುಂದುವರಿಸಿ</string>
+    <string name="home_explore_title">ಕಥೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ</string>
+    <string name="home_see_all">ಎಲ್ಲವನ್ನೂ ನೋಡಿ</string>
+    <string name="home_made_for_child">%1$s ಅವರಿಗಾಗಿ ಮಾಡಿದ್ದು</string>
+    <string name="home_made_for_generic">ನಿಮಗಾಗಿ ಆಯ್ದವು</string>
+    <string name="home_culture_kicker">ಅದ್ಭುತದ ಬೇರುಗಳು</string>
+    <string name="home_culture_title">ಭಾರತದ ಪ್ರತಿ ಮೂಲೆಯ ಕಥೆಗಳು</string>
+    <string name="home_culture_body">ಕಾಲಾತೀತ ಜ್ಞಾನ, ಕುಟುಂಬ ಸಂಪ್ರದಾಯಗಳು ಮತ್ತು ಸಂತಸದ ಹಬ್ಬಗಳು.</string>
+    <string name="home_culture_link">ಭಾರತೀಯ ಕಥೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ</string>
 </resources>

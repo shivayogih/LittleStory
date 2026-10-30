@@ -67,6 +67,13 @@ data class LittleStoryDimens(
     val pagerDotActiveWidth: Dp = 24.dp,
     /** Height of the night illustration in the component catalogue (debug only). */
     val catalogSceneHeight: Dp = 260.dp,
+    val categoryTileSize: Dp = 58.dp,
+    val categoryTileItemWidth: Dp = 72.dp,
+    val heroSceneWidth: Dp = 130.dp,
+    val heroMinHeight: Dp = 240.dp,
+    val cultureArtWidth: Dp = 96.dp,
+    val cultureArtHeight: Dp = 84.dp,
+    val homeAvatarSize: Dp = 42.dp,
     /** Disabled controls are drawn at 45 % opacity. */
     val disabledAlpha: Float = 0.45f,
 )

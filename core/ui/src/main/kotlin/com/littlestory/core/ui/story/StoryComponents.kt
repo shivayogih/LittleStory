@@ -90,6 +90,7 @@ fun ListStoryRow(
     motif: StoryArtMotif,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    offlineLabel: String? = null,
     trailing: @Composable () -> Unit = {},
 ) {
     val dimens = LittleStoryTheme.dimens
@@ -110,6 +111,7 @@ fun ListStoryRow(
             Text(eyebrow, style = LittleStoryTheme.typography.eyebrow, color = colors.primaryVariantLabel)
             Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
             Text(meta, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
+            if (offlineLabel != null) OfflineBadge(offlineLabel)
         }
         trailing()
     }

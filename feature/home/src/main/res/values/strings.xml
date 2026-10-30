@@ -4,4 +4,21 @@
     <string name="home_greeting">Good evening</string>
     <string name="home_title_for_child">Stories for %1$s</string>
     <string name="home_title_generic">Stories for you</string>
+    <string name="home_notifications">Notifications</string>
+    <string name="home_profiles">Child profiles</string>
+    <string name="home_hero_kicker">TONIGHT’S ADVENTURE</string>
+    <string name="home_hero_title">Tonight, anything is possible.</string>
+    <string name="home_hero_body">Turn today’s little moments into magical adventures.</string>
+    <string name="home_hero_cta">Create a Story</string>
+    <string name="home_continue_title">Continue listening</string>
+    <string name="home_continue_eyebrow">%1$d MIN · %2$d%% COMPLETE</string>
+    <string name="home_continue_resume">Resume story</string>
+    <string name="home_explore_title">Explore stories</string>
+    <string name="home_see_all">See all</string>
+    <string name="home_made_for_child">Made for %1$s</string>
+    <string name="home_made_for_generic">Picked for you</string>
+    <string name="home_culture_kicker">ROOTED IN WONDER</string>
+    <string name="home_culture_title">Stories from every corner of India</string>
+    <string name="home_culture_body">Timeless wisdom, family traditions and joyful festivals.</string>
+    <string name="home_culture_link">Explore Indian stories</string>
 </resources>

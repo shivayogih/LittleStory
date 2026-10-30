@@ -77,6 +77,15 @@ internal object Palette {
     val ElephantLeg = Color(0xFF81779D)
     val CricketBat = Color(0xFFD9B885)
     val ShirtGold = Color(0xFFE2AA55)
+
+    // Sampled from the Home screenshot (05-home.jpg); not in design-tokens.json (figma-audit A6).
+    val Terracotta = Color(0xFFC96F52)
+    val HeroHill = Color(0xFF45348A)
+    val HeroShirt = Color(0xFFC77070)
+    val TilePeach = Color(0xFFFBE3D3)
+    val TileMint = Color(0xFFD9EFE3)
+    val TilePink = Color(0xFFFFE3EC)
+    val TileButter = Color(0xFFFCEBBE)
 }
 
 /** A two-stop gradient used for story covers. */
@@ -106,6 +115,19 @@ data class IllustrationColors(
     val elephantLeg: Color,
     val cricketBat: Color,
     val shirtGold: Color,
+    val terracotta: Color,
+    val heroHill: Color,
+    val heroShirt: Color,
+)
+
+/** Pastel backgrounds of the Home "Explore stories" icon tiles. */
+@Immutable
+data class CategoryTileColors(
+    val lavender: Color,
+    val peach: Color,
+    val mint: Color,
+    val pink: Color,
+    val butter: Color,
 )
 
 /** Semantic colour roles (docs/design/design-system.md §3). Feature code reads only these. */
@@ -143,6 +165,7 @@ data class LittleStoryColors(
     val successRibbon: Color,
     val storyArt: StoryArtColors,
     val illustration: IllustrationColors,
+    val categoryTiles: CategoryTileColors,
 )
 
 internal val LightLittleStoryColors =
@@ -199,5 +222,16 @@ internal val LightLittleStoryColors =
                 elephantLeg = Palette.ElephantLeg,
                 cricketBat = Palette.CricketBat,
                 shirtGold = Palette.ShirtGold,
+                terracotta = Palette.Terracotta,
+                heroHill = Palette.HeroHill,
+                heroShirt = Palette.HeroShirt,
+            ),
+        categoryTiles =
+            CategoryTileColors(
+                lavender = Palette.SoftLavender,
+                peach = Palette.TilePeach,
+                mint = Palette.TileMint,
+                pink = Palette.TilePink,
+                butter = Palette.TileButter,
             ),
     )

@@ -6,6 +6,7 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.littlestory.feature.home.home.HomeActions
 import com.littlestory.feature.home.navigation.HomeRoute
 import com.littlestory.feature.home.navigation.homeScreen
 import com.littlestory.feature.onboarding.navigation.OnboardingRoute
@@ -26,7 +27,7 @@ fun AppNavHost(
     NavHost(navController = navController, startDestination = startDestination, modifier = modifier) {
         onboardingScreen(onFinished = { navController.navigate(SetupRoute()) })
         setupScreen(onDone = { navController.finishSetup() })
-        homeScreen()
+        homeScreen(HomeActions())
     }
 }
 
