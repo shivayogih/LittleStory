@@ -97,7 +97,7 @@ internal fun SettingsRow(
                 contentAlignment = Alignment.Center,
             ) { LittleStoryIcon(icon, contentDescription = null, tint = colors.primary) }
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xxs)) {
-                Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+                Text(title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
                 Text(subtitle, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
             }
             if (onClick != null && toggle == null) {
@@ -131,7 +131,7 @@ internal fun SettingsChoiceRow(label: String, selected: Boolean, tag: String, on
     ) {
         Text(
             label,
-            style = LittleStoryTheme.typography.bodyLarge,
+            style = LittleStoryTheme.typography.itemTitle,
             color = colors.textPrimary,
             modifier = Modifier.weight(1f),
         )
@@ -147,7 +147,7 @@ internal fun SettingsParagraph(title: String, body: String, modifier: Modifier =
         modifier.fillMaxWidth().padding(LittleStoryTheme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs),
     ) {
-        Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+        Text(title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
         Text(body, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
     }
 }

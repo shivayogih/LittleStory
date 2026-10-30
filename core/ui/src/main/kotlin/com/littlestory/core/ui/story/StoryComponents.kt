@@ -69,7 +69,7 @@ fun StoryCard(
         Column {
             Text(
                 title,
-                style = LittleStoryTheme.typography.bodyLarge,
+                style = LittleStoryTheme.typography.itemTitle,
                 color = colors.textPrimary,
                 maxLines = TITLE_MAX_LINES,
                 overflow = TextOverflow.Ellipsis,
@@ -113,8 +113,14 @@ fun ListStoryRow(
             Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs),
         ) {
-            Text(eyebrow, style = LittleStoryTheme.typography.eyebrow, color = colors.primaryVariantLabel)
-            Text(title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+            // Latin eyebrows are upper case in the design; Kannada has no case, so the flag is off there.
+            val typography = LittleStoryTheme.typography
+            Text(
+                if (typography.uppercaseEyebrows) eyebrow.uppercase() else eyebrow,
+                style = typography.eyebrow,
+                color = colors.primaryVariantLabel,
+            )
+            Text(title, style = typography.itemTitle, color = colors.textPrimary)
             Text(meta, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
             if (offlineLabel != null) OfflineBadge(offlineLabel)
         }

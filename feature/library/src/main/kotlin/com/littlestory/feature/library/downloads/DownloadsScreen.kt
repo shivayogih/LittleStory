@@ -169,7 +169,7 @@ private fun DownloadRow(item: DownloadItem, onRemove: (String) -> Unit) {
                     color = colors.success,
                 )
             }
-            Text(item.title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+            Text(item.title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
             Text(
                 stringResource(R.string.downloads_size, mb),
                 style = LittleStoryTheme.typography.chip,

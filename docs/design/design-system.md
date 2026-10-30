@@ -79,6 +79,7 @@ Fonts are bundled in `core/designsystem/src/main/res/font` as variable fonts fro
 | `topBarTitle` | 17 | – | Manrope 800 |
 | `brandName` | 18 | −0.5 | Manrope 800 |
 | `bodyLarge` | 15 / 1.55 | – | DM Sans 400 |
+| `itemTitle` | 15 / 1.35 (Kannada 1.6) | – | DM Sans 600; titles of cards, list rows and settings rows. Not in design-tokens.json: read from the screenshots in LS-124 |
 | `readerBody` | 16 / 1.95, user scale 0.9–1.3 | – | Manrope 500 |
 | `button` | per component | – | DM Sans 700 |
 | `chip` | 12 | – | DM Sans 600 |

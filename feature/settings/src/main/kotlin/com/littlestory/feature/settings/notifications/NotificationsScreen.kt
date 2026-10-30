@@ -174,7 +174,7 @@ private fun NotificationRow(item: NotificationItem, onClick: () -> Unit) {
             LittleStoryIcon(icon, contentDescription = null, tint = colors.primary)
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xxs)) {
-            Text(item.title, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+            Text(item.title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
             Text(item.body, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
         }
         if (!item.read) {

@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.littlestory.core.designsystem.brand.BrandMark
@@ -82,20 +83,29 @@ fun OnboardingScreen(
                     .windowInsetsPadding(WindowInsets.navigationBars)
                     .padding(horizontal = spacing.screenHorizontal, vertical = spacing.xxl),
                 verticalArrangement = Arrangement.spacedBy(spacing.md),
+                // The design centres the slide text, dots and button on the sheet.
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 val eyebrow = stringResource(R.string.onboarding_eyebrow)
                 Text(
                     text = if (typography.uppercaseEyebrows) eyebrow.uppercase() else eyebrow,
                     style = typography.eyebrow,
                     color = colors.primaryVariantLabel,
+                    textAlign = TextAlign.Center,
                 )
                 Text(
                     state.current.title.asString(),
                     style = typography.displayOnboarding,
                     color = colors.textPrimary,
+                    textAlign = TextAlign.Center,
                     modifier = Modifier.testTag(OnboardingTags.TITLE),
                 )
-                Text(state.current.body.asString(), style = typography.bodyLarge, color = colors.textSecondary)
+                Text(
+                    state.current.body.asString(),
+                    style = typography.bodyLarge,
+                    color = colors.textSecondary,
+                    textAlign = TextAlign.Center,
+                )
                 PagerDots(count = state.slides.size, selected = state.page)
                 LittleStoryButton(
                     text = state.current.cta.asString(),

@@ -1,13 +1,9 @@
 package com.littlestory.core.designsystem.brand
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -18,8 +14,10 @@ import androidx.compose.ui.graphics.PathOperation
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import com.littlestory.core.designsystem.R
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
@@ -120,7 +118,10 @@ private fun fourPointStar(center: Offset, radius: Float): Path =
         close()
     }
 
-/** Symbol plus the "LittleStory" wordmark. */
+/**
+ * Symbol plus the "LittleStory" wordmark. When the wordmark does not fit the space it is given
+ * (a long screen title at 200 % font scale), only the symbol shows, so the two never overlap.
+ */
 @Composable
 fun BrandMark(
     modifier: Modifier = Modifier,
@@ -128,15 +129,28 @@ fun BrandMark(
 ) {
     val colors = LittleStoryTheme.colors
     val textColor: Color = if (variant == BrandMarkVariant.Light) colors.onNight else colors.primary
-    Row(modifier, verticalAlignment = Alignment.CenterVertically) {
-        BrandSymbol(variant)
-        Spacer(Modifier.width(MarkWordmarkGap))
-        Text(
-            text = stringResource(R.string.brand_name),
-            style = LittleStoryTheme.typography.brandName,
-            color = textColor,
-            maxLines = 1,
-            softWrap = false,
-        )
+    Layout(
+        content = {
+            BrandSymbol(variant)
+            Text(
+                text = stringResource(R.string.brand_name),
+                style = LittleStoryTheme.typography.brandName,
+                color = textColor,
+                maxLines = 1,
+                softWrap = false,
+            )
+        },
+        modifier = modifier,
+    ) { measurables, constraints ->
+        val symbol = measurables[0].measure(constraints.copy(minWidth = 0, minHeight = 0))
+        val wordmark = measurables[1].measure(Constraints())
+        val gap = MarkWordmarkGap.roundToPx()
+        val showWordmark = symbol.width + gap + wordmark.width <= constraints.maxWidth
+        val width = if (showWordmark) symbol.width + gap + wordmark.width else symbol.width
+        val height = if (showWordmark) maxOf(symbol.height, wordmark.height) else symbol.height
+        layout(width, height) {
+            symbol.place(0, (height - symbol.height) / 2)
+            if (showWordmark) wordmark.place(symbol.width + gap, (height - wordmark.height) / 2)
+        }
     }
 }

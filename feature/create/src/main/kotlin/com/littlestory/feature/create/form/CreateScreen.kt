@@ -244,7 +244,7 @@ private fun PromptCard(state: CreateUiState, onPromptChange: (String) -> Unit, m
             ).padding(spacing.lg),
         verticalArrangement = Arrangement.spacedBy(spacing.sm),
     ) {
-        Text(label, style = LittleStoryTheme.typography.bodyLarge, color = colors.textPrimary)
+        Text(label, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
         BasicTextField(
             value = state.prompt,
             onValueChange = onPromptChange,
@@ -358,7 +358,7 @@ private fun HeroCard(state: CreateUiState, onHeroSelected: (String) -> Unit, mod
                 )
                 Text(
                     pluralStringResource(R.plurals.create_hero_name_age, hero.age, hero.name, hero.age),
-                    style = LittleStoryTheme.typography.bodyLarge,
+                    style = LittleStoryTheme.typography.itemTitle,
                     color = colors.textPrimary,
                 )
             }
