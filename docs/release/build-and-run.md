@@ -34,6 +34,7 @@ Command line instead of Studio: put your SDK path in the `ANDROID_HOME` environm
 | Detekt / ktlint | `gradlew.bat detekt ktlintCheck` (`ktlintFormat` fixes style) | `./gradlew detekt ktlintCheck` |
 | Hardcoding check | `gradlew.bat checkNoHardcoding` | `./gradlew checkNoHardcoding` |
 | Screenshot images (not verified until baselines are approved) | `gradlew.bat recordRoborazziDebug` | `./gradlew recordRoborazziDebug` |
+| Preview screenshot images (experimental, EN/KN) | `gradlew.bat :app:updateDebugScreenshotTestDefaultTestSuite` | `./gradlew :app:updateDebugScreenshotTestDefaultTestSuite` |
 | List tasks | `gradlew.bat tasks` | `./gradlew tasks` |
 | Unit + Robolectric tests | `gradlew.bat test` | `./gradlew test` |
 | Lint | `gradlew.bat lint` | `./gradlew lint` |

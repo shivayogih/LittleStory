@@ -30,3 +30,7 @@ captures/
 
 # Personal Claude Code overrides
 .claude/settings.local.json
+
+# Compose Preview Screenshot Testing references: committed only after the owner approves them
+# (CLAUDE.md: never auto-approve screenshot baselines). Remove this line in the approval PR.
+app/src/screenshotTestDefaultDebug/

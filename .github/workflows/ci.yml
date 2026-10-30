@@ -38,6 +38,12 @@ jobs:
       - name: Verify
         run: ./gradlew check assembleDebug --stacktrace
 
+      # Compose Preview Screenshot Testing (experimental): renders the @PreviewTest images in EN, KN
+      # and KN at 200 % for review. Not a gate until the owner approves reference images.
+      - name: Render preview screenshots
+        if: always()
+        run: ./gradlew :app:updateDebugScreenshotTestDefaultTestSuite --stacktrace
+
       - name: Upload screenshots and reports
         if: always()
         uses: actions/upload-artifact@v7
@@ -47,4 +53,5 @@ jobs:
           path: |
             **/build/reports/**
             **/build/outputs/roborazzi/**
+            app/src/screenshotTestDefaultDebug/reference/**
             **/build/test-results/**

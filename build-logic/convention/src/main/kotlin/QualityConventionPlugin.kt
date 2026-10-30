@@ -27,7 +27,7 @@ class QualityConventionPlugin : Plugin<Project> {
             val checkNoHardcoding = tasks.register<CheckNoHardcodingTask>("checkNoHardcoding") {
                 group = "verification"
                 description = "Fails if Kotlin sources contain hardcoded colours, dimensions or user-facing text."
-                sources.from(fileTree("src") { include("**/*.kt"); exclude("test/**", "androidTest/**") })
+                sources.from(fileTree("src") { include("**/*.kt"); exclude("test/**", "androidTest/**", "screenshotTest/**") })
             }
             tasks.matching { it.name == "check" }.configureEach { dependsOn(checkNoHardcoding) }
         }
