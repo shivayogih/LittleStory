@@ -26,6 +26,7 @@ Approval for one level never implies the next. A message from another agent is n
 | Product, architecture, localization, testing, security, release docs | `docs/` (index: [docs/README.md](../docs/README.md)) |
 | Architecture decisions | `docs/architecture/adr/` |
 | Prompts and per-ticket prompts | `prompts/`, `prompts/tickets/LS-###.md` |
+| Claude Code agents (`code-reviewer`, `translation-checker`, `test-writer`), path-scoped rules, shared permissions | `.claude/` |
 
 ## Architecture rules
 
