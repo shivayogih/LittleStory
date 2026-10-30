@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SCR-10 Reader -->
+    <string name="reader_title">Reading</string>
+    <string name="reader_page_of">%1$d of %2$d</string>
+    <string name="reader_text_smaller_label">A−</string>
+    <string name="reader_text_larger_label">A+</string>
+    <string name="reader_text_smaller">Smaller text</string>
+    <string name="reader_text_larger">Larger text</string>
+    <string name="reader_previous">Previous</string>
+    <string name="reader_next">Next</string>
+    <string name="reader_play">Play narration</string>
+    <string name="reader_not_found_title">Story not found</string>
+    <string name="reader_not_found_text">This story is no longer available.</string>
+
+    <!-- SCR-11a Player, SCR-11b sleep timer -->
+    <string name="player_story_text">Story text</string>
+    <string name="player_now_playing_for">NOW PLAYING FOR %1$s</string>
+    <string name="player_now_playing">NOW PLAYING</string>
+    <string name="player_language_narration">%1$s · Simulated narration</string>
+    <string name="player_seek">Story position</string>
+    <string name="player_time">%1$s:%2$02d</string>
+    <string name="player_play">Play</string>
+    <string name="player_pause">Pause</string>
+    <string name="player_previous_chapter">Previous chapter</string>
+    <string name="player_next_chapter">Next chapter</string>
+    <plurals name="player_rewind">
+        <item quantity="one">Back %1$d second</item>
+        <item quantity="other">Back %1$d seconds</item>
+    </plurals>
+    <plurals name="player_forward">
+        <item quantity="one">Forward %1$d second</item>
+        <item quantity="other">Forward %1$d seconds</item>
+    </plurals>
+    <string name="player_sleep_timer">Sleep timer</string>
+    <string name="player_download">Download</string>
+    <string name="player_downloaded">Downloaded</string>
+    <string name="player_favourite">Favourite</string>
+    <string name="player_loved">Loved</string>
+    <string name="player_speed">Speed</string>
+    <string name="player_speed_value">%1$s×</string>
+    <string name="player_speed_description">Playback speed %1$s times</string>
+    <string name="player_state_on">On</string>
+    <string name="player_state_off">Off</string>
+    <string name="player_volume">Volume</string>
+    <string name="player_sleep_title">Sleep timer</string>
+    <string name="player_sleep_body">Audio will gently stop when the timer ends.</string>
+    <plurals name="player_sleep_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+    <string name="player_sleep_end_of_story">End of story</string>
+    <string name="player_sleep_cancel">Cancel</string>
+</resources>
