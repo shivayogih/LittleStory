@@ -34,6 +34,7 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 | [data-models.md](architecture/data-models.md) | Define the MVP domain models, their fields, identity, persistence and which fields depend on language. |
 | [dependency-rules.md](architecture/dependency-rules.md) | Define which module and layer dependencies are allowed, which are forbidden, and how each rule is enforced automatically. |
 | [error-handling.md](architecture/error-handling.md) | Define error types per layer, how they map to localized messages, and how retry works. |
+| [hardcoding-audit.md](architecture/hardcoding-audit.md) | The LS-125 audit of hardcoded values: method, findings and the scanner rules added. |
 | [high-level-design.md](architecture/high-level-design.md) | Describe how the LittleStory Android MVP is structured, how requests and state flow, and where future backend work plugs in. |
 | [how-to-change.md](architecture/how-to-change.md) | Step-by-step recipes for the most common changes, each touching one documented home (brief §4.5, LS-150). |
 | [module-structure.md](architecture/module-structure.md) | List every Gradle module proposed for the MVP, what it owns, what it may depend on, and which strings it owns. |

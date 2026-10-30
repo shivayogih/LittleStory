@@ -152,7 +152,7 @@ fun SubscriptionScreen(
             Column(Modifier.padding(spacing.screenHorizontal), verticalArrangement = Arrangement.spacedBy(spacing.lg)) {
                 FlowRow(
                     Modifier.fillMaxWidth(),
-                    maxItemsInEachRow = 2,
+                    maxItemsInEachRow = BENEFIT_COLUMNS,
                     verticalArrangement = Arrangement.spacedBy(spacing.sm),
                 ) {
                     benefits.forEach { benefit ->
@@ -256,3 +256,6 @@ private fun PlanCard(plan: Plan, selected: Boolean, onClick: () -> Unit) {
         )
     }
 }
+
+// SCR-15 lays the four benefits out as a two-column grid.
+private const val BENEFIT_COLUMNS = 2

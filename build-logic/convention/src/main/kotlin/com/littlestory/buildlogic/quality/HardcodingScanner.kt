@@ -17,6 +17,15 @@ internal object HardcodingScanner {
         Rule("hardcoded text in Text(); use stringResource or UiText", Regex("""\bText\(\s*(text\s*=\s*)?"[^"]""")),
         Rule("hardcoded contentDescription; use stringResource", Regex("""contentDescription\s*=\s*"[^"]""")),
         Rule("hardcoded duration or delay; use AppConfig or motion tokens", Regex("""\b(delay|tween)\(\s*\d{2,}""")),
+        // Added by the LS-125 audit; animation `label = "…"` strings are debug names and stay allowed.
+        Rule(
+            "hardcoded text argument; use stringResource or UiText",
+            Regex("""\b(title|subtitle|placeholder|message|body|confirmLabel|dismissLabel)\s*=\s*"[^"]"""),
+        ),
+        Rule("hardcoded language tag; use the SupportedLanguages registry", Regex("""(forLanguageTag|Locale)\(\s*"""")),
+        // Lines are cut at "//" before matching, so the URL rule stops at the scheme.
+        Rule("hardcoded URL; use BuildConfig", Regex(""""https?:""")),
+        Rule("magic layout count; use a named constant", Regex("""\b(maxLines|minLines|maxItemsInEachRow|maxItemsInEachColumn)\s*=\s*\d""")),
     )
 
     fun scan(files: Sequence<File>): List<String> = buildList {

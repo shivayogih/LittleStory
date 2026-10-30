@@ -40,11 +40,13 @@ Maintained alongside the code until the owner syncs it into `LittleStory_Jira_Ba
 | LS-114 | Implemented (P6) | Privacy & parent controls (SCR-21): what is kept and what leaves the device, delete all local data with confirmation, then onboarding. Content owner to approve |
 | LS-115 | Implemented (P6) | Help & about (SCR-22): four questions, version from `:app` BuildConfig via `AppInfo`, font licences. Content owner to approve |
 | LS-043 | Draft (P6) | Glossary extended with P5/P6 terms; every Kannada value is a draft |
+| LS-120 | Implemented (P7) | Kover aggregates every module; `check` fails when view models and `:domain` drop below 80 % line coverage (95 % when introduced). Report: `build/reports/kover/html` |
+| LS-125 | Implemented (P7) | Hardcoded-values audit in `docs/architecture/hardcoding-audit.md`; four layout counts named; scanner gained text-argument, language-tag, URL and layout-count rules |
 | Bottom nav | Wired (P5) | All five tabs navigate; Home bell, avatar, Create and Resume are connected |
 
 Known limitations in P5/P6: Language, Privacy and Help have no design and reuse settings components; narration, downloads and generation are simulated; the reminder is not scheduled (D13); the Profile child card follows D14 (no parent name); bottom-sheet content is not captured by the root screenshot.
 
-All of the above await owner review; none is Approved or merged.
+P5 and P6 are merged into `development` with the owner's permission; everything still awaits owner testing, and no text is Approved.
 
 ## Kannada strings: Draft, needs native review
 

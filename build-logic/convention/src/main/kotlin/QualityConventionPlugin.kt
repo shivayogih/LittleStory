@@ -11,6 +11,8 @@ class QualityConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("io.gitlab.arturbosch.detekt")
         pluginManager.apply("org.jlleitschuh.gradle.ktlint")
+        // Coverage is measured per module and aggregated and gated at the root (LS-120).
+        pluginManager.apply("org.jetbrains.kotlinx.kover")
 
         extensions.configure<DetektExtension> {
             config.setFrom(rootProject.file("config/detekt/detekt.yml"))
