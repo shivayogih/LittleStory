@@ -140,7 +140,7 @@ fun BottomNav(
                         style = LittleStoryTheme.typography.navLabel,
                         color = if (active) colors.primary else colors.navInactive,
                         textAlign = TextAlign.Center,
-                        maxLines = 2,
+                        maxLines = NAV_LABEL_MAX_LINES,
                     )
                 }
             }
@@ -192,3 +192,6 @@ fun StickyActionBar(
         }
     }
 }
+
+// Kannada tab labels may need a second line at large font scales; never more (LS-019).
+private const val NAV_LABEL_MAX_LINES = 2

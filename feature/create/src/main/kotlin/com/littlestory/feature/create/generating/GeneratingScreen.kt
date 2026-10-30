@@ -122,10 +122,10 @@ private fun MagicBook() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Sparkle()
         Row(horizontalArrangement = Arrangement.spacedBy(dimens.borderWidth)) {
-            repeat(2) {
+            repeat(BOOK_PAGES) {
                 Box(
                     Modifier
-                        .size(dimens.magicBookWidth / 2, dimens.magicBookHeight)
+                        .size(dimens.magicBookWidth / BOOK_PAGES, dimens.magicBookHeight)
                         .background(colors.moon, LittleStoryTheme.shapes.medium),
                 )
             }
@@ -284,3 +284,6 @@ private fun Paused(onTryAgain: () -> Unit, onBackToIdea: () -> Unit) {
         )
     }
 }
+
+// The open book in SCR-08 is two facing pages that share the book's width.
+private const val BOOK_PAGES = 2

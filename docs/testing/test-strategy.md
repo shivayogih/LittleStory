@@ -46,14 +46,17 @@ flowchart TB
 | GitHub Actions (LS-130) | Static, unit, Robolectric UI, Roborazzi, assemble; emulator job optional | The shared, authoritative runner for PR checks |
 | Owner's Windows / macOS machines | Everything incl. emulator, TalkBack, Kannada keyboard | Reference for manual and device checks (TC-056 build on both OSes) |
 
-## 4. Coverage targets (proposed)
+## 4. Coverage targets
 
 | Area | Target |
 | --- | --- |
 | ViewModels and use cases | ≥ 80 % line coverage (LS-120 gate) |
+
 | Every Must FR | ≥ 1 automated test case linked in the workbook |
 | Every screen | EN + KN screenshot of each designed state |
 | String resources | 100 % key parity `values/` ↔ `values-kn/` |
+
+The LS-120 gate is enforced by Kover from `RootConventionPlugin`: every module reports coverage, the root aggregates it, and `./gradlew check` runs `koverVerify` over classes named `*ViewModel` plus everything in `com.littlestory.domain`. Hilt factories are excluded. Reports: `build/reports/kover/html/index.html` and `report.xml` (uploaded by CI). Line coverage of the gated code was 95 % when the gate was introduced (30 Oct 2026). Raise the threshold in `RootConventionPlugin.MIN_LINE_COVERAGE`; never lower it without owner approval.
 
 ## 5. Traceability
 

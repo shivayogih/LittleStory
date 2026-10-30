@@ -20,6 +20,7 @@ dependencies {
     compileOnly(libs.room.gradle.plugin)
     compileOnly(libs.detekt.gradle.plugin)
     compileOnly(libs.ktlint.gradle.plugin)
+    compileOnly(libs.kover.gradle.plugin)
 
     testImplementation(libs.junit4)
     testImplementation(libs.kotlin.test)

@@ -77,6 +77,20 @@ class QualityCheckTest {
     }
 
     @Test
+    fun auditRulesCatchTextArgumentsTagsUrlsAndLayoutCounts() {
+        assertTrue(scan("""TopBar(title = "Settings")""").single().contains("text argument"))
+        assertTrue(scan("""Locale.forLanguageTag("kn")""").single().contains("language tag"))
+        assertTrue(scan("""val api = "https://example.com"""").single().contains("URL"))
+        assertTrue(scan("""Text(name, maxLines = 2)""").single().contains("layout count"))
+    }
+
+    @Test
+    fun animationLabelsAndNamedCountsPass() {
+        assertEquals(emptyList(), scan("""rememberInfiniteTransition(label = "twinkle")"""))
+        assertEquals(emptyList(), scan("""Text(name, maxLines = TITLE_MAX_LINES)"""))
+    }
+
+    @Test
     fun tokensAndResourcesPass() {
         assertEquals(emptyList(), scan("""Text(text = stringResource(R.string.a), style = LittleStoryTheme.typography.chip)"""))
         assertEquals(emptyList(), scan("""Modifier.padding(LittleStoryTheme.spacing.lg) // 16.dp"""))

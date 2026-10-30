@@ -69,13 +69,16 @@ fun StoryCard(
                 title,
                 style = LittleStoryTheme.typography.bodyLarge,
                 color = colors.textPrimary,
-                maxLines = 2,
+                maxLines = TITLE_MAX_LINES,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(meta, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
         }
     }
 }
+
+// Card titles clamp at two lines in the design; longer Kannada titles ellipsize.
+private const val TITLE_MAX_LINES = 2
 
 // Cover art is 4:5 portrait in the prototype's cards.
 private const val CARD_ART_RATIO = 0.8f
