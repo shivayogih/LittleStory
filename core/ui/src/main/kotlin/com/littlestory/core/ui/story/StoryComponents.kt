@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import com.littlestory.core.designsystem.component.LittleStoryButton
 import com.littlestory.core.designsystem.component.LittleStoryIconButton
@@ -65,7 +65,8 @@ fun StoryCard(
                 modifier = Modifier.align(Alignment.TopEnd).padding(LittleStoryTheme.spacing.xs),
             )
         }
-        Column(Modifier.semantics(mergeDescendants = true) { }) {
+        // No merge boundary here: the clickable card merges the title and meta into its own label.
+        Column {
             Text(
                 title,
                 style = LittleStoryTheme.typography.bodyLarge,
@@ -107,9 +108,9 @@ fun ListStoryRow(
         Box(Modifier.size(dimens.listArtWidth, dimens.listArtHeight).clip(LittleStoryTheme.shapes.medium)) {
             StoryArt(gradient, motif)
         }
+        // No merge boundary here: the texts must merge into the clickable row to give it a name.
         Column(
-            Modifier.weight(1f).semantics(mergeDescendants = true) {
-            },
+            Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(LittleStoryTheme.spacing.xxs),
         ) {
             Text(eyebrow, style = LittleStoryTheme.typography.eyebrow, color = colors.primaryVariantLabel)
@@ -180,6 +181,7 @@ fun SectionHeader(
         if (seeAllLabel != null) {
             Row(
                 Modifier
+                    .heightIn(min = LittleStoryTheme.dimens.minTouchTarget)
                     .clip(
                         LittleStoryTheme.shapes.chip,
                     ).clickable(role = Role.Button, onClick = onSeeAll)

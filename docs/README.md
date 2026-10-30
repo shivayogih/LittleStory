@@ -101,6 +101,7 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 |---|---|
 | [child-safety-requirements.md](security/child-safety-requirements.md) | Requirements that protect children and give parents control, for the MVP and before any backend or real AI is launched. |
 | [privacy-threat-model.md](security/privacy-threat-model.md) | Identify what personal data LittleStory handles, the threats to it, and the mitigations for the MVP and a future backend. |
+| [security-review.md](security/security-review.md) | The LS-126 review: results per threat, data inventory check, and open items for the owner. |
 | [security-checklist.md](security/security-checklist.md) | A reviewable checklist for every PR and for the P7 security review (LS-126). |
 
 ## Project management

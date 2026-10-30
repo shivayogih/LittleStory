@@ -44,6 +44,9 @@ Maintained alongside the code until the owner syncs it into `LittleStory_Jira_Ba
 | LS-121 | Implemented (P7) | Journeys A–G in English and Kannada as Robolectric tests on the real app graph (`app/src/test/.../journeys`); 14 tests; manual gaps listed in `docs/testing/integration-test-plan.md` §2 |
 | LS-122 (part) | Trial (P7) | Compose Preview Screenshot Testing in `:app` for Home, Reader, Player, Profile, Language × EN, KN, KN 200 %; images rendered in CI, references await owner approval |
 | LS-125 | Implemented (P7) | Hardcoded-values audit in `docs/architecture/hardcoding-audit.md`; four layout counts named; scanner gained text-argument, language-tag, URL and layout-count rules |
+| LS-123 | Implemented (P7), device pass open | Automated checks on 12 main screens in EN and KN (`AccessibilityChecksTest`): every tappable node has a name and a 48 dp target. Fixed: search and text fields, "See all" links, story cards and rows, short tabs. Contrast and TalkBack stay manual (`docs/design/accessibility-spec.md` §6) |
+| LS-126 | Reviewed (P7) | `docs/security/security-review.md`: backup and device transfer now exclude all app data; no permissions, only `MainActivity` exported; release logging (T-08) still open |
+| NFR-12 | Implemented (P7) | Generating screen says the story is simulated on this device, as the Player already did for narration |
 | Bottom nav | Wired (P5) | All five tabs navigate; Home bell, avatar, Create and Resume are connected |
 
 Known limitations in P5/P6: Language, Privacy and Help have no design and reuse settings components; narration, downloads and generation are simulated; the reminder is not scheduled (D13); the Profile child card follows D14 (no parent name); bottom-sheet content is not captured by the root screenshot.
@@ -471,3 +474,9 @@ Generated from the module XML files; story text in `generated_kn.json` and `noti
 | `privacy_title` | feature:settings | Privacy & parent controls | ಗೌಪ್ಯತೆ ಮತ್ತು ಪೋಷಕರ ನಿಯಂತ್ರಣ | Draft — needs native review |
 | `profile_help_subtitle` | feature:settings | Questions, version and licences | ಪ್ರಶ್ನೆಗಳು, ಆವೃತ್ತಿ ಮತ್ತು ಪರವಾನಗಿಗಳು | Draft — needs native review |
 | `profile_language_split` | feature:settings | %1$s · Stories: %2$s | %1$s · ಕಥೆಗಳು: %2$s | Draft — needs native review |
+
+### P7 strings (simulation label)
+
+| Key | Module | English | Kannada (draft) | Status |
+|---|---|---|---|---|
+| `generating_simulated` | feature:create | Simulated: your story is put together on this device from sample stories. No AI is used yet. | ಅನುಕರಿಸಿದ ಕಥೆ: ಈ ಸಾಧನದಲ್ಲೇ ಮಾದರಿ ಕಥೆಗಳಿಂದ ನಿಮ್ಮ ಕಥೆಯನ್ನು ಜೋಡಿಸಲಾಗುತ್ತದೆ. ಇನ್ನೂ ಯಾವುದೇ AI ಬಳಸುತ್ತಿಲ್ಲ. | Draft — needs native review |

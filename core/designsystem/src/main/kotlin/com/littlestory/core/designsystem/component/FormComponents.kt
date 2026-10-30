@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
@@ -128,12 +129,19 @@ fun LittleStoryTextField(
                 textStyle = LittleStoryTheme.typography.bodyLarge.copy(color = colors.textPrimary),
                 cursorBrush = SolidColor(colors.primary),
                 keyboardOptions = KeyboardOptions(imeAction = imeAction),
-                modifier = inputModifier.fillMaxWidth(),
+                // The editable node itself fills the 48 dp box, so the whole field is the touch target.
+                modifier = inputModifier.fillMaxWidth().heightIn(min = LittleStoryTheme.dimens.inputHeight),
                 decorationBox = { inner ->
-                    if (value.isEmpty() && placeholder != null) {
-                        Text(placeholder, style = LittleStoryTheme.typography.bodyLarge, color = colors.textSecondary)
+                    Box(contentAlignment = Alignment.CenterStart) {
+                        if (value.isEmpty() && placeholder != null) {
+                            Text(
+                                placeholder,
+                                style = LittleStoryTheme.typography.bodyLarge,
+                                color = colors.textSecondary,
+                            )
+                        }
+                        inner()
                     }
-                    inner()
                 },
             )
         }
@@ -166,16 +174,18 @@ fun LittleStorySearchField(
                     textStyle = LittleStoryTheme.typography.bodyLarge.copy(color = colors.textPrimary),
                     cursorBrush = SolidColor(colors.primary),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().heightIn(min = LittleStoryTheme.dimens.inputHeight),
                     decorationBox = { inner ->
-                        if (value.isEmpty()) {
-                            Text(
-                                placeholder,
-                                style = LittleStoryTheme.typography.bodyLarge,
-                                color = colors.textSecondary,
-                            )
+                        Box(contentAlignment = Alignment.CenterStart) {
+                            if (value.isEmpty()) {
+                                Text(
+                                    placeholder,
+                                    style = LittleStoryTheme.typography.bodyLarge,
+                                    color = colors.textSecondary,
+                                )
+                            }
+                            inner()
                         }
-                        inner()
                     },
                 )
             }
@@ -405,7 +415,7 @@ fun LittleStoryTabs(
             val active = index == selectedIndex
             Box(
                 Modifier
-                    .heightIn(min = dimens.minTouchTarget)
+                    .sizeIn(minWidth = dimens.minTouchTarget, minHeight = dimens.minTouchTarget)
                     .clip(LittleStoryTheme.shapes.chip)
                     .background(if (active) colors.primary else colors.surface)
                     .border(
