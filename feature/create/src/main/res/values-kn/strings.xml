@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Draft — needs native review (agent translation; see docs/project-management/implementation-status.md). -->
+<resources>
+    <string name="create_title">ಕಥೆ ರಚಿಸಿ</string>
+    <string name="create_parent_guided">ಪೋಷಕರ ಮಾರ್ಗದರ್ಶನ</string>
+    <string name="create_intro_title">ಇಂದಿನ ದಿನವನ್ನು ಕಥೆಯನ್ನಾಗಿಸೋಣ.</string>
+    <string name="create_intro_body">ನಿಮ್ಮ ಮಗುವಿನ ದಿನದ ಬಗ್ಗೆ ಹೇಳಿ. ಪುಟ್ಟ ಕ್ಷಣಗಳನ್ನು ನಾವು ಮಾಯಾ ಸಾಹಸವನ್ನಾಗಿ ಮಾಡುತ್ತೇವೆ.</string>
+    <string name="create_prompt_label">ಇಂದು ಏನಾಯಿತು?</string>
+    <string name="create_prompt_placeholder_named">%1$s ಶಾಲೆಯಲ್ಲಿ ಗೆಳೆಯನಿಗೆ ಸಹಾಯ ಮಾಡಿ, ಸಂಜೆ ಕ್ರಿಕೆಟ್ ಆಡಿದರು…</string>
+    <string name="create_prompt_placeholder">ಶಾಲೆಯಲ್ಲಿ ಗೆಳೆಯನಿಗೆ ಸಹಾಯ ಮಾಡಿ, ಸಂಜೆ ಕ್ರಿಕೆಟ್ ಆಡಿದೆವು…</string>
+    <string name="create_counter">%1$d/%2$d</string>
+    <string name="create_error_empty">ಕಥೆ ಆರಂಭಿಸಲು ಒಂದು ಪುಟ್ಟ ಕ್ಷಣವನ್ನು ಹೇಳಿ.</string>
+    <string name="create_hero_fallback">ನನ್ನ ಪುಟ್ಟ ಮಗು</string>
+    <string name="create_suggestion_school">ಶಾಲೆಯ ಒಂದು ದಿನ</string>
+    <string name="create_suggestion_family">ಕುಟುಂಬದ ಸಾಹಸ</string>
+    <string name="create_suggestion_funny">ಏನೋ ತಮಾಷೆ ನಡೆಯಿತು</string>
+    <string name="create_suggestion_learned">ಹೊಸದನ್ನು ಕಲಿತೆ</string>
+    <string name="create_suggestion_kindness">ಒಂದು ದಯೆಯ ಕೆಲಸ</string>
+    <string name="create_fill_school">%1$s ಶಾಲೆಯಲ್ಲಿ ಗೆಳೆಯನಿಗೆ ಸಹಾಯ ಮಾಡಿ, ಸಂಜೆ ಕ್ರಿಕೆಟ್ ಆಡಿದರು.</string>
+    <string name="create_fill_family">%1$s ಕುಟುಂಬದೊಂದಿಗೆ ಒಂದು ಸಾಹಸ ಮಾಡಿದರು.</string>
+    <string name="create_fill_funny">%1$s ಇಂದು ಏನೋ ತಮಾಷೆಯನ್ನು ನೋಡಿದರು.</string>
+    <string name="create_fill_learned">%1$s ಇಂದು ಹೊಸದನ್ನು ಕಲಿತರು.</string>
+    <string name="create_fill_kindness">%1$s ಇಂದು ಒಂದು ದಯೆಯ ಕೆಲಸ ಮಾಡಿದರು.</string>
+    <string name="create_hero_eyebrow">ಕಥೆಯ ನಾಯಕ</string>
+    <plurals name="create_hero_name_age">
+        <item quantity="one">%1$s, %2$d ವರ್ಷ</item>
+        <item quantity="other">%1$s, %2$d ವರ್ಷಗಳು</item>
+    </plurals>
+    <string name="create_hero_change">ನಾಯಕನನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="create_theme_title">ಕಥೆಯ ವಿಷಯ</string>
+    <string name="create_theme_adventure">ಸಾಹಸ</string>
+    <string name="create_theme_bedtime">ಮಲಗುವ ಸಮಯ</string>
+    <string name="create_theme_animals">ಪ್ರಾಣಿಗಳು</string>
+    <string name="create_theme_friendship">ಸ್ನೇಹ</string>
+    <string name="create_theme_fantasy">ಕಲ್ಪನಾಲೋಕ</string>
+    <string name="create_theme_learning">ಕಲಿಕೆ</string>
+    <string name="create_theme_indian_folklore">ಭಾರತೀಯ ಜಾನಪದ</string>
+    <string name="create_more_options">ಇನ್ನಷ್ಟು ಆಯ್ಕೆಗಳು</string>
+    <string name="create_more_options_expanded">ತೆರೆದಿದೆ</string>
+    <string name="create_more_options_collapsed">ಮುಚ್ಚಿದೆ</string>
+    <string name="create_mood_title">ಭಾವ</string>
+    <string name="create_mood_calm">ಶಾಂತ</string>
+    <string name="create_mood_funny">ಹಾಸ್ಯ</string>
+    <string name="create_mood_magical">ಮಾಯಾಜಾಲ</string>
+    <string name="create_mood_adventurous">ಸಾಹಸಮಯ</string>
+    <string name="create_duration_title">ಅವಧಿ</string>
+    <plurals name="create_duration_minutes">
+        <item quantity="one">%1$d ನಿಮಿಷ</item>
+        <item quantity="other">%1$d ನಿಮಿಷಗಳು</item>
+    </plurals>
+    <string name="create_language_title">ಕಥೆಯ ಭಾಷೆ</string>
+    <string name="create_safety_note">ನಿಮ್ಮ ಕುಟುಂಬಕ್ಕಾಗಿಯೇ ಸುರಕ್ಷಿತವಾಗಿ ರಚಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಕಥೆಯ ವಿವರಗಳು ಖಾಸಗಿಯಾಗಿರುತ್ತವೆ, ಎಂದಿಗೂ ಸಾರ್ವಜನಿಕವಾಗಿ ಹಂಚಿಕೊಳ್ಳುವುದಿಲ್ಲ.</string>
+    <string name="create_submit">ನನ್ನ ಕಥೆ ರಚಿಸಿ</string>
+
+    <string name="generating_close">ಕಥೆ ರಚನೆ ನಿಲ್ಲಿಸಿ</string>
+    <string name="generating_eyebrow_named">%1$s ಅವರಿಗಾಗಿ ಒಂದು ಕಥೆ</string>
+    <string name="generating_eyebrow">ನಿಮಗಾಗಿ ಒಂದು ಕಥೆ</string>
+    <string name="generating_title">ನಿಮ್ಮ ಪುಟ್ಟ ಸಾಹಸ ರೂಪುಗೊಳ್ಳುತ್ತಿದೆ…</string>
+    <string name="generating_body">ಇಂದಿನ ಕ್ಷಣಗಳನ್ನು ಅದ್ಭುತವಾದದ್ದಾಗಿ ಹೆಣೆಯುತ್ತಿದ್ದೇವೆ.</string>
+    <string name="generating_percent">%1$d%%</string>
+    <string name="generating_stage_imagining">ಸಾಹಸವನ್ನು ಕಲ್ಪಿಸಿಕೊಳ್ಳುತ್ತಿದ್ದೇವೆ</string>
+    <string name="generating_stage_writing">ಕಥೆ ಬರೆಯುತ್ತಿದ್ದೇವೆ</string>
+    <string name="generating_stage_narration">ನಿರೂಪಣೆ ಸಿದ್ಧಪಡಿಸುತ್ತಿದ್ದೇವೆ</string>
+    <string name="generating_stage_done">ಮುಗಿದಿದೆ</string>
+    <string name="generating_stage_active">ನಡೆಯುತ್ತಿದೆ</string>
+    <string name="generating_stage_pending">ಇನ್ನೂ ಆರಂಭವಾಗಿಲ್ಲ</string>
+    <string name="generating_footnote">ಇದಕ್ಕೆ ಸಾಮಾನ್ಯವಾಗಿ ಒಂದು ನಿಮಿಷಕ್ಕಿಂತ ಕಡಿಮೆ ಸಮಯ ಬೇಕು.</string>
+    <string name="generating_paused_title">ಕಥೆ ರಚನೆ ನಿಲ್ಲಿಸಲಾಗಿದೆ</string>
+    <string name="generating_paused_body">ನಿಮ್ಮ ಆಲೋಚನೆ ಇಲ್ಲೇ ಇದೆ. ಸಿದ್ಧವಾದಾಗ ಮುಂದುವರಿಸಿ.</string>
+    <string name="generating_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="generating_back_to_idea">ನಿಮ್ಮ ಆಲೋಚನೆಗೆ ಹಿಂತಿರುಗಿ</string>
+
+    <string name="ready_ribbon">ನಿಮ್ಮ ಕಥೆ ಸಿದ್ಧವಾಗಿದೆ</string>
+    <string name="ready_made_for">%1$s ಅವರಿಗಾಗಿ ಮಾಡಿದ್ದು</string>
+    <string name="ready_eyebrow">ಒಂದು ಮಾಯಾ ಸಾಹಸ</string>
+    <string name="ready_meta">%1$s · %2$d ನಿಮಿಷ · %3$d–%4$d ವರ್ಷ</string>
+    <string name="ready_peek_title">ಒಳಗಿನ ಒಂದು ಪುಟ್ಟ ನೋಟ</string>
+    <string name="ready_listen">ಈಗ ಕೇಳಿ</string>
+    <string name="ready_read">ಕಥೆ ಓದಿ</string>
+    <string name="ready_saved_title">ನನ್ನ ಕಥೆಗಳಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ</string>
+    <string name="ready_saved_body">ನಾನು ರಚಿಸಿದವು ವಿಭಾಗದಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಹುಡುಕಿ</string>
+    <string name="ready_download_add">%1$s ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="ready_download_remove">%1$s ಡೌನ್‌ಲೋಡ್ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="ready_not_found_title">ಕಥೆ ಸಿಗಲಿಲ್ಲ</string>
+    <string name="ready_not_found_text">ಈ ಕಥೆ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ.</string>
+</resources>
