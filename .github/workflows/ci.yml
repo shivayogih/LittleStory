@@ -44,6 +44,14 @@ jobs:
         if: always()
         run: ./gradlew :app:updateDebugScreenshotTestDefaultTestSuite --stacktrace
 
+      # Debug-signed APK for testing on a phone; never a release build and never published to a store.
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: LittleStory-debug-apk
+          if-no-files-found: error
+          path: app/build/outputs/apk/debug/app-debug.apk
+
       - name: Upload screenshots and reports
         if: always()
         uses: actions/upload-artifact@v7
