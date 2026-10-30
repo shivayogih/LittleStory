@@ -14,6 +14,11 @@ android {
     buildFeatures {
         buildConfig = true
     }
+    packaging {
+        // Prebuilt AndroidX libraries ship already-stripped .so files; keep them as they are
+        // instead of logging "Unable to strip the following libraries" on every build.
+        jniLibs.keepDebugSymbols += "**/*.so"
+    }
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
