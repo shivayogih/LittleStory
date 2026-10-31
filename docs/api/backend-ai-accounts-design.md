@@ -118,6 +118,22 @@ Pipeline (extends `ai-generation-flow.md` §1): **input check → generate → o
 | Kill switch | Remote Config flag turns AI creation off globally or for Kannada only; the app falls back to the current simulated flow |
 | Quotas | Per family per week, enforced on the server from the plan (§7); proposal for `free`: 3 created stories per week |
 
+### Story pictures (owner request, 31 Oct 2026)
+
+Every story gets illustrations like the app's covers. Today the app draws covers in code from `paletteId` + `motifId` (ADR-010); generated pictures are added on top, and the drawn art stays as the fallback.
+
+| Picture | Used on | Shape | Master | Served sizes (WebP) |
+|---|---|---|---|---|
+| Cover | Story cards, Featured, Details, Story ready, Reader page 1, Player | 1:1, subject in the centre 70 % | 1536 × 1536 | 512, 1024 |
+| Page picture | Reader, above each page | 4:3 | 1600 × 1200 | 800 × 600, 1600 × 1200 |
+
+- The story model also returns a `characters` sheet, a `cover` and a per-page `imagePrompt` and `alt` (alt text in the story language for TalkBack). An image model draws them in one house style (soft, warm picture-book illustration in the story's palette).
+- **No text inside pictures**, so one set serves every language.
+- Every picture goes through the same safety check as the text; a failed picture falls back to the drawn art.
+- Cost: about US$0.04 per picture at list price, about US$0.25–0.35 for a cover + 6 pages. To limit cost, the cover is made with the story and page pictures are made when the child opens the Reader, then cached.
+- The API grows `story.cover` and `sections[].image` (`url`, `width`, `height`, `alt`); the domain `StoryArtSpec` gains an optional image URL.
+- Prototype prompts: `gemini-story-prototype-prompts.md` in the project files (Prompt 4).
+
 ### Model choice
 
 | Option | Notes |
@@ -165,6 +181,7 @@ Never: ads, selling data, or upsell prompts aimed at children. Proposed trigger 
 |---|---|
 | Firebase / Cloud Run / Firestore / Storage at early scale | US$0–50 per month (mostly free tier) |
 | Text generation per created story (Sonnet 5.5 at US$2 / US$10 per million tokens, plus two Haiku 5.5 checks) | ~US$0.03 English, ~US$0.06–0.12 Kannada (Kannada uses more tokens) |
+| Pictures per created story (cover + 6 pages) | ~US$0.25–0.35 |
 | Narration per created story (only if played) | ~US$0.20 (Google) to ~US$1 (ElevenLabs) |
 | Catalogue narration (one-off, 50 stories × 2 languages) | ~US$20–150 |
 | Example: 1,000 families × 4 created stories per month, half narrated | ~US$500–1,000 per month with free use only |
