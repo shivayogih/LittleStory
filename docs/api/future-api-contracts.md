@@ -158,6 +158,8 @@ All errors use one envelope (RFC 9457 problem-details shape):
 
 ## 6. Unresolved backend decisions
 
+Recommendations for Q1–Q5 and Q7 are in [backend-ai-accounts-design.md](backend-ai-accounts-design.md) (31 Oct 2026), awaiting the owner.
+
 | # | Question | Blocks |
 | --- | --- | --- |
 | Q1 | Identity provider and parental-consent flow (see `docs/security/child-safety-requirements.md`) | Any authenticated endpoint |
