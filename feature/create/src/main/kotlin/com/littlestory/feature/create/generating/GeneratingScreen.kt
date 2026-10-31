@@ -1,5 +1,6 @@
 package com.littlestory.feature.create.generating
 
+import androidx.activity.compose.BackHandler
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -76,6 +77,8 @@ fun GeneratingRoute(
             }
         }
     }
+    // System back first pauses, like ✕; once paused it leaves for the form (navigation-design.md §4).
+    BackHandler(enabled = !state.paused, onBack = viewModel::onClose)
     GeneratingScreen(state, viewModel::onClose, viewModel::onTryAgain, onBackToIdea)
 }
 

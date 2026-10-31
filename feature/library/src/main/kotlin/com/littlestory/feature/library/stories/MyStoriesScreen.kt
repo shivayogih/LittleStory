@@ -34,6 +34,7 @@ import com.littlestory.core.designsystem.component.LittleStoryTabs
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.story.ListStoryRow
 import com.littlestory.core.ui.story.StoryArt
@@ -129,9 +130,9 @@ fun MyStoriesScreen(
                 item { SectionTitle(R.string.stories_recently_played) }
                 item { RecentCard(recent, actions.onPlay) }
             }
-            if (!state.loading && state.stories.isEmpty()) {
-                item { Empty(state, actions.onDiscover) }
-            } else if (state.stories.isNotEmpty()) {
+            if (state.stories.isEmpty()) {
+                item { if (state.loading) LoadingIndicator() else Empty(state, actions.onDiscover) }
+            } else {
                 if (state.tab == LibraryTab.All) item { SectionTitle(R.string.stories_collection) }
                 items(
                     state.stories,

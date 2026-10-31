@@ -48,6 +48,8 @@ data class HomeUiState(
     val continueListening: ContinueUi? = null,
     val categories: List<CategoryTileUi> = emptyList(),
     val madeFor: List<StoryItem> = emptyList(),
+    /** True until the catalogue and the child's progress first arrive. */
+    val loading: Boolean = false,
 )
 
 private val initialState =
@@ -55,6 +57,7 @@ private val initialState =
         greeting = UiText.Res(R.string.home_greeting),
         title = UiText.Res(R.string.home_title_generic),
         madeForTitle = UiText.Res(R.string.home_made_for_generic),
+        loading = true,
     )
 
 @HiltViewModel

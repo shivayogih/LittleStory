@@ -3,6 +3,7 @@
     <!-- Draft — needs native review -->
     <string name="action_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
     <string name="error_generic">ಏನೋ ತಪ್ಪಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <string name="state_loading">ಲೋಡ್ ಆಗುತ್ತಿದೆ…</string>
     <string name="action_continue">ಮುಂದುವರಿಸಿ</string>
     <string name="action_skip">ಬಿಟ್ಟುಬಿಡಿ</string>
     <string name="action_back">ಹಿಂದೆ</string>

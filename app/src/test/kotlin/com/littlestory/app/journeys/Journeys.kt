@@ -1,8 +1,12 @@
 package com.littlestory.app.journeys
 
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.hasAnyAncestor
+import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTextInput
@@ -34,7 +38,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-/** Journeys A–G from `docs/product/user-journeys.md` (LS-121); subclasses pick the language. */
+/** Journeys A–G from `docs/product/user-journeys.md` (LS-121), plus C2; subclasses pick the language. */
 @OptIn(ExperimentalTestApi::class)
 abstract class Journeys(
     languageTag: String,
@@ -98,6 +102,84 @@ abstract class Journeys(
         tap(ReadyTags.SAVED)
         await(MyStoriesTags.story(created.single().id))
     }
+
+    /**
+     * The Create flow forward and back at every step (owner check, 31 Oct 2026), as specified in
+     * navigation-design.md §4: back pauses generation before leaving it, never loses the idea while
+     * the story is unmade, goes Home once the story is saved, and a double tap goes back once.
+     */
+    @Test
+    fun journeyC2_createFlowBackNavigation() {
+        val childId = signedIn()
+        tab(TAB_CREATE)
+        tap(CreateTags.suggestion(0))
+        val idea = promptText()
+
+        // Back while the story is being made pauses first, like ✕; a second back returns to the idea.
+        tap(CreateTags.SUBMIT)
+        await(GeneratingTags.PERCENT)
+        back()
+        await(GeneratingTags.PAUSED)
+        back()
+        await(CreateTags.SUBMIT)
+        assertEquals(idea, promptText())
+
+        // ✕ pauses; "Back to your idea" returns to the form. Nothing was saved either time.
+        tap(CreateTags.SUBMIT)
+        tap(GeneratingTags.CLOSE)
+        tap(GeneratingTags.BACK_TO_IDEA)
+        await(CreateTags.SUBMIT)
+        assertEquals(idea, promptText())
+        assertTrue(read { library.created(childId).first() }.isEmpty())
+
+        // Story Ready → Reader and Player each come back to Story Ready.
+        tap(CreateTags.SUBMIT)
+        await(ReadyTags.TITLE)
+        val storyId = read { library.created(childId).first() }.single().id
+        tap(ChromeTags.ACTION_SECONDARY)
+        await(ReaderTags.PAGE)
+        back()
+        await(ReadyTags.TITLE)
+        tap(ChromeTags.ACTION_PRIMARY)
+        await(PlayerTags.PLAY_PAUSE)
+        back()
+        await(ReadyTags.TITLE)
+
+        // The story is saved, so back from Story Ready goes Home and Create starts with a clean form.
+        back()
+        await(HomeTags.TITLE)
+        tab(TAB_CREATE)
+        await(CreateTags.SUBMIT)
+        assertEquals("", promptText())
+        back()
+        await(HomeTags.TITLE)
+
+        // My Stories → the created story opens Story Ready; a double tap on back goes back once.
+        tab(TAB_STORIES)
+        tap(MyStoriesTags.tab(LibraryTab.CreatedByMe))
+        tap(MyStoriesTags.story(storyId))
+        await(ReadyTags.TITLE)
+        doubleTap(ChromeTags.BACK)
+        await(MyStoriesTags.story(storyId))
+
+        // "Saved to My Stories" opens the list as a tab root, so back goes Home.
+        tap(MyStoriesTags.story(storyId))
+        tap(ReadyTags.SAVED)
+        await(MyStoriesTags.story(storyId))
+        back()
+        await(HomeTags.TITLE)
+        assertEquals(1, read { library.created(childId).first() }.size)
+    }
+
+    private fun promptText(): String =
+        compose
+            .onNode(
+                hasSetTextAction() and (hasTestTag(CreateTags.PROMPT) or hasAnyAncestor(hasTestTag(CreateTags.PROMPT))),
+            ).fetchSemanticsNode()
+            .config
+            .getOrNull(SemanticsProperties.EditableText)
+            ?.text
+            .orEmpty()
 
     @Test
     fun journeyD_revisitASavedStory() {

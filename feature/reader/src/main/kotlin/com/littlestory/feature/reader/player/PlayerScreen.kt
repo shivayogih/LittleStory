@@ -47,6 +47,7 @@ import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryBreakpoints
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.illustration.NightSky
 import com.littlestory.core.ui.story.StoryArt
 import com.littlestory.core.ui.story.storyArtFor
@@ -139,7 +140,7 @@ fun PlayerScreen(state: PlayerUiState, callbacks: PlayerCallbacks, modifier: Mod
                 Box(Modifier.size(LittleStoryTheme.dimens.minTouchTarget))
             }
             when {
-                state.loading -> Unit
+                state.loading -> LoadingIndicator(onNight = true)
                 state.notFound ->
                     LittleStoryEmptyState(
                         icon = LittleStoryIcons.Book,

@@ -46,6 +46,9 @@ data class LittleStoryDimens(
     val sheetHandleHeight: Dp = 4.dp,
     val dialogIconSize: Dp = 56.dp,
     val emptyStateIconSize: Dp = 72.dp,
+    /** Proposed: the design has no loading state; sized between an icon button and the empty-state disc. */
+    val loadingIndicatorSize: Dp = 40.dp,
+    val loadingIndicatorStroke: Dp = 4.dp,
     /** Proposed: the prototype dims behind sheets but the alpha is not in the tokens (confirm with design). */
     val scrimAlpha: Float = 0.5f,
     val storyCardWidth: Dp = 150.dp,

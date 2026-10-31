@@ -30,6 +30,7 @@ import com.littlestory.core.designsystem.component.LittleStoryNotesBanner
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.story.Avatar
 import com.littlestory.core.ui.system.SystemBarIcons
@@ -109,8 +110,12 @@ fun ChildProfilesScreen(
             verticalArrangement = Arrangement.spacedBy(spacing.lg),
         ) {
             LittleStoryNotesBanner(stringResource(R.string.children_banner))
-            state.children.forEach { child -> ChildCardView(child, actions, onSwitch) }
-            AddRow(actions.onAdd)
+            if (state.loading && state.children.isEmpty()) {
+                LoadingIndicator()
+            } else {
+                state.children.forEach { child -> ChildCardView(child, actions, onSwitch) }
+                AddRow(actions.onAdd)
+            }
         }
     }
 }

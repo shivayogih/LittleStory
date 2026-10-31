@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Slider
@@ -20,6 +21,10 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -258,6 +263,45 @@ fun LittleStoryEmptyState(
         )
         if (actionLabel != null) {
             LittleStoryButton(actionLabel, onAction, variant = ButtonVariant.Secondary)
+        }
+    }
+}
+
+/**
+ * Centred spinner for content that is still loading: brand indigo, or yellow on the night screens
+ * when [onNight]. It shows only after [delayMillis], so a screen that loads quickly never flashes
+ * it; the space is kept either way.
+ */
+@Composable
+fun LittleStoryLoading(
+    contentDescription: String,
+    delayMillis: Long,
+    modifier: Modifier = Modifier,
+    onNight: Boolean = false,
+) {
+    val colors = LittleStoryTheme.colors
+    val dimens = LittleStoryTheme.dimens
+    var visible by remember { mutableStateOf(delayMillis <= 0L) }
+    LaunchedEffect(delayMillis) {
+        delay(delayMillis)
+        visible = true
+    }
+    Box(
+        modifier.fillMaxWidth().padding(LittleStoryTheme.spacing.xxl),
+        contentAlignment = Alignment.Center,
+    ) {
+        Box(Modifier.size(dimens.loadingIndicatorSize), contentAlignment = Alignment.Center) {
+            if (visible) {
+                CircularProgressIndicator(
+                    modifier =
+                        Modifier
+                            .size(dimens.loadingIndicatorSize)
+                            .semantics { this.contentDescription = contentDescription },
+                    color = if (onNight) colors.highlight else colors.primary,
+                    trackColor = if (onNight) colors.nightSurface else colors.secondaryContainer,
+                    strokeWidth = dimens.loadingIndicatorStroke,
+                )
+            }
         }
     }
 }

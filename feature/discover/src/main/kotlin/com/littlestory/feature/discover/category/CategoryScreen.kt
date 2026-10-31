@@ -29,6 +29,7 @@ import com.littlestory.core.designsystem.component.LittleStoryEmptyState
 import com.littlestory.core.designsystem.component.LittleStorySelect
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.illustration.CultureGatewayArt
 import com.littlestory.core.ui.story.StoryItemRow
@@ -66,6 +67,10 @@ fun CategoryScreen(
     SystemBarIcons(darkIcons = true)
     Column(modifier.fillMaxSize().background(colors.background)) {
         TopBar(backContentDescription = stringResource(UiR.string.action_back), onBack = onBack)
+        if (state.loading) {
+            LoadingIndicator(Modifier.weight(1f))
+            return@Column
+        }
         LazyColumn(verticalArrangement = Arrangement.spacedBy(spacing.lg)) {
             item { Hero(state, gutter) }
             item {

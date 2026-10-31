@@ -136,5 +136,8 @@ object AppConfig {
 
     object Ui {
         const val TOAST_DURATION_MS = 2_500L
+
+        /** A screen that loads faster than this never shows its loading spinner. */
+        const val LOADING_INDICATOR_DELAY_MS = 300L
     }
 }
