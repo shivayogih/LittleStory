@@ -5,6 +5,7 @@ import com.littlestory.core.common.config.AppConfig
 import com.littlestory.domain.model.ReadingProgress
 import com.littlestory.domain.model.SleepTimer
 import com.littlestory.domain.model.StoryOrigin
+import com.littlestory.domain.player.NarrationProgress
 import com.littlestory.domain.player.Narrator
 import com.littlestory.feature.reader.player.PlayerViewModel
 import com.littlestory.feature.reader.reader.ReaderUiState
@@ -150,7 +151,7 @@ class ReaderAndPlayerViewModelTest {
                         flow {
                             heard += fromPage to languageTag
                             for (page in fromPage until pages.size) {
-                                emit(page)
+                                emit(NarrationProgress(page))
                                 pageGate.receive()
                             }
                         }
@@ -174,6 +175,34 @@ class ReaderAndPlayerViewModelTest {
                     .single()
                     .listenFraction,
             )
+        }
+
+    @Test
+    fun theBarFollowsTheVoiceInsideAPageAndSkippingRestartsTheVoice() =
+        runTest {
+            val starts = mutableListOf<Int>()
+            val narrator =
+                object : Narrator {
+                    override fun narrate(pages: List<String>, fromPage: Int, languageTag: String, speed: Float) =
+                        flow {
+                            starts += fromPage
+                            emit(NarrationProgress(fromPage))
+                            emit(NarrationProgress(fromPage, 0.5f))
+                            Channel<Unit>().receive()
+                        }
+                }
+            val vm = player("s1", narrator)
+            advanceUntilIdle()
+            vm.onPlayPause()
+            advanceUntilIdle()
+            assertEquals(0.5f / 3, vm.state.value.position, 0.0001f)
+            vm.onForward()
+            advanceUntilIdle()
+            assertEquals(listOf(0, 1), starts)
+            assertEquals(1.5f / 3, vm.state.value.position, 0.0001f)
+            vm.onPlayPause()
+            advanceUntilIdle()
+            assertFalse(vm.state.value.playing)
         }
 
     @Test

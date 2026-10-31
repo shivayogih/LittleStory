@@ -12,6 +12,7 @@ import com.littlestory.domain.browse.observeBrowseContext
 import com.littlestory.domain.browse.observeStory
 import com.littlestory.domain.model.ReadingProgress
 import com.littlestory.domain.model.SleepTimer
+import com.littlestory.domain.player.NarrationProgress
 import com.littlestory.domain.player.Narrator
 import com.littlestory.domain.player.SimulatedPlayback
 import com.littlestory.domain.repository.PreferencesRepository
@@ -20,6 +21,7 @@ import com.littlestory.domain.repository.StoryStores
 import com.littlestory.feature.reader.navigation.PlayerRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -63,7 +65,8 @@ data class PlayerUiState(
  * SCR-11a/11b (LS-092..LS-094): a simulated narration player. Nothing is played; the position
  * advances on a timer and is saved as listening progress so Home and My Stories can resume it.
  * When a [Narrator] is bound (debug prototype: the phone's voice), it reads the pages aloud and
- * its page events move the position instead of the timer.
+ * its progress moves the position instead of the timer; seeking, skipping and speed changes restart
+ * the voice at the new page, and the sleep timer counts real seconds.
  */
 @HiltViewModel
 class PlayerViewModel
@@ -95,6 +98,9 @@ class PlayerViewModel
 
         /** Simulated seconds left before the sleep timer stops playback; null when it is not counting. */
         private var sleepRemaining: Float? = null
+
+        /** Wall-clock time the sleep timer stops a real voice; null when it is not counting. */
+        private var sleepDeadline: Long? = null
 
         init {
             viewModelScope.launch {
@@ -148,35 +154,44 @@ class PlayerViewModel
         fun onSeek(fraction: Float) {
             _state.update { it.copy(position = fraction.coerceIn(0f, 1f)) }
             saveProgress()
+            restartVoice()
         }
 
-        fun onRewind() =
+        fun onRewind() {
+            // The voice can only start at a page, so with a narrator the skip buttons move by page.
+            if (narrating()) return onPreviousChapter()
             _state.update {
                 it.copy(
                     position = SimulatedPlayback.skip(it.position, it.durationMinutes, -1),
                 )
             }
+        }
 
-        fun onForward() =
+        fun onForward() {
+            if (narrating()) return onNextChapter()
             _state.update {
                 it.copy(
                     position = SimulatedPlayback.skip(it.position, it.durationMinutes, 1),
                 )
             }
+        }
 
-        fun onPreviousChapter() =
+        fun onPreviousChapter() {
             _state.update {
                 val chapterStart = SimulatedPlayback.chapterStart(it.chapter, it.chapters)
                 // Like most players: the first tap returns to the start of the chapter, the next one goes back a chapter.
                 val target = if (it.position - chapterStart > CHAPTER_RESTART_SLACK) it.chapter else it.chapter - 1
                 it.copy(position = SimulatedPlayback.chapterStart(target.coerceAtLeast(0), it.chapters))
             }
+            restartVoice()
+        }
 
-        fun onNextChapter() =
-            _state.update {
-                val next = it.chapter + 1
-                if (next >= it.chapters) it else it.copy(position = SimulatedPlayback.chapterStart(next, it.chapters))
-            }
+        fun onNextChapter() {
+            val current = _state.value
+            if (current.chapter + 1 >= current.chapters) return
+            _state.update { it.copy(position = SimulatedPlayback.chapterStart(it.chapter + 1, it.chapters)) }
+            restartVoice()
+        }
 
         fun onSpeedClick() {
             val speed = SimulatedPlayback.nextSpeed(_state.value.speed)
@@ -184,6 +199,7 @@ class PlayerViewModel
             viewModelScope.launch {
                 preferences.setReading(preferences.reading.first().copy(playbackSpeed = speed))
             }
+            restartVoice()
         }
 
         fun onVolumeChange(percent: Int) =
@@ -195,7 +211,9 @@ class PlayerViewModel
 
         fun onSleepTimerSelected(timer: SleepTimer) {
             sleepRemaining = SimulatedPlayback.sleepAfterSeconds(timer)?.toFloat()
+            sleepDeadline = sleepRemaining?.let { System.currentTimeMillis() + (it * MILLIS_PER_SECOND).toLong() }
             _state.update { it.copy(sleepTimer = timer, sleepSheetOpen = false) }
+            restartVoice()
         }
 
         fun onFavouriteClick() {
@@ -233,13 +251,47 @@ class PlayerViewModel
                 }
         }
 
-        private suspend fun narrate(voice: Narrator) {
-            val current = _state.value
-            voice.narrate(pages, current.chapter, languageTag, current.speed).collect { page ->
-                _state.update { it.copy(position = SimulatedPlayback.chapterStart(page, it.chapters)) }
+        private fun narrating(): Boolean = narrator != null && pages.isNotEmpty()
+
+        /** Starts the voice again from the current page, so it follows a control the listener just used. */
+        private fun restartVoice() {
+            val voice = narrator
+            if (voice == null || pages.isEmpty() || !_state.value.playing) return
+            ticker?.cancel()
+            ticker = viewModelScope.launch { narrate(voice) }
+        }
+
+        private suspend fun narrate(voice: Narrator) =
+            coroutineScope {
+                val current = _state.value
+                val sleep = sleepDeadline?.let { deadline -> launch { sleepUntil(deadline) } }
+                voice.narrate(pages, current.chapter, languageTag, current.speed).collect { progress ->
+                    _state.update { it.copy(position = positionOf(progress, it.chapters)) }
+                }
+                sleep?.cancel()
+                _state.update {
+                    val endOfStory = it.sleepTimer == SleepTimer.EndOfStory
+                    it.copy(
+                        position = 1f,
+                        playing = false,
+                        sleepTimer = if (endOfStory) SleepTimer.Off else it.sleepTimer,
+                    )
+                }
+                saveProgress()
             }
-            _state.update { it.copy(position = 1f, playing = false) }
-            saveProgress()
+
+        /** The sleep timer with a real voice: real seconds, still counted from when it was set. */
+        private suspend fun sleepUntil(deadlineMillis: Long) {
+            delay((deadlineMillis - System.currentTimeMillis()).coerceAtLeast(0))
+            sleepRemaining = null
+            sleepDeadline = null
+            _state.update { it.copy(sleepTimer = SleepTimer.Off) }
+            pause()
+        }
+
+        private fun positionOf(progress: NarrationProgress, chapters: Int): Float {
+            val pageStart = SimulatedPlayback.chapterStart(progress.page, chapters)
+            return (pageStart + progress.pageFraction.coerceIn(0f, 1f) / chapters.coerceAtLeast(1)).coerceIn(0f, 1f)
         }
 
         private fun tick() {
@@ -290,5 +342,8 @@ class PlayerViewModel
         private companion object {
             /** How far into a chapter "previous" still restarts it instead of going back one. */
             const val CHAPTER_RESTART_SLACK = 0.01f
+
+            /** Converts the sleep timer's seconds for [delay]. */
+            const val MILLIS_PER_SECOND = 1_000
         }
     }
