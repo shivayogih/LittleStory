@@ -6,6 +6,7 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 
 | Document | What it covers |
 |---|---|
+| [accounts-and-subscriptions-plan.md](product/accounts-and-subscriptions-plan.md) | Plan login, logout, parent and child profiles, account deletion, guest/offline use and subscription readiness, and how they fit the existing screens and parental gate (proposed, 31 Oct 2026). |
 | [edge-cases.md](product/edge-cases.md) | List the unusual inputs, states and environments each screen must handle, so tickets and tests cover them from the start. |
 | [functional-requirements.md](product/functional-requirements.md) | The catalogue of functional requirements (FR-01…FR-25) with priority, source, screens, acceptance criteria, tickets and tests. |
 | [mvp-scope.md](product/mvp-scope.md) | Define what the first release includes and excludes, how simulations are labelled, and which scope decisions are still open. |
