@@ -39,8 +39,10 @@ class CatalogRepositoryImpl(
     override fun story(id: String, languageTag: String): Flow<Story?> =
         catalogue(languageTag).map { catalogue -> catalogue.stories.firstOrNull { it.id == id } }
 
+    // computeIfAbsent, not getOrPut: a screen opens several catalogue flows at once, and getOrPut
+    // let each of them parse the JSON again on a cold start. Here the first parses, the rest wait.
     private fun catalogue(languageTag: String): Flow<Catalogue> =
-        flow { emit(cache.getOrPut(languageOf(languageTag)) { load(languageOf(languageTag)) }) }
+        flow { emit(cache.computeIfAbsent(languageOf(languageTag), ::load)) }
             .flowOn(dispatcher)
 
     private fun load(language: String): Catalogue {

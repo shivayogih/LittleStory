@@ -57,7 +57,12 @@ fun TopBar(
     ) {
         Box(Modifier.weight(1f), contentAlignment = Alignment.CenterStart) {
             if (onBack != null && backContentDescription != null) {
-                LittleStoryIconButton(LittleStoryIcons.Back, backContentDescription, onBack)
+                LittleStoryIconButton(
+                    LittleStoryIcons.Back,
+                    backContentDescription,
+                    onBack,
+                    modifier = Modifier.testTag(ChromeTags.BACK),
+                )
             } else {
                 BrandMark()
             }
@@ -78,6 +83,8 @@ fun TopBar(
 object ChromeTags {
     const val ACTION_PRIMARY = "action_primary"
     const val ACTION_SECONDARY = "action_secondary"
+    const val LOADING = "loading"
+    const val BACK = "action_back"
 
     fun navTab(index: Int) = "nav_tab_$index"
 }

@@ -11,8 +11,10 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ApplicationProvider
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.ChromeTags
 import com.littlestory.feature.discover.category.CategoryScreen
 import com.littlestory.feature.discover.category.CategoryTags
+import com.littlestory.feature.discover.category.CategoryUiState
 import com.littlestory.feature.discover.detail.DetailActions
 import com.littlestory.feature.discover.detail.DetailTags
 import com.littlestory.feature.discover.detail.StoryDetailScreen
@@ -124,5 +126,42 @@ class ScreensTest {
     fun missingStoryShowsNotFound() {
         rule.setContent { LittleStoryTheme { StoryDetailScreen(StoryDetailUiState.NotFound, DetailActions(), {}, {}) } }
         rule.onNodeWithTag(DetailTags.NOT_FOUND).assertIsDisplayed()
+    }
+
+    @Test
+    fun loadingShowsTheSpinnerAndNeverTheEmptyState() {
+        rule.setContent {
+            LittleStoryTheme {
+                CategoryScreen(CategoryUiState(loading = true), { calls += "back" }, {}, {}, {})
+            }
+        }
+        rule.onNodeWithTag(ChromeTags.LOADING).assertIsDisplayed()
+        rule.onNodeWithTag(CategoryTags.EMPTY).assertDoesNotExist()
+        rule.onNodeWithTag(ChromeTags.BACK).performClick()
+        assertEquals(listOf("back"), calls)
+    }
+
+    @Test
+    fun discoverWhileLoadingShowsTheSpinnerNotTheSections() {
+        showDiscover(DiscoverUiState(loading = true))
+        rule.onNodeWithTag(ChromeTags.LOADING).assertIsDisplayed()
+        rule.onNodeWithTag(DiscoverTags.EMPTY).assertDoesNotExist()
+    }
+
+    @Test
+    fun loadingDetailKeepsBackAvailable() {
+        rule.setContent {
+            LittleStoryTheme {
+                StoryDetailScreen(
+                    StoryDetailUiState.Loading,
+                    DetailActions({ calls += "back" }),
+                    {},
+                    {},
+                )
+            }
+        }
+        rule.onNodeWithTag(ChromeTags.LOADING).assertIsDisplayed()
+        rule.onNodeWithTag(ChromeTags.BACK).performClick()
+        assertEquals(listOf("back"), calls)
     }
 }

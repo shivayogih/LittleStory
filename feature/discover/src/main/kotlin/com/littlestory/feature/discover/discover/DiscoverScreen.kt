@@ -33,6 +33,7 @@ import com.littlestory.core.designsystem.component.LittleStorySearchField
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.story.SectionHeader
 import com.littlestory.core.ui.story.StoryArt
@@ -108,6 +109,10 @@ fun DiscoverScreen(
                     clearContentDescription = stringResource(R.string.discover_search_clear),
                     modifier = gutter.testTag(DiscoverTags.SEARCH),
                 )
+            }
+            if (state.loading) {
+                item { LoadingIndicator() }
+                return@LazyColumn
             }
             state.featured?.let { featured ->
                 item { FeaturedCard(featured, { actions.onStory(featured.story.id) }, gutter) }

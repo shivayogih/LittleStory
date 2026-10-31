@@ -6,6 +6,7 @@ import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.hasScrollToNodeAction
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
@@ -14,6 +15,7 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.printToString
 import com.littlestory.app.MainActivity
 import com.littlestory.core.common.config.AppConfig
@@ -136,6 +138,16 @@ abstract class JourneyTest(
             .forEach { tap(ParentalGateTags.key(it.digitToInt())) }
         tap(ParentalGateTags.SUBMIT)
         awaitGone(ParentalGateTags.DIALOG)
+    }
+
+    /** Two taps with no pause for the app to settle in between, like an impatient child. */
+    protected fun doubleTap(tag: String) {
+        await(tag)
+        compose.onAllNodes(hasTestTag(tag)).onFirst().performTouchInput {
+            click()
+            click()
+        }
+        compose.waitForIdle()
     }
 
     protected fun back() {

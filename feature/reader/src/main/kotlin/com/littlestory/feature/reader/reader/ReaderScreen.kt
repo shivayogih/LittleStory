@@ -44,6 +44,7 @@ import com.littlestory.core.designsystem.component.LittleStoryReadingProgress
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.illustration.Sparkle
 import com.littlestory.core.ui.story.StoryArt
@@ -125,7 +126,7 @@ fun ReaderScreen(state: ReaderUiState, callbacks: ReaderCallbacks, modifier: Mod
             },
         )
         when (state) {
-            ReaderUiState.Loading -> Unit
+            ReaderUiState.Loading -> LoadingIndicator(Modifier.weight(1f))
             ReaderUiState.NotFound ->
                 LittleStoryEmptyState(
                     icon = LittleStoryIcons.Book,

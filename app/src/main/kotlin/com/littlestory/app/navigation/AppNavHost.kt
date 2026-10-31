@@ -6,9 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -132,48 +134,53 @@ private const val TAB_PROFILE = 4
 private fun NavGraphBuilder.browseGraph(nav: NavHostController) {
     homeScreen(
         HomeActions(
-            onNotifications = { nav.navigate(NotificationsRoute) },
-            onProfiles = { nav.navigate(ChildProfilesRoute) },
+            onNotifications = { nav.go(NotificationsRoute) },
+            onProfiles = { nav.go(ChildProfilesRoute) },
             onCreate = { nav.navigateToTab(CreateRoute) },
-            onResume = { nav.navigate(PlayerRoute(it)) },
+            onResume = { nav.go(PlayerRoute(it)) },
             onDiscover = { nav.navigateToTab(DiscoverRoute) },
-            onCategory = { nav.navigate(CategoryRoute(it)) },
-            onStory = { nav.navigate(StoryDetailRoute(it)) },
+            onCategory = { nav.go(CategoryRoute(it)) },
+            onStory = { nav.go(StoryDetailRoute(it)) },
         ),
     )
     discoverScreen(
         DiscoverActions(
-            onCategory = { nav.navigate(CategoryRoute(it)) },
-            onStory = { nav.navigate(StoryDetailRoute(it)) },
+            onCategory = { nav.go(CategoryRoute(it)) },
+            onStory = { nav.go(StoryDetailRoute(it)) },
         ),
     )
     categoryScreen(
-        onBack = { nav.popBackStack() },
-        onStory = { nav.navigate(StoryDetailRoute(it)) },
+        onBack = { nav.back() },
+        onStory = { nav.go(StoryDetailRoute(it)) },
     )
     storyDetailScreen(
         DetailActions(
-            onBack = { nav.popBackStack() },
-            onListen = { nav.navigate(PlayerRoute(it)) },
-            onRead = { nav.navigate(ReaderRoute(it)) },
+            onBack = { nav.back() },
+            onListen = { nav.go(PlayerRoute(it)) },
+            onRead = { nav.go(ReaderRoute(it)) },
         ),
     )
 }
 
-/** Create → Generating → Story Ready. Generating leaves the back stack once the story is ready. */
+/**
+ * Create → Generating → Story Ready. Once the story is ready the form and Generating both leave the
+ * back stack, so back from Story Ready goes Home: the story is already saved, and showing the
+ * filled form again would invite a duplicate (navigation-design.md §4, N4). Reaching Story Ready is
+ * driven by the generation finishing, not by a tap, so it is never dropped while the app is paused.
+ */
 private fun NavGraphBuilder.createGraph(nav: NavHostController) {
-    createScreen(onGenerate = { nav.navigate(GeneratingRoute(it)) })
+    createScreen(onGenerate = { nav.go(GeneratingRoute(it)) })
     generatingScreen(
         onReady = { storyId ->
-            nav.navigate(StoryReadyRoute(storyId)) { popUpTo<GeneratingRoute> { inclusive = true } }
+            nav.navigate(StoryReadyRoute(storyId)) { popUpTo<CreateRoute> { inclusive = true } }
         },
-        onBackToIdea = { nav.popBackStack() },
+        onBackToIdea = { nav.back() },
     )
     storyReadyScreen(
         ReadyActions(
-            onBack = { nav.popBackStack() },
-            onListen = { nav.navigate(PlayerRoute(it)) },
-            onRead = { nav.navigate(ReaderRoute(it)) },
+            onBack = { nav.back() },
+            onListen = { nav.go(PlayerRoute(it)) },
+            onRead = { nav.go(ReaderRoute(it)) },
             onOpenCreated = { nav.openCreatedStories() },
         ),
     )
@@ -182,24 +189,24 @@ private fun NavGraphBuilder.createGraph(nav: NavHostController) {
 /** Reader, Player, My Stories and Downloads. Reader and Player swap instead of stacking. */
 private fun NavGraphBuilder.listenGraph(nav: NavHostController) {
     readerScreen(
-        onBack = { nav.popBackStack() },
-        onPlay = { nav.navigate(PlayerRoute(it)) { popUpTo<ReaderRoute> { inclusive = true } } },
+        onBack = { nav.back() },
+        onPlay = { nav.go(PlayerRoute(it)) { popUpTo<ReaderRoute> { inclusive = true } } },
     )
     playerScreen(
-        onBack = { nav.popBackStack() },
-        onStoryText = { nav.navigate(ReaderRoute(it)) { popUpTo<PlayerRoute> { inclusive = true } } },
+        onBack = { nav.back() },
+        onStoryText = { nav.go(ReaderRoute(it)) { popUpTo<PlayerRoute> { inclusive = true } } },
     )
     myStoriesScreen(
         MyStoriesActions(
-            onDownloads = { nav.navigate(DownloadsRoute) },
-            onStory = { nav.navigate(StoryDetailRoute(it)) },
-            onCreatedStory = { nav.navigate(StoryReadyRoute(it)) },
-            onPlay = { nav.navigate(PlayerRoute(it)) },
+            onDownloads = { nav.go(DownloadsRoute) },
+            onStory = { nav.go(StoryDetailRoute(it)) },
+            onCreatedStory = { nav.go(StoryReadyRoute(it)) },
+            onPlay = { nav.go(PlayerRoute(it)) },
             onDiscover = { nav.navigateToTab(DiscoverRoute) },
         ),
     )
     downloadsScreen(
-        onBack = { nav.popBackStack() },
+        onBack = { nav.back() },
         onFindStory = { nav.navigateToTab(DiscoverRoute) },
     )
 }
@@ -208,40 +215,40 @@ private fun NavGraphBuilder.listenGraph(nav: NavHostController) {
 private fun NavGraphBuilder.settingsGraph(nav: NavHostController) {
     profileScreen(
         ProfileActions(
-            onEditChild = { nav.navigate(SetupRoute(it)) },
-            onChildren = { nav.navigate(ChildProfilesRoute) },
-            onReminder = { nav.navigate(ReminderRoute) },
-            onNotifications = { nav.navigate(NotificationsRoute) },
-            onDownloads = { nav.navigate(DownloadsRoute) },
-            onSubscription = { nav.navigate(SubscriptionRoute) },
-            onLanguage = { nav.navigate(LanguageRoute) },
-            onPrivacy = { nav.navigate(PrivacyRoute) },
-            onHelp = { nav.navigate(HelpRoute) },
+            onEditChild = { nav.go(SetupRoute(it)) },
+            onChildren = { nav.go(ChildProfilesRoute) },
+            onReminder = { nav.go(ReminderRoute) },
+            onNotifications = { nav.go(NotificationsRoute) },
+            onDownloads = { nav.go(DownloadsRoute) },
+            onSubscription = { nav.go(SubscriptionRoute) },
+            onLanguage = { nav.go(LanguageRoute) },
+            onPrivacy = { nav.go(PrivacyRoute) },
+            onHelp = { nav.go(HelpRoute) },
         ),
     )
     childProfilesScreen(
         ChildProfilesActions(
-            onBack = { nav.popBackStack() },
-            onEdit = { nav.navigate(SetupRoute(it)) },
-            onAdd = { nav.navigate(SetupRoute()) },
+            onBack = { nav.back() },
+            onEdit = { nav.go(SetupRoute(it)) },
+            onAdd = { nav.go(SetupRoute()) },
         ),
     )
-    reminderScreen(onBack = { nav.popBackStack() })
+    reminderScreen(onBack = { nav.back() })
     notificationsScreen(
         NotificationsActions(
-            onBack = { nav.popBackStack() },
+            onBack = { nav.back() },
             onStoryReady = { nav.openCreatedStories() },
-            onReminder = { nav.navigate(ReminderRoute) },
+            onReminder = { nav.go(ReminderRoute) },
             onNewStories = { nav.navigateToTab(DiscoverRoute) },
         ),
     )
-    subscriptionScreen(onBack = { nav.popBackStack() }, onDone = { nav.navigateToTab(HomeRoute) })
-    languageScreen(onBack = { nav.popBackStack() })
+    subscriptionScreen(onBack = { nav.back() }, onDone = { nav.navigateToTab(HomeRoute) })
+    languageScreen(onBack = { nav.back() })
     privacyScreen(
-        onBack = { nav.popBackStack() },
+        onBack = { nav.back() },
         onDeleted = { nav.navigate(OnboardingRoute) { popUpTo(nav.graph.id) { inclusive = true } } },
     )
-    helpScreen(onBack = { nav.popBackStack() })
+    helpScreen(onBack = { nav.back() })
 }
 
 @Composable
@@ -254,9 +261,25 @@ private fun bottomNavTabs(): List<NavTab> =
         NavTab(stringResource(R.string.nav_profile), LittleStoryIcons.User),
     )
 
+/**
+ * Taps navigate only while the current screen is resumed. A double tap, or a tap on a screen that
+ * is still animating away, would otherwise open a screen twice or pop past where the child meant
+ * to go. Navigation driven by events (generation finished, Setup done, data deleted) stays direct.
+ */
+private fun NavHostController.isResumed(): Boolean =
+    currentBackStackEntry?.lifecycle?.currentState == Lifecycle.State.RESUMED
+
+private fun NavHostController.go(route: Any, builder: NavOptionsBuilder.() -> Unit = {}) {
+    if (isResumed()) navigate(route, builder)
+}
+
+private fun NavHostController.back() {
+    if (isResumed()) popBackStack()
+}
+
 /** Switching tabs keeps one copy of each tab on top of Home and restores its state. */
 private fun NavHostController.navigateToTab(route: Any) {
-    navigate(route) {
+    go(route) {
         popUpTo<HomeRoute> { saveState = true }
         launchSingleTop = true
         restoreState = true
@@ -268,7 +291,7 @@ private fun NavHostController.navigateToTab(route: Any) {
  * saved My Stories state.
  */
 private fun NavHostController.openCreatedStories() {
-    navigate(MyStoriesRoute(LibraryTab.CreatedByMe)) { popUpTo<HomeRoute>() }
+    go(MyStoriesRoute(LibraryTab.CreatedByMe)) { popUpTo<HomeRoute>() }
 }
 
 /**

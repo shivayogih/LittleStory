@@ -12,6 +12,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -47,7 +48,10 @@ class HomeViewModelTest {
     @Test
     fun greetsTheChildAndRanksStoriesByInterests() =
         runTest {
-            val state = collected(viewModel())()
+            val vm = viewModel()
+            assertTrue(vm.state.value.loading)
+            val state = collected(vm)()
+            assertFalse(state.loading)
             assertEquals(UiText.Res(R.string.home_title_for_child, listOf("Aarav")), state.title)
             assertEquals(com.littlestory.core.common.config.AppConfig.Home.MADE_FOR_COUNT, state.madeFor.size)
             // The child's interests (animals, adventure) come first.

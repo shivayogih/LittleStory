@@ -160,4 +160,18 @@ class ComponentsTest {
             ),
         )
     }
+
+    @Test
+    fun loadingSpinnerWaitsForItsDelayThenAnnouncesItself() {
+        rule.mainClock.autoAdvance = false
+        show { LittleStoryLoading(contentDescription = "Loading", delayMillis = LOADING_DELAY_MS) }
+        rule.onNodeWithContentDescription("Loading").assertDoesNotExist()
+        rule.mainClock.advanceTimeBy(LOADING_DELAY_MS + FRAME_MS)
+        rule.onNodeWithContentDescription("Loading").assertExists()
+    }
+
+    private companion object {
+        const val LOADING_DELAY_MS = 300L
+        const val FRAME_MS = 32L
+    }
 }

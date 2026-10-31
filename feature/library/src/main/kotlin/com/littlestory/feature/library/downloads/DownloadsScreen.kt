@@ -30,6 +30,7 @@ import com.littlestory.core.designsystem.component.LittleStoryStorageBar
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.story.StoryArt
 import com.littlestory.core.ui.story.storyArtFor
@@ -79,7 +80,9 @@ fun DownloadsScreen(
             verticalArrangement = Arrangement.spacedBy(spacing.md),
         ) {
             item { StorageCard(state) }
-            if (!state.loading && state.items.isEmpty()) {
+            if (state.loading && state.items.isEmpty()) {
+                item { LoadingIndicator() }
+            } else if (state.items.isEmpty()) {
                 item {
                     LittleStoryEmptyState(
                         icon = LittleStoryIcons.Download,
