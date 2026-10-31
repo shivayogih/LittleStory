@@ -34,6 +34,8 @@ import com.littlestory.core.designsystem.component.LittleStoryIconButton
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.ChromeTags
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.StickyActionBar
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.story.StoryArt
@@ -72,7 +74,12 @@ fun StoryReadyScreen(
 ) {
     val colors = LittleStoryTheme.colors
     when (state) {
-        StoryReadyUiState.Loading -> Box(modifier.fillMaxSize().background(colors.background))
+        StoryReadyUiState.Loading ->
+            Column(modifier.fillMaxSize().background(colors.background)) {
+                SystemBarIcons(darkIcons = true)
+                TopBar(backContentDescription = stringResource(UiR.string.action_back), onBack = actions.onBack)
+                LoadingIndicator(Modifier.weight(1f))
+            }
         StoryReadyUiState.NotFound ->
             Column(modifier.fillMaxSize().background(colors.background)) {
                 SystemBarIcons(darkIcons = true)
@@ -180,7 +187,12 @@ private fun Cover(
     ) {
         StoryArt(gradient, motif)
         Row(Modifier.fillMaxWidth().padding(spacing.sm), horizontalArrangement = Arrangement.spacedBy(spacing.xs)) {
-            LittleStoryIconButton(LittleStoryIcons.Back, stringResource(UiR.string.action_back), onBack)
+            LittleStoryIconButton(
+                LittleStoryIcons.Back,
+                stringResource(UiR.string.action_back),
+                onBack,
+                modifier = Modifier.testTag(ChromeTags.BACK),
+            )
             Box(Modifier.weight(1f))
             LittleStoryIconButton(
                 icon = if (story.favourite) LittleStoryIcons.HeartFilled else LittleStoryIcons.Heart,

@@ -42,6 +42,7 @@ import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
 import com.littlestory.core.designsystem.theme.tokenShadow
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.illustration.CultureGatewayArt
 import com.littlestory.core.ui.illustration.HomeHeroScene
 import com.littlestory.core.ui.story.Avatar
@@ -108,9 +109,13 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(spacing.xxl),
         ) {
             HeroCard(actions.onCreate)
-            state.continueListening?.let { ContinueSection(it, actions.onResume) }
-            if (state.categories.isNotEmpty()) ExploreSection(state.categories, actions)
-            if (state.madeFor.isNotEmpty()) MadeForSection(state, actions, onFavouriteClick)
+            if (state.loading) {
+                LoadingIndicator()
+            } else {
+                state.continueListening?.let { ContinueSection(it, actions.onResume) }
+                if (state.categories.isNotEmpty()) ExploreSection(state.categories, actions)
+                if (state.madeFor.isNotEmpty()) MadeForSection(state, actions, onFavouriteClick)
+            }
             CultureBanner { actions.onCategory(AppConfig.Home.CULTURE_CATEGORY_ID) }
         }
     }

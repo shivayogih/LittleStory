@@ -33,6 +33,7 @@ import com.littlestory.core.designsystem.component.LittleStoryIconButton
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.StickyActionBar
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.story.StoryArt
@@ -71,7 +72,12 @@ fun StoryDetailScreen(
 ) {
     val colors = LittleStoryTheme.colors
     when (state) {
-        StoryDetailUiState.Loading -> Box(modifier.fillMaxSize().background(colors.background))
+        StoryDetailUiState.Loading ->
+            Column(modifier.fillMaxSize().background(colors.background)) {
+                SystemBarIcons(darkIcons = true)
+                TopBar(backContentDescription = stringResource(UiR.string.action_back), onBack = actions.onBack)
+                LoadingIndicator(Modifier.weight(1f))
+            }
         StoryDetailUiState.NotFound ->
             Column(modifier.fillMaxSize().background(colors.background)) {
                 SystemBarIcons(darkIcons = true)

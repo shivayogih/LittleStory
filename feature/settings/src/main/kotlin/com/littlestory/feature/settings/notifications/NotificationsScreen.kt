@@ -31,6 +31,7 @@ import com.littlestory.core.designsystem.component.LittleStoryEmptyState
 import com.littlestory.core.designsystem.icon.LittleStoryIcon
 import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.system.SystemBarIcons
 import com.littlestory.domain.model.NotificationItem
@@ -94,7 +95,11 @@ fun NotificationsScreen(
                 }
             },
         )
-        if (!state.loading && state.items.isEmpty()) {
+        if (state.loading && state.items.isEmpty()) {
+            LoadingIndicator(Modifier.weight(1f))
+            return@Column
+        }
+        if (state.items.isEmpty()) {
             LittleStoryEmptyState(
                 icon = LittleStoryIcons.Bell,
                 title = stringResource(R.string.notifications_empty_title),

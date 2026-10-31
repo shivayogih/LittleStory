@@ -44,6 +44,8 @@ data class CategoryUiState(
     val sortOptions: List<SortOptionUi> = emptyList(),
     val selectedSort: String = AppConfig.Discover.DEFAULT_SORT_ID,
     val stories: List<StoryItem> = emptyList(),
+    /** True until the catalogue first arrives, so "No stories" never flashes while loading. */
+    val loading: Boolean = false,
 )
 
 @HiltViewModel
@@ -75,7 +77,11 @@ class CategoryViewModel
                 sort,
             ) { (catalogue, favouriteIds, downloadedIds), sortId ->
                 build(catalogue, favouriteIds, downloadedIds, sortId)
-            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(SUBSCRIPTION_TIMEOUT_MS), CategoryUiState())
+            }.stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(SUBSCRIPTION_TIMEOUT_MS),
+                CategoryUiState(loading = true),
+            )
 
         fun onSortSelected(id: String) {
             savedState[KEY_SORT] = id

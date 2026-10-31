@@ -65,9 +65,11 @@ class CategoryAndDetailViewModelTest {
     fun categoryListsPrimaryAndTaggedStoriesInRecommendedOrder() =
         runTest {
             val vm = category("space")
+            assertTrue(vm.state.value.loading)
             backgroundScope.launch { vm.state.collect {} }
             advanceUntilIdle()
             val state = vm.state.value
+            assertFalse(state.loading)
             assertEquals(UiText.Dynamic("Space"), state.title)
             assertEquals(listOf("long", "short", "new", "other"), state.stories.map { it.id })
             assertEquals(4, state.storyCount)

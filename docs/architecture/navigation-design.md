@@ -90,9 +90,10 @@ flowchart TD
 | Bottom-nav tab switch | single top, save and restore each tab's state (`saveState`/`restoreState`); back from a non-Home tab returns to Home, back from Home exits |
 | Onboarding → Setup → Home | onboarding and setup are popped inclusive when Home is reached, so back from Home exits the app |
 | Generating | system back = same as ✕: show the paused state (design), not leave the screen; second back returns to Create with the prompt kept |
-| Story ready | proposed: back returns to Home, not Create, because the story is already saved and re-showing the filled form invites duplicates (decision N4, LS-004) |
+| Story ready | reached from Create: back returns to Home, not Create, because the story is already saved and re-showing the filled form invites duplicates (decision N4, LS-004). Create and Generating are popped when the story is ready. Reached from My Stories: back returns to My Stories |
 | Reader ↔ Player | they replace each other (`popUpTo` the other) so back from either returns to the screen that opened the pair |
 | Sleep-timer sheet (SCR-11b), dialogs | back closes the sheet or dialog first |
+| Double taps | a tap navigates only while the current screen is resumed, so a double tap on a button or on back moves one screen, not two. Navigation caused by events (generation finished, Setup done, data deleted) is not filtered |
 | Setup opened from Child profiles | back returns to Child profiles without saving; unsaved-changes prompt not designed (open question) |
 | Language change on any screen | Activity recreation keeps the back stack; ViewModels survive (see [state-management.md](state-management.md)) |
 

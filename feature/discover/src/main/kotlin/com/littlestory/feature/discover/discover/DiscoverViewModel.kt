@@ -50,6 +50,8 @@ data class DiscoverUiState(
     /** "View all" opens the Category screen for the active filter. */
     val showViewAll: Boolean = false,
     val bedtime: List<StoryItem> = emptyList(),
+    /** True until the catalogue first arrives. */
+    val loading: Boolean = false,
 ) {
     val isSearching: Boolean get() = query.isNotBlank()
     val isFiltered: Boolean get() = selectedFilter != AppConfig.Discover.ALL_ID
@@ -80,7 +82,11 @@ class DiscoverViewModel
                 query,
                 filter,
             ) { (catalogue, favouriteIds, locale), q, f -> build(catalogue, favouriteIds, locale, q, f) }
-                .stateIn(viewModelScope, SharingStarted.WhileSubscribed(SUBSCRIPTION_TIMEOUT_MS), DiscoverUiState())
+                .stateIn(
+                    viewModelScope,
+                    SharingStarted.WhileSubscribed(SUBSCRIPTION_TIMEOUT_MS),
+                    DiscoverUiState(loading = true),
+                )
 
         fun onQueryChange(value: String) {
             savedState[KEY_QUERY] = value

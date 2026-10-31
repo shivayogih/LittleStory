@@ -41,7 +41,7 @@ Maintained alongside the code until the owner syncs it into `LittleStory_Jira_Ba
 | LS-115 | Implemented (P6) | Help & about (SCR-22): four questions, version from `:app` BuildConfig via `AppInfo`, font licences. Content owner to approve |
 | LS-043 | Draft (P6) | Glossary extended with P5/P6 terms; every Kannada value is a draft |
 | LS-120 | Implemented (P7) | Kover aggregates every module; `check` fails when view models and `:domain` drop below 80 % line coverage (95 % when introduced). Report: `build/reports/kover/html` |
-| LS-121 | Implemented (P7) | Journeys A–G in English and Kannada as Robolectric tests on the real app graph (`app/src/test/.../journeys`); 14 tests; manual gaps listed in `docs/testing/integration-test-plan.md` §2 |
+| LS-121 | Implemented (P7) | Journeys A–G in English and Kannada as Robolectric tests on the real app graph (`app/src/test/.../journeys`), plus C2 (Create flow back navigation, 31 Oct 2026); 16 tests; manual gaps listed in `docs/testing/integration-test-plan.md` §2 |
 | LS-122 (part) | Trial (P7) | Compose Preview Screenshot Testing in `:app` for Home, Reader, Player, Profile, Language × EN, KN, KN 200 %; images rendered in CI, references await owner approval |
 | LS-124 | Reviewed (P7), owner sign-off open | All 22 design screens compared with the app in `docs/design/fidelity-review.md`; four High findings fixed (row titles, list art size, clipped label, brand overlap at 200 %) and two Medium (row eyebrow case, centred onboarding); the remaining Medium items are listed for the owner |
 | LS-125 | Implemented (P7) | Hardcoded-values audit in `docs/architecture/hardcoding-audit.md`; four layout counts named; scanner gained text-argument, language-tag, URL and layout-count rules |
@@ -485,3 +485,9 @@ Generated from the module XML files; story text in `generated_kn.json` and `noti
 | Key | Module | English | Kannada (draft) | Status |
 |---|---|---|---|---|
 | `generating_simulated` | feature:create | Simulated: your story is put together on this device from sample stories. No AI is used yet. | ಅನುಕರಿಸಿದ ಕಥೆ: ಈ ಸಾಧನದಲ್ಲೇ ಮಾದರಿ ಕಥೆಗಳಿಂದ ನಿಮ್ಮ ಕಥೆಯನ್ನು ಜೋಡಿಸಲಾಗುತ್ತದೆ. ಇನ್ನೂ ಯಾವುದೇ AI ಬಳಸುತ್ತಿಲ್ಲ. | Draft — needs native review |
+
+### Loading indicator (31 Oct 2026)
+
+| Key | Module | English | Kannada (draft) | Status |
+|---|---|---|---|---|
+| `state_loading` | core:ui | Loading… | ಲೋಡ್ ಆಗುತ್ತಿದೆ… | Draft — needs native review |

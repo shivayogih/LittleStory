@@ -13,6 +13,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.core.app.ApplicationProvider
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.chrome.ChromeTags
 import com.littlestory.feature.home.home.HomeActions
 import com.littlestory.feature.home.home.HomeScreen
 import com.littlestory.feature.home.home.HomeTags
@@ -87,5 +88,13 @@ class HomeScreenTest {
     fun noContinueCardWhenNothingIsStarted() {
         show(emptyContinueHome)
         rule.onAllNodesWithTag(HomeTags.CONTINUE_CARD).assertCountEquals(0)
+    }
+
+    @Test
+    fun whileLoadingTheSpinnerReplacesTheStorySections() {
+        show(populatedHome.copy(loading = true))
+        rule.onNodeWithTag(ChromeTags.LOADING).assertExists()
+        rule.onNodeWithTag(HomeTags.CREATE).assertExists()
+        rule.onNodeWithTag(HomeTags.CONTINUE_CARD).assertDoesNotExist()
     }
 }
