@@ -4,6 +4,7 @@ import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import com.littlestory.core.common.config.AppConfig
+import com.littlestory.domain.player.NarrationProgress
 import com.littlestory.domain.player.Narrator
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.awaitClose
@@ -16,14 +17,20 @@ private const val PAUSE_SUFFIX = "_pause"
 
 /**
  * Debug prototype narration with the phone's own text-to-speech: free and offline, but the voice
- * and its Kannada support depend on the phone. Each page is one utterance, followed by a short pause.
+ * and its Kannada support depend on the phone. Each page is one utterance, followed by a short pause;
+ * word ranges report how far the voice is into the page.
  */
 class DeviceNarrator
     @Inject
     constructor(
         @ApplicationContext private val context: Context,
     ) : Narrator {
-        override fun narrate(pages: List<String>, fromPage: Int, languageTag: String, speed: Float): Flow<Int> =
+        override fun narrate(
+            pages: List<String>,
+            fromPage: Int,
+            languageTag: String,
+            speed: Float,
+        ): Flow<NarrationProgress> =
             callbackFlow {
                 var engine: TextToSpeech? = null
                 val lastPage = pages.lastIndex
@@ -39,7 +46,14 @@ class DeviceNarrator
                         tts.setOnUtteranceProgressListener(
                             object : UtteranceProgressListener() {
                                 override fun onStart(utteranceId: String) {
-                                    utteranceId.toIntOrNull()?.let { trySend(it) }
+                                    utteranceId.toIntOrNull()?.let { trySend(NarrationProgress(it)) }
+                                }
+
+                                // Word by word, so the player's bar follows the voice inside a page.
+                                override fun onRangeStart(utteranceId: String, start: Int, end: Int, frame: Int) {
+                                    val page = utteranceId.toIntOrNull() ?: return
+                                    val length = pages[page].length.coerceAtLeast(1)
+                                    trySend(NarrationProgress(page, start.toFloat() / length))
                                 }
 
                                 override fun onDone(utteranceId: String) {
