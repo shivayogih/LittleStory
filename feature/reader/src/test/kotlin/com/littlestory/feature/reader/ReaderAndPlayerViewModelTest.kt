@@ -5,10 +5,13 @@ import com.littlestory.core.common.config.AppConfig
 import com.littlestory.domain.model.ReadingProgress
 import com.littlestory.domain.model.SleepTimer
 import com.littlestory.domain.model.StoryOrigin
+import com.littlestory.domain.player.Narrator
 import com.littlestory.feature.reader.player.PlayerViewModel
 import com.littlestory.feature.reader.reader.ReaderUiState
 import com.littlestory.feature.reader.reader.ReaderViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
@@ -19,6 +22,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.util.Optional
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
@@ -47,8 +51,14 @@ class ReaderAndPlayerViewModelTest {
             stores,
         )
 
-    private fun player(id: String) =
-        PlayerViewModel(SavedStateHandle(mapOf("storyId" to id)), FakeProfiles(sampleChild), preferences, stores)
+    private fun player(id: String, narrator: Narrator? = null) =
+        PlayerViewModel(
+            SavedStateHandle(mapOf("storyId" to id)),
+            FakeProfiles(sampleChild),
+            preferences,
+            stores,
+            Optional.ofNullable(narrator),
+        )
 
     private fun TestScope.loaded(vm: ReaderViewModel): () -> ReaderUiState.Loaded {
         backgroundScope.launch { vm.state.collect {} }
@@ -126,6 +136,43 @@ class ReaderAndPlayerViewModelTest {
                 progress.rows.value
                     .single()
                     .page,
+            )
+        }
+
+    @Test
+    fun aNarratorReadsThePagesAndMovesThePositionPageByPage() =
+        runTest {
+            val heard = mutableListOf<Pair<Int, String>>()
+            val pageGate = Channel<Unit>()
+            val narrator =
+                object : Narrator {
+                    override fun narrate(pages: List<String>, fromPage: Int, languageTag: String, speed: Float) =
+                        flow {
+                            heard += fromPage to languageTag
+                            for (page in fromPage until pages.size) {
+                                emit(page)
+                                pageGate.receive()
+                            }
+                        }
+                }
+            val vm = player("s1", narrator)
+            advanceUntilIdle()
+            vm.onPlayPause()
+            advanceUntilIdle()
+            assertEquals(listOf(0 to "en"), heard)
+            pageGate.send(Unit)
+            advanceUntilIdle()
+            assertEquals(1f / 3, vm.state.value.position, 0.0001f)
+            pageGate.send(Unit)
+            pageGate.send(Unit)
+            advanceUntilIdle()
+            assertFalse(vm.state.value.playing)
+            assertEquals(1f, vm.state.value.position)
+            assertEquals(
+                1f,
+                progress.rows.value
+                    .single()
+                    .listenFraction,
             )
         }
 

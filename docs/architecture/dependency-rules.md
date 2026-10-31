@@ -15,6 +15,7 @@ Sources: brief §9.5, §15.3 · [module-structure.md](module-structure.md) · AD
 | `:core:ui` | `:core:designsystem`, `:domain`, `:core:common` |
 | `:core:designsystem` | Compose + Material 3 only |
 | `:data` | `:domain`, `:core:common` |
+| `:prototype:*` | `:domain`, `:core:common`; added to `:app` with `debugImplementation` only, so release builds never contain it |
 | `:domain` | `:core:common`, Kotlin stdlib, kotlinx-coroutines-core |
 | `:core:common` | Kotlin stdlib, kotlinx-coroutines-core |
 

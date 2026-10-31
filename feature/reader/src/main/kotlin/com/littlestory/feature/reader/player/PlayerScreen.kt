@@ -200,7 +200,7 @@ private fun Loaded(state: PlayerUiState, callbacks: PlayerCallbacks) {
                     if (compact) dimens.playerCoverCompactWidth else dimens.playerCoverWidth,
                     if (compact) dimens.playerCoverCompactHeight else dimens.playerCoverHeight,
                 ).clip(LittleStoryTheme.shapes.hero),
-        ) { StoryArt(gradient, motif) }
+        ) { StoryArt(gradient, motif, storyId = state.storyId) }
     }
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(spacing.xs)) {
         Text(

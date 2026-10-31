@@ -39,6 +39,7 @@ import java.io.File
 import java.time.DayOfWeek
 import java.time.LocalTime
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -191,7 +192,14 @@ class PersistenceTest {
             ProgressRepositoryImpl(db.readingProgressDao()).update(ReadingProgress(child.id, "s1", 1, 0.5f, 1))
             val preferences = PreferencesRepositoryImpl(store)
             preferences.setFirstRunCompleted(true)
-            LocalDataRepositoryImpl(db, store, Dispatchers.IO).deleteAll()
+            val images =
+                kotlin.io.path
+                    .createTempDirectory("story_images")
+                    .toFile()
+            File(images, "generated_r1").mkdirs()
+            File(images, "generated_r1/cover.png").writeText("png")
+            LocalDataRepositoryImpl(db, store, Dispatchers.IO, images).deleteAll()
+            assertFalse(images.exists())
             assertTrue(profiles.profiles.first().isEmpty())
             assertNull(profiles.activeProfile.first())
             assertTrue(FavouritesRepositoryImpl(db.savedStoryDao()).favouriteIds(child.id).first().isEmpty())

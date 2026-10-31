@@ -241,6 +241,7 @@ private fun ContinueSection(item: ContinueUi, onResume: (String) -> Unit) {
             gradient = gradient,
             motif = motif,
             onResume = { onResume(item.story.id) },
+            storyId = item.story.id,
             modifier = Modifier.testTag(HomeTags.CONTINUE_CARD),
         )
     }

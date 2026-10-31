@@ -61,6 +61,8 @@ dependencies {
     implementation(projects.feature.reader)
     implementation(projects.feature.library)
     implementation(projects.feature.settings)
+    // Gemini story prototype: debug builds only, so release has no network and no Firebase SDK.
+    debugImplementation(projects.prototype.gemini)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -179,7 +179,9 @@ private fun RecentCard(recent: RecentlyPlayed, onPlay: (String) -> Unit) {
         horizontalArrangement = Arrangement.spacedBy(spacing.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.size(dimens.recentArtSize).clip(LittleStoryTheme.shapes.medium)) { StoryArt(gradient, motif) }
+        Box(Modifier.size(dimens.recentArtSize).clip(LittleStoryTheme.shapes.medium)) {
+            StoryArt(gradient, motif, storyId = recent.item.id)
+        }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xs)) {
             Text(recent.item.title, style = LittleStoryTheme.typography.itemTitle, color = colors.textPrimary)
             Text(remaining, style = LittleStoryTheme.typography.chip, color = colors.textSecondary)
@@ -208,6 +210,7 @@ private fun StoryRow(story: StoryItem, created: Boolean, actions: MyStoriesActio
         motif = motif,
         onClick = { if (created) actions.onCreatedStory(story.id) else actions.onStory(story.id) },
         offlineLabel = if (story.downloaded) stringResource(R.string.stories_offline) else null,
+        storyId = story.id,
         modifier =
             Modifier
                 .background(colors.surface, LittleStoryTheme.shapes.large)

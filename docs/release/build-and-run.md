@@ -61,6 +61,16 @@ If `./gradlew` is not executable on macOS/Linux: `chmod +x gradlew` (the wrapper
 | GitHub Actions (LS-130) | `.github/workflows/ci.yml` runs `./gradlew check assembleDebug` on every PR and on pushes to `main`, `staging` and `development`. Each run attaches the debug-signed APK as the `LittleStory-debug-apk` artifact (run page → Artifacts) for testing on a phone. |
 | Claude Code cloud workspace | Builds once `dl.google.com` is allowed in the environment's network policy and the SDK is installed (`sdkmanager "platforms;android-37.2" "build-tools;37.0.0"`, then `sdk.dir` in `local.properties`). Maven Central may answer 429: retry with `--max-workers=2`. |
 
+## 5a. Gemini story prototype (debug builds only)
+
+Debug builds include `:prototype:gemini`: story text and pictures from the Gemini free tier through Firebase AI Logic, and narration with the phone's own voice. Release builds contain none of it and stay offline.
+
+1. Put the owner's `google-services.json` (Firebase project `littlestory-dev`, app `com.littlestory.app.debug`) at `app/google-services.json`. It is git-ignored; never commit it.
+2. Build `assembleDebug`. Without the file the build still works and story creation stays simulated; CI builds have no file.
+3. Model names live in `gradle.properties` (`littlestory.gemini.textModel`, `littlestory.gemini.imageModel`); override with `-P` when Google renames them.
+4. Firebase App Check: enforcement on AI Logic must be off for the dev project until App Check is set up; otherwise every call fails with 401 and the Generating screen shows the paused state.
+5. Use made-up names only: free-tier prompts may be reviewed by Google. The child's name is replaced by `{{HERO}}` before anything is sent.
+
 ## 6. Troubleshooting (to extend in LS-030)
 
 | Symptom | Likely cause |

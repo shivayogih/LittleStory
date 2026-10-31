@@ -39,6 +39,7 @@ Splitting a module later is cheap because features never depend on each other.
 | `:feature:create` | feature | Create a story, Generating + paused, Story ready | SCR-07, SCR-08, SCR-09 | core + `:domain` |
 | `:feature:reader` | feature | Reader, Player, Sleep-timer sheet | SCR-10, SCR-11a, SCR-11b | core + `:domain` |
 | `:feature:library` | feature | My Stories, Offline downloads | SCR-12, SCR-17 | core + `:domain` |
+| `:prototype:gemini` | debug-only prototype | Gemini story and picture writer (Firebase AI Logic) and phone-voice narrator, bound to `StoryWriter` and `Narrator` in `:domain`; `debugImplementation` in `:app` only (docs/api/backend-ai-accounts-design.md) | SCR-08, SCR-10, SCR-11 | `:domain`, `:core:common` |
 | `:feature:settings` | feature | Profile hub, Child profiles, Subscription, Bedtime reminder, Notifications, Language, Privacy, Help, Account/Audio prefs | SCR-13–16, SCR-18, SCR-20–23 | core + `:domain` |
 
 "core" = `:core:designsystem`, `:core:ui`, `:core:common`. `:core:database` and `:core:network` are not created in the MVP (brief §9.4): Room lives inside `:data` until a second consumer exists, and there is no network layer.

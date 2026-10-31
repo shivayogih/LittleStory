@@ -12,6 +12,7 @@ import com.littlestory.domain.browse.observeBrowseContext
 import com.littlestory.domain.browse.observeStory
 import com.littlestory.domain.model.ReadingProgress
 import com.littlestory.domain.model.SleepTimer
+import com.littlestory.domain.player.Narrator
 import com.littlestory.domain.player.SimulatedPlayback
 import com.littlestory.domain.repository.PreferencesRepository
 import com.littlestory.domain.repository.ProfilesRepository
@@ -29,6 +30,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.util.Optional
 import javax.inject.Inject
 
 @Immutable
@@ -60,6 +62,8 @@ data class PlayerUiState(
 /**
  * SCR-11a/11b (LS-092..LS-094): a simulated narration player. Nothing is played; the position
  * advances on a timer and is saved as listening progress so Home and My Stories can resume it.
+ * When a [Narrator] is bound (debug prototype: the phone's voice), it reads the pages aloud and
+ * its page events move the position instead of the timer.
  */
 @HiltViewModel
 class PlayerViewModel
@@ -69,7 +73,12 @@ class PlayerViewModel
         profiles: ProfilesRepository,
         private val preferences: PreferencesRepository,
         stores: StoryStores,
+        narrator: Optional<Narrator>,
     ) : ViewModel() {
+        private val narrator: Narrator? = narrator.orElse(null)
+        private var pages: List<String> = emptyList()
+        private var languageTag: String = SupportedLanguages.default.tag
+
         private val catalog = stores.catalog
         private val library = stores.library
         private val favourites = stores.favourites
@@ -114,6 +123,8 @@ class PlayerViewModel
                         if (story == null) {
                             it.copy(loading = false, notFound = true)
                         } else {
+                            pages = story.pages.map { page -> page.text }
+                            languageTag = story.resolvedLanguage
                             it.copy(
                                 loading = false,
                                 notFound = false,
@@ -205,6 +216,11 @@ class PlayerViewModel
             if (_state.value.position >= 1f) _state.update { it.copy(position = 0f) }
             _state.update { it.copy(playing = true) }
             ticker?.cancel()
+            val voice = narrator
+            if (voice != null && pages.isNotEmpty()) {
+                ticker = viewModelScope.launch { narrate(voice) }
+                return
+            }
             ticker =
                 viewModelScope.launch {
                     var ticks = 0
@@ -215,6 +231,15 @@ class PlayerViewModel
                         if (ticks % AppConfig.Player.PROGRESS_SAVE_EVERY_TICKS == 0) saveProgress()
                     }
                 }
+        }
+
+        private suspend fun narrate(voice: Narrator) {
+            val current = _state.value
+            voice.narrate(pages, current.chapter, languageTag, current.speed).collect { page ->
+                _state.update { it.copy(position = SimulatedPlayback.chapterStart(page, it.chapters)) }
+            }
+            _state.update { it.copy(position = 1f, playing = false) }
+            saveProgress()
         }
 
         private fun tick() {

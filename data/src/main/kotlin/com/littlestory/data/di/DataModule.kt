@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
 import com.littlestory.core.common.config.AppConfig
+import com.littlestory.core.common.story.StoryImageFiles
 import com.littlestory.data.catalog.CatalogRepositoryImpl
 import com.littlestory.data.catalog.MockContentSource
 import com.littlestory.data.db.LittleStoryDatabase
@@ -20,6 +21,8 @@ import com.littlestory.data.repository.ProfilesRepositoryImpl
 import com.littlestory.data.repository.ProgressRepositoryImpl
 import com.littlestory.data.settings.NotificationsRepositoryImpl
 import com.littlestory.data.settings.SubscriptionRepositoryImpl
+import com.littlestory.domain.generation.StoryWriter
+import com.littlestory.domain.player.Narrator
 import com.littlestory.domain.repository.CatalogRepository
 import com.littlestory.domain.repository.DownloadsRepository
 import com.littlestory.domain.repository.FavouritesRepository
@@ -32,6 +35,7 @@ import com.littlestory.domain.repository.ProfilesRepository
 import com.littlestory.domain.repository.ProgressRepository
 import com.littlestory.domain.repository.StoryStores
 import com.littlestory.domain.repository.SubscriptionRepository
+import dagger.BindsOptionalOf
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +43,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.Dispatchers
 import java.io.File
+import java.util.Optional
 import java.util.UUID
 import javax.inject.Singleton
 
@@ -121,8 +126,11 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun generation(source: MockContentSource, library: LibraryRepository): GenerationRepository =
-        GenerationRepositoryImpl(source, library)
+    fun generation(
+        source: MockContentSource,
+        library: LibraryRepository,
+        writer: Optional<StoryWriter>,
+    ): GenerationRepository = GenerationRepositoryImpl(source, library, writer.orElse(null))
 
     @Provides
     @Singleton
@@ -145,6 +153,20 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun localData(db: LittleStoryDatabase, store: DataStore<Preferences>): LocalDataRepository =
-        LocalDataRepositoryImpl(db, store, Dispatchers.IO)
+    fun localData(
+        @ApplicationContext context: Context,
+        db: LittleStoryDatabase,
+        store: DataStore<Preferences>,
+    ): LocalDataRepository = LocalDataRepositoryImpl(db, store, Dispatchers.IO, StoryImageFiles.root(context.filesDir))
+}
+
+/** A real [StoryWriter] and [Narrator] are optional: release builds bind none and keep the simulations (ADR-014). */
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class OptionalPrototypeModule {
+    @BindsOptionalOf
+    abstract fun storyWriter(): StoryWriter
+
+    @BindsOptionalOf
+    abstract fun narrator(): Narrator
 }

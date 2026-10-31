@@ -185,7 +185,7 @@ private fun Cover(
             .height(LittleStoryTheme.dimens.readyCoverHeight)
             .clip(LittleStoryTheme.shapes.hero),
     ) {
-        StoryArt(gradient, motif)
+        StoryArt(gradient, motif, storyId = story.id)
         Row(Modifier.fillMaxWidth().padding(spacing.sm), horizontalArrangement = Arrangement.spacedBy(spacing.xs)) {
             LittleStoryIconButton(
                 LittleStoryIcons.Back,

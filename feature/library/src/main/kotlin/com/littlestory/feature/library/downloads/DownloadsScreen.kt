@@ -150,7 +150,9 @@ private fun DownloadRow(item: DownloadItem, onRemove: (String) -> Unit) {
         horizontalArrangement = Arrangement.spacedBy(spacing.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.size(dimens.recentArtSize).clip(LittleStoryTheme.shapes.medium)) { StoryArt(gradient, motif) }
+        Box(Modifier.size(dimens.recentArtSize).clip(LittleStoryTheme.shapes.medium)) {
+            StoryArt(gradient, motif, storyId = item.storyId)
+        }
         Column(
             Modifier.weight(1f).semantics(mergeDescendants = true) {
             },

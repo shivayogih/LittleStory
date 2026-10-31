@@ -96,6 +96,7 @@ fun ListStoryRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     offlineLabel: String? = null,
+    storyId: String? = null,
     trailing: @Composable () -> Unit = {},
 ) {
     val dimens = LittleStoryTheme.dimens
@@ -106,7 +107,7 @@ fun ListStoryRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(Modifier.size(dimens.listArtWidth, dimens.listArtHeight).clip(LittleStoryTheme.shapes.medium)) {
-            StoryArt(gradient, motif)
+            StoryArt(gradient, motif, storyId = storyId)
         }
         // No merge boundary here: the texts must merge into the clickable row to give it a name.
         Column(
@@ -144,6 +145,7 @@ fun ContinueCard(
     motif: StoryArtMotif,
     onResume: () -> Unit,
     modifier: Modifier = Modifier,
+    storyId: String? = null,
 ) {
     val colors = LittleStoryTheme.colors
     val spacing = LittleStoryTheme.spacing
@@ -156,7 +158,7 @@ fun ContinueCard(
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(spacing.md), verticalAlignment = Alignment.CenterVertically) {
             Box(Modifier.size(LittleStoryTheme.dimens.listArtHeight).clip(LittleStoryTheme.shapes.medium)) {
-                StoryArt(gradient, motif)
+                StoryArt(gradient, motif, storyId = storyId)
             }
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing.xxs)) {
                 Text(eyebrow, style = LittleStoryTheme.typography.eyebrow, color = colors.primaryVariantLabel)
