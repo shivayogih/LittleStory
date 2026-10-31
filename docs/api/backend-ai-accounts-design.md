@@ -13,7 +13,7 @@ Related: [future-api-contracts.md](future-api-contracts.md), [ai-generation-flow
 | B1 | Backend platform | **Firebase on Google Cloud, India region (`asia-south1`, Mumbai)**: Firebase Auth, Firestore, Cloud Storage + CDN, Cloud Run for the `/v1` API and AI jobs, App Check, Remote Config | Least operations for a small team, first-class Android SDKs, data stays in India, generous free tier |
 | B2 | Who signs in | **The parent only.** Children never have logins; child profiles live under the parent account | Matches Families policy, COPPA and DPDP; already assumed in `future-api-contracts.md` §1 |
 | B3 | Sign-in methods | **Google sign-in (Credential Manager) at launch**, email link as a second option; phone OTP later if parents ask for it | One tap on Android, no passwords to store, no SMS cost or fraud |
-| B4 | Guest use | **Keep a guest mode** (catalogue, reading, local profiles) and require sign-in for AI creation, sync and narration downloads | Lower friction, keeps today's offline app working, collects nothing until a parent opts in |
+| B4 | Guest use | **Decided by the owner 31 Oct 2026: keep a guest mode** (catalogue, reading, local profiles) and require sign-in for AI creation, sync and narration downloads | Lower friction, keeps today's offline app working, collects nothing until a parent opts in |
 | B5 | Story AI | **Provider-neutral backend interface; pick the model after a Kannada bake-off** (Claude Sonnet 5.5 and Gemini as first candidates) | Kannada quality decides the product; no lock-in |
 | B6 | Narration | **Catalogue: pre-generated expressive AI voice (best of a listening test), human narration for flagship stories. Created stories: AI voice generated on demand, cached** | Warm storyteller voice where it matters most, cost bounded |
 | B7 | Catalogue source | **Curated public-domain retellings + CC BY stories (e.g. Pratham Books StoryWeaver, verify each licence) + AI-assisted originals, all human-reviewed in both languages** | Legal clarity, Kannada content exists, quality control |
@@ -209,7 +209,7 @@ Each phase is its own milestone PR into `development`; staging, main and store r
 
 ## 12. Open questions for the owner
 
-1. **Sign-in model:** guest mode plus sign-in for AI and sync (recommended), or sign-in required before using the app?
+1. ~~**Sign-in model**~~ Decided 31 Oct 2026: guest mode, with sign-in required for AI creation, sync and narration downloads.
 2. **Sign-in methods at launch:** Google only, Google + email link (recommended), or also phone OTP?
 3. **Backend platform:** Firebase + Cloud Run in Mumbai (recommended), or Supabase?
 4. **Launch countries:** India only at first?

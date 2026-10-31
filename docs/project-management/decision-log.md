@@ -35,7 +35,7 @@ A decision moves to **Approved** only when the project owner says so in the proj
 | D14 | Personal data collected | Child first name, age, avatar, interests; drop parent email | R-11 | Open |
 | D15 | Detekt + ktlint | Approve both | ADR-018 | Open |
 | D16 | Backend platform | Firebase + Cloud Run in `asia-south1` | backend-ai-accounts-design.md B1 | Open |
-| D17 | Sign-in model and methods | Parent-only accounts; guest mode kept; Google sign-in + email link | backend-ai-accounts-design.md B2–B4 | Open |
+| D17 | Sign-in model and methods | Parent-only accounts; guest mode kept (owner chose 31 Oct 2026: sign-in only for AI, sync and narration downloads); Google sign-in + email link | backend-ai-accounts-design.md B2–B4 | Guest mode decided; methods open |
 | D18 | Story AI provider | Bake-off in English and Kannada before choosing | backend-ai-accounts-design.md B5 | Open |
 | D19 | Narration voice | Listening test; AI voice for catalogue, human for flagship stories | backend-ai-accounts-design.md B6 | Open |
 | D20 | Subscription timing | Entitlements built now, all families `free`; billing after an owner-set growth trigger | backend-ai-accounts-design.md B8 | Open |
