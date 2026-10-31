@@ -1,12 +1,16 @@
 package com.littlestory.feature.settings
 
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import com.littlestory.core.common.safety.ParentalGateChallenge
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import com.littlestory.core.ui.safety.LocalParentalGateChallenges
+import com.littlestory.core.ui.safety.ParentalGateTags
 import com.littlestory.feature.settings.children.ChildProfilesActions
 import com.littlestory.feature.settings.children.ChildProfilesScreen
 import com.littlestory.feature.settings.children.ChildProfilesTags
@@ -51,24 +55,31 @@ class SettingsScreensTest {
     fun profileRowsOpenTheirScreensAndTogglesReport() {
         rule.setContent {
             LittleStoryTheme {
-                ProfileScreen(
-                    profileState,
-                    ProfileActions(
-                        onEditChild = { calls += "edit:$it" },
-                        onChildren = { calls += "children" },
-                        onReminder = { calls += "reminder" },
-                        onNotifications = { calls += "notifications" },
-                        onDownloads = { calls += "downloads" },
-                        onSubscription = { calls += "subscription" },
-                        onLanguage = { calls += "language" },
-                        onPrivacy = { calls += "privacy" },
-                        onHelp = { calls += "help" },
-                    ),
-                    ProfileCallbacks(onNotificationsToggled = { calls += "notify:$it" }),
-                )
+                CompositionLocalProvider(LocalParentalGateChallenges provides { gateChallenge }) {
+                    ProfileScreen(
+                        profileState,
+                        ProfileActions(
+                            onEditChild = { calls += "edit:$it" },
+                            onChildren = { calls += "children" },
+                            onReminder = { calls += "reminder" },
+                            onNotifications = { calls += "notifications" },
+                            onDownloads = { calls += "downloads" },
+                            onSubscription = { calls += "subscription" },
+                            onLanguage = { calls += "language" },
+                            onPrivacy = { calls += "privacy" },
+                            onHelp = { calls += "help" },
+                        ),
+                        ProfileCallbacks(onNotificationsToggled = { calls += "notify:$it" }),
+                    )
+                }
             }
         }
         rule.onNodeWithTag(ProfileTags.CHILD_CARD).performScrollTo().performClick()
+        assertEquals(emptyList(), calls, "editing a child waits for the parental gate")
+        gateChallenge.answer.toString().forEach {
+            rule.onNodeWithTag(ParentalGateTags.key(it.digitToInt())).performScrollTo().performClick()
+        }
+        rule.onNodeWithTag(ParentalGateTags.SUBMIT).performScrollTo().performClick()
         rule.onNodeWithTag(ProfileTags.CHILDREN).performScrollTo().performClick()
         rule.onNodeWithTag(ProfileTags.REMINDER).performScrollTo().performClick()
         rule.onNodeWithTag("${ProfileTags.NOTIFICATIONS}_toggle").performScrollTo().performClick()
@@ -91,6 +102,27 @@ class SettingsScreensTest {
             ),
             calls,
         )
+    }
+
+    @Test
+    fun profileCardStaysClosedWhenTheGateIsCancelled() {
+        rule.setContent {
+            LittleStoryTheme {
+                CompositionLocalProvider(LocalParentalGateChallenges provides { gateChallenge }) {
+                    ProfileScreen(
+                        profileState,
+                        ProfileActions(onEditChild = { calls += "edit:$it" }),
+                        ProfileCallbacks(),
+                    )
+                }
+            }
+        }
+        rule.onNodeWithTag(ProfileTags.CHILD_CARD).performScrollTo().performClick()
+        rule.onNodeWithTag(ParentalGateTags.key(1)).performScrollTo().performClick()
+        rule.onNodeWithTag(ParentalGateTags.SUBMIT).performScrollTo().performClick()
+        rule.onNodeWithTag(ParentalGateTags.CANCEL).performScrollTo().performClick()
+        rule.onNodeWithTag(ParentalGateTags.DIALOG).assertDoesNotExist()
+        assertEquals(emptyList(), calls)
     }
 
     @Test
@@ -200,9 +232,34 @@ class SettingsScreensTest {
     }
 
     @Test
+    fun privacyShowsFamilySafetyAndThePolicyMarkedAsDraft() {
+        rule.setContent { LittleStoryTheme { PrivacyScreen(PrivacyUiState(), PrivacyCallbacks()) } }
+        rule.onNodeWithTag(PrivacyTags.DRAFT_NOTICE).assertIsDisplayed()
+        rule.onNodeWithTag(PrivacyTags.SAFETY).performScrollTo().assertIsDisplayed()
+        rule.onNodeWithTag(PrivacyTags.POLICY).performScrollTo().assertIsDisplayed()
+    }
+
+    @Test
+    fun privacyHidesTheDraftNoticeOnceTheTextIsApproved() {
+        rule.setContent {
+            LittleStoryTheme {
+                PrivacyScreen(
+                    PrivacyUiState(showDraftNotice = false),
+                    PrivacyCallbacks(),
+                )
+            }
+        }
+        rule.onNodeWithTag(PrivacyTags.DRAFT_NOTICE).assertDoesNotExist()
+    }
+
+    @Test
     fun helpShowsVersionAndLicences() {
         rule.setContent { LittleStoryTheme { HelpScreen(testAppInfo, onBack = {}) } }
         rule.onNodeWithTag(HelpTags.VERSION).performScrollTo().assertIsDisplayed()
         rule.onNodeWithTag(HelpTags.LICENCES).performScrollTo().assertIsDisplayed()
+    }
+
+    private companion object {
+        val gateChallenge = ParentalGateChallenge(12, 7)
     }
 }

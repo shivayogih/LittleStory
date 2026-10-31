@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.littlestory.core.common.config.AppConfig
 import com.littlestory.core.designsystem.component.ButtonVariant
 import com.littlestory.core.designsystem.component.LittleStoryButton
 import com.littlestory.core.designsystem.component.LittleStoryConfirmDialog
@@ -34,7 +35,28 @@ import com.littlestory.core.ui.R as UiR
 object PrivacyTags {
     const val DELETE = "privacy_delete"
     const val CONFIRM = "privacy_confirm"
+    const val DRAFT_NOTICE = "privacy_draft_notice"
+    const val SAFETY = "privacy_safety"
+    const val POLICY = "privacy_policy"
 }
+
+/** "Family safety": what Google Play's Families policy asks a children's app to tell parents. */
+private val safetyParagraphs =
+    listOf(
+        R.string.privacy_no_ads_title to R.string.privacy_no_ads_body,
+        R.string.privacy_gate_title to R.string.privacy_gate_body,
+        R.string.privacy_content_title to R.string.privacy_content_body,
+    )
+
+/** Draft privacy policy, kept in step with docs/security/privacy-policy-draft.md. */
+private val policyParagraphs =
+    listOf(
+        R.string.privacy_policy_children_title to R.string.privacy_policy_children_body,
+        R.string.privacy_policy_keep_title to R.string.privacy_policy_keep_body,
+        R.string.privacy_policy_rights_title to R.string.privacy_policy_rights_body,
+        R.string.privacy_policy_changes_title to R.string.privacy_policy_changes_body,
+        R.string.privacy_policy_contact_title to R.string.privacy_policy_contact_body,
+    )
 
 data class PrivacyCallbacks(
     val onBack: () -> Unit = {},
@@ -79,6 +101,12 @@ fun PrivacyScreen(state: PrivacyUiState, callbacks: PrivacyCallbacks, modifier: 
             verticalArrangement = Arrangement.spacedBy(spacing.xl),
         ) {
             LittleStoryNotesBanner(text = stringResource(R.string.privacy_banner))
+            if (state.showDraftNotice) {
+                LittleStoryNotesBanner(
+                    text = stringResource(R.string.privacy_draft_notice),
+                    modifier = Modifier.testTag(PrivacyTags.DRAFT_NOTICE),
+                )
+            }
             SettingsGroup(stringResource(R.string.privacy_group_data)) {
                 SettingsParagraph(
                     stringResource(R.string.privacy_stored_title),
@@ -94,6 +122,23 @@ fun PrivacyScreen(state: PrivacyUiState, callbacks: PrivacyCallbacks, modifier: 
                     stringResource(R.string.privacy_creation_title),
                     stringResource(R.string.privacy_creation_body),
                 )
+            }
+            SettingsGroup(stringResource(R.string.privacy_group_safety), Modifier.testTag(PrivacyTags.SAFETY)) {
+                val ages = AppConfig.Setup.ageRange
+                SettingsParagraph(
+                    stringResource(R.string.privacy_audience_title),
+                    stringResource(R.string.privacy_audience_body, ages.first, ages.last),
+                )
+                safetyParagraphs.forEach { (title, body) ->
+                    SettingsDivider()
+                    SettingsParagraph(stringResource(title), stringResource(body))
+                }
+            }
+            SettingsGroup(stringResource(R.string.privacy_group_policy), Modifier.testTag(PrivacyTags.POLICY)) {
+                policyParagraphs.forEachIndexed { index, (title, body) ->
+                    if (index > 0) SettingsDivider()
+                    SettingsParagraph(stringResource(title), stringResource(body))
+                }
             }
             SettingsGroup(stringResource(R.string.privacy_group_controls)) {
                 SettingsParagraph(

@@ -13,6 +13,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +34,7 @@ import com.littlestory.core.designsystem.icon.LittleStoryIcons
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.language.AppLanguage
+import com.littlestory.core.ui.safety.ParentalGateDialog
 import com.littlestory.core.ui.story.Avatar
 import com.littlestory.core.ui.system.SystemBarIcons
 import com.littlestory.feature.settings.R
@@ -243,12 +246,23 @@ private fun reminderSubtitle(state: ProfileUiState): String {
 private fun ChildCardHeader(state: ProfileUiState, actions: ProfileActions) {
     val colors = LittleStoryTheme.colors
     val spacing = LittleStoryTheme.spacing
+    // Editing or adding a child changes a child's details, so a grown-up confirms first.
+    var gateOpen by rememberSaveable { mutableStateOf(false) }
+    if (gateOpen) {
+        ParentalGateDialog(
+            onPassed = {
+                gateOpen = false
+                actions.onEditChild(state.activeChildId)
+            },
+            onDismiss = { gateOpen = false },
+        )
+    }
     Row(
         Modifier
             .fillMaxWidth()
             .clip(LittleStoryTheme.shapes.large)
             .background(colors.primary)
-            .clickable(role = Role.Button) { actions.onEditChild(state.activeChildId) }
+            .clickable(role = Role.Button) { gateOpen = true }
             .padding(spacing.xl)
             .testTag(ProfileTags.CHILD_CARD),
         horizontalArrangement = Arrangement.spacedBy(spacing.lg),

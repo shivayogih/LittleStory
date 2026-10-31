@@ -134,6 +134,15 @@ object AppConfig {
         const val FREE_PLAN_ID = "free"
     }
 
+    /**
+     * Parental gate (Google Play Families policy): "first × second", e.g. 14 × 7. A two-digit
+     * factor keeps it out of reach of most young children while staying quick for a grown-up.
+     */
+    object ParentalGate {
+        val firstFactorRange = 11..19
+        val secondFactorRange = 3..9
+    }
+
     object Ui {
         const val TOAST_DURATION_MS = 2_500L
     }

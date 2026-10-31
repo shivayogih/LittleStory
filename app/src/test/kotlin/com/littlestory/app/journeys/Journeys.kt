@@ -138,6 +138,7 @@ abstract class Journeys(
         back()
 
         tap(ProfileTags.PRIVACY)
+        passParentalGate()
         tap(PrivacyTags.DELETE)
         tap(PrivacyTags.CONFIRM)
         await(OnboardingTags.TITLE)
@@ -169,6 +170,7 @@ abstract class Journeys(
         val other = SupportedLanguages.all.first { it.tag != languageTag }.tag
         tab(TAB_PROFILE)
         tap(ProfileTags.LANGUAGE)
+        passParentalGate()
         tap(LanguageTags.story(other))
         eventually("the story language to be saved") { preferences.contentLanguageTag.first() == other }
 
@@ -184,6 +186,7 @@ abstract class Journeys(
         back()
         tab(TAB_PROFILE)
         tap(ProfileTags.LANGUAGE)
+        passParentalGate()
         tap(LanguageTags.app(other))
         assertEquals(other, AppCompatDelegate.getApplicationLocales().toLanguageTags())
     }

@@ -10,6 +10,11 @@ data class FeatureFlags(
     val simulatedDownloads: Boolean = true,
     val bedtimeReminder: Boolean = true,
     val notificationsInbox: Boolean = true,
+    /**
+     * Labels the in-app privacy policy and family-safety text as a draft awaiting legal review.
+     * Turn off only once a reviewer has approved the final wording (docs/security/play-families-compliance.md).
+     */
+    val draftLegalText: Boolean = true,
     /** Debug builds only: offers en-XA / ar-XB in the language list. */
     val pseudoLocales: Boolean = false,
 )
