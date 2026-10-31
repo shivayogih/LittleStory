@@ -3,6 +3,9 @@ package com.littlestory.data.generation
 import com.littlestory.core.common.config.AppConfig
 import com.littlestory.core.common.language.SupportedLanguages
 import com.littlestory.data.catalog.MockContentSource
+import com.littlestory.domain.generation.StoryDraft
+import com.littlestory.domain.generation.StoryWriter
+import com.littlestory.domain.generation.StoryWriterResult
 import com.littlestory.domain.generation.simulatedGenerationProgress
 import com.littlestory.domain.model.GenerationError
 import com.littlestory.domain.model.GenerationState
@@ -13,8 +16,11 @@ import com.littlestory.domain.model.StoryOrigin
 import com.littlestory.domain.model.StoryPage
 import com.littlestory.domain.repository.GenerationRepository
 import com.littlestory.domain.repository.LibraryRepository
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.takeWhile
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.util.concurrent.ConcurrentHashMap
@@ -37,10 +43,15 @@ internal data class GeneratedTemplate(
  * Simulated generation (LS-082, ADR-014): deterministic progress, then a localized template filled
  * with the hero's name and saved to the library. Pending requests live in memory only; nothing
  * the parent typed is stored or sent anywhere.
+ *
+ * When a [writer] is bound (debug-only Gemini prototype), it writes the story while the progress
+ * runs up to [AppConfig.Generation.WRITER_WAIT_PERCENT]; an unavailable writer falls back to the
+ * simulation, and a rejected or failed one ends in [GenerationState.Failed] (the paused screen).
  */
 class GenerationRepositoryImpl(
     private val source: MockContentSource,
     private val library: LibraryRepository,
+    private val writer: StoryWriter? = null,
 ) : GenerationRepository {
     private val pending = ConcurrentHashMap<String, StoryCreationRequest>()
 
@@ -50,18 +61,62 @@ class GenerationRepositoryImpl(
 
     override fun request(requestId: String): StoryCreationRequest? = pending[requestId]
 
-    override fun generate(requestId: String, startPercent: Int): Flow<GenerationState> =
-        flow {
-            val request = pending[requestId]
-            if (request == null) {
-                emit(GenerationState.Failed(requestId, GenerationError.Unknown))
-                return@flow
+    override fun generate(requestId: String, startPercent: Int): Flow<GenerationState> {
+        val request = pending[requestId]
+        return when {
+            request == null -> flow { emit(GenerationState.Failed(requestId, GenerationError.Unknown)) }
+            writer == null -> simulated(request, startPercent)
+            else -> written(request, writer, startPercent)
+        }
+    }
+
+    private fun written(
+        request: StoryCreationRequest,
+        storyWriter: StoryWriter,
+        startPercent: Int,
+    ): Flow<GenerationState> {
+        val requestId = request.requestId
+        return channelFlow {
+            val written = async { storyWriter.write(request, generatedStoryId(requestId)) }
+            simulatedGenerationProgress(requestId, startPercent)
+                .takeWhile { it.percent <= AppConfig.Generation.WRITER_WAIT_PERCENT }
+                .collect { send(it) }
+            val story =
+                when (val result = written.await()) {
+                    is StoryWriterResult.Written -> storyFrom(request, result.draft)
+                    StoryWriterResult.Unavailable -> buildStory(request)
+                    StoryWriterResult.Rejected, StoryWriterResult.Failed -> null
+                }
+            if (story == null) {
+                send(GenerationState.Failed(requestId, GenerationError.Unknown))
+            } else {
+                library.save(request.heroChildId, story)
+                send(GenerationState.Completed(requestId, story.id))
             }
-            simulatedGenerationProgress(requestId, startPercent).collect { emit(it) }
+        }
+    }
+
+    private fun simulated(request: StoryCreationRequest, startPercent: Int): Flow<GenerationState> =
+        flow {
+            simulatedGenerationProgress(request.requestId, startPercent).collect { emit(it) }
             val story = buildStory(request)
             library.save(request.heroChildId, story)
-            emit(GenerationState.Completed(requestId, story.id))
+            emit(GenerationState.Completed(request.requestId, story.id))
         }
+
+    private fun storyFrom(request: StoryCreationRequest, draft: StoryDraft): Story =
+        buildStory(request).copy(
+            title = draft.title,
+            synopsis = draft.synopsis,
+            lesson = draft.lesson,
+            pages = draft.pages.mapIndexed { index, text -> StoryPage(index, text) },
+            resolvedLanguage = draft.languageTag,
+            art =
+                StoryArtSpec(
+                    draft.paletteId ?: AppConfig.Generation.COVER_PALETTE_ID,
+                    AppConfig.Generation.COVER_MOTIF_ID,
+                ),
+        )
 
     private fun buildStory(request: StoryCreationRequest): Story {
         val language = request.languageTag.substringBefore('-').lowercase()

@@ -38,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.isSpecified
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.littlestory.core.common.story.StoryImageFiles
 import com.littlestory.core.designsystem.component.LittleStoryEmptyState
 import com.littlestory.core.designsystem.component.LittleStoryIconButton
 import com.littlestory.core.designsystem.component.LittleStoryReadingProgress
@@ -48,6 +49,9 @@ import com.littlestory.core.ui.chrome.LoadingIndicator
 import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.illustration.Sparkle
 import com.littlestory.core.ui.story.StoryArt
+import com.littlestory.core.ui.story.StoryPicture
+import com.littlestory.core.ui.story.rememberFilesDir
+import com.littlestory.core.ui.story.rememberPictureExists
 import com.littlestory.core.ui.story.storyArtFor
 import com.littlestory.core.ui.system.SystemBarIcons
 import com.littlestory.feature.reader.R
@@ -195,14 +199,23 @@ private fun androidx.compose.foundation.layout.ColumnScope.Loaded(content: Reade
             color = colors.textPrimary,
             textAlign = TextAlign.Center,
         )
-        if (content.page == 0) {
+        // Generated stories may have a picture per page (debug prototype); otherwise page 1 shows the cover.
+        val pagePicture = rememberFilesDir()?.let { StoryImageFiles.page(it, content.id, content.page) }
+        if (pagePicture != null && rememberPictureExists(pagePicture)) {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .height(LittleStoryTheme.dimens.readerCoverHeight)
+                    .clip(LittleStoryTheme.shapes.large),
+            ) { StoryPicture(pagePicture, Modifier.fillMaxSize()) }
+        } else if (content.page == 0) {
             val (gradient, motif) = storyArtFor(content.paletteId, content.motifId)
             Box(
                 Modifier
                     .fillMaxWidth()
                     .height(LittleStoryTheme.dimens.readerCoverHeight)
                     .clip(LittleStoryTheme.shapes.large),
-            ) { StoryArt(gradient, motif) }
+            ) { StoryArt(gradient, motif, storyId = content.id) }
         }
         val body = LittleStoryTheme.typography.readerBody
         Text(

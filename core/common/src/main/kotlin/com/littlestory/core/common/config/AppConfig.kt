@@ -61,6 +61,15 @@ object AppConfig {
 
         /** Page of a generated story quoted as "A little peek inside" on Story Ready. */
         const val PEEK_PAGE_INDEX = 1
+
+        /**
+         * With a real story writer (debug prototype), the simulated progress stops here until the
+         * writer answers, so the bar never reaches "done" before the story exists.
+         */
+        const val WRITER_WAIT_PERCENT = 92
+
+        /** A real writer that has not answered by then counts as failed (paused screen, Try again). */
+        const val WRITER_TIMEOUT_MS = 90_000L
     }
 
     object Player {
@@ -68,6 +77,10 @@ object AppConfig {
         val speedOptions = listOf(0.75f, 1.0f, 1.25f, 1.5f)
         const val DEFAULT_SPEED = 1.0f
         const val SIMULATED_TICK_MS = 500L
+
+        /** Phone voice (debug prototype): a little slower than normal speech, with a pause between pages. */
+        const val NARRATION_RATE = 0.9f
+        const val NARRATION_PAGE_PAUSE_MS = 800L
         const val TICK_PERCENT = 0.25f
         const val DEFAULT_VOLUME_PERCENT = 75
 

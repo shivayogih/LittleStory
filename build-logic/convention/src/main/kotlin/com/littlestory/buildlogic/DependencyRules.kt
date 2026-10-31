@@ -39,5 +39,7 @@ internal fun allowedProjectDependencies(path: String): Set<String> = when {
     path == CORE_UI -> setOf(DESIGN_SYSTEM, DOMAIN, COMMON)
     path == ":data" -> setOf(DOMAIN, COMMON)
     path.startsWith(":feature:") -> setOf(DESIGN_SYSTEM, CORE_UI, DOMAIN, COMMON)
+    // Debug-only prototypes plug into :domain interfaces; :app adds them with debugImplementation.
+    path.startsWith(":prototype:") -> setOf(DOMAIN, COMMON)
     else -> throw GradleException("No dependency rule for $path; add it to DependencyRules.kt")
 }

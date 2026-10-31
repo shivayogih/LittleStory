@@ -1,8 +1,14 @@
 package com.littlestory.core.ui.story
 
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
@@ -10,14 +16,22 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathOperation
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import com.littlestory.core.common.story.StoryImageFiles
 import com.littlestory.core.designsystem.theme.GradientPair
 import com.littlestory.core.designsystem.theme.LittleStoryColors
 import com.littlestory.core.designsystem.theme.LittleStoryTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
 
 /** The figure or prop drawn on a story cover; chosen by story data, never by text. */
 enum class StoryArtMotif { Moon, Elephant, Cricket, Forest, Space, Festival }
@@ -50,9 +64,58 @@ private const val HEAD_RADIUS = 0.075f
 /**
  * Story cover drawn from tokens: a 145° gradient, a crescent moon, a star and dot, a dark hill
  * and a [motif] figure. Decorative: it has no semantics, the card around it carries the text.
+ * When [storyId] has a saved cover picture (generated stories), the picture covers the drawn art.
  */
 @Composable
 fun StoryArt(
+    gradient: GradientPair,
+    motif: StoryArtMotif,
+    modifier: Modifier = Modifier,
+    storyId: String? = null,
+) {
+    Box(modifier.fillMaxSize()) {
+        DrawnStoryArt(gradient, motif, Modifier.fillMaxSize())
+        val filesDir = rememberFilesDir()
+        if (storyId != null && filesDir != null) {
+            StoryPicture(StoryImageFiles.cover(filesDir, storyId), Modifier.fillMaxSize())
+        }
+    }
+}
+
+/**
+ * The app's files folder, or null where there is none: Compose previews and screenshot rendering
+ * (layoutlib) return null from getFilesDir even though the platform type says otherwise.
+ */
+@Composable
+fun rememberFilesDir(): File? {
+    val context = LocalContext.current
+    return remember(context) {
+        val dir: File? = context.filesDir
+        dir
+    }
+}
+
+/** A saved story picture, cropped to fill; shows nothing while loading or when the file is missing. Decorative. */
+@Composable
+fun StoryPicture(file: File, modifier: Modifier = Modifier) {
+    val bitmap by produceState<ImageBitmap?>(null, file) {
+        value =
+            withContext(
+                Dispatchers.IO,
+            ) { if (file.exists()) BitmapFactory.decodeFile(file.path)?.asImageBitmap() else null }
+    }
+    bitmap?.let { Image(it, contentDescription = null, modifier = modifier, contentScale = ContentScale.Crop) }
+}
+
+/** True once [file] exists, checked off the main thread; for layouts that reserve space only for a picture. */
+@Composable
+fun rememberPictureExists(file: File): Boolean {
+    val exists by produceState(false, file) { value = withContext(Dispatchers.IO) { file.exists() } }
+    return exists
+}
+
+@Composable
+private fun DrawnStoryArt(
     gradient: GradientPair,
     motif: StoryArtMotif,
     modifier: Modifier = Modifier,
