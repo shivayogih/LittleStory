@@ -29,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -51,6 +50,7 @@ import com.littlestory.core.ui.chrome.TopBar
 import com.littlestory.core.ui.illustration.Sparkle
 import com.littlestory.core.ui.story.StoryArt
 import com.littlestory.core.ui.story.StoryPicture
+import com.littlestory.core.ui.story.rememberFilesDir
 import com.littlestory.core.ui.story.rememberPictureExists
 import com.littlestory.core.ui.story.storyArtFor
 import com.littlestory.core.ui.system.SystemBarIcons
@@ -200,8 +200,8 @@ private fun androidx.compose.foundation.layout.ColumnScope.Loaded(content: Reade
             textAlign = TextAlign.Center,
         )
         // Generated stories may have a picture per page (debug prototype); otherwise page 1 shows the cover.
-        val pagePicture = StoryImageFiles.page(LocalContext.current.filesDir, content.id, content.page)
-        if (rememberPictureExists(pagePicture)) {
+        val pagePicture = rememberFilesDir()?.let { StoryImageFiles.page(it, content.id, content.page) }
+        if (pagePicture != null && rememberPictureExists(pagePicture)) {
             Box(
                 Modifier
                     .fillMaxWidth()

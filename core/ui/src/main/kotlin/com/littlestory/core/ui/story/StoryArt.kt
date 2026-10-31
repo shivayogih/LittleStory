@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
@@ -74,10 +75,23 @@ fun StoryArt(
 ) {
     Box(modifier.fillMaxSize()) {
         DrawnStoryArt(gradient, motif, Modifier.fillMaxSize())
-        if (storyId != null) {
-            val context = LocalContext.current
-            StoryPicture(StoryImageFiles.cover(context.filesDir, storyId), Modifier.fillMaxSize())
+        val filesDir = rememberFilesDir()
+        if (storyId != null && filesDir != null) {
+            StoryPicture(StoryImageFiles.cover(filesDir, storyId), Modifier.fillMaxSize())
         }
+    }
+}
+
+/**
+ * The app's files folder, or null where there is none: Compose previews and screenshot rendering
+ * (layoutlib) return null from getFilesDir even though the platform type says otherwise.
+ */
+@Composable
+fun rememberFilesDir(): File? {
+    val context = LocalContext.current
+    return remember(context) {
+        val dir: File? = context.filesDir
+        dir
     }
 }
 
