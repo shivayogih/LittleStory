@@ -1,6 +1,6 @@
 # LittleStory documentation
 
-Index of every document in `docs/`. Status of all P1 documents: draft for owner review (29 Oct 2026). Start with [product/product-vision.md](product/product-vision.md), [architecture/high-level-design.md](architecture/high-level-design.md) and [localization/localization-strategy.md](localization/localization-strategy.md).
+Index of every document in `docs/`. Status of all P1 documents: draft for owner review (29 Oct 2026). Start with [product/product-vision.md](product/product-vision.md), [architecture/high-level-design.md](architecture/high-level-design.md), [architecture/low-level-design.md](architecture/low-level-design.md) and [localization/localization-strategy.md](localization/localization-strategy.md).
 
 ## Product
 
@@ -36,7 +36,8 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 | [dependency-rules.md](architecture/dependency-rules.md) | Define which module and layer dependencies are allowed, which are forbidden, and how each rule is enforced automatically. |
 | [error-handling.md](architecture/error-handling.md) | Define error types per layer, how they map to localized messages, and how retry works. |
 | [hardcoding-audit.md](architecture/hardcoding-audit.md) | The LS-125 audit of hardcoded values: method, findings and the scanner rules added. |
-| [high-level-design.md](architecture/high-level-design.md) | Describe how the LittleStory Android MVP is structured, how requests and state flow, and where future backend work plugs in. |
+| [high-level-design.md](architecture/high-level-design.md) | Android HLD as built: scope, modules and layers, runtime and data flow, navigation, persistence, simulations, cross-cutting concerns, testing/CI and backend replacement points. |
+| [low-level-design.md](architecture/low-level-design.md) | Android LLD: build logic, presentation pattern, domain models and contracts, Room and DataStore schema, DI, key flows (first run, Create, Reader, Player, language, parental gate, delete data), error handling and screen catalogue. |
 | [how-to-change.md](architecture/how-to-change.md) | Step-by-step recipes for the most common changes, each touching one documented home (brief §4.5, LS-150). |
 | [module-structure.md](architecture/module-structure.md) | List every Gradle module proposed for the MVP, what it owns, what it may depend on, and which strings it owns. |
 | [navigation-design.md](architecture/navigation-design.md) | Define every route, its arguments, the navigation graph and back behaviour for the MVP. |
