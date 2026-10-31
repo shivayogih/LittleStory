@@ -491,3 +491,38 @@ Generated from the module XML files; story text in `generated_kn.json` and `noti
 | Key | Module | English | Kannada (draft) | Status |
 |---|---|---|---|---|
 | `state_loading` | core:ui | Loading… | ಲೋಡ್ ಆಗುತ್ತಿದೆ… | Draft — needs native review |
+
+### Families-policy strings (parental gate, family safety, draft privacy policy)
+
+The privacy-policy wording also needs legal review in both languages (docs/security/play-families-compliance.md).
+
+| Key | Module | English | Kannada (draft) | Status |
+|---|---|---|---|---|
+| `parental_gate_title` | core:ui | Grown-ups only | ದೊಡ್ಡವರಿಗೆ ಮಾತ್ರ | Draft — needs native review |
+| `parental_gate_body` | core:ui | This part of LittleStory is for parents and guardians. Please answer to continue. | ಲಿಟಲ್‌ಸ್ಟೋರಿಯ ಈ ಭಾಗ ಪೋಷಕರು ಮತ್ತು ಪಾಲಕರಿಗಾಗಿ. ಮುಂದುವರಿಯಲು ದಯವಿಟ್ಟು ಉತ್ತರಿಸಿ. | Draft — needs native review |
+| `parental_gate_question` | core:ui | What is %1$s × %2$s? | %1$s × %2$s ಎಷ್ಟು? | Draft — needs native review |
+| `parental_gate_answer` | core:ui | Answer | ಉತ್ತರ | Draft — needs native review |
+| `parental_gate_wrong` | core:ui | That’s not right. Here is a new question. | ಉತ್ತರ ಸರಿಯಿಲ್ಲ. ಇಲ್ಲಿದೆ ಹೊಸ ಪ್ರಶ್ನೆ. | Draft — needs native review |
+| `parental_gate_clear` | core:ui | Clear | ಅಳಿಸಿ | Draft — needs native review |
+| `parental_gate_cancel` | core:ui | Cancel | ರದ್ದುಮಾಡಿ | Draft — needs native review |
+| `privacy_draft_notice` | feature:settings | Draft for review: this privacy and safety text has not yet been checked by a legal reviewer and may change before release. | ಪರಿಶೀಲನೆಗಾಗಿ ಕರಡು: ಈ ಗೌಪ್ಯತೆ ಮತ್ತು ಸುರಕ್ಷತೆಯ ಪಠ್ಯವನ್ನು ಇನ್ನೂ ಕಾನೂನು ತಜ್ಞರು ಪರಿಶೀಲಿಸಿಲ್ಲ; ಬಿಡುಗಡೆಗೆ ಮೊದಲು ಬದಲಾಗಬಹುದು. | Draft — needs native review |
+| `privacy_group_safety` | feature:settings | FAMILY SAFETY | ಕುಟುಂಬದ ಸುರಕ್ಷತೆ | Draft — needs native review |
+| `privacy_audience_title` | feature:settings | Made for children, with a grown-up | ದೊಡ್ಡವರ ಜೊತೆಗೆ, ಮಕ್ಕಳಿಗಾಗಿ | Draft — needs native review |
+| `privacy_audience_body` | feature:settings | LittleStory is for children aged %1$d to %2$d. A parent or guardian sets it up and manages each child’s profile. | ಲಿಟಲ್‌ಸ್ಟೋರಿ %1$d ರಿಂದ %2$d ವರ್ಷದ ಮಕ್ಕಳಿಗಾಗಿ. ಪೋಷಕರು ಅಥವಾ ಪಾಲಕರು ಇದನ್ನು ಸಿದ್ಧಪಡಿಸಿ, ಪ್ರತಿ ಮಗುವಿನ ಪ್ರೊಫೈಲ್ ನಿರ್ವಹಿಸುತ್ತಾರೆ. | Draft — needs native review |
+| `privacy_no_ads_title` | feature:settings | No ads, purchases or tracking | ಜಾಹೀರಾತು, ಖರೀದಿ ಅಥವಾ ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ | Draft — needs native review |
+| `privacy_no_ads_body` | feature:settings | There is no advertising, no analytics, no advertising ID and no real payment. The subscription screen is only an illustration. | ಜಾಹೀರಾತು, ಅನಾಲಿಟಿಕ್ಸ್, ಜಾಹೀರಾತು ಐಡಿ ಅಥವಾ ನಿಜವಾದ ಪಾವತಿ ಯಾವುದೂ ಇಲ್ಲ. ಚಂದಾದಾರಿಕೆ ಪರದೆ ಕೇವಲ ಉದಾಹರಣೆ. | Draft — needs native review |
+| `privacy_gate_title` | feature:settings | Grown-ups-only areas | ದೊಡ್ಡವರಿಗೆ ಮಾತ್ರ ಇರುವ ಭಾಗಗಳು | Draft — needs native review |
+| `privacy_gate_body` | feature:settings | Changing a child’s details, the language, the plan or these privacy settings first asks a question a grown-up can answer. | ಮಗುವಿನ ವಿವರ, ಭಾಷೆ, ಯೋಜನೆ ಅಥವಾ ಈ ಗೌಪ್ಯತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಿಸುವ ಮೊದಲು, ದೊಡ್ಡವರು ಉತ್ತರಿಸಬಹುದಾದ ಒಂದು ಪ್ರಶ್ನೆ ಕೇಳಲಾಗುತ್ತದೆ. | Draft — needs native review |
+| `privacy_content_title` | feature:settings | Story content | ಕಥೆಗಳ ವಿಷಯ | Draft — needs native review |
+| `privacy_content_body` | feature:settings | Library stories are written for young listeners. Stories made on Create are put together on this device from a template, without AI. Please enjoy new stories together with your child. | ಸಂಗ್ರಹದ ಕಥೆಗಳನ್ನು ಪುಟ್ಟ ಕೇಳುಗರಿಗಾಗಿ ಬರೆಯಲಾಗಿದೆ. ರಚಿಸಿ ವಿಭಾಗದ ಕಥೆಗಳನ್ನು AI ಇಲ್ಲದೆ, ಮಾದರಿಯಿಂದ ಈ ಸಾಧನದಲ್ಲೇ ಜೋಡಿಸಲಾಗುತ್ತದೆ. ಹೊಸ ಕಥೆಗಳನ್ನು ನಿಮ್ಮ ಮಗುವಿನ ಜೊತೆ ಸೇರಿ ಆನಂದಿಸಿ. | Draft — needs native review |
+| `privacy_group_policy` | feature:settings | PRIVACY POLICY | ಗೌಪ್ಯತಾ ನೀತಿ | Draft — needs native review |
+| `privacy_policy_children_title` | feature:settings | Children’s information | ಮಕ್ಕಳ ಮಾಹಿತಿ | Draft — needs native review |
+| `privacy_policy_children_body` | feature:settings | We do not collect personal information from children. The details a parent enters are kept only in the app’s private storage on this device and are never sent to us or to anyone else. | ನಾವು ಮಕ್ಕಳಿಂದ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ. ಪೋಷಕರು ನಮೂದಿಸುವ ವಿವರಗಳು ಈ ಸಾಧನದಲ್ಲಿ ಆ್ಯಪ್‌ನ ಖಾಸಗಿ ಸಂಗ್ರಹದಲ್ಲಿ ಮಾತ್ರ ಇರುತ್ತವೆ; ಅವನ್ನು ನಮಗೆ ಅಥವಾ ಬೇರೆ ಯಾರಿಗೂ ಕಳುಹಿಸುವುದಿಲ್ಲ. | Draft — needs native review |
+| `privacy_policy_keep_title` | feature:settings | How long it is kept | ಎಷ್ಟು ಕಾಲ ಇರುತ್ತದೆ | Draft — needs native review |
+| `privacy_policy_keep_body` | feature:settings | Until you delete it below or uninstall the app. It is left out of cloud backups and transfers to a new device. | ನೀವು ಕೆಳಗೆ ಅಳಿಸುವವರೆಗೆ ಅಥವಾ ಆ್ಯಪ್ ಅನ್‌ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡುವವರೆಗೆ. ಇದು ಕ್ಲೌಡ್ ಬ್ಯಾಕಪ್‌ಗೂ ಹೊಸ ಸಾಧನಕ್ಕೆ ವರ್ಗಾವಣೆಗೂ ಸೇರುವುದಿಲ್ಲ. | Draft — needs native review |
+| `privacy_policy_rights_title` | feature:settings | Your choices | ನಿಮ್ಮ ಆಯ್ಕೆಗಳು | Draft — needs native review |
+| `privacy_policy_rights_body` | feature:settings | You can see and change each child’s details in Manage children, and delete everything on this device at any time. | ಮಕ್ಕಳನ್ನು ನಿರ್ವಹಿಸಿ ವಿಭಾಗದಲ್ಲಿ ಪ್ರತಿ ಮಗುವಿನ ವಿವರಗಳನ್ನು ನೋಡಬಹುದು ಮತ್ತು ಬದಲಿಸಬಹುದು; ಈ ಸಾಧನದ ಎಲ್ಲ ಮಾಹಿತಿಯನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಅಳಿಸಬಹುದು. | Draft — needs native review |
+| `privacy_policy_changes_title` | feature:settings | If this changes | ಇದು ಬದಲಾದರೆ | Draft — needs native review |
+| `privacy_policy_changes_body` | feature:settings | If a future version connects to the internet or uses AI to write stories, we will update this policy first and ask for a parent’s permission before any child’s information leaves the device. | ಮುಂದಿನ ಆವೃತ್ತಿ ಇಂಟರ್ನೆಟ್‌ಗೆ ಸಂಪರ್ಕಿಸಿದರೆ ಅಥವಾ ಕಥೆ ಬರೆಯಲು AI ಬಳಸಿದರೆ, ಮೊದಲು ಈ ನೀತಿಯನ್ನು ನವೀಕರಿಸುತ್ತೇವೆ; ಯಾವುದೇ ಮಗುವಿನ ಮಾಹಿತಿ ಸಾಧನದಿಂದ ಹೊರಹೋಗುವ ಮೊದಲು ಪೋಷಕರ ಅನುಮತಿ ಕೇಳುತ್ತೇವೆ. | Draft — needs native review |
+| `privacy_policy_contact_title` | feature:settings | Contact | ಸಂಪರ್ಕ | Draft — needs native review |
+| `privacy_policy_contact_body` | feature:settings | Contact details for privacy questions will be added here before LittleStory is published. | ಗೌಪ್ಯತೆಯ ಪ್ರಶ್ನೆಗಳಿಗೆ ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಲಿಟಲ್‌ಸ್ಟೋರಿ ಪ್ರಕಟವಾಗುವ ಮೊದಲು ಇಲ್ಲಿ ಸೇರಿಸಲಾಗುತ್ತದೆ. | Draft — needs native review |

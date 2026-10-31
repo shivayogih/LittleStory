@@ -102,6 +102,8 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 |---|---|
 | [child-safety-requirements.md](security/child-safety-requirements.md) | Requirements that protect children and give parents control, for the MVP and before any backend or real AI is launched. |
 | [privacy-threat-model.md](security/privacy-threat-model.md) | Identify what personal data LittleStory handles, the threats to it, and the mitigations for the MVP and a future backend. |
+| [play-families-compliance.md](security/play-families-compliance.md) | Audit against Google Play's Families policy and child-privacy rules: gaps, what the app does, draft Data safety answers. |
+| [privacy-policy-draft.md](security/privacy-policy-draft.md) | Draft privacy policy to host after legal review. |
 | [security-review.md](security/security-review.md) | The LS-126 review: results per threat, data inventory check, and open items for the owner. |
 | [security-checklist.md](security/security-checklist.md) | A reviewable checklist for every PR and for the P7 security review (LS-126). |
 

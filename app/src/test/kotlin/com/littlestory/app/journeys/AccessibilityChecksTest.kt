@@ -5,6 +5,7 @@ import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.unit.dp
 import com.littlestory.core.ui.chrome.ChromeTags
+import com.littlestory.core.ui.safety.ParentalGateTags
 import com.littlestory.feature.create.form.CreateTags
 import com.littlestory.feature.discover.detail.DetailTags
 import com.littlestory.feature.discover.discover.DiscoverTags
@@ -89,12 +90,15 @@ abstract class AccessibilityChecks(
         tab(TAB_PROFILE)
         visit(ProfileTags.LANGUAGE)
         tap(ProfileTags.LANGUAGE)
+        visit(ParentalGateTags.key(0), ParentalGateTags.CANCEL)
+        passParentalGate()
         visit(LanguageTags.app(languageTag))
         back()
         tap(ProfileTags.REMINDER)
         visit(ReminderTags.TOGGLE)
         back()
         tap(ProfileTags.PRIVACY)
+        passParentalGate()
         visit(PrivacyTags.DELETE)
         back()
         tap(ProfileTags.HELP)

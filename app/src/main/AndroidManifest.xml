@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--
+        Google Play Families policy: an app for children must not send the advertising ID. No
+        dependency adds this permission today; removing it here keeps a future SDK from adding it.
+    -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
     <application
         android:name=".LittleStoryApplication"
         android:allowBackup="false"

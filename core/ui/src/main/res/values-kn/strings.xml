@@ -19,4 +19,13 @@
     <string name="story_offline">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಲಭ್ಯ</string>
     <string name="story_favourite_add">%1$s ಅನ್ನು ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ</string>
     <string name="story_favourite_remove">%1$s ಅನ್ನು ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಿ</string>
+
+    <!-- Parental gate (Google Play Families policy) — Draft, needs native review -->
+    <string name="parental_gate_title">ದೊಡ್ಡವರಿಗೆ ಮಾತ್ರ</string>
+    <string name="parental_gate_body">ಲಿಟಲ್‌ಸ್ಟೋರಿಯ ಈ ಭಾಗ ಪೋಷಕರು ಮತ್ತು ಪಾಲಕರಿಗಾಗಿ. ಮುಂದುವರಿಯಲು ದಯವಿಟ್ಟು ಉತ್ತರಿಸಿ.</string>
+    <string name="parental_gate_question">%1$s × %2$s ಎಷ್ಟು?</string>
+    <string name="parental_gate_answer">ಉತ್ತರ</string>
+    <string name="parental_gate_wrong">ಉತ್ತರ ಸರಿಯಿಲ್ಲ. ಇಲ್ಲಿದೆ ಹೊಸ ಪ್ರಶ್ನೆ.</string>
+    <string name="parental_gate_clear">ಅಳಿಸಿ</string>
+    <string name="parental_gate_cancel">ರದ್ದುಮಾಡಿ</string>
 </resources>

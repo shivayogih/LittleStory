@@ -167,7 +167,7 @@ class SettingsViewModelTest {
     fun privacyDeletesOnlyAfterConfirmation() =
         runTest {
             val localData = FakeLocalData()
-            val vm = PrivacyViewModel(localData)
+            val vm = PrivacyViewModel(localData, FeatureFlags())
             vm.onDeleteClick()
             assertTrue(vm.state.value.confirmOpen)
             vm.onConfirmDismiss()

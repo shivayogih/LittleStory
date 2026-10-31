@@ -20,4 +20,13 @@
     <string name="story_offline">Available offline</string>
     <string name="story_favourite_add">Add %1$s to favourites</string>
     <string name="story_favourite_remove">Remove %1$s from favourites</string>
+
+    <!-- Parental gate (Google Play Families policy) -->
+    <string name="parental_gate_title">Grown-ups only</string>
+    <string name="parental_gate_body">This part of LittleStory is for parents and guardians. Please answer to continue.</string>
+    <string name="parental_gate_question">What is %1$s × %2$s?</string>
+    <string name="parental_gate_answer">Answer</string>
+    <string name="parental_gate_wrong">That’s not right. Here is a new question.</string>
+    <string name="parental_gate_clear">Clear</string>
+    <string name="parental_gate_cancel">Cancel</string>
 </resources>

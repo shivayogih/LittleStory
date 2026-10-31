@@ -40,11 +40,11 @@ Sources: master orchestrator brief §4.1, §8.5, §11.2, §18; design details §
 | India | Digital Personal Data Protection Act, 2023 (and its Rules) | Treats under-18s as children; requires verifiable consent of a parent or lawful guardian before processing a child's personal data; restricts tracking, behavioural monitoring and targeted advertising directed at children. Primary market for a Kannada audience. |
 | United States (if distributed there) | COPPA (FTC rule) | Verifiable parental consent for collecting personal information from children under 13; parental review and deletion rights; data minimisation. |
 | EU/UK (if distributed there) | GDPR / UK GDPR, Age Appropriate Design Code | Parental consent below the national age threshold; high-privacy defaults. |
-| Google Play | Families policy, Data safety form | Designed-for-Families requirements, SDK restrictions, accurate data disclosures. |
+| Google Play | Families policy, Data safety form | Designed-for-Families requirements, SDK restrictions, accurate data disclosures. Audit and gaps: [play-families-compliance.md](play-families-compliance.md). |
 
 ## 4. Open decisions
 
 1. D14 — parent name/email fields in MVP.
-2. Parental gate for the settings area and subscription screen.
+2. ~~Parental gate for the settings area and subscription screen.~~ Implemented 31 Oct 2026; see [play-families-compliance.md](play-families-compliance.md).
 3. Target countries for the first release (drives which regimes apply).
 4. Named owner for privacy/legal review before release.

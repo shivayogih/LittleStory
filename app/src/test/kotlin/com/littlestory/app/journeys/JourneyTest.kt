@@ -20,6 +20,7 @@ import androidx.compose.ui.test.printToString
 import com.littlestory.app.MainActivity
 import com.littlestory.core.common.config.AppConfig
 import com.littlestory.core.ui.chrome.ChromeTags
+import com.littlestory.core.ui.safety.ParentalGateTags
 import com.littlestory.domain.model.AvatarId
 import com.littlestory.domain.model.ChildProfileDraft
 import com.littlestory.domain.repository.CatalogRepository
@@ -129,6 +130,15 @@ abstract class JourneyTest(
     }
 
     protected fun tab(index: Int) = tap(ChromeTags.navTab(index))
+
+    /** Answers the grown-ups-only question that guards parent screens. */
+    protected fun passParentalGate() {
+        FixedParentalGateModule.challenge.answer
+            .toString()
+            .forEach { tap(ParentalGateTags.key(it.digitToInt())) }
+        tap(ParentalGateTags.SUBMIT)
+        awaitGone(ParentalGateTags.DIALOG)
+    }
 
     /** Two taps with no pause for the app to settle in between, like an impatient child. */
     protected fun doubleTap(tag: String) {

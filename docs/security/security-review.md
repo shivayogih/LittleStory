@@ -23,7 +23,7 @@ Inputs: [privacy-threat-model.md](privacy-threat-model.md), [security-checklist.
 | T-05 Demo subscription mistaken for a purchase | **Pass.** No billing library. The screen states that pricing is illustrative and sits behind `FeatureFlags.demoSubscription`. | `SubscriptionScreen`, `FeatureFlags` |
 | T-06 Unneeded permissions | **Pass.** The merged release manifest requests no system permission. Its only `uses-permission` is AndroidX core's own `com.littlestory.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`, which has signature protection. There is no `INTERNET`, so the app cannot reach the network. The reminder schedules nothing and asks for no notification permission (D13). | Merged release manifest |
 | T-07 Exported components | **Pass.** Only `MainActivity` (launcher) is exported. Library components are either not exported or guarded by a system permission: `ProfileInstallReceiver` needs `android.permission.DUMP`. Debug builds also export Compose's `PreviewActivity` and the test `ComponentActivity`; neither is in release. | Merged release manifest |
-| T-08 Child changes parent settings | **Open, owner decision.** There is no parental gate. Delete all data asks for confirmation. | Decision log item to raise |
+| T-08 Child changes parent settings | **Fixed (31 Oct 2026).** A parental gate (multiplication question) guards Manage children, editing a child, Language, Subscription and Privacy & parent controls. Delete all data still asks for confirmation. | `ParentalGateDialog` / `ParentGated` in `:core:ui`; [play-families-compliance.md](play-families-compliance.md) |
 | T-09 Debug features in release | **Pass.** Pseudo-locales are enabled only in the debug build type; the component catalogue is debug-only. | `app/build.gradle.kts` |
 | T-10 Excessive generation | **Pass (MVP).** Generation is a local simulation with no provider. | `SimulatedGeneration` |
 
@@ -54,8 +54,8 @@ Parent name and email are not collected (D14).
 
 | # | Item | Why it matters |
 |---|---|---|
-| S1 | Parental gate for the Profile area (T-08) | Stops a child from deleting data or changing language |
+| S1 | ~~Parental gate for the Profile area (T-08)~~ Done 31 Oct 2026 | Stops a child from deleting data or changing language |
 | S2 | Turn on GitHub secret scanning, push protection and Dependabot alerts | Repository settings cannot be verified from the code |
 | S3 | Branch protection for `main`, `staging`, `development` | Same; owner-only setting |
 | S4 | Minify and obfuscation decision before store release | Recorded as off for the MVP |
-| S5 | Privacy policy and Play Data safety form | Needed before any release (Approval F) |
+| S5 | Privacy policy and Play Data safety form: drafts in [privacy-policy-draft.md](privacy-policy-draft.md) and [play-families-compliance.md](play-families-compliance.md) §3; need legal review, a hosted URL and Play Console entry | Needed before any release (Approval F) |
