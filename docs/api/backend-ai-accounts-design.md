@@ -212,6 +212,18 @@ Content workflow: stories keep today's mock JSON schema (ADR-007) and move throu
 
 Each phase is its own milestone PR into `development`; staging, main and store release stay with the owner.
 
+### Prototype before P-B1 (owner, 31 Oct 2026)
+
+The owner chose to prototype with free tools first: **Gemini free tier and on-device AI**, moving to open models later.
+
+| Part | Prototype | Limits |
+|---|---|---|
+| Story text and pictures | Gemini Developer API free tier through **Firebase AI Logic** (no API key in the APK), in **debug builds only**, behind a debug-only flag; the simulated flow stays the fallback | Free-tier prompts may be used by Google and seen by reviewers: made-up names only, test data only. Check Google's current Gemini API terms on apps for under-18s before any release; production moves to paid terms or open models |
+| Narration | Android on-device TextToSpeech | Quality and Kannada depend on the phone |
+| On-device LLM (Gemini Nano) | Optional extras on supported phones only | Limited devices, weak Kannada, short outputs |
+| Network | `INTERNET` permission in the **debug manifest only**; release stays offline and the Families audit stays true | |
+| Config | `google-services.json` from the owner's `LittleStory-dev` Firebase project, kept out of the public repo; without it the build still works with the simulation | Add App Check before sharing builds beyond the owner |
+
 ## 11. Risks
 
 | Risk | Impact | Mitigation |
