@@ -81,6 +81,7 @@ Index of every document in `docs/`. Status of all P1 documents: draft for owner 
 | Document | What it covers |
 |---|---|
 | [ai-generation-flow.md](api/ai-generation-flow.md) | Describe the future job-based generation flow and the safety, cost and privacy controls required before any real AI provider is used. |
+| [backend-ai-accounts-design.md](api/backend-ai-accounts-design.md) | Proposal for the real backend: parent sign-in and logout, child profiles, consent, AI story creation, narration voices, content sources, subscription readiness, costs and phases. |
 | [backend-integration-plan.md](api/backend-integration-plan.md) | Define the repository boundaries that let deterministic mock data be replaced by a real backend without rewriting screens. |
 | [future-api-contracts.md](api/future-api-contracts.md) | Describe a candidate HTTP contract for catalog, generation, library and progress, including language negotiation. |
 
